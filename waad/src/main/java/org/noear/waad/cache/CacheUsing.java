@@ -68,7 +68,7 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, IWaadKey {
     //===================================
     public String _waadKey = null;
 
-    public String getWoodKey() {
+    public String getWaadKey() {
         return _waadKey;
     }
 

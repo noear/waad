@@ -55,11 +55,11 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
     }
 
 
-    /*IWoodKey begin*/
+    /*IWaadKey begin*/
     protected String _waadKey;
 
     @Override
-    public String getWoodKey() {
+    public String getWaadKey() {
         return buildWoodKey(paramS);
     }
 
@@ -167,7 +167,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
             rst = new SQLer(cmd).getVariate();
         } else {
             _cache.usingCache(cacheCondition);
-            rst = _cache.getEx(this.getWoodKey(), Variate.class, () -> (new SQLer(cmd).getVariate()));
+            rst = _cache.getEx(this.getWaadKey(), Variate.class, () -> (new SQLer(cmd).getVariate()));
         }
         if (rst == null) {
             return new Variate();
@@ -273,7 +273,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
             rst = new SQLer(cmd).getTable();
         } else {
             _cache.usingCache(cacheCondition);
-            rst = _cache.getEx(this.getWoodKey(), DataList.class, () -> (new SQLer(cmd).getTable()));
+            rst = _cache.getEx(this.getWaadKey(), DataList.class, () -> (new SQLer(cmd).getTable()));
         }
 
         if (rst == null) {
@@ -308,7 +308,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
             rst = new SQLer(cmd).getRow();
         } else {
             _cache.usingCache(cacheCondition);
-            rst = _cache.getEx(this.getWoodKey(), DataItem.class, () -> (new SQLer(cmd).getRow()));
+            rst = _cache.getEx(this.getWaadKey(), DataItem.class, () -> (new SQLer(cmd).getRow()));
         }
 
         if (rst == null) {

@@ -60,12 +60,12 @@ public class XmlSqlServiceGenerator {
         if (!file.exists()) {
             file.createNewFile();
         }else{
-            System.err.println("[Wood] Warning : "+file.getAbsolutePath());
+            System.err.println("[Waad] Warning : "+file.getAbsolutePath());
             return;
         }
 
         IOUtils.fileWrite(file, block._code);
-        System.out.println("[Wood] Generated : "+file.getAbsolutePath());
+        System.out.println("[Waad] Generated : "+file.getAbsolutePath());
     }
 
     //将xml解析为java code

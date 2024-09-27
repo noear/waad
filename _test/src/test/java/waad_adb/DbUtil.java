@@ -34,8 +34,8 @@ public class DbUtil {
         DataSource source = dbClickHouseCfg();
 
         DbContext db = new DbContext(source).nameSet("rock");
-        //WoodConfig.isUsingSchemaPrefix =true;
-        //WoodConfig.isUsingUnderlineColumnName=true;
+        //WaadConfig.isUsingSchemaPrefix =true;
+        //WaadConfig.isUsingUnderlineColumnName=true;
         db.onException((cmd, ex) -> {
             System.out.println(cmd.text);
         });

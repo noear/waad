@@ -41,7 +41,7 @@ public class CacheTags {
     /// <param name="target">目标</param>
     public void endAdd(IWaadKey target)
     {
-        endAdd(target.getWoodKey());
+        endAdd(target.getWaadKey());
     }
 
     /// <summary>
@@ -152,7 +152,7 @@ public class CacheTags {
 
     public void removeTag(String tag, String val, IWaadKey target)
     {
-        removeTag(tag, val, (target.getWoodKey()));
+        removeTag(tag, val, (target.getWaadKey()));
     }
 
     public void removeTag(String tag, String val, String targetCacheKey)

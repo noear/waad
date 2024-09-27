@@ -8,7 +8,7 @@ import org.noear.waad.WaadConfig;
 public class EventTest {
     public void demo(){
         WaadConfig.onExecuteAft((cmd)->{
-            System.out.println("[Wood] " + cmd.toSqlString());
+            System.out.println("[Waad] " + cmd.toSqlString());
         });
     }
 }

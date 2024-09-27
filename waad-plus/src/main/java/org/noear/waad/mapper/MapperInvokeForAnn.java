@@ -35,7 +35,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
             cache_tmp = WaadConfig.libOfCache.get(_caching);
 
             if (cache_tmp == null) {
-                throw new RuntimeException("WoodConfig.libOfCache does not exist:@" + _caching);
+                throw new RuntimeException("WaadConfig.libOfCache does not exist:@" + _caching);
             }
         }
 

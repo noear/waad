@@ -63,7 +63,7 @@ public class XmlSqlLoader {
         //构建代码
         List<String> codes = new ArrayList<>();
         for (URL file : _g.xmlFiles) {
-            System.out.println("[Wood] Xml Compiler: " + file);
+            System.out.println("[Waad] Xml Compiler: " + file);
 
             String code = XmlSqlCompiler.parse(file);
 

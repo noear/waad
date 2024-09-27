@@ -1,4 +1,4 @@
-# Wood mapper xml sql 语法
+# Waad mapper xml sql 语法
 
 ### 语法说明
 ```

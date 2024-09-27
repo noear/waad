@@ -43,7 +43,7 @@ class CompilerUtil {
             compiler.build();
 
             //编译耗时(单位ms)
-            System.out.println("[Wood] compiler time::" + (System.currentTimeMillis() - startTime) + "ms");
+            System.out.println("[Waad] compiler time::" + (System.currentTimeMillis() - startTime) + "ms");
 
             return true;
         } catch (DynamicCompilerException e) {
@@ -92,7 +92,7 @@ class CompilerUtil {
 
                 if (instantiation && cls != null && cls.isInterface() == false) {
                     cls.getDeclaredConstructor().newInstance();
-                    System.out.println("[Wood] String class loaded::" + className);
+                    System.out.println("[Waad] String class loaded::" + className);
                 }
             } catch (Throwable ex) {
                 ex.printStackTrace();

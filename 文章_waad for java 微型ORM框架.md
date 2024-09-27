@@ -1,9 +1,9 @@
-# Wood
+# Waad
 
 微型 Java ORM 框架（支持：java sql，xml sql，annotation sql；事务；缓存；监控；等...），无依赖！
 
 
-#### Wood 特点和理念：
+#### Waad 特点和理念：
 
 * 跨平台：可以嵌入到JVM脚本引擎（js, groovy, lua, python, ruby）及GraalVM支持的部分语言。
 * 很小巧：0.2Mb（且是功能完整，方案丰富；可极大简化数据库开发）。
@@ -17,7 +17,7 @@
 * 四个接口：db.mapper(), db.table(), db.call(), db.sql()
 
 
-#### Wood 组件： 
+#### Waad 组件： 
 
 | 组件                  | 说明                          |
 |---------------------|-----------------------------|
@@ -37,7 +37,7 @@
 
 
 
-#### Wood meven配置： 
+#### Waad meven配置： 
 
 ```xml 
 <!-- 框架包 -->
@@ -57,7 +57,7 @@
 
 
 
-#### Wood 入手流程：
+#### Waad 入手流程：
 
 * 配置 DataSource 信息
 * 构建 DbContext 实例
@@ -180,7 +180,7 @@ User user = db.mapper("@demo.dso.db.getUserById",args);
 
 ##### （二）db.table()，提供纯java链式操作
 
-  > 这是Wood最初的样子，这也是我最喜欢的方法。也是具体跨平台嵌入的关键能力。
+  > 这是Waad最初的样子，这也是我最喜欢的方法。也是具体跨平台嵌入的关键能力。
   >
   > BaseMapper内部也是由db.table()实现的，简单几行代就OK了。
   >
@@ -556,7 +556,7 @@ Trans.tran(() -> {
 
 ### (六) 监听与记录
 
-WoodConfig（全局）、DbContext（实例）都支持监听与记录
+WaadConfig（全局）、DbContext（实例）都支持监听与记录
 
 * 监听异常
 

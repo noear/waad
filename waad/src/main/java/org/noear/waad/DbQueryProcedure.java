@@ -73,7 +73,7 @@ public class DbQueryProcedure extends DbProcedure {
     //===========================================
     //
     @Override
-    public String getWoodKey() {
+    public String getWaadKey() {
         return buildWoodKey(_paramS2.values());
     }
 

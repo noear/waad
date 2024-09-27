@@ -215,9 +215,9 @@ public class DbContextMetaData implements Closeable {
 
     private void initPrintln(String x) {
         if (schema == null) {
-            System.out.println("[Wood] Init: " + x);
+            System.out.println("[Waad] Init: " + x);
         } else {
-            System.out.println("[Wood] Init: " + x + " - " + schema);
+            System.out.println("[Waad] Init: " + x + " - " + schema);
         }
     }
 

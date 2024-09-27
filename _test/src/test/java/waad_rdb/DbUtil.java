@@ -126,8 +126,8 @@ public class DbUtil {
         HikariDataSource source = dbMysqlCfg(); // dbH2Cfg(); // dbSqliteCfg(); // dbH2Cfg(); // dbOracleCfg(); //  dbPgsqlCfg(); // dbMssqlCfg(); //
 
         DbContext db = new DbContext(source).nameSet("rock");
-        //WoodConfig.isUsingSchemaPrefix =true;
-        //WoodConfig.isUsingUnderlineColumnName=true;
+        //WaadConfig.isUsingSchemaPrefix =true;
+        //WaadConfig.isUsingUnderlineColumnName=true;
 
         db.onException((cmd, ex)->{
             System.out.println(cmd.text);

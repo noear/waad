@@ -61,7 +61,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
     }
 
     @Override
-    public String getWoodKey() {
+    public String getWaadKey() {
         if(_waadKey==null)
         {
             StringBuilder sb = new StringBuilder();
@@ -93,7 +93,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
         try {
             sqlBuilder = block.builder.build(_map);
         }catch (Throwable ex){
-            System.out.println("[Wood] "+block.getClasscode(true));
+            System.out.println("[Waad] "+block.getClasscode(true));
 
             ex = ThrowableUtils.throwableUnwrap(ex);
             if (ex instanceof RuntimeException) {
@@ -127,7 +127,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
 
             //如果不存在，则提示异常
             if (cmd.cache == null) {
-                throw new RuntimeException("WoodConfig.libOfCache does not exist:@" + block._caching);
+                throw new RuntimeException("WaadConfig.libOfCache does not exist:@" + block._caching);
             }
 
             if (block.isSelect()) {

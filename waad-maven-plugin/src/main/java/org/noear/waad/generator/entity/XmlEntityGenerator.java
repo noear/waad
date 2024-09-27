@@ -24,7 +24,7 @@ public class XmlEntityGenerator {
             File file = new File(path);
 
             if (file.exists() == false) {
-                System.err.println("[Wood] No configuration file: waad-generator.xml");
+                System.err.println("[Waad] No configuration file: waad-generator.xml");
             }
 
             generate0(file, sourceDir);
@@ -154,7 +154,7 @@ public class XmlEntityGenerator {
             fw.write(fileContent);
         }
 
-        System.out.println("[Wood] Generated : " + file.getAbsolutePath());
+        System.out.println("[Waad] Generated : " + file.getAbsolutePath());
     }
 
     private static String buildFields(XmlSourceBlock source, TableItem table, boolean usePublic) {

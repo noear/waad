@@ -23,7 +23,7 @@ public class GenerateEntityMoJo extends AbstractMojo {
         //getLog().info(baseDir.getAbsolutePath());
         //getLog().info(sourceDir.getAbsolutePath());
 
-        System.out.println("[Wood] Start building entity files:");
+        System.out.println("[Waad] Start building entity files:");
         XmlEntityGenerator.generate(baseDir, sourceDir);
     }
 }

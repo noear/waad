@@ -5,5 +5,5 @@ package org.noear.waad;
  * 作为缓存的主键
  */
 public interface IWaadKey {
-    String getWoodKey();
+    String getWaadKey();
 }
