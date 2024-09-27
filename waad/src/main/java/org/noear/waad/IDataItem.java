@@ -1,7 +1,5 @@
 package org.noear.waad;
 
-import org.noear.waad.utils.fun.Act2;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -11,6 +9,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 /**
  * Created by noear on 15/9/2.
@@ -65,7 +64,7 @@ public interface IDataItem extends GetHandler, Serializable {
     LocalTime getLocalTime(String name);
 
 
-    void forEach(Act2<String, Object> action);
+    void forEach(BiConsumer<String, Object> action);
 
     Map<String, Object> getMap();
 }

@@ -1,7 +1,5 @@
 package org.noear.waad;
 
-import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.utils.LinkedCaseInsensitiveMap;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.wrap.ClassWrap;
@@ -12,11 +10,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 /**
  * @author noear 2023/3/16 created
  */
-public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
+public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem {
     Map<String, Object> _data = new LinkedCaseInsensitiveMap<>();
     private boolean _isUsingDbNull = false;
 
@@ -56,7 +56,7 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
     @Override
     public Y set(String name, Object value) {
         _data.put(name, value);
-        return (Y)this;
+        return (Y) this;
     }
 
     @Override
@@ -64,7 +64,7 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
         if (condition) {
             set(name, value);
         }
-        return (Y)this;
+        return (Y) this;
     }
 
     @Override
@@ -74,7 +74,7 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
         } else {
             set(name, value);
         }
-        return (Y)this;
+        return (Y) this;
     }
 
     @Override
@@ -151,12 +151,12 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
 
     @Override
     public BigDecimal getBigDecimal(String name) {
-        return  (BigDecimal) get(name);
+        return (BigDecimal) get(name);
     }
 
     @Override
     public BigInteger getBigInteger(String name) {
-        return  (BigInteger) get(name);
+        return (BigInteger) get(name);
     }
 
     @Override
@@ -218,14 +218,14 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
     }
 
     @Override
-    public void forEach(Act2<String, Object> callback) {
+    public void forEach(BiConsumer<String, Object> callback) {
         for (Map.Entry<String, Object> kv : _data.entrySet()) {
             Object val = kv.getValue();
 
             if (val == null && _isUsingDbNull) {
-                callback.run(kv.getKey(), "$NULL");
+                callback.accept(kv.getKey(), "$NULL");
             } else {
-                callback.run(kv.getKey(), val);
+                callback.accept(kv.getKey(), val);
             }
         }
     }
@@ -241,14 +241,14 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
         return setMapIf(data, (k, v) -> v != null);
     }
 
-    public Y setMapIf(Map<String, Object> data, Fun2<Boolean, String, Object> condition) {
+    public Y setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
         data.forEach((k, v) -> {
-            if (condition.run(k, v)) {
+            if (condition.apply(k, v)) {
                 set(k, v);
             }
         });
 
-        return (Y)this;
+        return (Y) this;
     }
 
     /**
@@ -261,13 +261,13 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
         return setEntityIf(obj, (k, v) -> v != null);
     }
 
-    public Y setEntityIf(Object obj, Fun2<Boolean, String, Object> condition) {
+    public Y setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
         EntityUtils.fromEntity(obj, (k, v) -> {
-            if (condition.run(k, v)) {
+            if (condition.apply(k, v)) {
                 set(k, v);
             }
         });
-        return (Y)this;
+        return (Y) this;
     }
 
     /**
