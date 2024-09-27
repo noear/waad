@@ -1,7 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.dialect.*;
-import org.noear.waad.ext.Act1Ex;
+import org.noear.waad.utils.fun.Act1Ex;
 import org.noear.waad.wrap.*;
 
 import javax.sql.DataSource;

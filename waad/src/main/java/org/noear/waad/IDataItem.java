@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act2;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -3,7 +3,7 @@ package org.noear.waad.dialect;
 import org.noear.waad.DbContext;
 import org.noear.waad.IDataItem;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.ext.Fun1;
+import org.noear.waad.utils.fun.Fun1;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;

@@ -3,10 +3,10 @@ package org.noear.waad;
 import org.noear.waad.core.Command;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.dialect.DbDialect;
-import org.noear.waad.ext.*;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.wrap.DbFormater;
 import org.noear.waad.wrap.DbType;
 

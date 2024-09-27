@@ -1,8 +1,8 @@
 package org.noear.waad;
 
 import org.noear.waad.core.DbAccess;
-import org.noear.waad.ext.Act0;
-import org.noear.waad.ext.Fun2;
+import org.noear.waad.utils.fun.Act0;
+import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.utils.EntityUtils;
 
 import java.util.Map;

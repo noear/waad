@@ -1,8 +1,8 @@
 package org.noear.waad;
 
-import org.noear.waad.ext.Act2;
-import org.noear.waad.ext.Fun2;
-import org.noear.waad.ext.LinkedCaseInsensitiveMap;
+import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.utils.fun.Fun2;
+import org.noear.waad.utils.LinkedCaseInsensitiveMap;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.wrap.ClassWrap;
 

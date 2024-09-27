@@ -1,7 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.ext.Fun2;
+import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ICondition;
 import org.noear.waad.utils.EntityUtils;

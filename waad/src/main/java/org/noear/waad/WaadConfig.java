@@ -2,9 +2,9 @@ package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.Command;
-import org.noear.waad.ext.Act1;
-import org.noear.waad.ext.Act2;
-import org.noear.waad.ext.Fun1;
+import org.noear.waad.utils.fun.Act1;
+import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.utils.fun.Fun1;
 import org.noear.waad.impl.IMapperAdaptorImpl;
 import org.noear.waad.mapper.IMapperAdaptor;
 import org.noear.waad.wrap.PrimaryKeyStrategy;

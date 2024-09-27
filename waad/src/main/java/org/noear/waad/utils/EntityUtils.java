@@ -1,7 +1,7 @@
 package org.noear.waad.utils;
 
 import org.noear.waad.DataItem;
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.wrap.ClassWrap;
 
 public class EntityUtils {

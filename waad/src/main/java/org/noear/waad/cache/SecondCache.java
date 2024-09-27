@@ -1,6 +1,6 @@
 package org.noear.waad.cache;
 
-import org.noear.waad.ext.Fun1;
+import org.noear.waad.utils.fun.Fun1;
 
 import java.lang.reflect.Type;
 

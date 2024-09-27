@@ -1,7 +1,7 @@
 package org.noear.waad.cache;
 
 import org.noear.waad.IWaadKey;
-import org.noear.waad.ext.Fun1;
+import org.noear.waad.utils.fun.Fun1;
 
 import java.util.ArrayList;
 import java.util.List;

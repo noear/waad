@@ -2,7 +2,7 @@ package org.noear.waad;
 
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act2;
 
 import java.sql.SQLException;
 import java.util.List;

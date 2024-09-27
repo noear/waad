@@ -1,8 +1,8 @@
 package org.noear.waad.cache;
 
 import org.noear.waad.WaadConfig;
-import org.noear.waad.ext.Fun1;
-import org.noear.waad.ext.Fun1Ex;
+import org.noear.waad.utils.fun.Fun1;
+import org.noear.waad.utils.fun.Fun1Ex;
 
 /**
  * 缓存服务扩展接口

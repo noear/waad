@@ -3,8 +3,8 @@ package org.noear.waad.core;
 import org.noear.waad.*;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.ext.Act1;
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act1;
+import org.noear.waad.utils.fun.Act2;
 
 import java.io.Serializable;
 import java.sql.SQLException;

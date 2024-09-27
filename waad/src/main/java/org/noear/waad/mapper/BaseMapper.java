@@ -1,8 +1,8 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
-import org.noear.waad.ext.Act1;
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act1;
+import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.wrap.Property;
 
 import java.util.List;

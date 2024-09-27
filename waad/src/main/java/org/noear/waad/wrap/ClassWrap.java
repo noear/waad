@@ -3,7 +3,7 @@ package org.noear.waad.wrap;
 import org.noear.waad.IDataItem;
 import org.noear.waad.WaadConfig;
 import org.noear.waad.annotation.Table;
-import org.noear.waad.ext.Act2;
+import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.utils.ThrowableUtils;
 
 import java.lang.reflect.Constructor;

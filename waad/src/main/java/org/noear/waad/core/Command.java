@@ -4,7 +4,7 @@ import org.noear.waad.DbContext;
 import org.noear.waad.DbTran;
 import org.noear.waad.DbTranUtil;
 import org.noear.waad.cache.ICacheServiceEx;
-import org.noear.waad.ext.Act1;
+import org.noear.waad.utils.fun.Act1;
 
 import java.util.Date;
 import java.util.LinkedHashMap;

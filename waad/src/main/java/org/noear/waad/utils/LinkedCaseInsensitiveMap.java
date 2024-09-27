@@ -1,4 +1,4 @@
-package org.noear.waad.ext;
+package org.noear.waad.utils;
 
 
 import java.io.Serializable;
