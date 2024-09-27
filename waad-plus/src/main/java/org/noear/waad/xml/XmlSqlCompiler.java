@@ -434,7 +434,7 @@ public class XmlSqlCompiler {
             }
 
             if ("?!".equals(vfun)) {
-                String newStr = "StringUtils.isEmpty(" + vname + ") == false";
+                String newStr = "StrUtils.isEmpty(" + vname + ") == false";
 
                 test = test.replace(m.group(), newStr);
             }
@@ -554,7 +554,7 @@ public class XmlSqlCompiler {
 
             for (XmlSqlVar dv : tmpList) {
                 //如果没有type 申明，采用 __map.get()
-//                if(StringUtils.isEmpty(dv.type)){
+//                if(StrUtils.isEmpty(dv.type)){
 //                    txt2 = txt2.replace(dv.mark, "\"+ __map.get(\"" + dv.name + "\") +\"");
 //                }else{
                     txt2 = txt2.replace(dv.mark, "\"+ " + dv.name + " +\"");
@@ -586,7 +586,7 @@ public class XmlSqlCompiler {
             sb.append("\"").append(txt2).append(" \"");
             tmpList.forEach(v -> {
                 //如果没有type 申明，采用 __map.get()
-//                if(StringUtils.isEmpty(v.type)){
+//                if(StrUtils.isEmpty(v.type)){
 //                    sb.append(",__map.get(\"").append(v.name).append("\")");
 //                }else{
                     sb.append(",").append(v.name);
