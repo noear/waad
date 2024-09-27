@@ -165,11 +165,7 @@ public class DbQueryProcedure extends DbProcedure {
         //3.替换schema
         if (WaadConfig.isUsingSchemaExpression) {
             if (tml.indexOf("$") >= 0) {
-                if (context.schema() == null) {
-                    tml = tml.replace("$.", "");
-                } else {
-                    tml = tml.replace("$", context.schema());
-                }
+                tml = tml.replace("$.", "");
             }
         }
 

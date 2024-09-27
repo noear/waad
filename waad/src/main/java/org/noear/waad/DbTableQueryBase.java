@@ -73,11 +73,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
             if (table.indexOf('.') > 0) {
                 _table = new ITableImpl(table, null);
             } else {
-                if (WaadConfig.isUsingSchemaPrefix && _context.schema() != null) {
-                    _table = new ITableImpl(fmtObject(_context.schema() + "." + table), null);
-                } else {
-                    _table = new ITableImpl(fmtObject(table), null); //"$." + table;
-                }
+                _table = new ITableImpl(fmtObject(table), null); //"$." + table;
             }
         }
 
@@ -140,11 +136,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         if (table.startsWith("#")) {
             _builder.append(style).append(table.substring(1));
         } else {
-            if (WaadConfig.isUsingSchemaPrefix && _context.schema() != null) {
-                _builder.append(style).append(fmtObject(_context.schema() + "." + table));
-            } else {
-                _builder.append(style).append(fmtObject(table));
-            }
+            _builder.append(style).append(fmtObject(table));
         }
         return (T) this;
     }
