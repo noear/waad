@@ -364,10 +364,6 @@ public class DbContext extends DbEventBus implements Closeable {
             return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, null);
         }
 
-        if (process.lastIndexOf(" ") > 0) {
-            return new DbQueryProcedure(this).sql(process);
-        }
-
         return new DbStoredProcedure(this).call(process);
     }
 
@@ -379,10 +375,6 @@ public class DbContext extends DbEventBus implements Closeable {
     public DbProcedure call(String process, Map<String, Object> args) {
         if (process.startsWith("@")) {
             return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, args);
-        }
-
-        if (process.lastIndexOf(" ") > 0) {
-            return new DbQueryProcedure(this).sql(process).setMap(args);
         }
 
         return new DbStoredProcedure(this).call(process).setMap(args);

@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.tml;
 
 import org.noear.waad.utils.StringUtils;
 
