@@ -16,7 +16,7 @@
         <java.version>1.8</java.version>
 
         <solon.version>2.9.2</solon.version>
-        <waad.version>1.3.6</waad.version>
+        <waad.version>0.1.1</waad.version>
     </properties>
 
     <dependencies>
