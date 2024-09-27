@@ -1,0 +1,12 @@
+[
+  {
+    "name": "org.noear.waad.impl.IMapperAdaptorPlusImpl",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredConstructors": true
+  }
+]

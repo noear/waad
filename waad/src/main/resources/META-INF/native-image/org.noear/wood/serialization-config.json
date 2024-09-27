@@ -1,0 +1,11 @@
+[
+  {
+    "name": "org.noear.waad.impl.IPageImpl"
+  },
+  {
+  "name": "org.noear.waad.DataItem"
+  },
+  {
+    "name": "org.noear.waad.DataList"
+  }
+]
