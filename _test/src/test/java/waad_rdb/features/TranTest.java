@@ -2,7 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.*;
-import org.noear.waad.tran.Trans;
+import org.noear.waad.transaction.Trans;
 import waad_rdb.DbUtil;
 
 public class TranTest {

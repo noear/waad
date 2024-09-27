@@ -1,4 +1,4 @@
-package org.noear.waad.tran;
+package org.noear.waad.transaction;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.WaadConfig;

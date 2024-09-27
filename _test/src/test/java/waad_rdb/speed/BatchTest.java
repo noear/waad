@@ -3,7 +3,7 @@ package waad_rdb.speed;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DataItem;
 import org.noear.waad.DbContext;
-import org.noear.waad.tran.Trans;
+import org.noear.waad.transaction.Trans;
 import waad_rdb.DbUtil;
 
 import java.util.ArrayList;

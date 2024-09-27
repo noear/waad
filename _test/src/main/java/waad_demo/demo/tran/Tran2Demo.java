@@ -1,7 +1,7 @@
 package waad_demo.demo.tran;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.tran.Trans;
+import org.noear.waad.transaction.Trans;
 import waad_demo.config.DbConfig;
 
 import java.sql.SQLException;
