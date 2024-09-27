@@ -5,7 +5,7 @@ import org.noear.waad.core.Command;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.utils.fun.Fun1;
-import org.noear.waad.impl.IMapperAdaptorImpl;
+import org.noear.waad.mapper.IMapperAdaptorImpl;
 import org.noear.waad.mapper.IMapperAdaptor;
 import org.noear.waad.wrap.PrimaryKeyStrategy;
 import org.noear.waad.wrap.NamingStrategy;

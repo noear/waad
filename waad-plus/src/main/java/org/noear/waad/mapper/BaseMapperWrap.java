@@ -3,10 +3,10 @@ package org.noear.waad.mapper;
 import org.noear.waad.*;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.impl.IPageImpl;
+import org.noear.waad.IPageImpl;
 import org.noear.waad.link.IColumnImpl;
 import org.noear.waad.utils.RunUtils;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.wrap.Property;
 import org.noear.waad.wrap.PropertyWrap;
 
@@ -37,7 +37,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         _entityType = entityType; //给 BaseEntityWrap 用的
         _table = BaseEntityWrap.get(this);
 
-        if (StringUtils.isEmpty(tableName)) {
+        if (StrUtils.isEmpty(tableName)) {
             _tabelName = _table.tableName;
         } else {
             _tabelName = tableName;

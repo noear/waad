@@ -82,7 +82,7 @@ public class IOUtils {
 
         ByteArrayOutputStream outs = transferTo(ins, new ByteArrayOutputStream());
 
-        if (StringUtils.isEmpty(charset)) {
+        if (StrUtils.isEmpty(charset)) {
             return outs.toString();
         } else {
             return outs.toString(charset);

@@ -4,7 +4,7 @@ import org.noear.redisx.RedisClient;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.cache.ISerializer;
 import org.noear.waad.utils.EncryptUtils;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 
 import java.lang.reflect.Type;
 import java.util.Properties;
@@ -51,7 +51,7 @@ public class RedisCache implements ICacheServiceEx {
         String defSeconds_str = prop.getProperty("defSeconds");
 
         if (defSeconds == 0) {
-            if (StringUtils.isEmpty(defSeconds_str) == false) {
+            if (StrUtils.isEmpty(defSeconds_str) == false) {
                 defSeconds = Integer.parseInt(defSeconds_str);
             }
         }

@@ -1,6 +1,4 @@
-package org.noear.waad.impl;
-
-import org.noear.waad.IPage;
+package org.noear.waad;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package org.noear.waad.mapper;
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
 import org.noear.waad.Variate;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.xml.XmlSqlBlock;
 import org.noear.waad.xml.XmlSqlFactory;
 import org.noear.waad.xml.XmlSqlLoader;
@@ -76,7 +76,7 @@ public  class MapperUtil {
                 } else {
                     Class<?> rst_type = rClz;
                     if (rClz == null) {
-                        if (StringUtils.isEmpty(block._return) == false) {
+                        if (StrUtils.isEmpty(block._return) == false) {
                             rst_type = Class.forName(block._return);
                         } else {
                             rst_type = Void.TYPE;
@@ -177,7 +177,7 @@ public  class MapperUtil {
             return (Class<?>) (((ParameterizedType) rType).getActualTypeArguments()[0]);
         }
 
-        if (StringUtils.isEmpty(block._return_item) == false) {
+        if (StrUtils.isEmpty(block._return_item) == false) {
             return getClass(block._return_item);
         }
 

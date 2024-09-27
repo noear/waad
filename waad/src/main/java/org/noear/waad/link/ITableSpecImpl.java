@@ -1,6 +1,6 @@
 package org.noear.waad.link;
 
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 
 /**
  * 连接表
@@ -38,7 +38,7 @@ public class ITableSpecImpl implements ITableSpec {
 
     @Override
     public String getCode() {
-        if (StringUtils.isEmpty(asName)) {
+        if (StrUtils.isEmpty(asName)) {
             return name;
         } else {
             return name + " " + asName;

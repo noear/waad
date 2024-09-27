@@ -1,7 +1,7 @@
 package org.noear.waad.link;
 
-import org.noear.waad.lang.Nullable;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.annotation.Nullable;
+import org.noear.waad.utils.StrUtils;
 
 /**
  * 连接字段
@@ -45,14 +45,14 @@ public class IColumnImpl implements IColumn {
 
     @Override
     public String getCode() {
-        if (table == null || StringUtils.isEmpty(table.____getTableSpec().asName()) || name.contains(".")) {
-            if (StringUtils.isEmpty(asName())) {
+        if (table == null || StrUtils.isEmpty(table.____getTableSpec().asName()) || name.contains(".")) {
+            if (StrUtils.isEmpty(asName())) {
                 return name;
             } else {
                 return name + " as " + asName;
             }
         } else {
-            if (StringUtils.isEmpty(asName())) {
+            if (StrUtils.isEmpty(asName())) {
                 return table.____getTableSpec().asName() + "." + name;
             } else {
                 return table.____getTableSpec().asName() + "." + name + " as " + asName;

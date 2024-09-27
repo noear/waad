@@ -4,7 +4,7 @@ import org.noear.waad.*;
 import org.noear.waad.core.Command;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.EntityUtils;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.utils.ThrowableUtils;
 
 import java.util.Arrays;
@@ -123,7 +123,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
     /** 尝试缓存控制 */
     private void tryCacheController(Command cmd, XmlSqlBlock block) {
         //配置化缓存处理（有配置，并且未手动配置过缓存）...
-        if (StringUtils.isEmpty(block._caching) == false && this._cache == null) {
+        if (StrUtils.isEmpty(block._caching) == false && this._cache == null) {
             //寄存缓存对象
             cmd.cache = WaadConfig.libOfCache.get(block._caching);
 
@@ -136,11 +136,11 @@ public class DbXmlsqlProcedure extends DbProcedure {
                 //如果是查询，可以在处理之前添加控制
                 this.caching(cmd.cache);
 
-                if (StringUtils.isEmpty(block._usingCache) == false) {
+                if (StrUtils.isEmpty(block._usingCache) == false) {
                     this.usingCache(Integer.parseInt(block._usingCache));
                 }
 
-                if (StringUtils.isEmpty(block._cacheTag) == false) {
+                if (StrUtils.isEmpty(block._cacheTag) == false) {
                     _cache.usingCache((uc, obj) -> {
                         Arrays.asList(block.formatAppendTags(block, _map, obj).split(",")).forEach((k) -> {
                             this.cacheTag(k.trim());
@@ -148,7 +148,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
                     });
                 }
             } else {
-                if (StringUtils.isEmpty(block._cacheClear) == false) {
+                if (StrUtils.isEmpty(block._cacheClear) == false) {
                     //如果是非查询，需要在执行后处理清理动作
                     cmd.onExecuteAft = (c) -> {
                         Arrays.asList(block.formatRemoveTags(block, _map).split(",")).forEach((k) -> {

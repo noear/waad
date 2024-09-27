@@ -7,7 +7,6 @@ import org.noear.waad.core.Command;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.impl.IPageImpl;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ITable;
 import org.noear.waad.link.ITableImpl;

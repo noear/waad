@@ -1,6 +1,6 @@
 package org.noear.waad.link;
 
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 
 /**
  * 表
@@ -15,7 +15,7 @@ public interface ITable<T> {
     ITableSpec ____getTableSpec();
 
     default IColumn all() {
-        if (StringUtils.isEmpty(____getTableSpec().asName())) {
+        if (StrUtils.isEmpty(____getTableSpec().asName())) {
             return new IColumnImpl(this, ____getTableSpec().name() + ".*");
         } else {
             return new IColumnImpl(this, ____getTableSpec().asName() + ".*");

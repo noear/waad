@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -47,7 +47,7 @@ public class XmlSqlCompiler {
         sb.append("import org.noear.waad.utils.*;\n");
         sb.append("import org.noear.waad.core.SQLBuilder;\n");
         sb.append("import org.noear.waad.xml.XmlSqlFactory;\n");
-        if(StringUtils.isEmpty(_import) == false) {
+        if(StrUtils.isEmpty(_import) == false) {
             String[] ss = _import.split(";");
             for (String s : ss) {
                 if (s.length() > 2) {
@@ -380,19 +380,19 @@ public class XmlSqlCompiler {
 
         _parseNodeList(n.getChildNodes(), varName, sb, dblock, depth);
 
-        if(StringUtils.isEmpty(_trimStart) == false){
+        if(StrUtils.isEmpty(_trimStart) == false){
             newLine(sb, depth).append(varName).append(".trimStart(\"").append(_trimStart).append("\");");
         }
 
-        if(StringUtils.isEmpty(_trimEnd) == false){
+        if(StrUtils.isEmpty(_trimEnd) == false){
             newLine(sb, depth).append(varName).append(".trimEnd(\"").append(_trimEnd).append("\");");
         }
 
-        if(StringUtils.isEmpty(_prefix) == false){
+        if(StrUtils.isEmpty(_prefix) == false){
             newLine(sb, depth).append(varName).append(".addPrefix(\"").append(_prefix).append("\", false);");
         }
 
-        if(StringUtils.isEmpty(_suffix) == false){
+        if(StrUtils.isEmpty(_suffix) == false){
             newLine(sb, depth).append(varName).append(".addSuffix(\"").append(_suffix).append("\", false);");
         }
 
@@ -446,7 +446,7 @@ public class XmlSqlCompiler {
     //xml:解析 ref 指令节点
     private static void parseRefNode(StringBuilder sb, String sqlBuilderName,XmlSqlBlock dblock, Node n , int depth) {
         String _sql_id = attr(n, "sql");
-        if (StringUtils.isEmpty(_sql_id) == false) {
+        if (StrUtils.isEmpty(_sql_id) == false) {
             Node ref_n = dblock.__nodeMap.get(_sql_id);
             if (ref_n == null) {
                 throw new RuntimeException("sql node @" + _sql_id + " can't find");
@@ -510,7 +510,7 @@ public class XmlSqlCompiler {
         _parseNodeList(n.getChildNodes(),sqlBuilderName, sb, dblock, depth + 1);
 
         sb.append("\n");
-        if(StringUtils.isEmpty(_sep_str) == false) {
+        if(StrUtils.isEmpty(_sep_str) == false) {
             newLine(sb, depth + 1).append("if(").append(_var.name).append("_iterator.hasNext()").append("){");
             newLine(sb, depth + 2).append(sqlBuilderName).append(".append(\"").append(_sep_str).append("\");");
             newLine(sb, depth + 1).append("}");

@@ -5,7 +5,7 @@ import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.dialect.DbDialect;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.wrap.DbFormater;
 import org.noear.waad.wrap.DbType;
@@ -187,7 +187,7 @@ public class DbContext extends DbEventBus implements Closeable {
      * 数据集合名称设置
      */
     public DbContext schemaSet(String schema) {
-        if (StringUtils.isNotEmpty(schema)) {
+        if (StrUtils.isNotEmpty(schema)) {
             getMetaData().setSchema(schema);
 
             if (_name == null) {
@@ -251,23 +251,23 @@ public class DbContext extends DbEventBus implements Closeable {
         String password = prop.getProperty("password");
         String driverClassName = prop.getProperty("driverClassName");
 
-        if (StringUtils.isEmpty(url) || url.startsWith("jdbc:") == false) {
+        if (StrUtils.isEmpty(url) || url.startsWith("jdbc:") == false) {
             throw new IllegalArgumentException("DataSource url configuration error");
         }
 
-        if (StringUtils.isNotEmpty(driverClassName)) {
+        if (StrUtils.isNotEmpty(driverClassName)) {
             driverSet(driverClassName);
         }
 
-        if (StringUtils.isNotEmpty(schema)) {
+        if (StrUtils.isNotEmpty(schema)) {
             getMetaData().setSchema(schema);
         }
 
-        if (StringUtils.isEmpty(getMetaData().getSchema()) && url.indexOf("://") > 0) {
+        if (StrUtils.isEmpty(getMetaData().getSchema()) && url.indexOf("://") > 0) {
             getMetaData().setSchema(URI.create(url.substring(5)).getPath().substring(1));
         }
 
-        if (StringUtils.isEmpty(username)) {
+        if (StrUtils.isEmpty(username)) {
             getMetaData().setDataSource(new DbDataSource(url));
         } else {
             getMetaData().setDataSource(new DbDataSource(url, username, password));

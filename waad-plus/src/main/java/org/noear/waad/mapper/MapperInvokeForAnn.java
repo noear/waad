@@ -4,7 +4,7 @@ import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.DbAccess;
-import org.noear.waad.utils.StringUtils;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.wrap.MethodWrap;
 
 import java.lang.reflect.Parameter;
@@ -32,7 +32,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
 
         //1.获取缓存服务
         ICacheServiceEx cache_tmp = null;
-        if (StringUtils.isEmpty(_caching) == false) {
+        if (StrUtils.isEmpty(_caching) == false) {
             cache_tmp = WaadConfig.libOfCache.get(_caching);
 
             if (cache_tmp == null) {
@@ -77,7 +77,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         if (sqlUp.indexOf(" DELETE ") > 0 || sqlUp.indexOf(" UPDATE ") > 0) {
             int rst = sp.execute();
 
-            if (cache != null && StringUtils.isEmpty(_cacheClear) == false) {
+            if (cache != null && StrUtils.isEmpty(_cacheClear) == false) {
                 Arrays.asList(formatTag(_cacheClear, _map).split(",")).forEach((k) -> {
                     cache.clear(k);
                 });
@@ -89,7 +89,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         if (sqlUp.indexOf(" INSERT ") > 0) {
             long rst = sp.insert();
 
-            if (cache != null && StringUtils.isEmpty(_cacheClear) == false) {
+            if (cache != null && StrUtils.isEmpty(_cacheClear) == false) {
                 Arrays.asList(formatTag(_cacheClear, _map).split(",")).forEach((k) -> {
                     cache.clear(k);
                 });
@@ -122,7 +122,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
             }
 
             //缓存标签处理
-            if(StringUtils.isEmpty(_cacheTag) == false) {
+            if(StrUtils.isEmpty(_cacheTag) == false) {
                 _cacheTag = formatTag(_cacheTag, map);
 
                 if (_cacheTag.indexOf("}") < 0) {
