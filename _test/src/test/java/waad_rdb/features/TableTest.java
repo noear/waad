@@ -94,7 +94,7 @@ public class TableTest {
 
         assert db.table("appx_copy")
                 .setMap(map)
-                .where("app_id=?", 11).or("agroup_id=?", null)
+                .where("app_id=?", 11).or("agroup_id IS NULL")
                 .update() > 0;
 
         System.out.println(db.lastCommand.text);
@@ -155,26 +155,26 @@ public class TableTest {
     @Test
     public void test12() throws Exception {
         assert db.table("appx")
-                .where("app_id=?", null)
+                .where("app_id IS NULL")
                 .selectItem("*", AppxModel.class).app_id == null;
 
         System.out.println(db.lastCommand.text);
 
         assert db.table("appx")
-                .where("app_id=?", null)
+                .where("app_id IS NULL")
                 .selectMap("*").size() == 0;
     }
 
     @Test
     public void test12_2() throws Exception {
         assert db.table("appx")
-                .where("app_id=?", null)
+                .where("app_id IS NULL")
                 .selectList("*", AppxModel.class).size() == 0;
 
         System.out.println(db.lastCommand.text);
 
         assert db.table("appx")
-                .where("app_id=?", null)
+                .where("app_id IS NULL")
                 .selectMapList("*").size() == 0;
     }
 
