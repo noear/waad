@@ -1,17 +1,12 @@
 package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
-import org.noear.waad.core.Command;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.utils.fun.Fun1;
 import org.noear.waad.mapper.IMapperAdaptorImpl;
 import org.noear.waad.mapper.IMapperAdaptor;
 import org.noear.waad.wrap.PrimaryKeyStrategy;
 import org.noear.waad.wrap.NamingStrategy;
 import org.noear.waad.wrap.TypeConverter;
 
-import java.sql.Statement;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -59,81 +54,12 @@ public final class WaadConfig {
     public static Map<String, ICacheServiceEx> libOfCache = new ConcurrentHashMap<>();
     public static Map<String, DbContext> libOfDb = new ConcurrentHashMap<>();
 
-    protected static DbEventBus eventBus = new DbEventBus();
-
-
-    protected static boolean isEmpty(CharSequence s) {
-        if (s == null) {
-            return true;
-        } else {
-            return s.length() == 0;
-        }
-    }
-
-    protected static void runExceptionEvent(Command cmd, Throwable ex) {
-        eventBus.runExceptionEvent(cmd, ex);
-    }
-
-    protected static void runCommandBuiltEvent(Command cmd) {
-        eventBus.runCommandBuiltEvent(cmd);
-    }
-
-    protected static boolean runExecuteBefEvent(Command cmd) {
-        return eventBus.runExecuteBefEvent(cmd);
-    }
-
-    protected static void runExecuteStmEvent(Command cmd, Statement stm) {
-        eventBus.runExecuteStmEvent(cmd, stm);
-    }
-
-    protected static void runExecuteAftEvent(Command cmd) {
-        eventBus.runExecuteAftEvent(cmd);
-    }
-
-
-    //--------------------------------------
-    //
-    //
-
     /**
-     * 出现异常时
+     * 事件
      */
-    public static void onException(Act2<Command, Throwable> listener) {
-        eventBus.onException(listener);
-    }
+    private static final DbEvents events = new DbEvents(null);
 
-    /**
-     * 可以记日志时
-     */
-    public static void onLog(Act1<Command> listener) {
-        eventBus.onLog(listener);
-    }
-
-    /**
-     * 命令构建完成时
-     */
-    public static void onCommandBuilt(Act1<Command> listener) {
-        eventBus.onCommandBuilt(listener);
-    }
-
-    /**
-     * 执行之前
-     */
-    public static void onExecuteBef(Fun1<Boolean, Command> listener) {
-        eventBus.onExecuteBef(listener);
-    }
-
-    /**
-     * 执行之中
-     */
-    public static void onExecuteStm(Act2<Command, Statement> listener) {
-        eventBus.onExecuteStm(listener);
-    }
-
-    /**
-     * 执行之后
-     */
-    public static void onExecuteAft(Act1<Command> listener) {
-        eventBus.onExecuteAft(listener);
+    public static DbEvents getEvents() {
+        return events;
     }
 }

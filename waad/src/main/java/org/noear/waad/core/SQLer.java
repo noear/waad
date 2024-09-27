@@ -24,7 +24,7 @@ public class SQLer {
                 rset = null;
             }
         } catch (Exception ex) {
-            cmd.context.runExceptionEvent(null, ex);
+            cmd.context.getEvents().runExceptionEvent(null, ex);
         }
 
         try {
@@ -33,7 +33,7 @@ public class SQLer {
                 stmt = null;
             }
         } catch (Exception ex) {
-            cmd.context.runExceptionEvent(null, ex);
+            cmd.context.getEvents().runExceptionEvent(null, ex);
         }
 
         try {
@@ -44,7 +44,7 @@ public class SQLer {
                 conn = null;
             }
         } catch (Exception ex) {
-            cmd.context.runExceptionEvent(null, ex);
+            cmd.context.getEvents().runExceptionEvent(null, ex);
         }
     }
 
@@ -73,7 +73,7 @@ public class SQLer {
             else
                 return null;//new Variate(null,null);
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             tryClose();
@@ -93,7 +93,7 @@ public class SQLer {
                     try {
                         return new Variate(key, getObject(key));
                     } catch (SQLException ex) {
-                        cmd.context.runExceptionEvent(cmd, ex);
+                        cmd.context.getEvents().runExceptionEvent(cmd, ex);
                         return new Variate(key, null);
                     }
                 });
@@ -103,7 +103,7 @@ public class SQLer {
                 return null;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             tryClose();
@@ -133,7 +133,7 @@ public class SQLer {
                     try {
                         return new Variate(key, getObject(key));
                     } catch (SQLException ex) {
-                        cmd.context.runExceptionEvent(cmd, ex);
+                        cmd.context.getEvents().runExceptionEvent(cmd, ex);
                         return new Variate(key, null);
                     }
                 });
@@ -147,7 +147,7 @@ public class SQLer {
                 return null;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             tryClose();
@@ -180,7 +180,7 @@ public class SQLer {
                 return null;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             tryClose();
@@ -215,7 +215,7 @@ public class SQLer {
                 return null;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             tryClose();
@@ -231,7 +231,7 @@ public class SQLer {
             rset = query(true, fetchSize);
             return new DataReader(this, cmd, rset);
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             tryClose();
             throw ex;
         }
@@ -255,11 +255,11 @@ public class SQLer {
             return rst;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             //*.监听
-            cmd.context.runExecuteAftEvent(cmd);
+            cmd.context.getEvents().runExecuteAftEvent(cmd);
 
             tryClose();
         }
@@ -298,11 +298,11 @@ public class SQLer {
             return rst;
 
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             //*.监听
-            cmd.context.runExecuteAftEvent(cmd);
+            cmd.context.getEvents().runExecuteAftEvent(cmd);
             tryClose();
         }
     }
@@ -340,11 +340,11 @@ public class SQLer {
 
             return 0l;
         } catch (SQLException ex) {
-            cmd.context.runExceptionEvent(cmd, ex);
+            cmd.context.getEvents().runExceptionEvent(cmd, ex);
             throw ex;
         } finally {
             //*.监听
-            cmd.context.runExecuteAftEvent(cmd);
+            cmd.context.getEvents().runExecuteAftEvent(cmd);
             tryClose();
         }
     }
@@ -360,7 +360,7 @@ public class SQLer {
             return stmt.executeQuery();
         } finally {
             //*.监听
-            cmd.context.runExecuteAftEvent(cmd);
+            cmd.context.getEvents().runExecuteAftEvent(cmd);
         }
     }
 
@@ -381,7 +381,7 @@ public class SQLer {
 
     private boolean buildCMD0(boolean isInsert, boolean isStream, int fetchSize) throws SQLException {
         //*.监听
-        if (cmd.context.runExecuteBefEvent(cmd) == false) {
+        if (cmd.context.getEvents().runExecuteBefEvent(cmd) == false) {
             return false;
         }
 
@@ -412,7 +412,7 @@ public class SQLer {
             }
         }
 
-        cmd.context.runExecuteStmEvent(cmd, stmt);
+        cmd.context.getEvents().runExecuteStmEvent(cmd, stmt);
 
         return true;
     }

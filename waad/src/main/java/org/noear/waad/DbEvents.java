@@ -1,5 +1,6 @@
 package org.noear.waad;
 
+import org.noear.waad.annotation.Nullable;
 import org.noear.waad.core.Command;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
@@ -12,7 +13,8 @@ import java.util.Set;
 /**
  * @author noear 2024/4/19 created
  */
-public class DbEventBus {
+public class DbEvents {
+    private DbEvents parent;
     private Set<Act2<Command, Throwable>> onException_listener = new LinkedHashSet<>();
     private Set<Act1<Command>> onLog_listener = new LinkedHashSet<>();
 
@@ -25,16 +27,16 @@ public class DbEventBus {
     //执行之后
     private Set<Act1<Command>> onExecuteAft_listener = new LinkedHashSet();
 
-
-    protected static boolean isEmpty(CharSequence s) {
-        if (s == null) {
-            return true;
-        } else {
-            return s.length() == 0;
-        }
+    public DbEvents(@Nullable DbEvents parent) {
+        this.parent = parent;
     }
 
-    protected void runExceptionEvent(Command cmd, Throwable ex) {
+
+    public void runExceptionEvent(Command cmd, Throwable ex) {
+        if (parent != null) {
+            parent.runExceptionEvent(cmd, ex);
+        }
+
         if (onException_listener.size() > 0) {
             if (cmd != null) {
                 cmd.timestop = System.currentTimeMillis();
@@ -46,7 +48,12 @@ public class DbEventBus {
         }
     }
 
-    protected void runCommandBuiltEvent(Command cmd) {
+    public void runCommandBuiltEvent(Command cmd) {
+        if (parent != null) {
+            parent.runCommandBuiltEvent(cmd);
+        }
+
+
         if (onCommandBuilt_listener.size() > 0) {
             onCommandBuilt_listener.forEach(fun -> {
                 fun.run(cmd);
@@ -54,7 +61,12 @@ public class DbEventBus {
         }
     }
 
-    protected boolean runExecuteBefEvent(Command cmd) {
+    public boolean runExecuteBefEvent(Command cmd) {
+        if (parent != null) {
+            return parent.runExecuteBefEvent(cmd);
+        }
+
+
         cmd.timestart = System.currentTimeMillis();
 
         VarHolder<Boolean> rst = new VarHolder<>();
@@ -69,7 +81,12 @@ public class DbEventBus {
         return rst.value;
     }
 
-    protected void runExecuteStmEvent(Command cmd, Statement stm) {
+    public void runExecuteStmEvent(Command cmd, Statement stm) {
+        if (parent != null) {
+            parent.runExecuteStmEvent(cmd, stm);
+        }
+
+
         if (onExecuteStm_listener.size() > 0) {
             onExecuteStm_listener.forEach(fun -> {
                 fun.run(cmd, stm);
@@ -77,7 +94,12 @@ public class DbEventBus {
         }
     }
 
-    protected void runExecuteAftEvent(Command cmd) {
+    public void runExecuteAftEvent(Command cmd) {
+        if (parent != null) {
+            parent.runExecuteAftEvent(cmd);
+        }
+
+
         try {
             if (cmd.onExecuteAft != null) {
                 cmd.onExecuteAft.run(cmd);

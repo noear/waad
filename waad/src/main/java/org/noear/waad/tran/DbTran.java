@@ -1,5 +1,7 @@
-package org.noear.waad;
+package org.noear.waad.tran;
 
+import org.noear.waad.DbContext;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.utils.fun.Act0Ex;
 import org.noear.waad.utils.ThrowableUtils;
 
@@ -109,7 +111,7 @@ public class DbTran {
                     kv.getValue().close();
                 }
             } catch (Exception ex) {
-                WaadConfig.runExceptionEvent(null, ex);
+                WaadConfig.getEvents().runExceptionEvent(null, ex);
             }
         }
     }

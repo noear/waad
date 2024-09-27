@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ import java.util.Properties;
  * Created by noear on 14-6-12.
  * 数据库上下文
  */
-public class DbContext extends DbEventBus implements Closeable {
+public class DbContext implements Closeable {
     /**
      * 最后次执行命令 (线程不安全，仅供调试用)
      */
@@ -61,6 +60,13 @@ public class DbContext extends DbEventBus implements Closeable {
 
     public void setCompilationMode(boolean compilationMode) {
         this.compilationMode = compilationMode;
+    }
+
+
+    private final DbEvents events = new DbEvents(WaadConfig.events);
+
+    public DbEvents getEvents() {
+        return events;
     }
 
     private final DbContextMetaData metaData = new DbContextMetaData();
@@ -453,36 +459,5 @@ public class DbContext extends DbEventBus implements Closeable {
             metaData.close();
             _mapperMap.clear();
         }
-    }
-
-    /////////////////////
-    @Override
-    public void runExceptionEvent(Command cmd, Throwable ex) {
-        super.runExceptionEvent(cmd, ex);
-        WaadConfig.runExceptionEvent(cmd, ex);
-    }
-
-    @Override
-    public void runCommandBuiltEvent(Command cmd) {
-        super.runCommandBuiltEvent(cmd);
-        WaadConfig.runCommandBuiltEvent(cmd);
-    }
-
-    @Override
-    public boolean runExecuteBefEvent(Command cmd) {
-        boolean isOk = super.runExecuteBefEvent(cmd);
-        return isOk && WaadConfig.runExecuteBefEvent(cmd);
-    }
-
-    @Override
-    public void runExecuteStmEvent(Command cmd, Statement stm) {
-        super.runExecuteStmEvent(cmd, stm);
-        WaadConfig.runExecuteStmEvent(cmd, stm);
-    }
-
-    @Override
-    public void runExecuteAftEvent(Command cmd) {
-        super.runExecuteAftEvent(cmd);
-        WaadConfig.runExecuteAftEvent(cmd);
     }
 }

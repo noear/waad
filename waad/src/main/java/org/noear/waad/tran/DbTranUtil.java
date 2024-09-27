@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.tran;
 
 public class DbTranUtil {
     private final static ThreadLocal<DbTran> _tl_tran = new ThreadLocal<>();
