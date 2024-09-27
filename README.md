@@ -11,7 +11,7 @@
     <a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0.txt">
 		<img src="https://img.shields.io/:license-Apache2-blue.svg" alt="Apache 2" />
 	</a>
-    <a target="_blank" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
+     <a target="_blank" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
 		<img src="https://img.shields.io/badge/JDK-8-green.svg" alt="jdk-8" />
 	</a>
     <a target="_blank" href="https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html">
@@ -19,6 +19,9 @@
 	</a>
     <a target="_blank" href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">
 		<img src="https://img.shields.io/badge/JDK-17-green.svg" alt="jdk-17" />
+	</a>
+    <a target="_blank" href="https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html">
+		<img src="https://img.shields.io/badge/JDK-21-green.svg" alt="jdk-21" />
 	</a>
     <br />
     <a target="_blank" href='https://gitee.com/noear/waad/stargazers'>
