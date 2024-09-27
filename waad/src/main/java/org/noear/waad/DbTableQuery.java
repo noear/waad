@@ -1,5 +1,6 @@
 package org.noear.waad;
 
+import org.noear.waad.core.Command;
 import org.noear.waad.ext.Fun2;
 import org.noear.waad.link.IColumn;
 

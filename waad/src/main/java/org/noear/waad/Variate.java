@@ -14,7 +14,7 @@ public class Variate implements Serializable {
     protected String _name;
     protected Object _value;
 
-    protected Variate() {
+    public Variate() {
     }
 
     public Variate(String name, Object value) {

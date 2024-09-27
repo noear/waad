@@ -1,6 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.core.Command;
 import org.noear.waad.ext.Act1;
 import org.noear.waad.ext.Act2;
 import org.noear.waad.ext.Fun1;

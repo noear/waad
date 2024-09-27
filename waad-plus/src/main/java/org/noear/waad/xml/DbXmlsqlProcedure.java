@@ -1,6 +1,8 @@
 package org.noear.waad.xml;
 
 import org.noear.waad.*;
+import org.noear.waad.core.Command;
+import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.utils.StringUtils;
 import org.noear.waad.utils.ThrowableUtils;

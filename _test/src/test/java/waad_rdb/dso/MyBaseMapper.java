@@ -1,6 +1,6 @@
 package waad_rdb.dso;
 
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 
 /**
  * @author noear 2023/7/23 created

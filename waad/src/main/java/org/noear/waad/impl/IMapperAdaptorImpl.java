@@ -1,6 +1,6 @@
 package org.noear.waad.impl;
 
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
 import org.noear.waad.mapper.IMapperAdaptor;

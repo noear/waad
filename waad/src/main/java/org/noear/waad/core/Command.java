@@ -1,5 +1,8 @@
-package org.noear.waad;
+package org.noear.waad.core;
 
+import org.noear.waad.DbContext;
+import org.noear.waad.DbTran;
+import org.noear.waad.DbTranUtil;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.ext.Act1;
 

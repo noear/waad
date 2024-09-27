@@ -3,6 +3,7 @@ package org.noear.waad.mapper;
 import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;
 import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.core.DbAccess;
 import org.noear.waad.utils.StringUtils;
 import org.noear.waad.wrap.MethodWrap;
 

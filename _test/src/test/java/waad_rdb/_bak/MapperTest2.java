@@ -1,7 +1,7 @@
 package waad_rdb._bak;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 import waad_rdb.DbUtil;
 import waad_rdb.dso.SqlMapper;

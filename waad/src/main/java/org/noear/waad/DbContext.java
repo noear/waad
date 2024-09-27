@@ -1,8 +1,11 @@
 package org.noear.waad;
 
+import org.noear.waad.core.Command;
+import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.dialect.DbDialect;
 import org.noear.waad.ext.*;
 import org.noear.waad.link.ITable;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.utils.StringUtils;
 import org.noear.waad.wrap.DbFormater;
 import org.noear.waad.wrap.DbType;
@@ -454,31 +457,31 @@ public class DbContext extends DbEventBus implements Closeable {
 
     /////////////////////
     @Override
-    protected void runExceptionEvent(Command cmd, Throwable ex) {
+    public void runExceptionEvent(Command cmd, Throwable ex) {
         super.runExceptionEvent(cmd, ex);
         WaadConfig.runExceptionEvent(cmd, ex);
     }
 
     @Override
-    protected void runCommandBuiltEvent(Command cmd) {
+    public void runCommandBuiltEvent(Command cmd) {
         super.runCommandBuiltEvent(cmd);
         WaadConfig.runCommandBuiltEvent(cmd);
     }
 
     @Override
-    protected boolean runExecuteBefEvent(Command cmd) {
+    public boolean runExecuteBefEvent(Command cmd) {
         boolean isOk = super.runExecuteBefEvent(cmd);
         return isOk && WaadConfig.runExecuteBefEvent(cmd);
     }
 
     @Override
-    protected void runExecuteStmEvent(Command cmd, Statement stm) {
+    public void runExecuteStmEvent(Command cmd, Statement stm) {
         super.runExecuteStmEvent(cmd, stm);
         WaadConfig.runExecuteStmEvent(cmd, stm);
     }
 
     @Override
-    protected void runExecuteAftEvent(Command cmd) {
+    public void runExecuteAftEvent(Command cmd) {
         super.runExecuteAftEvent(cmd);
         WaadConfig.runExecuteAftEvent(cmd);
     }

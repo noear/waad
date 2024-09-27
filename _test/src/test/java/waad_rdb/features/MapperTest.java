@@ -2,7 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;

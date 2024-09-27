@@ -1,5 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.core;
 
+import org.noear.waad.*;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.ext.Act1;
@@ -16,7 +17,7 @@ import java.util.Map;
  * Created by noear on 14-9-5.
  * 数据库方问基类
  */
-public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Serializable {
+public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,Serializable {
     /*查询语句*/
     public String commandText = null;
 
@@ -361,7 +362,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
         return this;
     }
 
-    protected T cache(CacheUsing cacheUsing) {
+    public T cache(CacheUsing cacheUsing) {
         _cache = cacheUsing;
         return (T) this;
     }

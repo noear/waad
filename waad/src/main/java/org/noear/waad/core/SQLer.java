@@ -1,4 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.core;
+
+import org.noear.waad.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,13 +11,13 @@ import java.util.List;
  * Created by noear on 14-6-12.
  * 数据库执行器
  */
-class SQLer {
+public class SQLer {
     private final Command cmd;
     private ResultSet rset;
     private PreparedStatement stmt;
     private Connection conn;
 
-    protected void tryClose() {
+    public void tryClose() {
         try {
             if (rset != null) {
                 rset.close();

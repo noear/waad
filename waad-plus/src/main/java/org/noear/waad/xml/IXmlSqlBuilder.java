@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.SQLBuilder;
+import org.noear.waad.core.SQLBuilder;
 
 import java.util.Map;
 

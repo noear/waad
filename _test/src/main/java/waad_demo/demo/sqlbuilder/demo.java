@@ -1,7 +1,7 @@
 package waad_demo.demo.sqlbuilder;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.SQLBuilder;
+import org.noear.waad.core.SQLBuilder;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 

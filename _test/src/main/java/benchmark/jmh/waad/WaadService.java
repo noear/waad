@@ -5,7 +5,7 @@ import benchmark.jmh.DataSourceHelper;
 import benchmark.jmh.waad.mapper.WaadSQLUserMapper;
 import benchmark.jmh.waad.model.WaadSQLSysUser;
 import benchmark.jmh.waad.model.WaadSysCustomer;
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 
 import javax.sql.DataSource;

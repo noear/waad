@@ -1,4 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.core;
+
+import org.noear.waad.DbQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +35,13 @@ public class SQLBuilder {
     }
 
     //备分状态
-    protected void backup() {
+    public void backup() {
         b_builder.append(builder.toString());
         b_paramS.addAll(paramS);
     }
 
     //还原状态
-    protected void restore() {
+    public void restore() {
         clear();
         builder.append(b_builder);
         paramS.addAll(b_paramS);

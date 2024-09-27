@@ -1,5 +1,8 @@
 package org.noear.waad;
 
+import org.noear.waad.core.Command;
+import org.noear.waad.core.SQLer;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;

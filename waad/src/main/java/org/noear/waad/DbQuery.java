@@ -1,5 +1,9 @@
 package org.noear.waad;
 
+import org.noear.waad.core.Command;
+import org.noear.waad.core.DbAccess;
+import org.noear.waad.core.SQLBuilder;
+
 /**
  * Created by noear on 14-9-5.
  *

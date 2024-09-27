@@ -1,7 +1,7 @@
 package org.noear.waad.dialect;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.SQLBuilder;
+import org.noear.waad.core.SQLBuilder;
 
 /**
  * SQLServer数据库方言处理（BETWEEN AND :: >= + <=）

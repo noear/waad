@@ -1,5 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.mapper;
 
+import org.noear.waad.*;
 import org.noear.waad.ext.Act1;
 import org.noear.waad.ext.Act2;
 import org.noear.waad.wrap.Property;
@@ -46,7 +47,7 @@ public interface BaseMapper<T> {
      * @param dataBuilder 数据组装器
      * @return
      */
-    Long insert(T entity, Act2<T,DataItem> dataBuilder);
+    Long insert(T entity, Act2<T, DataItem> dataBuilder);
 
     /**
      * 批量插入数据

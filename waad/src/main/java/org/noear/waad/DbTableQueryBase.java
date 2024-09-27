@@ -3,6 +3,8 @@ package org.noear.waad;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
 import org.noear.waad.cache.ICacheService;
+import org.noear.waad.core.Command;
+import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.ext.Act1;
 import org.noear.waad.ext.Act2;
 import org.noear.waad.impl.IPageImpl;

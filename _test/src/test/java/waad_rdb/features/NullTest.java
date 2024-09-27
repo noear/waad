@@ -1,7 +1,7 @@
 package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.BaseMapper;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 import org.noear.waad.WaadConfig;
 import webapp.model.AppxModel;

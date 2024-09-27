@@ -1,6 +1,7 @@
 package org.noear.waad.dialect;
 
 import org.noear.waad.*;
+import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.ext.Fun1;
 
 import java.sql.*;
