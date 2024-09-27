@@ -67,20 +67,9 @@ public class DataList implements Serializable,Iterable<DataItem> {
         ClassWrap classWrap = ClassWrap.get(clz);
         List<T> list = new ArrayList<T>(getRowCount());
 
-        if (IBinder.class.isAssignableFrom(clz)) {
-            IBinder mod = classWrap.newInstance();
-
-            for (DataItem r : _rows) {
-                IBinder item = mod.clone();
-                item.bind(key -> r.getVariate(key));
-                list.add((T) item);
-            }
-        } else {
-            for (DataItem r : _rows) {
-                T item = classWrap.toEntity(r);
-                list.add((T) item);
-            }
-
+        for (DataItem r : _rows) {
+            T item = classWrap.toEntity(r);
+            list.add((T) item);
         }
 
         return list;

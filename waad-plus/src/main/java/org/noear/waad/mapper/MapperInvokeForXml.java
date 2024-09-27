@@ -1,7 +1,6 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.IMapperInvoke;
 import org.noear.waad.wrap.MethodWrap;
 import org.noear.waad.xml.XmlSqlBlock;
 import org.noear.waad.xml.XmlSqlFactory;

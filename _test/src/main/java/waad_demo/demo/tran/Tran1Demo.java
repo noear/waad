@@ -1,7 +1,7 @@
 package waad_demo.demo.tran;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.Trans;
+import org.noear.waad.tran.Trans;
 import waad_demo.config.DbConfig;
 
 /**

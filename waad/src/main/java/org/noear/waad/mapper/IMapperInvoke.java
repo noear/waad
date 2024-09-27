@@ -1,5 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.mapper;
 
+import org.noear.waad.DbContext;
 import org.noear.waad.wrap.MethodWrap;
 
 public interface IMapperInvoke {

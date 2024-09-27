@@ -1,7 +1,5 @@
-package org.noear.waad;
+package org.noear.waad.tran;
 
-import org.noear.waad.tran.DbTran;
-import org.noear.waad.tran.DbTranUtil;
 import org.noear.waad.utils.fun.Act0Ex;
 import org.noear.waad.utils.ThrowableUtils;
 

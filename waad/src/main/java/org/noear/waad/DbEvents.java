@@ -9,6 +9,8 @@ import org.noear.waad.utils.fun.Fun1;
 import java.sql.Statement;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author noear 2024/4/19 created
@@ -69,16 +71,15 @@ public class DbEvents {
 
         cmd.timestart = System.currentTimeMillis();
 
-        VarHolder<Boolean> rst = new VarHolder<>();
-        rst.value = true;
+        AtomicReference<Boolean> rst = new AtomicReference<>(true);
 
         if (onExecuteBef_listener.size() > 0) {
             onExecuteBef_listener.forEach(fun -> {
-                rst.value = rst.value && fun.run(cmd);
+                rst.set(rst.get() && fun.run(cmd));
             });
         }
 
-        return rst.value;
+        return rst.get();
     }
 
     public void runExecuteStmEvent(Command cmd, Statement stm) {

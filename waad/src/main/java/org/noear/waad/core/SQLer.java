@@ -3,8 +3,6 @@ package org.noear.waad.core;
 import org.noear.waad.*;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -72,80 +70,6 @@ public class SQLer {
                 return new Variate(null, getObject(1));
             else
                 return null;//new Variate(null,null);
-        } catch (SQLException ex) {
-            cmd.context.events().runExceptionEvent(cmd, ex);
-            throw ex;
-        } finally {
-            tryClose();
-        }
-    }
-
-    public <T extends IBinder> T getItem(T model) throws SQLException {
-        if (cmd.context.isCompilationMode()) {
-            return null;
-        }
-
-        try {
-            rset = query(false, 0);
-
-            if (rset != null && rset.next()) {
-                model.bind((key) -> {
-                    try {
-                        return new Variate(key, getObject(key));
-                    } catch (SQLException ex) {
-                        cmd.context.events().runExceptionEvent(cmd, ex);
-                        return new Variate(key, null);
-                    }
-                });
-
-                return model;
-            } else
-                return null;
-
-        } catch (SQLException ex) {
-            cmd.context.events().runExceptionEvent(cmd, ex);
-            throw ex;
-        } finally {
-            tryClose();
-        }
-    }
-
-    public <T extends IBinder> List<T> getList(T model) throws SQLException {
-        if (cmd.context.isCompilationMode()) {
-            return null;
-        }
-
-        try {
-            List<T> list = new ArrayList<T>();
-
-            rset = query(false, 0);
-
-            while (rset != null && rset.next()) {
-                T item = (T) model.clone();
-
-                if (WaadConfig.isDebug) {
-                    if (model.getClass().isInstance(item) == false) {
-                        throw new SQLException(model.getClass() + " clone error(" + item.getClass() + ")");
-                    }
-                }
-
-                item.bind((key) -> {
-                    try {
-                        return new Variate(key, getObject(key));
-                    } catch (SQLException ex) {
-                        cmd.context.events().runExceptionEvent(cmd, ex);
-                        return new Variate(key, null);
-                    }
-                });
-
-                list.add(item);
-            }
-
-            if (list.size() > 0)
-                return list;
-            else
-                return null;
-
         } catch (SQLException ex) {
             cmd.context.events().runExceptionEvent(cmd, ex);
             throw ex;

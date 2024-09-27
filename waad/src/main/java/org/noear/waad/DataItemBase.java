@@ -276,13 +276,7 @@ public abstract class DataItemBase<Y extends DataItemBase> implements IDataItem{
     public <T> T toEntity(Class<T> cls) {
         ClassWrap classWrap = ClassWrap.get(cls);
 
-        if (IBinder.class.isAssignableFrom(cls)) {
-            IBinder mod = classWrap.newInstance();
-            mod.bind(key -> getVariate(key));
-            return (T) mod;
-        } else {
-            return classWrap.toEntity(this);
-        }
+        return classWrap.toEntity(this);
     }
 
 

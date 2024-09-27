@@ -2,6 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.*;
+import org.noear.waad.tran.Trans;
 import waad_rdb.DbUtil;
 
 public class TranTest {
@@ -89,9 +90,7 @@ public class TranTest {
         DbContext db2 = DbUtil.db;
 
         Trans.tran(() -> {
-            VarHolder<Long> tmp = new VarHolder<>();
-
-            tmp.value = db1.sql("").insert();
+            db1.sql("").insert();
 
             db2.sql("").update();
         });
@@ -102,9 +101,7 @@ public class TranTest {
         DbContext db2 = DbUtil.db;
 
         Trans.tran(()->{
-            VarHolder<Long> tmp = new VarHolder<>();
-
-            tmp.value = db1.sql("").insert();
+            db1.sql("").insert();
             db2.sql("").update();
 
         });

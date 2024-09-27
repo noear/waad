@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by noear on 14-9-5.
@@ -202,18 +203,18 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
             return getList(cls);
         }
 
-        VarHolder _tmp = new VarHolder();
+        AtomicReference _tmp = new AtomicReference();
 
         DataList list = getDataList((cu, dl) -> {
-            _tmp.value = dl.toEntityList(cls);
-            cacheCondition.run(cu, (List<T>) _tmp.value);
+            _tmp.set( dl.toEntityList(cls));
+            cacheCondition.run(cu, (List<T>) _tmp.get());
         });
 
-        if (_tmp.value == null) {
+        if (_tmp.get() == null) {
             //说明是缓存里拿出来的 // 没有经过 cacheCondition 处理
             return list.toEntityList(cls);
         } else {
-            return (List<T>) _tmp.value;
+            return (List<T>) _tmp.get();
         }
     }
 
@@ -237,11 +238,11 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
             return getItem(cls);
         }
 
-        VarHolder _tmp = new VarHolder();
+        AtomicReference _tmp = new AtomicReference();
 
         DataItem item = getDataItem((cu, di) -> {
-            _tmp.value = di.toEntity(cls);
-            cacheCondition.run(cu, (T) _tmp.value);
+            _tmp.set(di.toEntity(cls));
+            cacheCondition.run(cu, (T) _tmp.get());
         });
 
         // nullable 处理
@@ -251,11 +252,11 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
             }
         }
 
-        if (_tmp.value == null) {
+        if (_tmp.get() == null) {
             //说明是缓存里拿出来的 // 没有经过 cacheCondition 处理
             return item.toEntity(cls);
         } else {
-            return (T) _tmp.value;
+            return (T) _tmp.get();
         }
     }
     // <--
