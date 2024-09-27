@@ -112,7 +112,7 @@ public class DbQueryProcedure extends DbProcedure {
         for (TmlMark tm : block.marks) {
             Object val = _paramS2.get(tm.name);
 
-            if (WoodConfig.isDebug) {
+            if (WaadConfig.isDebug) {
                 if (val == null) {
                     throw new RuntimeException("Lack of parameter:" + tm.name);
                 }
@@ -163,7 +163,7 @@ public class DbQueryProcedure extends DbProcedure {
 
 
         //3.替换schema
-        if (WoodConfig.isUsingSchemaExpression) {
+        if (WaadConfig.isUsingSchemaExpression) {
             if (tml.indexOf("$") >= 0) {
                 if (context.schema() == null) {
                     tml = tml.replace("$.", "");

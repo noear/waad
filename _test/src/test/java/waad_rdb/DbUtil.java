@@ -3,7 +3,6 @@ package waad_rdb;
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.solon.Utils;
 import org.noear.waad.DbContext;
-import org.noear.waad.WoodConfig;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.cache.LocalCache;
 

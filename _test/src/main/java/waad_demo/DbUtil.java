@@ -2,7 +2,7 @@ package waad_demo;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.waad.DbContext;
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.cache.LocalCache;
 
@@ -93,7 +93,7 @@ public class DbUtil {
             System.out.println(":::"+cmd.text);
         });
 
-        WoodConfig.isUsingSchemaPrefix =true;
+        WaadConfig.isUsingSchemaPrefix =true;
         return db;
     }
 

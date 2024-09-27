@@ -56,7 +56,7 @@ public class DbStoredProcedure extends DbProcedure {
         StringBuilder sb = new StringBuilder();
         sb.append("{call ");
 
-        if(WoodConfig.isUsingSchemaPrefix && context.schema() != null) {
+        if(WaadConfig.isUsingSchemaPrefix && context.schema() != null) {
             sb.append(context.schema()).append(".");
         }
 

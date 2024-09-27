@@ -1,6 +1,6 @@
 package org.noear.waad.wrap;
 
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.annotation.Exclude;
 import org.noear.waad.annotation.Column;
 
@@ -30,10 +30,10 @@ public class FieldWrap {
         if (fn != null) {
             name = fn.value();
         } else {
-            name = WoodConfig.namingStrategy.fieldToColumnName(clz, f1);
+            name = WaadConfig.namingStrategy.fieldToColumnName(clz, f1);
         }
 
-        pk = WoodConfig.primaryKeyStrategy.fieldIsPrimaryKey(clz, f1);
+        pk = WaadConfig.primaryKeyStrategy.fieldIsPrimaryKey(clz, f1);
 
         field.setAccessible(true);
 
@@ -59,7 +59,7 @@ public class FieldWrap {
                 return;
             }
 
-            val = WoodConfig.typeConverter.convert(val, field.getType());
+            val = WaadConfig.typeConverter.convert(val, field.getType());
 
             if (_setter == null) {
                 field.set(tObj, val);

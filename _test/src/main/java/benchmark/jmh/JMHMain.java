@@ -52,7 +52,7 @@ public class JMHMain {
     }
 
 
-    /*   Wood    */
+    /*   Waad    */
     @Benchmark
     public void waadInsert() {
         waadService.addEntity();

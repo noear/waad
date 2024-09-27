@@ -109,7 +109,7 @@ public class DbTran {
                     kv.getValue().close();
                 }
             } catch (Exception ex) {
-                WoodConfig.runExceptionEvent(null, ex);
+                WaadConfig.runExceptionEvent(null, ex);
             }
         }
     }

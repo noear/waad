@@ -136,7 +136,7 @@ public class DbContext extends DbEventBus implements Closeable {
 
     public DbContext nameSet(String name) {
         _name = name;
-        WoodConfig.libOfDb.put(name, this);
+        WaadConfig.libOfDb.put(name, this);
         return this;
     }
 
@@ -144,7 +144,7 @@ public class DbContext extends DbEventBus implements Closeable {
      * 使用一个有名字的实例
      */
     public static DbContext use(String name) {
-        return WoodConfig.libOfDb.get(name);
+        return WaadConfig.libOfDb.get(name);
     }
 
     //
@@ -294,11 +294,11 @@ public class DbContext extends DbEventBus implements Closeable {
     //
 
     public <T> BaseMapper<T> mapperBase(Class<T> clz) {
-        return WoodConfig.mapperAdaptor.createMapperBase(this, clz, null);
+        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, null);
     }
 
     public <T> BaseMapper<T> mapperBase(Class<T> clz, String tableName) {
-        return WoodConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
+        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
     }
 
     private Map<Class<?>, Object> _mapperMap = new HashMap<>();
@@ -313,7 +313,7 @@ public class DbContext extends DbEventBus implements Closeable {
             try {
                 tmp = _mapperMap.get(clz);
                 if (tmp == null) {
-                    tmp = WoodConfig.mapperAdaptor.createMapper(this, clz);
+                    tmp = WaadConfig.mapperAdaptor.createMapper(this, clz);
                     _mapperMap.put(clz, tmp);
                 }
             } finally {
@@ -330,16 +330,16 @@ public class DbContext extends DbEventBus implements Closeable {
      * @param xsqlid @{namespace}.{id}
      */
     public <T> T mapper(String xsqlid, Map<String, Object> args) throws Exception {
-        return (T) WoodConfig.mapperAdaptor.createMapper(this, xsqlid, args);
+        return (T) WaadConfig.mapperAdaptor.createMapper(this, xsqlid, args);
     }
 
 
     public <T> BaseMapper<T> table(Class<T> clz) {
-        return WoodConfig.mapperAdaptor.createMapperBase(this, clz, null);
+        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, null);
     }
 
     public <T> BaseMapper<T> table(Class<T> clz, String tableName) {
-        return WoodConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
+        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
     }
 
 
@@ -361,7 +361,7 @@ public class DbContext extends DbEventBus implements Closeable {
      */
     public DbProcedure call(String process) {
         if (process.startsWith("@")) {
-            return WoodConfig.mapperAdaptor.createXmlProcedure(this, process, null);
+            return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, null);
         }
 
         if (process.lastIndexOf(" ") > 0) {
@@ -378,7 +378,7 @@ public class DbContext extends DbEventBus implements Closeable {
      */
     public DbProcedure call(String process, Map<String, Object> args) {
         if (process.startsWith("@")) {
-            return WoodConfig.mapperAdaptor.createXmlProcedure(this, process, args);
+            return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, args);
         }
 
         if (process.lastIndexOf(" ") > 0) {
@@ -464,30 +464,30 @@ public class DbContext extends DbEventBus implements Closeable {
     @Override
     protected void runExceptionEvent(Command cmd, Throwable ex) {
         super.runExceptionEvent(cmd, ex);
-        WoodConfig.runExceptionEvent(cmd, ex);
+        WaadConfig.runExceptionEvent(cmd, ex);
     }
 
     @Override
     protected void runCommandBuiltEvent(Command cmd) {
         super.runCommandBuiltEvent(cmd);
-        WoodConfig.runCommandBuiltEvent(cmd);
+        WaadConfig.runCommandBuiltEvent(cmd);
     }
 
     @Override
     protected boolean runExecuteBefEvent(Command cmd) {
         boolean isOk = super.runExecuteBefEvent(cmd);
-        return isOk && WoodConfig.runExecuteBefEvent(cmd);
+        return isOk && WaadConfig.runExecuteBefEvent(cmd);
     }
 
     @Override
     protected void runExecuteStmEvent(Command cmd, Statement stm) {
         super.runExecuteStmEvent(cmd, stm);
-        WoodConfig.runExecuteStmEvent(cmd, stm);
+        WaadConfig.runExecuteStmEvent(cmd, stm);
     }
 
     @Override
     protected void runExecuteAftEvent(Command cmd) {
         super.runExecuteAftEvent(cmd);
-        WoodConfig.runExecuteAftEvent(cmd);
+        WaadConfig.runExecuteAftEvent(cmd);
     }
 }

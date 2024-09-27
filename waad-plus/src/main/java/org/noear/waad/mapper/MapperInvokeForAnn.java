@@ -32,7 +32,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         //1.获取缓存服务
         ICacheServiceEx cache_tmp = null;
         if (StringUtils.isEmpty(_caching) == false) {
-            cache_tmp = WoodConfig.libOfCache.get(_caching);
+            cache_tmp = WaadConfig.libOfCache.get(_caching);
 
             if (cache_tmp == null) {
                 throw new RuntimeException("WoodConfig.libOfCache does not exist:@" + _caching);

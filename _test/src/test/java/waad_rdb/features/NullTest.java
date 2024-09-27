@@ -3,7 +3,7 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.BaseMapper;
 import org.noear.waad.DbContext;
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import webapp.model.AppxModel;
 import waad_rdb.DbUtil;
 
@@ -24,13 +24,13 @@ public class NullTest {
 
         assert temp != null;
 
-        WoodConfig.isSelectItemEmptyAsNull = true;
+        WaadConfig.isSelectItemEmptyAsNull = true;
 
         AppxModel temp2 = db2.table("appx")
                 .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem("*", AppxModel.class);
 
-        WoodConfig.isSelectItemEmptyAsNull = false;
+        WaadConfig.isSelectItemEmptyAsNull = false;
 
         assert temp2 == null;
     }
@@ -42,11 +42,11 @@ public class NullTest {
 
         assert temp != null;
 
-        WoodConfig.isSelectItemEmptyAsNull = true;
+        WaadConfig.isSelectItemEmptyAsNull = true;
 
         AppxModel temp2 = mapper.selectById(Integer.MAX_VALUE);
 
-        WoodConfig.isSelectItemEmptyAsNull = false;
+        WaadConfig.isSelectItemEmptyAsNull = false;
 
         assert temp2 == null;
     }

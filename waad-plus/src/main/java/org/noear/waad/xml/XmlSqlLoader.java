@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.WoodException;
+import org.noear.waad.WaadException;
 import org.noear.waad.utils.IOUtils;
 import org.noear.waad.utils.ThrowableUtils;
 
@@ -81,7 +81,7 @@ public class XmlSqlLoader {
             CompilerUtil.instance().loadClassAll(true);
         } else {
             String error = CompilerUtil.instance().getCompilerMessage();
-            throw new WoodException("Xml sql compiler error: \r\n" + error);
+            throw new WaadException("Xml sql compiler error: \r\n" + error);
         }
     }
 

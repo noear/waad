@@ -1,7 +1,7 @@
 package webapp;
 
 import org.noear.solon.Solon;
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 
 /**
  * @author noear 2021/1/23 created
@@ -9,7 +9,7 @@ import org.noear.waad.WoodConfig;
 public class DemoApp {
     public static void main(String[] args){
         Solon.start(DemoApp.class, args,x->{
-            WoodConfig.isUsingUnderlineColumnName = false;
+            WaadConfig.isUsingUnderlineColumnName = false;
         });
     }
 }

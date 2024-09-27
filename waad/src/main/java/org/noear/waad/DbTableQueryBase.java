@@ -73,7 +73,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
             if (table.indexOf('.') > 0) {
                 _table = new ITableImpl(table, null);
             } else {
-                if (WoodConfig.isUsingSchemaPrefix && _context.schema() != null) {
+                if (WaadConfig.isUsingSchemaPrefix && _context.schema() != null) {
                     _table = new ITableImpl(fmtObject(_context.schema() + "." + table), null);
                 } else {
                     _table = new ITableImpl(fmtObject(table), null); //"$." + table;
@@ -140,7 +140,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         if (table.startsWith("#")) {
             _builder.append(style).append(table.substring(1));
         } else {
-            if (WoodConfig.isUsingSchemaPrefix && _context.schema() != null) {
+            if (WaadConfig.isUsingSchemaPrefix && _context.schema() != null) {
                 _builder.append(style).append(fmtObject(_context.schema() + "." + table));
             } else {
                 _builder.append(style).append(fmtObject(table));
@@ -450,7 +450,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 更新编译
      * */
     protected DbQuery updateCompile(IDataItem data)  {
-        if (WoodConfig.isUpdateMustConditional && _builder.indexOf(" WHERE ") < 0) {
+        if (WaadConfig.isUpdateMustConditional && _builder.indexOf(" WHERE ") < 0) {
             throw new RuntimeException("Lack of update condition!!!");
         }
 
@@ -645,7 +645,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         }
 
 
-        if (WoodConfig.isDeleteMustConditional && _builder.indexOf(" WHERE ") < 0) {
+        if (WaadConfig.isDeleteMustConditional && _builder.indexOf(" WHERE ") < 0) {
             throw new RuntimeException("Lack of delete condition!!!");
         }
 
@@ -1043,7 +1043,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         });
     }
 
-    private boolean _usingNull = WoodConfig.isUsingValueNull;
+    private boolean _usingNull = WaadConfig.isUsingValueNull;
     protected boolean usingNull(){
         return _usingNull;
     }
@@ -1056,7 +1056,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return (T) this;
     }
 
-    private boolean _usingExpression = WoodConfig.isUsingValueExpression;
+    private boolean _usingExpression = WaadConfig.isUsingValueExpression;
 
     protected boolean usingExpr(){
         return _usingExpression;

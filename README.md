@@ -1,5 +1,5 @@
 <h1 align="center" style="text-align:center;">
-  Wood
+  Waad
 </h1>
 <p align="center">
 微型ORM框架（支持：java sql，xml sql，annotation sql；事务；缓存；监控；等...），无依赖！
@@ -148,9 +148,9 @@ db.close();
 /** 1.2.配置事件，执行后打印sql */
 public class DemoApp {
     public static void main(String[] args) {
-        //或者使用 WoodConfig.onExecuteBef 事件
-        WoodConfig.onExecuteAft(cmd -> { 
-            System.out.println("[Wood]" + cmd.text + "\r\n" + cmd.paramMap());
+        //或者使用 WaadConfig.onExecuteBef 事件
+        WaadConfig.onExecuteAft(cmd -> { 
+            System.out.println("[Waad]" + cmd.text + "\r\n" + cmd.paramMap());
         });
     }
 }
@@ -242,7 +242,7 @@ db.sql("select * from user id=?",12).getDataItem();
 db.sql("select name from user id=?",12).getValue();
 
 
-/** 3.1.事件用法（全局配置事件可用 WoodConfig） */
+/** 3.1.事件用法（全局配置事件可用 WaadConfig） */
 //出异常时
 db.onException((cmd,err)->{});
 //命令构建时

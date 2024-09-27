@@ -1,7 +1,7 @@
 package org.noear.waad.wrap;
 
 import org.noear.waad.IDataItem;
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.annotation.Table;
 import org.noear.waad.ext.Act2;
 import org.noear.waad.utils.ThrowableUtils;
@@ -56,7 +56,7 @@ public class ClassWrap {
         if (ann != null) {
             tableName = ann.value();
         } else {
-            tableName = WoodConfig.namingStrategy.classToTableName(clz);
+            tableName = WaadConfig.namingStrategy.classToTableName(clz);
         }
 
         if (fieldWraps.size() == 0) {
@@ -153,7 +153,7 @@ public class ClassWrap {
 
                         if (val != null) {
                             //尝试类型转换
-                            val = WoodConfig.typeConverter.convert(val, p.getType());
+                            val = WaadConfig.typeConverter.convert(val, p.getType());
                         }
 
                         argsV[i] = val;

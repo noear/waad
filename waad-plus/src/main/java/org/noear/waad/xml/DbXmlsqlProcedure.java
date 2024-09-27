@@ -123,7 +123,7 @@ public class DbXmlsqlProcedure extends DbProcedure {
         //配置化缓存处理（有配置，并且未手动配置过缓存）...
         if (StringUtils.isEmpty(block._caching) == false && this._cache == null) {
             //寄存缓存对象
-            cmd.cache = WoodConfig.libOfCache.get(block._caching);
+            cmd.cache = WaadConfig.libOfCache.get(block._caching);
 
             //如果不存在，则提示异常
             if (cmd.cache == null) {

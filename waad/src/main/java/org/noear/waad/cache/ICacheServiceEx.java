@@ -1,6 +1,6 @@
 package org.noear.waad.cache;
 
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.ext.Fun1;
 import org.noear.waad.ext.Fun1Ex;
 
@@ -74,7 +74,7 @@ public interface ICacheServiceEx extends ICacheService {
      */
     default ICacheServiceEx nameSet(String name) {
         if (name != null) {
-            WoodConfig.libOfCache.put(name, this);
+            WaadConfig.libOfCache.put(name, this);
         }
 
         return this;

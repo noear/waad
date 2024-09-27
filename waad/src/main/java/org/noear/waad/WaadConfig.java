@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by noear on 14/11/20.
  */
-public final class WoodConfig {
+public final class WaadConfig {
     public static boolean isDebug = false;
     public static boolean isUsingValueExpression = true;
     public static boolean isUsingValueNull = false;

@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by noear on 14-9-5.
  * 数据库方问基类
  */
-public abstract class DbAccess<T extends DbAccess> implements IWoodKey,IQuery,Serializable {
+public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Serializable {
     /*查询语句*/
     public String commandText = null;
 
@@ -222,7 +222,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWoodKey,IQuery,Se
 
         // nullable 处理
         if (item.count() == 0) {
-            if (WoodConfig.isSelectItemEmptyAsNull) {
+            if (WaadConfig.isSelectItemEmptyAsNull) {
                 return null;
             }
         }
@@ -245,7 +245,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWoodKey,IQuery,Se
 
         // nullable 处理
         if (item.count() == 0) {
-            if (WoodConfig.isSelectItemEmptyAsNull) {
+            if (WaadConfig.isSelectItemEmptyAsNull) {
                 return null;
             }
         }

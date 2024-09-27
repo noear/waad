@@ -121,7 +121,7 @@ class SQLer {
             while (rset != null && rset.next()) {
                 T item = (T) model.clone();
 
-                if (WoodConfig.isDebug) {
+                if (WaadConfig.isDebug) {
                     if (model.getClass().isInstance(item) == false) {
                         throw new SQLException(model.getClass() + " clone error(" + item.getClass() + ")");
                     }
@@ -279,7 +279,7 @@ class SQLer {
                 Object[] ary = (Object[]) data;
                 //2.设置参数值
                 for (Object v : ary) {
-                    WoodConfig.typeConverter.filling(stmt, idx, v);
+                    WaadConfig.typeConverter.filling(stmt, idx, v);
                     idx++;
                 }
                 stmt.addBatch();
@@ -370,7 +370,7 @@ class SQLer {
         int idx = 1;
         //2.设置参数值
         for (Object v : cmd.paramS) {
-            WoodConfig.typeConverter.filling(stmt, idx, v);
+            WaadConfig.typeConverter.filling(stmt, idx, v);
             idx++;
         }
 

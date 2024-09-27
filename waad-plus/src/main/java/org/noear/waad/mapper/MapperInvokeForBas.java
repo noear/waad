@@ -3,7 +3,7 @@ package org.noear.waad.mapper;
 import org.noear.waad.BaseMapper;
 import org.noear.waad.DbContext;
 import org.noear.waad.IMapperInvoke;
-import org.noear.waad.WoodConfig;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.wrap.MethodWrap;
 
 import java.lang.reflect.Method;
@@ -27,7 +27,7 @@ public class MapperInvokeForBas implements IMapperInvoke {
 
                 if (tmp == null) {
                     BaseEntityWrap _table = BaseEntityWrap.get((BaseMapper) proxy);
-                    tmp = WoodConfig.mapperAdaptor.createMapperBase(db, _table.entityClz, _table.tableName);
+                    tmp = WaadConfig.mapperAdaptor.createMapperBase(db, _table.entityClz, _table.tableName);
                     _lib.put(proxy.getClass(), tmp);
                 }
             }finally {
