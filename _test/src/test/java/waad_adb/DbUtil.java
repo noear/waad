@@ -36,11 +36,11 @@ public class DbUtil {
         DbContext db = new DbContext(source).nameSet("rock");
         //WaadConfig.isUsingSchemaPrefix =true;
         //WaadConfig.isUsingUnderlineColumnName=true;
-        db.onException((cmd, ex) -> {
+        db.events().onException((cmd, ex) -> {
             System.out.println(cmd.text);
         });
 
-        db.onExecuteAft((cmd) -> {
+        db.events().onExecuteAft((cmd) -> {
             if (cmd.isBatch) {
                 System.out.println(":::" + cmd.text + " --:batch");
             } else {

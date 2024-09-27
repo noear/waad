@@ -111,7 +111,7 @@ public class DbTran {
                     kv.getValue().close();
                 }
             } catch (Exception ex) {
-                WaadConfig.getEvents().runExceptionEvent(null, ex);
+                WaadConfig.events().runExceptionEvent(null, ex);
             }
         }
     }

@@ -47,7 +47,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
         }
 
         //全局监听
-        cmd.context.getEvents().runCommandBuiltEvent(cmd);
+        cmd.context.events().runCommandBuiltEvent(cmd);
     }
 
 

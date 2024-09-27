@@ -59,7 +59,7 @@ public final class WaadConfig {
      */
     private static final DbEvents events = new DbEvents(null);
 
-    public static DbEvents getEvents() {
+    public static DbEvents events() {
         return events;
     }
 }

@@ -2,7 +2,6 @@ package waad_demo;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.waad.DbContext;
-import org.noear.waad.WaadConfig;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.cache.LocalCache;
 
@@ -85,11 +84,11 @@ public class DbUtil {
         Map<String, String> map =  dbMysqlCfg(); // dbOracleCfg(); // dbPgsqlCfg(); //dbMssqlCfg();//
 
         DbContext db = new DbContext(map.get("schema"), dataSource(map)).nameSet("rock");
-        db.onException((cmd, ex)->{
+        db.events().onException((cmd, ex)->{
             System.out.println(cmd.text);
         });
 
-        db.onExecuteAft((cmd)->{
+        db.events().onExecuteAft((cmd)->{
             System.out.println(":::"+cmd.text);
         });
 

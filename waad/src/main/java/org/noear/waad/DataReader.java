@@ -44,7 +44,7 @@ public class DataReader implements IDataReader<DataItem> {
                 return row;
 
             } catch (SQLException ex) {
-                cmd.context.getEvents().runExceptionEvent(cmd, ex);
+                cmd.context.events().runExceptionEvent(cmd, ex);
                 throw ex;
             }
         } else {
