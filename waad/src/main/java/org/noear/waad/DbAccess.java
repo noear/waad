@@ -60,10 +60,10 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
 
     @Override
     public String getWaadKey() {
-        return buildWoodKey(paramS);
+        return buildWaadKey(paramS);
     }
 
-    protected String buildWoodKey(Collection<Object> args) {
+    protected String buildWaadKey(Collection<Object> args) {
         if (_waadKey == null) {
             StringBuilder sb = new StringBuilder();
 
@@ -77,7 +77,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey,IQuery,Se
         }
         return _waadKey;
     }
-    /*IWoodKey end*/
+    /*IWaadKey end*/
 
     /*设置参数值*/
     protected void doSet(String name, Object value) {

@@ -7,7 +7,7 @@ import org.noear.waad.annotation.Table;
 
 @Data
 @Table("sys_customer")
-public class WoodSysCustomer {
+public class WaadSysCustomer {
     @PrimaryKey
     private Integer id;
     private String code;

@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//noear.org//DTD Mapper 3.0//EN" "http://noear.org/dtd/waad-mapper.dtd">
 <mapper namespace="benchmark.jmh.waad.mapper.user"
         import="benchmark.jmh.waad.model.*"
-        baseMapper="WoodSQLSysUser">
+        baseMapper="WaadSQLSysUser">
 
-    <sql id="userSelect" return="WoodSQLSysUser">
+    <sql id="userSelect" return="WaadSQLSysUser">
         select * from sys_user where 1=1
         <if test="id??">
             and id = @{id:Integer}
         </if>
     </sql>
 
-    <sql id="queryPage" return="List[WoodSQLSysUser]">
+    <sql id="queryPage" return="List[WaadSQLSysUser]">
         select * from sys_user where code=@{code:String} limit @{start:int},@{end:int}
     </sql>
 

@@ -6,7 +6,7 @@ import org.noear.waad.annotation.Table;
 
 @Data
 @Table("sys_user")
-public class WoodSQLSysUser {
+public class WaadSQLSysUser {
     @PrimaryKey
     private Integer id ;
     private String code ;

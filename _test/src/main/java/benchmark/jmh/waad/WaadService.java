@@ -2,9 +2,9 @@ package benchmark.jmh.waad;
 
 import benchmark.jmh.BaseService;
 import benchmark.jmh.DataSourceHelper;
-import benchmark.jmh.waad.mapper.WoodSQLUserMapper;
-import benchmark.jmh.waad.model.WoodSQLSysUser;
-import benchmark.jmh.waad.model.WoodSysCustomer;
+import benchmark.jmh.waad.mapper.WaadSQLUserMapper;
+import benchmark.jmh.waad.model.WaadSQLSysUser;
+import benchmark.jmh.waad.model.WaadSysCustomer;
 import org.noear.waad.BaseMapper;
 import org.noear.waad.DbContext;
 
@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class WaadService implements BaseService {
 
-    WoodSQLUserMapper userMapper;
-    BaseMapper<WoodSysCustomer> customerMapper;
+    WaadSQLUserMapper userMapper;
+    BaseMapper<WaadSysCustomer> customerMapper;
     AtomicInteger idGen = new AtomicInteger(1000);
 
     DbContext db;
@@ -25,14 +25,14 @@ public class WaadService implements BaseService {
         DataSource dataSource = DataSourceHelper.ins();
 
         this.db = new DbContext("user", dataSource);
-        this.userMapper = db.mapper(WoodSQLUserMapper.class);
-        this.customerMapper = db.mapperBase(WoodSysCustomer.class);
+        this.userMapper = db.mapper(WaadSQLUserMapper.class);
+        this.customerMapper = db.mapperBase(WaadSysCustomer.class);
     }
 
 
     @Override
     public void addEntity() {
-        WoodSQLSysUser sqlSysUser = new WoodSQLSysUser();
+        WaadSQLSysUser sqlSysUser = new WaadSQLSysUser();
         sqlSysUser.setId(idGen.getAndIncrement());
         sqlSysUser.setCode("abc");
 
@@ -54,32 +54,32 @@ public class WaadService implements BaseService {
 
     @Override
     public void lambdaQuery() {
-        List<WoodSQLSysUser> list = userMapper.selectList(wq -> wq.whereEq(WoodSQLSysUser::getId, 1));
+        List<WaadSQLSysUser> list = userMapper.selectList(wq -> wq.whereEq(WaadSQLSysUser::getId, 1));
     }
 
     @Override
     public void executeJdbcSql() {
-        WoodSQLSysUser user = userMapper.selectById(1);
+        WaadSQLSysUser user = userMapper.selectById(1);
     }
 
     public void executeJdbcSql2() throws SQLException{
-        WoodSQLSysUser user = db.sql("select * from sys_user where id = ?",1)
-                .getItem(WoodSQLSysUser.class);
+        WaadSQLSysUser user = db.sql("select * from sys_user where id = ?",1)
+                .getItem(WaadSQLSysUser.class);
     }
 
     @Override
     public void executeTemplateSql() {
-        WoodSQLSysUser user = userMapper.selectTemplateById(1);
+        WaadSQLSysUser user = userMapper.selectTemplateById(1);
     }
 
     public void executeTemplateSql2() throws SQLException {
-        WoodSQLSysUser user = db.call("select * from sys_user where id = @{id}")
-                .set("id",1).getItem(WoodSQLSysUser.class);
+        WaadSQLSysUser user = db.call("select * from sys_user where id = @{id}")
+                .set("id",1).getItem(WaadSQLSysUser.class);
     }
 
     @Override
     public void sqlFile() {
-        WoodSQLSysUser user = userMapper.userSelect(1);
+        WaadSQLSysUser user = userMapper.userSelect(1);
         //System.out.println(user);
     }
 
@@ -91,8 +91,8 @@ public class WaadService implements BaseService {
 
     @Override
     public void pageQuery() {
-        List<WoodSQLSysUser> list = userMapper.queryPage("用户一", 1, 5);
-        long count = userMapper.selectCount(wq->wq.whereEq(WoodSQLSysUser::getCode,"用户一"));
+        List<WaadSQLSysUser> list = userMapper.queryPage("用户一", 1, 5);
+        long count = userMapper.selectCount(wq->wq.whereEq(WaadSQLSysUser::getCode,"用户一"));
         //System.out.println(list);
     }
 

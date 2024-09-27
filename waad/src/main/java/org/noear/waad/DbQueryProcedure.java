@@ -74,7 +74,7 @@ public class DbQueryProcedure extends DbProcedure {
     //
     @Override
     public String getWaadKey() {
-        return buildWoodKey(_paramS2.values());
+        return buildWaadKey(_paramS2.values());
     }
 
     @Override

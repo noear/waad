@@ -6,7 +6,7 @@ import org.noear.waad.annotation.Table;
 
 @Data
 @Table("sys_order")
-public class WoodSysOrder {
+public class WaadSysOrder {
     @PrimaryKey
     private Integer id;
     private String name;
