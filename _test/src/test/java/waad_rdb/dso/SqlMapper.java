@@ -1,6 +1,5 @@
 package waad_rdb.dso;
 
-import org.noear.waad.BaseMapper;
 import org.noear.waad.annotation.Sql;
 import org.noear.waad.xml.Namespace;
 import webapp.model.AppxModel;
