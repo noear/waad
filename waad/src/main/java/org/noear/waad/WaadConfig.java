@@ -21,12 +21,10 @@ public final class WaadConfig {
     public static boolean isDebug = false;
     public static boolean isUsingValueExpression = true;
     public static boolean isUsingValueNull = false;
-    public static boolean isUsingSchemaPrefix = false;
 
     /**
      * 是否使用当前上下文的 schema 替换表达式里的 $
      */
-    public static boolean isUsingSchemaExpression = true;
     public static boolean isUpdateMustConditional = true;
     public static boolean isDeleteMustConditional = true;
     public static boolean isUsingUnderlineColumnName = true;

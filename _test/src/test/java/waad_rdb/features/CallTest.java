@@ -13,9 +13,9 @@ public class CallTest {
     public void test11() throws Exception {
         String code = null;
         if (db2.getType() == DbType.Oracle) {
-            code = "select * from \"$\".\"APPX\" where \"app_id\"=@{id}";
+            code = "select * from \"APPX\" where \"app_id\"=@{id}";
         } else {
-            code = "select * from $.appx where app_id=@{id}";
+            code = "select * from appx where app_id=@{id}";
         }
 
         AppxModel m = db2.call(code)

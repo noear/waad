@@ -93,7 +93,6 @@ public class DbUtil {
             System.out.println(":::"+cmd.text);
         });
 
-        WaadConfig.isUsingSchemaPrefix =true;
         return db;
     }
 

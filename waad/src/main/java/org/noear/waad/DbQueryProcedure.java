@@ -161,15 +161,7 @@ public class DbQueryProcedure extends DbProcedure {
             }
         }
 
-
-        //3.替换schema
-        if (WaadConfig.isUsingSchemaExpression) {
-            if (tml.indexOf("$") >= 0) {
-                tml = tml.replace("$.", "");
-            }
-        }
-
-        //4.为命令赋值
+        //3.为命令赋值
         cmd.paramS = this.paramS;
         cmd.text = tml;
         cmd.attachment = this._paramS2;

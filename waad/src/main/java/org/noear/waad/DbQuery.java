@@ -41,21 +41,6 @@ public class DbQuery extends DbAccess<DbQuery> {
 
         StringBuilder sb = new StringBuilder(commandText);
 
-        //1.如果全局设置的替换schema为true，则替换schema
-        if(WaadConfig.isUsingSchemaExpression){
-            int idx=0;
-            while (true) {
-                idx = sb.indexOf("$",idx);
-                if(idx>0) {
-                    sb.replace(idx, idx + 2, ""); //去掉$.
-                    idx++;
-                }
-                else {
-                    break;
-                }
-            }
-        }
-
         cmd.text = sb.toString();
 
         runCommandBuiltEvent(cmd);
