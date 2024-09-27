@@ -63,7 +63,7 @@ public class DbContext implements Closeable {
     }
 
 
-    private final DbEvents events = new DbEvents(WaadConfig.events);
+    private final DbEvents events = new DbEvents(WaadConfig.getEvents());
 
     public DbEvents getEvents() {
         return events;
