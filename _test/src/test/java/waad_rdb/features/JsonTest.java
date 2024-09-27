@@ -16,7 +16,7 @@ public class JsonTest {
     @Test
     public void test1() throws Exception {
         DataList list = db.table("appx")
-                .whereEq("app_id", 1)
+                .where("app_id=?", 1)
                 .selectDataList("*");
 
         System.out.println(db.lastCommand.text);
@@ -30,7 +30,7 @@ public class JsonTest {
     @Test
     public void test2() throws Exception {
         DataItem item = db.table("appx")
-                .whereEq("app_id", 1)
+                .where("app_id=?", 1)
                 .selectDataItem("*");
 
         System.out.println(db.lastCommand.text);

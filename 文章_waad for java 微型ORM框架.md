@@ -214,7 +214,7 @@ db.table("user").whereLt("id",12).delete();
 * 改,UPDATE
 ```java
 //改掉id=23的sex字段
-db.table("user").set("sex",1).whereEq("id",23).update();
+db.table("user").set("sex",1).where("id=?",23).update();
 
 //根据手机号，新增或更新
 public void saveUser(UserModel m){
@@ -506,7 +506,7 @@ return="String" => String （任何单职类型）
 ICacheServiceEx cache = new LocalCache().nameSet("cache");
 
 User user = db.table("user")
-              .whereEq("id",12)
+              .where("id=?",12)
               .caching(cache)  //加缓存，时间为cache的默认时间
               .selectItem("*", User.class);
 ```
@@ -523,7 +523,7 @@ User user = db.table("user")
               .selectList("*", User.class);
 
 //更新时，清除缓存 //下次查询时，又可拿到最新数据
-db.table("user").set("sex",0).whereEq("id",101).update();
+db.table("user").set("sex",0).where("id=?",101).update();
 cache.clear("user_all");
 ```
 

@@ -194,10 +194,10 @@ db.table("user").setEntity(user).insert();
 db.table("user").setMap(map).insert();
 db.table("user").setMap(map).insertAsCmd(); //构建查询命令（即查询语句）
 //删::
-db.table("user").whereEq("id",2).delete();
+db.table("user").where("id=?",2).delete();
 //改::
-db.table("user").set("sex",1).whereEq("id",2).update();
-db.table("user").setInc("level",1).whereEq("id",2).update(); //字段自+1
+db.table("user").set("sex",1).where("id=?",2).update();
+db.table("user").setInc("level",1).where("id=?",2).update(); //字段自+1
 //查::
 db.table("user u")
   .innerJoin("user_ext e").onEq("u.id","e.user_id")

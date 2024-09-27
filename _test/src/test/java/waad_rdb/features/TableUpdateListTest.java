@@ -38,8 +38,8 @@ public class TableUpdateListTest {
         db.table("test").updateList(items, "id");
 
         //检测更新结果
-        assert db.table("test").whereEq("id", 1).selectValue("v1", 0) == 11;
-        assert db.table("test").whereEq("id", 2).selectValue("v1", 0) == 12;
+        assert db.table("test").where("id=?", 1).selectValue("v1", 0) == 11;
+        assert db.table("test").where("id=?", 2).selectValue("v1", 0) == 12;
     }
 
     @Test
@@ -66,8 +66,8 @@ public class TableUpdateListTest {
         db.table("test").updateList(item2, "id");
 
         //检测更新结果
-        assert db.table("test").whereEq("id", 1).selectValue("v1", 0) == 11;
-        assert db.table("test").whereEq("id", 2).selectValue("v1", 0) == 12;
+        assert db.table("test").where("id=?", 1).selectValue("v1", 0) == 11;
+        assert db.table("test").where("id=?", 2).selectValue("v1", 0) == 12;
     }
 
     @Test
@@ -94,7 +94,7 @@ public class TableUpdateListTest {
         db.mapperBase(TestModel.class).updateList(item2, (d, m) -> m.setEntity(d), TestModel::getId);
 
         //检测更新结果
-        assert db.table("test").whereEq("id", 1).selectValue("v1", 0) == 11;
-        assert db.table("test").whereEq("id", 2).selectValue("v1", 0) == 12;
+        assert db.table("test").where("id=?", 1).selectValue("v1", 0) == 11;
+        assert db.table("test").where("id=?", 2).selectValue("v1", 0) == 12;
     }
 }

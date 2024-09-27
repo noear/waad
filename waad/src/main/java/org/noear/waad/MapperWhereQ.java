@@ -1,7 +1,6 @@
 package org.noear.waad;
 
 import org.noear.waad.wrap.Property;
-import org.noear.waad.wrap.PropertyWrap;
 
 /**
  * Created by noear on 19-12-11.
@@ -46,162 +45,162 @@ public class MapperWhereQ extends WhereBase<MapperWhereQ> {
 
 
     public <C> MapperWhereQ whereEq(Property<C, ?> property, Object val) {
-        return whereEq(getColumnName(property), val);
+        return where(property.toColumn().eq(val));
     }
 
     public <C> MapperWhereQ whereNeq(Property<C, ?> property, Object val) {
-        return whereNeq(getColumnName(property), val);
+        return where(property.toColumn().neq(val));
     }
 
     public <C> MapperWhereQ whereLt(Property<C, ?> property, Object val) {
-        return whereLt(getColumnName(property), val);
+        return where(property.toColumn().lt(val));
     }
 
     public <C> MapperWhereQ whereLte(Property<C, ?> property, Object val) {
-        return whereLte(getColumnName(property), val);
+        return where(property.toColumn().lte(val));
     }
 
     public <C> MapperWhereQ whereGt(Property<C, ?> property, Object val) {
-        return whereGt(getColumnName(property), val);
+        return where(property.toColumn().gt(val));
     }
 
     public <C> MapperWhereQ whereGte(Property<C, ?> property, Object val) {
-        return whereGte(getColumnName(property), val);
+        return where(property.toColumn().gte(val));
     }
 
     public <C> MapperWhereQ whereLk(Property<C, ?> property, String val) {
-        return whereLk(getColumnName(property), val);
+        return where(property.toColumn().lk(val));
     }
 
     public <C> MapperWhereQ whereNlk(Property<C, ?> property, String val) {
-        return whereNlk(getColumnName(property), val);
+        return where(property.toColumn().nlk(val));
     }
 
     public <C> MapperWhereQ whereBtw(Property<C, ?> property, Object start, Object end) {
-        return whereBtw(getColumnName(property), start, end);
+        return where(property.toColumn().btw(start, end));
     }
 
     public <C> MapperWhereQ whereNbtw(Property<C, ?> property, Object start, Object end) {
-        return whereNbtw(getColumnName(property), start, end);
+        return where(property.toColumn().nbtw(start, end));
     }
 
     public <C> MapperWhereQ whereIn(Property<C, ?> property, Iterable ary) {
-        return whereIn(getColumnName(property), ary);
+        return where(property.toColumn().in(ary));
     }
     public <C> MapperWhereQ whereNin(Property<C, ?> property, Iterable ary) {
-        return whereNin(getColumnName(property), ary);
+        return where(property.toColumn().nin(ary));
     }
 
 
     public <C> MapperWhereQ andEq(Property<C, ?> property, Object val) {
-        return andEq(getColumnName(property), val);
+        return and(property.toColumn().eq(val));
     }
 
     public <C> MapperWhereQ andNeq(Property<C, ?> property, Object val) {
-        return andNeq(getColumnName(property), val);
+        return and(property.toColumn().neq(val));
     }
 
     public <C> MapperWhereQ andLt(Property<C, ?> property, Object val) {
-        return andLt(getColumnName(property), val);
+        return and(property.toColumn().lt(val));
     }
 
     public <C> MapperWhereQ andLte(Property<C, ?> property, Object val) {
-        return andLte(getColumnName(property), val);
+        return and(property.toColumn().lte(val));
     }
 
     public <C> MapperWhereQ andGt(Property<C, ?> property, Object val) {
-        return andGt(getColumnName(property), val);
+        return and(property.toColumn().gt(val));
     }
 
     public <C> MapperWhereQ andGte(Property<C, ?> property, Object val) {
-        return andGte(getColumnName(property), val);
+        return and(property.toColumn().gte(val));
     }
 
     public <C> MapperWhereQ andLk(Property<C, ?> property, String val) {
-        return andLk(getColumnName(property), val);
+        return and(property.toColumn().lk(val));
     }
 
     public <C> MapperWhereQ andNlk(Property<C, ?> property, String val) {
-        return andNlk(getColumnName(property), val);
+        return and(property.toColumn().nlk(val));
     }
 
     public <C> MapperWhereQ andBtw(Property<C, ?> property, Object start, Object end) {
-        return andBtw(getColumnName(property), start, end);
+        return and(property.toColumn().btw(start, end));
     }
     public <C> MapperWhereQ andNbtw(Property<C, ?> property, Object start, Object end) {
-        return andNbtw(getColumnName(property), start, end);
+        return and(property.toColumn().nbtw(start, end));
     }
     public <C> MapperWhereQ andIn(Property<C, ?> property, Iterable ary) {
-        return andIn(getColumnName(property), ary);
+        return and(property.toColumn().in(ary));
     }
 
     public <C> MapperWhereQ andNin(Property<C, ?> property, Iterable ary) {
-        return andNin(getColumnName(property), ary);
+        return and(property.toColumn().nin(ary));
     }
 
     public <C> MapperWhereQ orEq(Property<C, ?> property, Object val) {
-        return orEq(getColumnName(property), val);
+        return or(property.toColumn().eq(val));
     }
 
     public <C> MapperWhereQ orNeq(Property<C, ?> property, Object val) {
-        return orNeq(getColumnName(property), val);
+        return or(property.toColumn().neq(val));
     }
 
     public <C> MapperWhereQ orLt(Property<C, ?> property, Object val) {
-        return orLt(getColumnName(property), val);
+        return or(property.toColumn().lt(val));
     }
 
     public <C> MapperWhereQ orLte(Property<C, ?> property, Object val) {
-        return orLte(getColumnName(property), val);
+        return or(property.toColumn().lte(val));
     }
 
     public <C> MapperWhereQ orGt(Property<C, ?> property, Object val) {
-        return orGt(getColumnName(property), val);
+        return or(property.toColumn().gt(val));
     }
 
     public <C> MapperWhereQ orGte(Property<C, ?> property, Object val) {
-        return orGte(getColumnName(property), val);
+        return or(property.toColumn().gte(val));
     }
 
     public <C> MapperWhereQ orLk(Property<C, ?> property, String val) {
-        return orLk(getColumnName(property), val);
+        return or(property.toColumn().lk(val));
     }
 
     public <C> MapperWhereQ orNlk(Property<C, ?> property, String val) {
-        return orNlk(getColumnName(property), val);
+        return or(property.toColumn().nlk(val));
     }
 
     public <C> MapperWhereQ orBtw(Property<C, ?> property, Object start, Object end) {
-        return orBtw(getColumnName(property), start, end);
+        return or(property.toColumn().btw(start, end));
     }
     public <C> MapperWhereQ orNbtw(Property<C, ?> property, Object start, Object end) {
-        return orNbtw(getColumnName(property), start, end);
+        return or(property.toColumn().nbtw(start, end));
     }
     public <C> MapperWhereQ orIn(Property<C, ?> property, Iterable ary) {
-        return orIn(getColumnName(property), ary);
+        return or(property.toColumn().in(ary));
     }
 
     public <C> MapperWhereQ orNin(Property<C, ?> property, Iterable ary) {
-        return orNin(getColumnName(property), ary);
+        return or(property.toColumn().nin(ary));
     }
 
 
     public <C> MapperWhereQ orderByAsc(Property<C,?> property) {
-        return orderByAsc(getColumnName(property));
+        return orderByAsc(property.toColumn());
     }
     public <C> MapperWhereQ orderByDesc(Property<C,?> property) {
-        return orderByDesc(getColumnName(property));
+        return orderByDesc(property.toColumn());
     }
     public <C> MapperWhereQ andByAsc(Property<C,?> property) {
-        return andByAsc(getColumnName(property));
+        return andByAsc(property.toColumn());
     }
     public <C> MapperWhereQ andByDesc(Property<C,?> property) {
-        return andByDesc(getColumnName(property));
+        return andByDesc(property.toColumn());
     }
 
 
     public <C> MapperWhereQ groupBy(Property<C,?> property) {
-        return groupBy(getColumnName(property));
+        return groupBy(property.toColumn());
     }
 
     public MapperWhereQ limit(int size) {
@@ -214,8 +213,8 @@ public class MapperWhereQ extends WhereBase<MapperWhereQ> {
         return this;
     }
 
-    protected <C> String getColumnName(Property<C, ?> p) {
-        return PropertyWrap.get(p).name;
+    public MapperWhereQ fetchSize(int size) {
+        _query.fetchSize(size);
+        return this;
     }
-
 }

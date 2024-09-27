@@ -12,7 +12,7 @@ public class TableTest {
     @Test
     public void test1() throws Exception {
         assert db.table("appx")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectItem("*", AppxModel.class).app_id == 22;
 
         System.out.println(db.lastCommand.text);
@@ -21,7 +21,7 @@ public class TableTest {
     @Test
     public void test12() throws Exception {
         assert db.table("appx")
-                .whereEq("app_id", null)
+                .where("app_id=?", null)
                 .selectItem("*", AppxModel.class).app_id == null;
 
         System.out.println(db.lastCommand.text);

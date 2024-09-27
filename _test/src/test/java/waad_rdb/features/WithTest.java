@@ -23,7 +23,7 @@ public class WithTest {
         List<AppxModel> list  = db.table("#ag").innerJoin("#ax").onEq("ag.agroup_id","ax.agroup_id")
                 .limit(10)
                 .with("ax", db.table("appx").selectQ("*"))
-                .with("ag", db.table("appx_agroup").whereLt("agroup_id",10).selectQ("*"))
+                .with("ag", db.table("appx_agroup").where("agroup_id<?",10).selectQ("*"))
                 .with("ah", "select * from appx_agroup where agroup_id<?", 10)
                 .selectList("ax.*", AppxModel.class);
 
@@ -40,7 +40,7 @@ public class WithTest {
         // mysql 8.0 才支持
         //
         Object tmp = db.table("#ax")
-                .orderByDesc("app_id")
+                .orderBy("app_id DESC")
                 .limit(2)
                 .with("ax", db.table("appx").selectQ("*"))
                 .selectMapList("ax.*");

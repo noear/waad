@@ -20,9 +20,9 @@ public class WhereTest {
         qr.whereTrue();
 
         if(type == 1){
-            qr.andEq("app_id",1);
+            qr.and("app_id=?",1);
         }else{
-            qr.andEq("type",2);
+            qr.and("type=?",2);
         }
 
         long count = qr.selectCount();
@@ -33,7 +33,7 @@ public class WhereTest {
     public void demo2(){
         WhereQ whereQ = new WhereQ(db2);
 
-        whereQ.whereTrue().andEq("type",1);
+        whereQ.whereTrue().and("type=?",1);
 
         System.out.println(whereQ.toSql());
     }

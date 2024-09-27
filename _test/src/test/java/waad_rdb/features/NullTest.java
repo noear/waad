@@ -19,7 +19,7 @@ public class NullTest {
     @Test
     public void test() throws SQLException {
         AppxModel temp = db2.table("appx")
-                .whereEq("app_id", Integer.MAX_VALUE)
+                .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem("*", AppxModel.class);
 
         assert temp != null;
@@ -27,7 +27,7 @@ public class NullTest {
         WoodConfig.isSelectItemEmptyAsNull = true;
 
         AppxModel temp2 = db2.table("appx")
-                .whereEq("app_id", Integer.MAX_VALUE)
+                .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem("*", AppxModel.class);
 
         WoodConfig.isSelectItemEmptyAsNull = false;

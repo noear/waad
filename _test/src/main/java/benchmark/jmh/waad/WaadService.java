@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class WoodService implements BaseService {
+public class WaadService implements BaseService {
 
     WoodSQLUserMapper userMapper;
     BaseMapper<WoodSysCustomer> customerMapper;
@@ -92,7 +92,7 @@ public class WoodService implements BaseService {
     @Override
     public void pageQuery() {
         List<WoodSQLSysUser> list = userMapper.queryPage("用户一", 1, 5);
-        long count = userMapper.selectCount(wq->wq.whereEq("code","用户一"));
+        long count = userMapper.selectCount(wq->wq.whereEq(WoodSQLSysUser::getCode,"用户一"));
         //System.out.println(list);
     }
 

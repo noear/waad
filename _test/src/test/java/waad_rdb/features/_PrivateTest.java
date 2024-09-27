@@ -14,7 +14,7 @@ public class _PrivateTest {
 
     @Test
     public void test1() throws Exception {
-        Appx2Model tmp = db.table("appx").whereEq("app_id", 1).selectItem("*", Appx2Model.class);
+        Appx2Model tmp = db.table("appx").where("app_id=?", 1).selectItem("*", Appx2Model.class);
 
         assert tmp.getAppId() == 1;
         assert tmp.getAppKey() != null;

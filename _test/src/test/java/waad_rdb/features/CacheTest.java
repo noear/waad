@@ -17,7 +17,7 @@ public class CacheTest {
     @Test
     public void test1() throws Exception {
         AppxModel tmp = db2.table("appx")
-                .whereEq("app_id", 23)
+                .where("app_id=?", 23)
                 .caching(cache)
                 .cacheTag("app_23")
                 .selectItem("*", AppxModel.class);
@@ -35,7 +35,7 @@ public class CacheTest {
     @Test
     public void test2() throws Exception {
         AppxModel tmp = db2.table("appx")
-                .whereEq("app_id", 23)
+                .where("app_id=?", 23)
                 .caching(cache)
                 .select("*")
                 .getItem(AppxModel.class, (uc, m) -> {
@@ -56,7 +56,7 @@ public class CacheTest {
     @Test
     public void test3() throws Exception {
         AppxModel2 tmp = db2.table("appx")
-                .whereEq("app_id", 23)
+                .where("app_id=?", 23)
                 .caching(cache)
                 .select("*")
                 .getItem(AppxModel2.class, (uc, m) -> {
@@ -68,7 +68,7 @@ public class CacheTest {
 
 
         tmp = db2.table("appx")
-                .whereEq("app_id", 23)
+                .where("app_id=?", 23)
                 .caching(cache)
                 .select("*")
                 .getItem(AppxModel2.class, (uc, m) -> {

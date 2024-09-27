@@ -50,6 +50,6 @@ public interface SqlMapper extends MyBaseMapper<AppxModel> {
     List<String> appx_get_key_list2(int agroup_id,List<Integer> app_ids);
 
     default String test() throws SQLException {
-        return (String) DbUtil.db.table("appx").whereEq("app_id",2).selectValue("akey");
+        return (String) DbUtil.db.table("appx").where("app_id=?",2).selectValue("akey");
     }
 }

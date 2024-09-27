@@ -267,7 +267,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         this.where("1=1");
 
         for (String f : ff) {
-            this.andEq(f, data.get(f));
+            this.and(fmtColumn(f) + " = ? ", data.get(f));
         }
 
         if (this.selectExists()) {
@@ -374,7 +374,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
         this.where("1=1");
         for (String f : ff) {
-            this.andEq(f, data.get(f));
+            this.and(fmtColumn(f) + " = ? ", data.get(f));
         }
 
         if (this.selectExists()) {
@@ -402,7 +402,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         this.whereTrue();
 
         for (String f : ff) {
-            this.andEq(f, data.get(f));
+            this.and(fmtColumn(f) + " = ? ", data.get(f));
         }
 
         return update(data);

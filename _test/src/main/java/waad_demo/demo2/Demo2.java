@@ -28,15 +28,15 @@ public class Demo2 {
     public Object searchBy(Integer id, String name, Integer type) throws Exception {
         DbTableQuery qr = db.table("user").where("1=1");
         if (id != null) {
-            qr.andEq("id", id);
+            qr.and("id=?", id);
         }
 
         if (name != null) {
-            qr.andEq("name", name);
+            qr.and("name=?", name);
         }
 
         if (type != null && type > 2) {
-            qr.andEq("type", type);
+            qr.and("type=?", type);
         }
 
         return qr.limit(50).selectMapList("*");

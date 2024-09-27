@@ -107,7 +107,7 @@ public abstract class WhereBase<T extends WhereBase> {
             where("1=1");
             columnMap.forEach((k, v) -> {
                 if (condition.run(k, v)) {
-                    andEq(k, v);
+                    and(fmtColumn(k) + " = ? ", v);
                 }
             });
         }
@@ -123,118 +123,10 @@ public abstract class WhereBase<T extends WhereBase> {
             where("1=1");
             EntityUtils.fromEntity(entity, (k, v) -> {
                 if (condition.run(k, v)) {
-                    andEq(k, v);
+                    and(fmtColumn(k) + " = ? ", v);
                 }
             });
         }
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where = 语句
-     * <p>
-     * 例：.whereEq("name","x");
-     */
-    public T whereEq(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NULL ");
-        }else{
-            _builder.append(" = ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    public T whereNeq(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NOT NULL ");
-        }else{
-            _builder.append(" != ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where < 语句
-     */
-    public T whereLt(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" < ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where <= 语句
-     */
-    public T whereLte(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" <= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where > 语句
-     */
-    public T whereGt(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" > ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where >= 语句
-     */
-    public T whereGte(String column, Object val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" >= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where like 语句
-     */
-    public T whereLk(String column, String val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where not like 语句
-     */
-    public T whereNlk(String column, String val) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" NOT LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where between 语句
-     */
-    public T whereBtw(String column, Object start, Object end) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where note between 语句
-     */
-    public T whereNbtw(String column, Object start, Object end) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" NOT BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-
-    /**
-     * 添加SQL where in(?...) 语句
-     */
-    public T whereIn(String column, Iterable ary) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" IN (?...) ", ary);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where not in(?...) 语句
-     */
-    public T whereNin(String column, Iterable ary) {
-        _builder.append(" WHERE ").append(fmtColumn(column)).append(" NOT IN (?...) ", ary);
         return (T) this;
     }
 
@@ -269,112 +161,6 @@ public abstract class WhereBase<T extends WhereBase> {
         return (T) this;
     }
 
-    /**
-     * 添加SQL and = 语句
-     */
-    public T andEq(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NULL ");
-        }else{
-            _builder.append(" = ? ", val);
-        }
-
-        return (T) this;
-    }
-
-
-    public T andNeq(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NOT NULL ");
-        }else{
-            _builder.append(" != ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and < 语句
-     */
-    public T andLt(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" < ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and <= 语句
-     */
-    public T andLte(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" <= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and > 语句
-     */
-    public T andGt(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" > ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and >= 语句
-     */
-    public T andGte(String column, Object val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" >= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and like 语句
-     */
-    public T andLk(String column, String val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and not like 语句
-     */
-    public T andNlk(String column, String val) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" NOT LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where between 语句
-     */
-    public T andBtw(String column, Object start, Object end) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where note between 语句
-     */
-    public T andNbtw(String column, Object start, Object end) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" NOT BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-
-    /**
-     * 添加SQL and in(?...) 语句
-     */
-    public T andIn(String column, Iterable ary) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" IN (?...) ", ary);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL and not in(?...) 语句
-     */
-    public T andNin(String column, Iterable ary) {
-        _builder.append(" AND ").append(fmtColumn(column)).append(" NOT IN (?...) ", ary);
-        return (T) this;
-    }
 
     /**
      * 添加SQL or 语句 //可使用?占位符
@@ -406,114 +192,6 @@ public abstract class WhereBase<T extends WhereBase> {
         return (T) this;
     }
 
-    /**
-     * 添加SQL or = 语句
-     */
-    public T orEq(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NULL ");
-        }else{
-            _builder.append(" = ? ", val);
-        }
-
-        return (T) this;
-    }
-
-
-    public T orNeq(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NOT NULL ");
-        }else{
-            _builder.append(" != ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or < 语句
-     */
-    public T orLt(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" < ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or <= 语句
-     */
-    public T orLte(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" <= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or > 语句
-     */
-    public T orGt(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" > ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or >= 语句
-     */
-    public T orGte(String column, Object val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" >= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or like 语句
-     */
-    public T orLk(String column, String val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" LIKE ? ", val);
-        return (T) this;
-    }
-
-
-    /**
-     * 添加SQL or not like 语句
-     */
-    public T orNlk(String column, String val) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" NOT LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL where between 语句
-     */
-    public T orBtw(String column, Object start, Object end) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-
-    /**
-     * 添加SQL where note between 语句
-     */
-    public T orNbtw(String column, Object start, Object end) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" NOT BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or in(?...) 语句
-     */
-    public T orIn(String column, Iterable ary) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" IN (?...) ", ary);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL or not in(?...) 语句
-     */
-    public T orNin(String column, Iterable ary) {
-        _builder.append(" OR ").append(fmtColumn(column)).append(" NOT IN (?...) ", ary);
-        return (T) this;
-    }
-
 
     /**
      * 添加左括号
@@ -536,112 +214,6 @@ public abstract class WhereBase<T extends WhereBase> {
         _builder.append(" ( ").append(fmtColumn(condition.getColumn().getCode())).append(condition.getDescription(), condition.getArgs());
         return (T) this;
     }
-
-    /**
-     * 添加SQL ( = 语句
-     */
-    public T beginEq(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NULL ");
-        }else{
-            _builder.append(" = ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    public T beginNeq(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column));
-        if(val == null){
-            _builder.append(" IS NOT NULL ");
-        }else{
-            _builder.append(" != ? ", val);
-        }
-
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( < 语句
-     */
-    public T beginLt(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" < ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( <= 语句
-     */
-    public T beginLte(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" <= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( > 语句
-     */
-    public T beginGt(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" > ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( >= 语句
-     */
-    public T beginGte(String column, Object val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" >= ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( like 语句
-     */
-    public T beginLk(String column, String val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( not like 语句
-     */
-    public T beginNlk(String column, String val) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" NOT LIKE ? ", val);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( between 语句
-     */
-    public T beginBtw(String column, Object start, Object end) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( not between 语句
-     */
-    public T beginNbtw(String column, Object start, Object end) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" NOT BETWEEN ? AND ? ", start, end);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( in(?...) 语句
-     */
-    public T beginIn(String column, Iterable ary) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" IN (?...) ", ary);
-        return (T) this;
-    }
-
-    /**
-     * 添加SQL ( not in(?...) 语句
-     */
-    public T beginNin(String column, Iterable ary) {
-        _builder.append(" ( ").append(fmtColumn(column)).append(" NOT IN (?...) ", ary);
-        return (T) this;
-    }
-
 
     /**
      * 添加右括号
@@ -667,20 +239,12 @@ public abstract class WhereBase<T extends WhereBase> {
         return orderByDo(fmtMutColumns(code));
     }
 
-    public T orderByAsc(String columns) {
-        return orderByDo(fmtMutColumns(columns) + " ASC ");
-    }
 
     public T orderByAsc(IColumn... columns) {
         assert columns.length > 0;
         String columnsStr = Arrays.stream(columns).map(c->c.getCode()).collect(Collectors.joining(","));
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
-    }
-
-
-    public T orderByDesc(String columns) {
-        return orderByDo(fmtMutColumns(columns) + " DESC ");
     }
 
     public T orderByDesc(IColumn... columns) {
@@ -691,8 +255,8 @@ public abstract class WhereBase<T extends WhereBase> {
         return orderByDo(fmtMutColumns(columnsStr) + " DESC ");
     }
 
-    public T andByAsc(String columns) {
-        return orderByDo(fmtMutColumns(columns) + " ASC ");
+    public T andBy(String code) {
+        return orderByDo(fmtMutColumns(code));
     }
 
     public T andByAsc(IColumn... columns) {
@@ -700,11 +264,6 @@ public abstract class WhereBase<T extends WhereBase> {
         String columnsStr = Arrays.stream(columns).map(c->c.getCode()).collect(Collectors.joining(","));
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
-    }
-
-
-    public T andByDesc(String columns) {
-        return orderByDo(fmtMutColumns(columns) + " DESC ");
     }
 
     public T andByDesc(IColumn... columns) {

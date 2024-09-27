@@ -11,7 +11,7 @@ public class GetTest {
     @Test
     public void test1() throws Exception {
         assert db.table("appx")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectItem("*", AppxModel.class).app_id == 22;
 
     }
@@ -19,7 +19,7 @@ public class GetTest {
     @Test
     public void test2() throws Exception {
         assert db.table("appx")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectDataItem("*").count() > 2;
 
     }
@@ -27,7 +27,7 @@ public class GetTest {
     @Test
     public void test3() throws Exception {
         assert db.table("appx")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectMap("*").size() > 2;
 
     }
@@ -36,7 +36,7 @@ public class GetTest {
     @Test
     public void test11() throws Exception {
         db.table("appx")
-                .whereLt("app_id", 22)
+                .where("app_id<?", 22)
                 .selectList("*", AppxModel.class)
                 .forEach(m -> m.getApp_id());
 
@@ -45,7 +45,7 @@ public class GetTest {
     @Test
     public void test12() throws Exception {
         db.table("appx")
-                .whereLt("app_id", 22)
+                .where("app_id<?", 22)
                 .selectDataList("*")
                 .forEach(item -> item.getInt("app_id"));
 
@@ -54,7 +54,7 @@ public class GetTest {
     @Test
     public void test13() throws Exception {
         db.table("appx")
-                .whereLt("app_id", 22)
+                .where("app_id<?", 22)
                 .selectMapList("*")
                 .forEach(map -> map.get("app_id"));
 

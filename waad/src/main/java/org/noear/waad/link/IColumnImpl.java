@@ -14,6 +14,10 @@ public class IColumnImpl implements IColumn {
     private final String name;
     private final String asName;
 
+    public IColumnImpl(String name) {
+        this(null, name);
+    }
+
     public IColumnImpl(ITable table, String name) {
         this(table, name, null);
     }

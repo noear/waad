@@ -44,7 +44,7 @@ public class JavaController {
         int app_id = 48;
 
         return db2.table("appx")
-                .whereEq("app_id", app_id)
+                .where("app_id=?", app_id)
                 .limit(1)
                 .caching(Config.cache)
                 .cacheTag("app_" + app_id)
@@ -60,7 +60,7 @@ public class JavaController {
         String tb = "appx";
 
         Object tmp = db2.table(tb)
-                .whereEq("app_id", app_id)
+                .where("app_id=?", app_id)
                 .limit(1)
                 .selectMap("*");
 

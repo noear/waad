@@ -47,7 +47,7 @@ public class _PageTest2 {
     public void test_page3() throws Exception {
         IPage<AppxModel> list = db2.table("appx a")
                 .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
-                .orderByAsc("a.app_id")
+                .orderBy("a.app_id ASC")
                 .limit(1, 10)
                 .selectPage("a.*,b.name agroup_name", AppxModel.class);
 
@@ -63,8 +63,8 @@ public class _PageTest2 {
     @Test
     public void test_page4() throws Exception{
         IPage<AppxModel> list = db2.table("appx")
-                .whereEq("app_id",2)
-                .orderByAsc("app_id")
+                .where("app_id=?",2)
+                .orderBy("app_id ASC")
                 .selectPage("*", AppxModel.class);
 
         assert  list.getList().size() == 1;

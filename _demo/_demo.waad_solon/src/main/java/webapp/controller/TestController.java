@@ -59,7 +59,7 @@ public class TestController {
 
         Object tmp2 = mapper.selectItem(m -> m.where("app_id=?", 12));
 
-        Object tmp3 = mapper.selectItem(m -> m.whereEq("app_id", 21));
+        Object tmp3 = mapper.selectItem(m -> m.where("app_id=?", 21));
 
         if (sql == null) {
             return tmp;
@@ -76,7 +76,7 @@ public class TestController {
 
         Object tmp2 = mapper.selectItem(m -> m.where("app_id=?", 12));
 
-        Object tmp3 = mapper.selectItem(m -> m.whereEq("app_id", 21));
+        Object tmp3 = mapper.selectItem(m -> m.where("app_id=?", 21));
 
         if (sql == null) {
             return tmp;

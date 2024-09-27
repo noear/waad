@@ -3,7 +3,7 @@ package benchmark.jmh;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.RunnerException;
 import benchmark.jmh.jdbc.JdbcService;
-import benchmark.jmh.waad.WoodService;
+import benchmark.jmh.waad.WaadService;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class JMHMain {
     JdbcService jdbcService = null;
-    WoodService waadService = null;
+    WaadService waadService = null;
 
     @Setup
     public void init() {
@@ -29,7 +29,7 @@ public class JMHMain {
         jdbcService = new JdbcService();
         jdbcService.init();
 
-        waadService = new WoodService();
+        waadService = new WaadService();
         waadService.init();
 
     }

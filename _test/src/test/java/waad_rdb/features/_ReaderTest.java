@@ -67,7 +67,7 @@ public class _ReaderTest {
 
         try (IDataReader<AppxModel> reader = db2.table("appx a")
                 .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
-                .orderByAsc("a.app_id")
+                .orderBy("a.app_id ASC")
                 .limit(1, 10)
                 .selectReader("a.*,b.name agroup_name", AppxModel.class)) {
             AppxModel m;

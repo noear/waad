@@ -17,7 +17,7 @@ public class _TimeTest {
     private AppxCopy2Model model() throws Exception {
         if (_model == null) {
             _model = db.table("appx_copy")
-                    .whereEq("app_id", 22)
+                    .where("app_id=?", 22)
                     .selectItem("*", AppxCopy2Model.class);
 
             System.out.println(db.lastCommand.text);
@@ -34,7 +34,7 @@ public class _TimeTest {
     @Test
     public void test_insert() throws Exception {
         Map<String, Object> map = db.table("appx_copy")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectMap("*");
 
         map.put("app_id", 1001);
@@ -46,7 +46,7 @@ public class _TimeTest {
     @Test
     public void test_insert2() throws Exception {
         AppxCopy2Model map = db.table("appx_copy")
-                .whereEq("app_id", 22)
+                .where("app_id=?", 22)
                 .selectItem("*", AppxCopy2Model.class);
 
         map.app_id = 1000;
