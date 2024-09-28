@@ -4,6 +4,7 @@ import org.noear.waad.*;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.utils.fun.Fun1;
+import org.noear.waad.wrap.DbType;
 
 import java.sql.*;
 
@@ -14,6 +15,7 @@ import java.sql.*;
  * @since 3.2
  * */
 public interface DbDialect {
+    DbType dbType();
 
     /**
      * 预转换数据（如：SqlTime 转为 Date）

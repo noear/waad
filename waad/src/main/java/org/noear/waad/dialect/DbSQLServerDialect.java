@@ -2,6 +2,7 @@ package org.noear.waad.dialect;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.wrap.DbType;
 
 /**
  * SQLServer数据库方言处理（BETWEEN AND :: >= + <=）
@@ -10,6 +11,11 @@ import org.noear.waad.core.SQLBuilder;
  * @since 3.2
  * */
 public class DbSQLServerDialect extends DbDialectBase{
+    @Override
+    public DbType dbType() {
+        return DbType.SQLServer;
+    }
+
     @Override
     public boolean excludeFormat(String str) {
         return str.startsWith("\"") || str.startsWith("[") || str.indexOf(".") > 0;
@@ -30,7 +36,7 @@ public class DbSQLServerDialect extends DbDialectBase{
         StringBuilder sb = new StringBuilder();
         if (orderBy == null) {
             String tb = table1.split(" ")[0].replace("$.","").trim();
-            String pk = ctx.getMetaData().getTablePk1(tb);
+            String pk = ctx.metaData().getTablePk1(tb);
 
             if(pk == null){
                 throw new RuntimeException("Please add orderBy");

@@ -83,7 +83,7 @@ public class DbUtil {
     public static DbContext getDb() {
         Map<String, String> map =  dbMysqlCfg(); // dbOracleCfg(); // dbPgsqlCfg(); //dbMssqlCfg();//
 
-        DbContext db = new DbContext(map.get("schema"), dataSource(map)).nameSet("rock");
+        DbContext db = new DbContext(dataSource(map)).name("rock");
         db.events().onException((cmd, ex)->{
             System.out.println(cmd.text);
         });

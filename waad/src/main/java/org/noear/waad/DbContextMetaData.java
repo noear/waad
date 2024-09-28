@@ -139,9 +139,13 @@ public class DbContextMetaData implements Closeable {
         return dialect;
     }
 
+    /**
+     * 设置方言（如果内置的方言不适合当前数据源）
+     */
     public void setDialect(DbDialect dialect) {
         init();
         this.dialect = dialect;
+        this.type = dialect.dbType();
     }
 
     public Collection<TableWrap> getTableAll() {

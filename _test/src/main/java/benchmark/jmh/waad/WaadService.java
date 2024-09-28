@@ -24,7 +24,7 @@ public class WaadService implements BaseService {
     public void init() {
         DataSource dataSource = DataSourceHelper.ins();
 
-        this.db = new DbContext("user", dataSource);
+        this.db = new DbContext(dataSource).name("user");
         this.userMapper = db.mapper(WaadSQLUserMapper.class);
         this.customerMapper = db.mapperBase(WaadSysCustomer.class);
     }

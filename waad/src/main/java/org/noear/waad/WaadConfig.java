@@ -29,6 +29,12 @@ public final class WaadConfig {
     public static boolean isSelectNullAsDefault = true;
 
     /**
+     * 使用编译模式（用于产生代码）
+     */
+    public static boolean isUsingCompilationMode = false;
+
+
+    /**
      * 非注解的命名策略
      */
     public static NamingStrategy namingStrategy = new NamingStrategy();

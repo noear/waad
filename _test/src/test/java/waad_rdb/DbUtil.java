@@ -33,7 +33,7 @@ public class DbUtil {
 
         //初始化表构建和和数据
         String[] sqlAry = getSqlFromFile("/db/rock_h2.sql");
-        DbContext db = new DbContext("rock",ds);
+        DbContext db = new DbContext(ds).name("rock");
         try {
             for (String s1 : sqlAry) {
                 if(s1.length() > 10) {
@@ -58,7 +58,7 @@ public class DbUtil {
 
         //初始化表构建和和数据
         String[] sqlAry = getSqlFromFile("/db/rock_sqlite.sql");
-        DbContext db = new DbContext("rock",ds);
+        DbContext db = new DbContext(ds).name("rock");
         try {
             for (String s1 : sqlAry) {
                 if(s1.length() > 10) {
@@ -125,7 +125,7 @@ public class DbUtil {
         //
         HikariDataSource source = dbMysqlCfg(); // dbH2Cfg(); // dbSqliteCfg(); // dbH2Cfg(); // dbOracleCfg(); //  dbPgsqlCfg(); // dbMssqlCfg(); //
 
-        DbContext db = new DbContext(source).nameSet("rock");
+        DbContext db = new DbContext(source).name("rock");
         //WaadConfig.isUsingSchemaPrefix =true;
         //WaadConfig.isUsingUnderlineColumnName=true;
 
@@ -141,7 +141,7 @@ public class DbUtil {
             }
         });
 
-        db.initMetaData();
+        db.metaData().init();
         return db;
     }
 

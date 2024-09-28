@@ -1,9 +1,16 @@
 package org.noear.waad.dialect;
 
+import org.noear.waad.wrap.DbType;
+
 /**
  * @author noear 2021/10/20 created
  */
 public class DbClickHouseDialect extends DbDialectBase{
+    @Override
+    public DbType dbType() {
+        return DbType.ClickHouse;
+    }
+
     @Override
     public boolean supportsVariablePaging() {
         return true;

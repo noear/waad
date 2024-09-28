@@ -25,7 +25,7 @@ public class DbTran {
 
 
     public Connection getConnection(DbContext db) throws SQLException {
-        return getConnection(db.getMetaData().getDataSource());
+        return getConnection(db.metaData().getDataSource());
     }
 
     public Connection getConnection(DataSource ds) throws SQLException {

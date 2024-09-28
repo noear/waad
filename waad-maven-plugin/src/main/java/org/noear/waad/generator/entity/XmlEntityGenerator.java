@@ -59,7 +59,7 @@ public class XmlEntityGenerator {
             Class.forName(source.driverClassName);
         }
 
-        DbContext db = new DbContext(source.schema, source.url, source.username, source.password);
+        DbContext db = new DbContext(source.url, source.username, source.password);
 
         List<TableItem> tableItems = XmlParser.getTables(source, db);
 

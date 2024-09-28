@@ -13,7 +13,7 @@ public class DbFormater{
     }
 
     public DbDialect dba(){
-        return ctx.getDialect();
+        return ctx.metaData().getDialect();
     }
 
 

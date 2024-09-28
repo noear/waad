@@ -2,6 +2,7 @@ package org.noear.waad.dialect;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.wrap.DbType;
 
 import java.sql.Clob;
 import java.sql.DatabaseMetaData;
@@ -15,6 +16,11 @@ import java.sql.SQLException;
  * @since 3.2
  * */
 public class DbSQLiteDialect extends DbDialectBase{
+    @Override
+    public DbType dbType() {
+        return DbType.SQLite;
+    }
+
     @Override
     public Object preChange(Object val) throws SQLException {
         if (val instanceof Clob) {

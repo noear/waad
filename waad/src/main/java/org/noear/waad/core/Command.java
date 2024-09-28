@@ -145,9 +145,9 @@ public class Command {
      */
     public String fullText() {
         if (context.codeHint() == null)
-            return context.getDialect().preReview(text);
+            return context.metaData().getDialect().preReview(text);
         else
-            return context.codeHint() + context.getDialect().preReview(text);
+            return context.codeHint() + context.metaData().getDialect().preReview(text);
     }
 
     public Act1<Command> onExecuteAft = null;

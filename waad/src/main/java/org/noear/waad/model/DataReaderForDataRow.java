@@ -53,7 +53,7 @@ public class DataReaderForDataRow implements DataReader<DataRow> {
     }
 
     private Object getObject(int idx) throws SQLException {
-        return cmd.context.getDialect().preChange(rset.getObject(idx));
+        return cmd.context.metaData().getDialect().preChange(rset.getObject(idx));
     }
 
     /**

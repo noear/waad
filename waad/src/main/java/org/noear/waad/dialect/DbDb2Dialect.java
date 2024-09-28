@@ -2,6 +2,7 @@ package org.noear.waad.dialect;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.wrap.DbType;
 
 /**
  * DB2数据库方言处理（BETWEEN AND :: >= + <=）
@@ -10,6 +11,11 @@ import org.noear.waad.core.SQLBuilder;
  * @since 3.2
  * */
 public class DbDb2Dialect extends DbDialectBase{
+
+    @Override
+    public DbType dbType() {
+        return DbType.DB2;
+    }
 
     @Override
     public boolean excludeFormat(String str) {

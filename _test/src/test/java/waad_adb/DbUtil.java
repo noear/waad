@@ -33,7 +33,7 @@ public class DbUtil {
         //
         DataSource source = dbClickHouseCfg();
 
-        DbContext db = new DbContext(source).nameSet("rock");
+        DbContext db = new DbContext(source).name("rock");
         //WaadConfig.isUsingSchemaPrefix =true;
         //WaadConfig.isUsingUnderlineColumnName=true;
         db.events().onException((cmd, ex) -> {
@@ -48,7 +48,7 @@ public class DbUtil {
             }
         });
 
-        db.initMetaData();
+        db.metaData().init();
         return db;
     }
 

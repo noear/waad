@@ -238,7 +238,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     protected DbQuery insertCompile(DataRow data) {
         _builder.clear();
 
-        _context.getDialect()
+        _context.metaData().getDialect()
                 .buildInsertOneCode(_context, _table.____getTableSpec().name(), _builder, this::isSqlExpr, _usingNull, data);
 
         return compile();
@@ -316,7 +316,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
 
         _builder.backup();
 
-        _context.getDialect().buildInsertOneCode(_context, _table.____getTableSpec().name(), _builder, this::isSqlExpr, true, cols);
+        _context.metaData().getDialect().buildInsertOneCode(_context, _table.____getTableSpec().name(), _builder, this::isSqlExpr, true, cols);
 
         List<Object[]> argList = new ArrayList<>();
         String tml = _builder.toString();
@@ -440,12 +440,12 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         }
 
         StringBuilder updateSb = new StringBuilder();
-        _context.getDialect().updateCmdBegin(updateSb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdBegin(updateSb, _table.____getTableSpec().name());
 
         List<Object> setArgs = new ArrayList<Object>();
         StringBuilder setSb = new StringBuilder();
 
-        _context.getDialect().updateCmdSet(setSb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdSet(setSb, _table.____getTableSpec().name());
         updateItemsBuild0(data, setSb, setArgs);
 
         _builder.backup();
@@ -571,8 +571,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         List<Object[]> argList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
-        _context.getDialect().updateCmdBegin(sb, _table.____getTableSpec().name());
-        _context.getDialect().updateCmdSet(sb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdBegin(sb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdSet(sb, _table.____getTableSpec().name());
 
         updateItemsBuildByFields0(cols, sb);
 
@@ -619,7 +619,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     protected DbQuery deleteCompile()  {
         StringBuilder sb = new StringBuilder();
 
-        _context.getDialect().deleteCmd(sb, _table.____getTableSpec().name(), _builder.indexOf(" FROM ") < 0);
+        _context.metaData().getDialect().deleteCmd(sb, _table.____getTableSpec().name(), _builder.indexOf(" FROM ") < 0);
 
         _builder.insert(sb.toString());
 
@@ -975,9 +975,9 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
 
         //2.尝试构建分页
         if (limit_top > 0) {
-            _context.getDialect().buildSelectTopCode(_context, _table_raw, _builder, _orderBy, limit_top);
+            _context.metaData().getDialect().buildSelectTopCode(_context, _table_raw, _builder, _orderBy, limit_top);
         } else if (limit_size > 0) {
-            _context.getDialect().buildSelectRangeCode(_context, _table_raw, _builder, _orderBy, limit_start, limit_size);
+            _context.metaData().getDialect().buildSelectRangeCode(_context, _table_raw, _builder, _orderBy, limit_start, limit_size);
         } else {
             _builder.insert(0, "SELECT ");
             if (_orderBy != null) {

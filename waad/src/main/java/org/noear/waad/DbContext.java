@@ -4,13 +4,12 @@ import org.noear.waad.core.Command;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.datasource.SimpleDataSource;
-import org.noear.waad.dialect.DbDialect;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
+import org.noear.waad.utils.RunUtils;
 import org.noear.waad.utils.StrUtils;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.wrap.DbFormater;
-import org.noear.waad.wrap.DbType;
 
 import javax.sql.DataSource;
 import java.io.Closeable;
@@ -39,29 +38,12 @@ public class DbContext implements Closeable {
      */
     private boolean allowMultiQueries;
 
-
     public boolean isAllowMultiQueries() {
         return allowMultiQueries;
     }
 
     public void setAllowMultiQueries(boolean allowMultiQueries) {
         this.allowMultiQueries = allowMultiQueries;
-    }
-
-    /**
-     * 编译模式（用于产生代码）
-     */
-    private boolean compilationMode = false;
-
-    /**
-     *
-     */
-    public boolean isCompilationMode() {
-        return compilationMode;
-    }
-
-    public void setCompilationMode(boolean compilationMode) {
-        this.compilationMode = compilationMode;
     }
 
 
@@ -74,56 +56,18 @@ public class DbContext implements Closeable {
     private final DbContextMetaData metaData = new DbContextMetaData();
 
     /**
-     * 获取元信息
+     * 元信息
      */
-    public DbContextMetaData getMetaData() {
+    public DbContextMetaData metaData() {
         return metaData;
     }
 
-    /**
-     * 初始化元信息
-     */
-    public void initMetaData() {
-        getMetaData().init();
-    }
-
-    /**
-     * 初始化元信息（带状态返回）
-     */
-    public boolean initMetaData2() {
-        return getMetaData().init();
-    }
-
-    /**
-     * 获取类型
-     */
-    public DbType getType() {
-        return getMetaData().getType();
-    }
-
-    /**
-     * 获取方言
-     */
-    public DbDialect getDialect() {
-        return getMetaData().getDialect();
-    }
-
-    /**
-     * 设置方言（如果内置的方言不适合当前数据源）
-     *
-     * @param dbType    数据库类型
-     * @param dbDialect 数据库方言
-     */
-    public void setDialect(DbType dbType, DbDialect dbDialect) {
-        getMetaData().setDialect(dbDialect);
-        getMetaData().setType(dbType);
-    }
 
     /**
      * 获取链接
      */
     public Connection getConnection() throws SQLException {
-        return getMetaData().getConnection();
+        return metaData().getConnection();
     }
 
 
@@ -145,7 +89,7 @@ public class DbContext implements Closeable {
         return _name;
     }
 
-    public DbContext nameSet(String name) {
+    public DbContext name(String name) {
         _name = name;
         WaadConfig.libOfDb.put(name, this);
         return this;
@@ -179,37 +123,9 @@ public class DbContext implements Closeable {
 
 
     /**
-     * 设置JDBC驱动
-     */
-    public DbContext driverSet(String driverClassName) {
-        try {
-            Class.forName(driverClassName);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return this;
-    }
-
-
-    /**
-     * 数据集合名称设置
-     */
-    public DbContext schemaSet(String schema) {
-        if (StrUtils.isNotEmpty(schema)) {
-            getMetaData().setSchema(schema);
-
-            if (_name == null) {
-                _name = schema;
-            }
-        }
-
-        return this;
-    }
-
-    /**
      * 代码注解设置
      */
-    public DbContext codeHintSet(String hint) {
+    public DbContext codeHint(String hint) {
         _codeHint = hint;
         return this;
     }
@@ -221,12 +137,6 @@ public class DbContext implements Closeable {
         return _codeHint;
     }
 
-    /**
-     * 获取schema
-     */
-    public String schema() {
-        return getMetaData().getSchema();
-    }
 
     //
     // 格式化处理
@@ -244,12 +154,7 @@ public class DbContext implements Closeable {
     // 构建函数 start
     //
     public DbContext(DataSource dataSource) {
-        this(dataSource, null);
-    }
-
-    public DbContext(DataSource dataSource, String schema) {
-        schemaSet(schema);
-        getMetaData().setDataSource(dataSource);
+        metaData().setDataSource(dataSource);
     }
 
     public DbContext(Properties prop) {
@@ -264,40 +169,33 @@ public class DbContext implements Closeable {
         }
 
         if (StrUtils.isNotEmpty(driverClassName)) {
-            driverSet(driverClassName);
+            RunUtils.runTry(() -> Class.forName(driverClassName));
         }
 
         if (StrUtils.isNotEmpty(schema)) {
-            getMetaData().setSchema(schema);
+            metaData().setSchema(schema);
         }
 
-        if (StrUtils.isEmpty(getMetaData().getSchema()) && url.indexOf("://") > 0) {
-            getMetaData().setSchema(URI.create(url.substring(5)).getPath().substring(1));
+        if (StrUtils.isEmpty(metaData().getSchema()) && url.indexOf("://") > 0) {
+            metaData().setSchema(URI.create(url.substring(5)).getPath().substring(1));
         }
 
         if (StrUtils.isEmpty(username)) {
-            getMetaData().setDataSource(new SimpleDataSource(url));
+            metaData().setDataSource(new SimpleDataSource(url));
         } else {
-            getMetaData().setDataSource(new SimpleDataSource(url, username, password));
+            metaData().setDataSource(new SimpleDataSource(url, username, password));
         }
     }
 
 
     //基于线程池配置（如："proxool."）
-    public DbContext(String schema, String url) {
-        schemaSet(schema);
-        getMetaData().setDataSource(new SimpleDataSource(url));
+    public DbContext(String url) {
+        metaData().setDataSource(new SimpleDataSource(url));
     }
 
     //基于手动配置（无线程池）
-    public DbContext(String schema, String url, String username, String password) {
-        schemaSet(schema);
-        getMetaData().setDataSource(new SimpleDataSource(url, username, password));
-    }
-
-    public DbContext(String schema, DataSource dataSource) {
-        schemaSet(schema);
-        getMetaData().setDataSource(dataSource);
+    public DbContext(String url, String username, String password) {
+        metaData().setDataSource(new SimpleDataSource(url, username, password));
     }
 
     //

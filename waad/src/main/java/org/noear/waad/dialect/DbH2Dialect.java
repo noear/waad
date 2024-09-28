@@ -1,5 +1,7 @@
 package org.noear.waad.dialect;
 
+import org.noear.waad.wrap.DbType;
+
 import java.sql.Clob;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -11,8 +13,13 @@ import java.sql.SQLException;
  * @author noear
  * @since 3.2
  * */
-public class DbH2Dialect extends DbDialectBase{
+public class DbH2Dialect extends DbDialectBase {
     //top,page 和mysql一样
+
+    @Override
+    public DbType dbType() {
+        return DbType.H2;
+    }
 
     @Override
     public Object preChange(Object val) throws SQLException {
@@ -42,8 +49,8 @@ public class DbH2Dialect extends DbDialectBase{
 
         }
 
-        if(code.indexOf("information_schema.")>=0){
-            return  code.toUpperCase();
+        if (code.indexOf("information_schema.") >= 0) {
+            return code.toUpperCase();
         }
 
         return code;

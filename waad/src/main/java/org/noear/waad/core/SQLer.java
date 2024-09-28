@@ -55,15 +55,15 @@ public class SQLer {
     }
 
     private Object getObject(String key) throws SQLException {
-        return cmd.context.getDialect().preChange(rset.getObject(key));
+        return cmd.context.metaData().getDialect().preChange(rset.getObject(key));
     }
 
     private Object getObject(int idx) throws SQLException {
-        return cmd.context.getDialect().preChange(rset.getObject(idx));
+        return cmd.context.metaData().getDialect().preChange(rset.getObject(idx));
     }
 
     public Variate getVariate() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return null;
         }
 
@@ -83,7 +83,7 @@ public class SQLer {
     }
 
     public DataRow getRow() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return null;
         }
 
@@ -116,7 +116,7 @@ public class SQLer {
     }
 
     public DataList getTable() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return null;
         }
 
@@ -151,7 +151,7 @@ public class SQLer {
     }
 
     public DataReaderForDataRow getReader(int fetchSize) throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return null;
         }
 
@@ -167,7 +167,7 @@ public class SQLer {
 
     //执行
     public int execute() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return 0;
         }
 
@@ -195,7 +195,7 @@ public class SQLer {
 
     //批量执行
     public int[] executeBatch() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return null;
         }
 
@@ -237,7 +237,7 @@ public class SQLer {
 
     //插入
     public long insert() throws SQLException {
-        if (cmd.context.isCompilationMode()) {
+        if (WaadConfig.isUsingCompilationMode) {
             return 0;
         }
 
@@ -248,7 +248,7 @@ public class SQLer {
 
             stmt.executeUpdate();
 
-            if (cmd.context.getDialect().supportsInsertGeneratedKey()) {
+            if (cmd.context.metaData().getDialect().supportsInsertGeneratedKey()) {
                 try {
                     rset = stmt.getGeneratedKeys(); //乎略错误
                 } catch (Exception ex) {
@@ -333,7 +333,7 @@ public class SQLer {
                     stmt.setFetchSize(Integer.MIN_VALUE);
                 }
             } else {
-                if (isInsert && cmd.context.getDialect().supportsInsertGeneratedKey())
+                if (isInsert && cmd.context.metaData().getDialect().supportsInsertGeneratedKey())
                     stmt = c.prepareStatement(cmd.fullText(), Statement.RETURN_GENERATED_KEYS);
                 else
                     stmt = c.prepareStatement(cmd.fullText());
