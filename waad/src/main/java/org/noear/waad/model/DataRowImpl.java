@@ -1,7 +1,6 @@
 package org.noear.waad.model;
 
 import org.noear.waad.GetHandler;
-import org.noear.waad.Variate;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.utils.LinkedCaseInsensitiveMap;
 import org.noear.waad.wrap.ClassWrap;
@@ -60,9 +59,9 @@ class DataRowImpl extends LinkedCaseInsensitiveMap<Object> implements DataRow {
     @Override
     public Variate getVariate(String name) {
         if (containsKey(name)) {
-            return new Variate(name, get(name));
+            return Variate.create(name, get(name));
         } else {
-            return new Variate(name, null);
+            return Variate.create(name, null);
         }
     }
 

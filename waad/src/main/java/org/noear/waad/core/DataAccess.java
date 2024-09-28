@@ -6,6 +6,7 @@ import org.noear.waad.cache.ICacheService;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
+import org.noear.waad.model.Variate;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 
@@ -175,7 +176,7 @@ public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQue
             rst = _cache.getEx(this.getWaadKey(), Variate.class, () -> (new SQLer(cmd).getVariate()));
         }
         if (rst == null) {
-            return new Variate();
+            return Variate.create();
         } else {
             return rst;
         }

@@ -4,6 +4,7 @@ import org.noear.waad.*;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
+import org.noear.waad.model.Variate;
 
 import java.sql.*;
 
@@ -70,9 +71,9 @@ public class SQLer {
             rset = query(false, 0);
 
             if (rset != null && rset.next())
-                return new Variate(null, getObject(1));
+                return Variate.create(null, getObject(1));
             else
-                return null;//new Variate(null,null);
+                return null;//Variate.create(null,null);
         } catch (SQLException ex) {
             cmd.context.events().runExceptionEvent(cmd, ex);
             throw ex;

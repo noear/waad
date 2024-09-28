@@ -2,7 +2,7 @@ package org.noear.waad.mapper;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
-import org.noear.waad.Variate;
+import org.noear.waad.model.Variate;
 import org.noear.waad.utils.StrUtils;
 import org.noear.waad.xml.XmlSqlBlock;
 import org.noear.waad.xml.XmlSqlFactory;
@@ -131,15 +131,15 @@ public  class MapperUtil {
                             }
 
                             if (block._return.toLowerCase().startsWith("long")) {
-                                return valV.longValue(0);
+                                return valV.longValue(0L);
                             }
 
                             if (block._return.toLowerCase().startsWith("float")) {
-                                return valV.floatValue(0);
+                                return valV.floatValue(0F);
                             }
 
                             if (block._return.toLowerCase().startsWith("double")) {
-                                return valV.doubleValue(0);
+                                return valV.doubleValue(0D);
                             }
 
                             if (block._return.toLowerCase().startsWith("str")) {

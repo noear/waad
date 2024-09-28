@@ -1,8 +1,5 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
-import org.noear.waad.wrap.DbVarType;
-
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,14 +7,14 @@ import java.util.Date;
  * Created by noear on 14-6-12.
  * 数据库访问参数（支持范型）
  */
-public class Variate implements Serializable {
+class VariateImpl implements Variate {
     protected String _name;
     protected Object _value;
 
-    public Variate() {
+    public VariateImpl() {
     }
 
-    public Variate(String name, Object value) {
+    public VariateImpl(String name, Object value) {
         this._name = name;
         this._value = value;
     }
@@ -30,40 +27,8 @@ public class Variate implements Serializable {
         return _name;
     }
 
-    public void setName(String name) {
-        _name = name;
-    }
-
-
-    private DbVarType _type = DbVarType.Object;
-
-    public DbVarType getType() {
-        return _type;
-    }
-
     public Object getValue() {
         return _value;
-    }
-
-    public void setValue(Object value) {
-        _value = value;
-    }
-
-    //--------------------
-    public String getString() {
-        return (String) _value;
-    }
-
-    public Date getDate() {
-        return (Date) _value;
-    }
-
-    public Boolean getBoolean() {
-        return (Boolean) _value;
-    }
-
-    public Number getNumber() {
-        return (Number) _value;
     }
 
     //--------------------
@@ -79,7 +44,7 @@ public class Variate implements Serializable {
         return _value;
     }
 
-    public double doubleValue(double def) {
+    public Double doubleValue(Double def) {
         if (_value == null) {
             return def;
         }
@@ -95,7 +60,7 @@ public class Variate implements Serializable {
         return def;
     }
 
-    public float floatValue(float def) {
+    public Float floatValue(Float def) {
         if (_value == null) {
             return def;
         }
@@ -111,7 +76,7 @@ public class Variate implements Serializable {
         return def;
     }
 
-    public long longValue(long def) {
+    public Long longValue(Long def) {
         if (_value == null) {
             return def;
         }
@@ -121,7 +86,7 @@ public class Variate implements Serializable {
         }
 
         if (_value instanceof Boolean) {
-            return ((boolean) _value) ? 1 : 0;
+            return ((Boolean) _value) ? 1L : 0L;
         }
 
         if (_value instanceof Date) {
@@ -136,7 +101,7 @@ public class Variate implements Serializable {
     }
 
 
-    public int intValue(int def) {
+    public Integer intValue(Integer def) {
         if (_value == null) {
             return def;
         }

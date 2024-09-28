@@ -1,5 +1,6 @@
 package org.noear.waad.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Set;
 /**
  * Created by noear on 14-9-10.
  */
-public interface DataList extends Iterable<DataRow> {
+public interface DataList extends Iterable<DataRow>, Serializable {
     int size();
 
     boolean isEmpty();

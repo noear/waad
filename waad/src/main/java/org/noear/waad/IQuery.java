@@ -5,6 +5,7 @@ import org.noear.waad.cache.ICacheController;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
+import org.noear.waad.model.Variate;
 import org.noear.waad.utils.fun.Act2;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public interface IQuery extends ICacheController<IQuery> {
      <T> T getValue(T def) throws SQLException;
 
      Variate getVariate() throws SQLException;
-     Variate getVariate(Act2<CacheUsing,Variate> cacheCondition) throws SQLException;
+     Variate getVariate(Act2<CacheUsing, Variate> cacheCondition) throws SQLException;
 
      <T> T getItem(Class<T> cls) throws SQLException;
      <T> T getItem(Class<T> cls, Act2<CacheUsing, T> cacheCondition) throws SQLException;

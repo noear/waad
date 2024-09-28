@@ -12,7 +12,7 @@ import java.util.*;
  * 不能转为继承自List
  * 否则，嵌入别的引擎时，会变转为不可知的ListAdapter，让扩展的方法失效
  */
-class DataListImpl implements DataList, Serializable {
+class DataListImpl implements DataList {
     private ArrayList<DataRow> items = new ArrayList<>();
 
     @Override

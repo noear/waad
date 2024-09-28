@@ -6,6 +6,7 @@ import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.DataAccess;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataList;
+import org.noear.waad.model.Variate;
 import org.noear.waad.utils.StrUtils;
 import org.noear.waad.wrap.MethodWrap;
 
@@ -194,7 +195,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         Variate val = sp.getVariate();
 
         if (Long.class == (rst_type) || rst_type == Long.TYPE) {
-            return val.longValue(0);
+            return val.longValue(0L);
         }
 
         if (Integer.class == (rst_type) || rst_type == Integer.TYPE) {
