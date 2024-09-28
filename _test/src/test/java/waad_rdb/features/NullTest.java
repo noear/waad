@@ -18,6 +18,8 @@ public class NullTest {
 
     @Test
     public void test() throws SQLException {
+        WaadConfig.isSelectNullAsDefault = true;
+
         AppxModel temp = db2.table("appx")
                 .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem(AppxModel.class, "*");
@@ -30,7 +32,7 @@ public class NullTest {
                 .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem(AppxModel.class, "*");
 
-        WaadConfig.isSelectNullAsDefault = true;
+        WaadConfig.isSelectNullAsDefault = false;
 
         assert temp2 == null;
     }
@@ -38,6 +40,8 @@ public class NullTest {
 
     @Test
     public void test2() throws SQLException {
+        WaadConfig.isSelectNullAsDefault = true;
+
         AppxModel temp = mapper.selectById(Integer.MAX_VALUE);
 
         assert temp != null;
@@ -46,7 +50,7 @@ public class NullTest {
 
         AppxModel temp2 = mapper.selectById(Integer.MAX_VALUE);
 
-        WaadConfig.isSelectNullAsDefault = true;
+        WaadConfig.isSelectNullAsDefault = false;
 
         assert temp2 == null;
     }

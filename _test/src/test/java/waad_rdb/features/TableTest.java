@@ -3,6 +3,7 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
 import org.noear.waad.TableQuery;
+import org.noear.waad.WaadConfig;
 import webapp.model.AppxD;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
@@ -78,7 +79,7 @@ public class TableTest {
     public void test0_2() throws Exception {
         Map<String, Object> map = db.table("appx").where("app_id=?", 1).selectMap("*");
 
-        map.put("app_id",11);
+        map.put("app_id", 11);
 
         assert db.table("appx_copy")
                 .setMap(map)
@@ -129,7 +130,7 @@ public class TableTest {
 
         System.out.println(db.lastCommand.text());
 
-         appxD = DbContext.use("rock").table("appx")
+        appxD = DbContext.use("rock").table("appx")
                 .where("app_id=?", 22)
                 .selectItem(AppxD.class, "*");
 
@@ -155,9 +156,15 @@ public class TableTest {
 
     @Test
     public void test12() throws Exception {
-        assert db.table("appx")
-                .where("app_id IS NULL")
-                .selectItem(AppxModel.class, "*").app_id == null;
+        if (WaadConfig.isSelectNullAsDefault) {
+            assert db.table("appx")
+                    .where("app_id IS NULL")
+                    .selectItem(AppxModel.class, "*").app_id == null;
+        } else {
+            assert db.table("appx")
+                    .where("app_id IS NULL")
+                    .selectItem(AppxModel.class, "*") == null;
+        }
 
         System.out.println(db.lastCommand.text());
 
@@ -178,8 +185,6 @@ public class TableTest {
                 .where("app_id IS NULL")
                 .selectMapList("*").size() == 0;
     }
-
-
 
 
     @Test
@@ -229,26 +234,26 @@ public class TableTest {
 
     /**
      * 测试带group的分页查询
+     *
      * @throws Exception
      */
     @Test
-    public void test5() throws Exception{
+    public void test5() throws Exception {
 
         long count = db.table("test").selectCount();
-        if(count == 0){
+        if (count == 0) {
             db.table("test").set("v1", 1).set("id", 1).insert();
-            db.table("test").set("v1", 1).set("id", 2).set("v2","a").insert();
+            db.table("test").set("v1", 1).set("id", 2).set("v2", "a").insert();
             db.table("test").set("v1", 2).set("id", 3).insert();
             db.table("test").set("v1", 3).set("id", 4).insert();
         }
 
         long count1 = db.table("test")
-          .where("v1 !=?", 100)
-          .groupBy("v1")
-          .limit(100)
-          .orderBy("id ASC")
-          .selectCount();
+                .where("v1 !=?", 100)
+                .groupBy("v1")
+                .limit(100)
+                .orderBy("id ASC")
+                .selectCount();
         assert count1 > 0;
-
     }
 }

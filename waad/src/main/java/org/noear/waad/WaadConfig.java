@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 14/11/20.
  */
 public final class WaadConfig {
-    public static boolean isUsingValueExpression = true;
+    public static boolean isUsingValueExpression = false;
     public static boolean isUsingValueNull = false;
 
     /**
@@ -29,7 +29,7 @@ public final class WaadConfig {
     public static boolean isUpdateMustConditional = true;
     public static boolean isDeleteMustConditional = true;
     public static boolean isUsingUnderlineColumnName = true;
-    public static boolean isSelectNullAsDefault = true;
+    public static boolean isSelectNullAsDefault = false;
 
     /**
      * 使用编译模式（用于产生代码）

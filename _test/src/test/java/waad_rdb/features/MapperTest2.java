@@ -2,6 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.model.Page;
 import waad_rdb.DbUtil;
 import waad_rdb.dso.SqlMapper;
@@ -66,7 +67,11 @@ public class MapperTest2 {
     public void test_get2() throws SQLException {
         assert mapper.appx_get2(1).app_id == 1;
 
-        assert mapper.appx_get2(Integer.MAX_VALUE).app_id == null;
+        if (WaadConfig.isSelectNullAsDefault) {
+            assert mapper.appx_get2(Integer.MAX_VALUE).app_id == null;
+        } else {
+            assert mapper.appx_get2(Integer.MAX_VALUE) == null;
+        }
     }
 
     @Test
@@ -111,7 +116,11 @@ public class MapperTest2 {
                 .set("app_id", Integer.MAX_VALUE)
                 .getItem(AppxModel.class);
 
-        assert app.app_id == null;
+        if(WaadConfig.isSelectNullAsDefault) {
+            assert app.app_id == null;
+        }else {
+            assert app == null;
+        }
 
         assert  db2.call("@webapp.dso.SqlMapper.appx_get2")
                 .set("app_id", Integer.MAX_VALUE)
