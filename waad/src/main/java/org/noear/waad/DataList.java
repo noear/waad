@@ -4,7 +4,6 @@ import org.noear.waad.wrap.ClassWrap;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * Created by noear on 14-9-10.
@@ -13,33 +12,19 @@ import java.util.function.Consumer;
  * 不能转为继承自List
  * 否则，嵌入别的引擎时，会变转为不可知的ListAdapter，让扩展的方法失效
  */
-public class DataList implements Serializable,Iterable<DataItem> {
-    ArrayList<DataItem> _rows = new ArrayList<>();
+public class DataList extends ArrayList<DataItem> implements Serializable {
 
-    public List<DataItem> getRows() {
-        return _rows;
+    public DataItem getFirst() {
+        if (size() > 0) {
+            return get(0);
+        } else {
+            return null;
+        }
     }
 
-    public DataItem getRow(int index) {
-        return getRows().get(index);
-    }
-
-    public void addRow(DataItem row) {
-
-        _rows.add(row);
-    }
-
-    public int getRowCount() {
-        return _rows.size();
-    }
-
-    public void clear() {
-        _rows.clear();
-    }
-
-    public DataItem getLastRow() {
-        if (getRowCount() > 0) {
-            return _rows.get(getRowCount() - 1);
+    public DataItem getLast() {
+        if (size() > 0) {
+            return get(size() - 1);
         } else {
             return null;
         }
@@ -47,27 +32,14 @@ public class DataList implements Serializable,Iterable<DataItem> {
 
     //----------
 
-    //转为map数组
-    public List<Map<String, Object>> getMapList() {
-        List<Map<String, Object>> list = new ArrayList<>(getRowCount());
-
-        for (DataItem r : _rows) {
-            list.add(r.getMap());
-        }
-
-        return list;
-    }
-
-
-
     /**
      * 将所有列转为类做为数组的数据
      */
     public <T> List<T> toEntityList(Class<T> clz) {
         ClassWrap classWrap = ClassWrap.get(clz);
-        List<T> list = new ArrayList<T>(getRowCount());
+        List<T> list = new ArrayList<T>(size());
 
-        for (DataItem r : _rows) {
+        for (DataItem r : this) {
             T item = classWrap.toEntity(r);
             list.add((T) item);
         }
@@ -89,11 +61,11 @@ public class DataList implements Serializable,Iterable<DataItem> {
         Map<String, Object> map = new HashMap<>();
 
         if (valColumn == null || valColumn.length() == 0) {
-            for (DataItem r : _rows) {
+            for (DataItem r : this) {
                 map.put(r.get(keyColumn).toString(), r);
             }
         } else {
-            for (DataItem r : _rows) {
+            for (DataItem r : this) {
                 map.put(r.get(keyColumn).toString(), r.get(valColumn));
             }
         }
@@ -107,7 +79,7 @@ public class DataList implements Serializable,Iterable<DataItem> {
     public <T> Set<T> toSet(String column) {
         Set<T> set = new HashSet<>();
 
-        for (DataItem r : _rows) {
+        for (DataItem r : this) {
             set.add((T) r.get(column));
         }
         return set;
@@ -116,7 +88,7 @@ public class DataList implements Serializable,Iterable<DataItem> {
     public <T> Set<T> toSet(int columnIndex) {
         Set<T> set = new HashSet<>();
 
-        for (DataItem r : _rows) {
+        for (DataItem r : this) {
             set.add((T) r.get(columnIndex));
         }
         return set;
@@ -129,7 +101,7 @@ public class DataList implements Serializable,Iterable<DataItem> {
     public <T> List<T> toArray(String columnName) {
         List<T> list = new ArrayList<T>();
 
-        for (DataItem r : _rows) {
+        for (DataItem r : this) {
             list.add((T) r.get(columnName));
         }
         return list;
@@ -141,24 +113,17 @@ public class DataList implements Serializable,Iterable<DataItem> {
     public <T> List<T> toArray(int columnIndex) {
         List<T> list = new ArrayList<T>();
 
-        for (DataItem r : _rows) {
+        for (DataItem r : this) {
             list.add((T) r.get(columnIndex));
         }
         return list;
     }
 
-    @Override
-    public Iterator<DataItem> iterator() {
-        return _rows.iterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super DataItem> action) {
-        _rows.forEach(action);
-    }
-
-    @Override
-    public Spliterator<DataItem> spliterator() {
-        return _rows.spliterator();
+    public List<Map<String, Object>> getMapList() {
+        List<Map<String, Object>> list = new ArrayList<>(this.size());
+        for (DataItem r : this) {
+            list.add(r.getMap());
+        }
+        return list;
     }
 }

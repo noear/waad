@@ -98,7 +98,7 @@ public class SQLer {
                 }
             }
 
-            if (row.count() > 0)
+            if (row.size() > 0)
                 return row;
             else
                 return null;
@@ -130,10 +130,10 @@ public class SQLer {
                     row.set(meta.getColumnLabel(i), getObject(i));
                 }
 
-                table.addRow(row);
+                table.add(row);
             }
 
-            if (table.getRowCount() > 0)
+            if (table.size() > 0)
                 return table;
             else
                 return null;

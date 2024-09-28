@@ -1,15 +1,12 @@
 package org.noear.waad.utils;
 
-
 import java.io.Serializable;
 import java.util.*;
 
-@SuppressWarnings("serial")
 public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable, Cloneable {
-
-    private final LinkedHashMap<String, V> _m;
-    private final HashMap<String, String> _k;
-    private final Locale locale;
+    private final transient LinkedHashMap<String, V> _m;
+    private final transient HashMap<String, String> _k;
+    private final transient Locale locale;
 
     public LinkedCaseInsensitiveMap() {
         this(16, null);
@@ -38,7 +35,6 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
     /**
      * Copy constructor.
      */
-    @SuppressWarnings("unchecked")
     private LinkedCaseInsensitiveMap(LinkedCaseInsensitiveMap<V> other) {
         this._m = (LinkedHashMap<String, V>) other._m.clone();
         this._k = (HashMap<String, String>) other._k.clone();

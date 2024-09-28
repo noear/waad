@@ -34,6 +34,6 @@ public class demo_table_inserlist {
     public void demo_insertlist2() throws SQLException {
         DataList list = new DataList();
 
-        db.table("user").insertList(list.getRows());
+        db.table("user").insertList(list);
     }
 }

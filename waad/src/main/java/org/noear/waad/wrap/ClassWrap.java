@@ -147,7 +147,7 @@ public class ClassWrap {
                     Parameter p = argsP[i];
 
                     //转入时，不排除; 交dataItem检查
-                    if (data.exists(p.getName())) {
+                    if (data.containsKey(p.getName())) {
                         //内部已有去null处理
                         Object val = data.get(p.getName());
 
@@ -170,7 +170,7 @@ public class ClassWrap {
 
                 for (FieldWrap fw : fieldWraps) {
                     //转入时，不排除; 交dataItem检查
-                    if (data.exists(fw.name)) {
+                    if (data.containsKey(fw.name)) {
                         //内部已有去null处理
                         fw.setValue(item, data.get(fw.name));
                     }

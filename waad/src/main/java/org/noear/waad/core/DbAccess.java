@@ -223,7 +223,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
         DataItem item = getDataItem();
 
         // nullable 处理
-        if (item.count() == 0) {
+        if (item.size() == 0) {
             if (WaadConfig.isSelectItemEmptyAsNull) {
                 return null;
             }
@@ -246,7 +246,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
         });
 
         // nullable 处理
-        if (item.count() == 0) {
+        if (item.size() == 0) {
             if (WaadConfig.isSelectItemEmptyAsNull) {
                 return null;
             }

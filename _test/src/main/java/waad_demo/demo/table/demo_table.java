@@ -94,7 +94,7 @@ public class demo_table {
                 .selectDataList("a.*,b.name");
 
 
-        int count = dt.getRowCount();
+        int count = dt.size();
         if (count > 0)
             return;
     }
@@ -107,7 +107,7 @@ public class demo_table {
                 .orderBy("a.num DESC")
                 .selectDataList("num,COUNT(b.user_id)");
 
-        int count = dt.getRowCount();
+        int count = dt.size();
         if (count > 0)
             return;
     }

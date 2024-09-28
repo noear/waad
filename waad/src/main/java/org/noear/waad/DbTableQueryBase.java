@@ -212,7 +212,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 执行插入并返回自增值，使用data数据
      */
     public long insert(IDataItem data) throws SQLException {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return 0;
         }
 
@@ -223,7 +223,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 插入编译并获取命令
      * */
     public Command insertAsCmd(IDataItem data) {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return null;
         }
 
@@ -247,7 +247,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 根据约束进行插入
      */
     public long insertBy(IDataItem data, String conditionFields) throws SQLException {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return 0;
         }
 
@@ -308,7 +308,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
             return false;
         }
 
-        if (cols == null || cols.count() == 0) {
+        if (cols == null || cols.size() == 0) {
             return false;
         }
 
@@ -321,7 +321,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
         for (GetHandler item : valuesList) {
             List<Object> tmp = new ArrayList<>();
-            for (String key : cols.keys()) {
+            for (String key : cols.keySet()) {
                 tmp.add(item.get(key));
             }
 
@@ -355,7 +355,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 使用data的数据,根据约束字段自动插入或更新
      */
     public long upsertBy(IDataItem data, String conditionColumns) throws SQLException {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return 0;
         }
 
@@ -419,7 +419,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 执行更新并返回影响行数，使用set接口的数据
      */
     public int update(IDataItem data) throws SQLException {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return 0;
         }
 
@@ -431,7 +431,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 更新编译并返回命令
      * */
     public Command updateAsCmd(IDataItem data) {
-        if (data == null || data.count() == 0) {
+        if (data == null || data.size() == 0) {
             return null;
         }
 
@@ -558,7 +558,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
             return null;
         }
 
-        if (cols == null || cols.count() == 0) {
+        if (cols == null || cols.size() == 0) {
             return null;
         }
 
@@ -586,7 +586,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
         for (GetHandler item : valuesList) {
             List<Object> tmp = new ArrayList<>();
-            for (String key : cols.keys()) {
+            for (String key : cols.keySet()) {
                 tmp.add(item.get(key));
             }
 
@@ -930,7 +930,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
     public IPage<DataItem> selectDataPage(String columns) throws SQLException {
         long total = selectCount();
-        List<DataItem> list = selectDo(columns).getDataList().getRows();
+        List<DataItem> list = selectDo(columns).getDataList();
 
         return new IPageImpl<>(list, total, limit_size);
     }

@@ -1,11 +1,11 @@
 package org.noear.waad;
 
 import org.noear.waad.core.Command;
-import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.link.IColumn;
 
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 
 /**
@@ -92,7 +92,7 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setMapIf(Map<String,Object> data, Fun2<Boolean,String,Object> condition) {
+    public DbTableQuery setMapIf(Map<String,Object> data, BiFunction<String,Object,Boolean> condition) {
         item_init();
         _item.setMapIf(data, condition);
 
@@ -109,7 +109,7 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setEntityIf(Object data, Fun2<Boolean,String,Object> condition) {
+    public DbTableQuery setEntityIf(Object data, BiFunction<String,Object,Boolean> condition) {
         item_init();
         _item.setEntityIf(data, condition);
 

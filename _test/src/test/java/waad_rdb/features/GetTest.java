@@ -20,7 +20,7 @@ public class GetTest {
     public void test2() throws Exception {
         assert db.table("appx")
                 .where("app_id=?", 22)
-                .selectDataItem("*").count() > 2;
+                .selectDataItem("*").size() > 2;
 
     }
 

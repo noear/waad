@@ -1,6 +1,16 @@
 package org.noear.waad;
 
+import org.noear.waad.utils.EntityUtils;
+import org.noear.waad.utils.LinkedCaseInsensitiveMap;
+import org.noear.waad.wrap.ClassWrap;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
+import java.util.function.BiFunction;
 
 /**
  * Created by noear on 14-9-10.
@@ -8,77 +18,224 @@ import java.util.*;
  * 不能转为继承自Map
  * 否则，嵌入别的引擎时，会变转为不可知的MapAdapter
  */
-public class DataItem extends DataItemBase<DataItem> implements Map<String,Object>{
-    public DataItem(){
-        super(false);
+public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataItem {
+    private boolean _isUsingDbNull = false;
+
+    public DataItem() {
+        this(false);
     }
 
-    public DataItem(boolean isUsingDbNull) {
-        super(isUsingDbNull);
-    }
-
-    @Override
-    public int size() {
-        return _data.size();
+    public DataItem(Boolean isUsingDbNull) {
+        _isUsingDbNull = isUsingDbNull;
     }
 
     @Override
-    public boolean isEmpty() {
-        return _data.isEmpty();
+    public DataItem set(String name, Object value) {
+        put(name, value);
+        return this;
     }
 
     @Override
-    public boolean containsKey(Object key) {
-        return _data.containsKey(key);
+    public DataItem setIf(boolean condition, String name, Object value) {
+        if (condition) {
+            set(name, value);
+        }
+        return this;
     }
 
     @Override
-    public boolean containsValue(Object value) {
-        return _data.containsValue(value);
+    public DataItem setDf(String name, Object value, Object def) {
+        if (value == null) {
+            set(name, def);
+        } else {
+            set(name, value);
+        }
+        return this;
     }
 
     @Override
-    public Object get(Object key) {
-        return _data.get(key);
+    public Object get(int index) {
+        for (Object key : this.keySet()) {
+            if (index == 0) {
+                return get(key);
+            } else {
+                index--;
+            }
+        }
+        return null;
     }
 
     @Override
-    public Object put(String key, Object value) {
-        return _data.put(key, value);
+    public Variate getVariate(String name) {
+        if (containsKey(name)) {
+            return new Variate(name, get(name));
+        } else {
+            return new Variate(name, null);
+        }
+    }
+
+
+    @Override
+    public Short getShort(String name) {
+        Number tmp = (Number) get(name);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.shortValue();
+        }
     }
 
     @Override
-    public Object remove(Object key) {
-        return _data.remove(key);
+    public Integer getInt(String name) {
+        Number tmp = (Number) get(name);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.intValue();
+        }
     }
 
     @Override
-    public void putAll(Map<? extends String, ?> m) {
-        _data.putAll(m);
+    public Long getLong(String name) {
+        Number tmp = (Number) get(name);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.longValue();
+        }
     }
 
     @Override
-    public Set<String> keySet() {
-        return _data.keySet();
+    public Double getDouble(String name) {
+        Number tmp = (Number) get(name);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.doubleValue();
+        }
     }
 
     @Override
-    public Collection<Object> values() {
-        return _data.values();
+    public BigDecimal getBigDecimal(String name) {
+        return (BigDecimal) get(name);
     }
 
     @Override
-    public Set<Entry<String, Object>> entrySet() {
-        return _data.entrySet();
+    public BigInteger getBigInteger(String name) {
+        return (BigInteger) get(name);
     }
 
+    @Override
+    public Float getFloat(String name) {
+        Number tmp = (Number) get(name);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.floatValue();
+        }
+    }
 
+    @Override
+    public String getString(String name) {
+        return (String) get(name);
+    }
+
+    @Override
+    public Boolean getBoolean(String name) {
+        return (Boolean) get(name);
+    }
+
+    @Override
+    public Date getDateTime(String name) {
+        return (Date) get(name);
+    }
+
+    @Override
+    public LocalDateTime getLocalDateTime(String name) {
+        java.sql.Timestamp tmp = (java.sql.Timestamp) get(name);
+
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.toLocalDateTime();
+        }
+    }
+
+    @Override
+    public LocalDate getLocalDate(String name) {
+        java.sql.Date tmp = (java.sql.Date) get(name);
+
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.toLocalDate();
+        }
+    }
+
+    @Override
+    public LocalTime getLocalTime(String name) {
+        java.sql.Time tmp = (java.sql.Time) get(name);
+
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.toLocalTime();
+        }
+    }
+
+    /**
+     * 从map加载数据
+     */
+    public DataItem setMap(Map<String, Object> data) {
+        //
+        //保持也where的相同逻辑
+        //
+        return setMapIf(data, (k, v) -> v != null);
+    }
+
+    public DataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
+        data.forEach((k, v) -> {
+            if (condition.apply(k, v)) {
+                set(k, v);
+            }
+        });
+
+        return this;
+    }
+
+    /**
+     * 从Entity 加载数据
+     */
+    public DataItem setEntity(Object obj) {
+        //
+        //保持与where的相同逻辑
+        //
+        return setEntityIf(obj, (k, v) -> v != null);
+    }
+
+    public DataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
+        EntityUtils.fromEntity(obj, (k, v) -> {
+            if (condition.apply(k, v)) {
+                set(k, v);
+            }
+        });
+        return this;
+    }
+
+    /**
+     * 转为Entity
+     */
+    public <T> T toEntity(Class<T> cls) {
+        ClassWrap classWrap = ClassWrap.get(cls);
+
+        return classWrap.toEntity(this);
+    }
 
 
     //============================
     public static DataItem create(IDataItem schema, GetHandler source) {
         DataItem item = new DataItem();
-        for (String key : schema.keys()) {
+        for (String key : schema.keySet()) {
             Object val = source.get(key);
             if (val != null) {
                 item.set(key, val);
@@ -86,5 +243,13 @@ public class DataItem extends DataItemBase<DataItem> implements Map<String,Objec
         }
         return item;
     }
-}
 
+    @Override
+    public Object get(String name) {
+        return super.get(name);
+    }
+
+    public Map<String, Object> getMap() {
+        return this;
+    }
+}
