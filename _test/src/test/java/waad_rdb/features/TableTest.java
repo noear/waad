@@ -273,7 +273,7 @@ public class TableTest {
         }
 
         DataList list = db.table(TEST)
-                .where(TEST.ID.neq(100))
+                .where(TEST.ID.lt(4))
                 .groupBy(TEST.ID)
                 .limit(100)
                 .orderByAsc(TEST.ID)
