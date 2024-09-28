@@ -1,35 +1,19 @@
-package org.noear.waad;
+package org.noear.waad.mapper;
+
+import org.noear.waad.TableQuery;
+import org.noear.waad.WhereBase;
 
 /**
- * 条件器。仅用于 BaseMapper，即用于单表操作
+ * 条件器。用于 BaseMapper，即用于单表操作
  *
  * @author noear
  * @since 19-12-11.
  * @since 4.0
  */
 public class MapperWhereQ extends WhereBase<MapperWhereQ> {
-    private TableQuery _query;
     public MapperWhereQ(TableQuery query) {
-        super();
-
-        _query = query;
-
-        _context = _query._context;
-        _builder = _query._builder;
-        _hasGroup = _query._hasGroup;
+        super(query);
     }
-
-    @Override
-    protected MapperWhereQ orderByDo(String code) {
-        super.orderByDo(code);
-
-        if (_query != null) {
-            _query._orderBy = _orderBy;
-        }
-
-        return this;
-    }
-
 
     public MapperWhereQ limit(int size) {
         _query.limit(size);

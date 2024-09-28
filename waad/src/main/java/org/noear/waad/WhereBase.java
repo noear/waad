@@ -2,6 +2,7 @@ package org.noear.waad;
 
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.linq.IExpr;
+import org.noear.waad.mapper.MapperWhereQ;
 import org.noear.waad.util.function.Fun2;
 import org.noear.waad.linq.IColumn;
 import org.noear.waad.linq.ICondition;
@@ -22,10 +23,16 @@ public abstract class WhereBase<T extends WhereBase> {
     protected SQLBuilder _builder;
     protected StringBuilder _orderBy;
 
+    //for MapperWhereQ
+    protected TableQuery _query;
+
     protected boolean _hasGroup = false;
 
-    protected WhereBase() {
 
+    protected WhereBase(TableQuery query){
+        _context = query._context;
+        _builder = query._builder;
+        _hasGroup = query._hasGroup;
     }
 
     public WhereBase(DbContext context) {
@@ -251,6 +258,11 @@ public abstract class WhereBase<T extends WhereBase> {
     }
 
     protected T orderByDo(String code) {
+        if (_query != null) {
+            //for MapperWhereQ
+            _query._orderBy = _orderBy;
+        }
+
         if(_orderBy == null){
             _orderBy = new StringBuilder(" ORDER BY ");
         }else{
