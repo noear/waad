@@ -171,8 +171,8 @@ return="String" => String （任何单职类型）
 ### 示例应用
 ```java
 //使用方案1
-db.call("@waaddemo.xmlsql2.user_set").set("user_id",12).update()
-db.call("@waaddemo.xmlsql2.user_add").setMap(map).insert()
+db.call("@waaddemo.xmlsql2.user_set").set("user_id",12).update();
+db.call("@waaddemo.xmlsql2.user_add").setMap(map).insert();
 
 //使用方案2
 @Namespace("waaddemo.xmlsql2")
