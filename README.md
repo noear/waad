@@ -41,7 +41,7 @@
 #### 特点和理念：
 * 跨平台：可以嵌入到JVM脚本引擎（js, groovy, lua, python, ruby）及GraalVM支持的部分语言。
 * 很小巧：0.2Mb（且是功能完整，方案丰富；可极大简化数据库开发）。
-* 有个性：不喜欢反射（主打弱类型）、不喜欢配置（除了连接，不需要其它配置）。
+* 有个性：不喜欢配置（除了连接，不需要其它配置）。
 * 其它的：支持缓存控制和跨数据库事务。
 
 #### 支持数据库：
@@ -55,10 +55,10 @@ H2, Db2, MySql, Oracle, PostrgeSQL, SqlLite, SqlServer, Phoenix, Presto
 
 ```java
 //BaseMapper 接口
-db.table(User.class).selectById(1);
+db.baseMapper(User.class).selectById(1);
 
 //BaseMapper 接口，lambda 条件查询
-db.table(User.class).selectList(mq->mq
+db.baseMapper(User.class).selectList(mq->mq
         .whereLt(User::getGroup,1)
         .andEq(User::getLabel,"T"));
 

@@ -345,11 +345,11 @@ public class DbContext implements Closeable {
     }
 
 
-    public <T> BaseMapper<T> table(Class<T> clz) {
+    public <T> BaseMapper<T> baseMapper(Class<T> clz) {
         return WaadConfig.mapperAdaptor.createMapperBase(this, clz, null);
     }
 
-    public <T> BaseMapper<T> table(Class<T> clz, String tableName) {
+    public <T> BaseMapper<T> baseMapper(Class<T> clz, String tableName) {
         return WaadConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
     }
 
