@@ -3,7 +3,7 @@ package org.noear.waad.core;
 import org.noear.waad.*;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.cache.WaadKey;
+import org.noear.waad.cache.Cacheable;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by noear on 14-9-5.
  * 数据库方问基类
  */
-public abstract class DataAccess<T extends DataAccess> implements WaadKey, Resultable,Serializable {
+public abstract class DataAccess<T extends DataAccess> implements Cacheable, Resultable,Serializable {
     /*查询语句*/
     public String commandText = null;
 

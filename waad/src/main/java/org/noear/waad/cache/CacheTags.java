@@ -38,7 +38,7 @@ public class CacheTags {
     /// 为缓存添加一个标签（异步 Add{end}）
     /// </summary>
     /// <param name="target">目标</param>
-    public void endAdd(WaadKey target)
+    public void endAdd(Cacheable target)
     {
         endAdd(target.getWaadKey());
     }
@@ -149,7 +149,7 @@ public class CacheTags {
     }
 
 
-    public void removeTag(String tag, String val, WaadKey target)
+    public void removeTag(String tag, String val, Cacheable target)
     {
         removeTag(tag, val, (target.getWaadKey()));
     }
