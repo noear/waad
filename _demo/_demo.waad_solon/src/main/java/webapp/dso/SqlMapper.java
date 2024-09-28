@@ -3,7 +3,6 @@ package webapp.dso;
 import java.util.*;
 
 import org.noear.waad.BaseMapper;
-import org.noear.waad.xml.Namespace;
 
 import webapp.model.AppxModel;
 

@@ -1,6 +1,6 @@
 package webapp;
 
-import org.noear.waad.xml.XmlSqlLoader;
+import org.noear.waad.mapper.xml.XmlSqlLoader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
