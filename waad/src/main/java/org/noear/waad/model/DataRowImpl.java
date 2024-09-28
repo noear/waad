@@ -1,6 +1,6 @@
 package org.noear.waad.model;
 
-import org.noear.waad.GetHandler;
+import org.noear.waad.utils.fun.GetHandler;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.utils.LinkedCaseInsensitiveMap;
 import org.noear.waad.wrap.ClassWrap;

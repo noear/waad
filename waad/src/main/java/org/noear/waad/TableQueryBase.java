@@ -15,6 +15,7 @@ import org.noear.waad.link.ITable;
 import org.noear.waad.link.ITableLink;
 import org.noear.waad.link.ITableSpecImpl;
 import org.noear.waad.core.DbType;
+import org.noear.waad.utils.fun.GetHandler;
 
 import java.sql.SQLException;
 import java.util.*;
