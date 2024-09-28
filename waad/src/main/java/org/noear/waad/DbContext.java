@@ -158,7 +158,6 @@ public class DbContext implements Closeable {
     }
 
     public DbContext(Properties prop) {
-        String schema = prop.getProperty("schema");
         String url = prop.getProperty("url");
         String username = prop.getProperty("username");
         String password = prop.getProperty("password");
@@ -172,25 +171,13 @@ public class DbContext implements Closeable {
             RunUtils.runTry(() -> Class.forName(driverClassName));
         }
 
-        if (StrUtils.isNotEmpty(schema)) {
-            metaData().setSchema(schema);
-        }
-
-        if (StrUtils.isEmpty(metaData().getSchema()) && url.indexOf("://") > 0) {
-            metaData().setSchema(URI.create(url.substring(5)).getPath().substring(1));
-        }
-
-        if (StrUtils.isEmpty(username)) {
-            metaData().setDataSource(new SimpleDataSource(url));
-        } else {
-            metaData().setDataSource(new SimpleDataSource(url, username, password));
-        }
+        metaData().setDataSource(new SimpleDataSource(url, username, password));
     }
 
 
     //基于线程池配置（如："proxool."）
     public DbContext(String url) {
-        metaData().setDataSource(new SimpleDataSource(url));
+        this(url, null, null);
     }
 
     //基于手动配置（无线程池）

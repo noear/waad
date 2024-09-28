@@ -2,6 +2,7 @@ package org.noear.waad.datasource;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,34 +20,33 @@ public class SimpleDataSource implements DataSource {
     protected String password;
 
     public SimpleDataSource(String url) {
-        this.logWriter = new PrintWriter(System.out);
-        this.url = url;
+        this(url, null, null);
     }
 
     public SimpleDataSource(String url, String username, String password) {
         this.logWriter = new PrintWriter(System.out);
+
+        setUrl(url);
+        setUsername(username);
+        setPassword(password);
+    }
+
+    public void setUrl(String url) {
         this.url = url;
-        this.username = username;
-        this.password = password;
     }
 
-
-    public void setUrl(String url){
-        this.url = url;
-    }
-
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
     public void setDriverClassName(String driverClass) {
         try {
             Class.forName(driverClass);
-        }catch (ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
             throw new IllegalStateException(ex);
         }
     }
@@ -55,8 +55,7 @@ public class SimpleDataSource implements DataSource {
     public Connection getConnection() throws SQLException {
         if (username == null) {
             return DriverManager.getConnection(url);
-        }
-        else {
+        } else {
             return DriverManager.getConnection(url, username, password);
         }
     }

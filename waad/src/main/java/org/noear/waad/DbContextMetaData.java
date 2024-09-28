@@ -1,6 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.dialect.*;
+import org.noear.waad.utils.RunUtils;
 import org.noear.waad.utils.fun.Act1Ex;
 import org.noear.waad.wrap.*;
 
@@ -29,22 +30,6 @@ public class DbContextMetaData implements Closeable {
 
     protected transient ReentrantLock SYNC_LOCK = new ReentrantLock();
 
-    public DbContextMetaData() {
-
-    }
-
-    public DbContextMetaData(DataSource dataSource) {
-        this(dataSource, null);
-    }
-
-    public DbContextMetaData(DataSource dataSource, String schema) {
-        if (dataSource == null) {
-            throw new IllegalArgumentException("Parameter dataSource cannot be null");
-        }
-
-        this.dataSource = dataSource;
-        this.schema = schema;
-    }
 
     /**
      * 获取数据源
@@ -57,6 +42,10 @@ public class DbContextMetaData implements Closeable {
      * 设置数据源
      */
     protected void setDataSource(DataSource ds) {
+        if (ds == null) {
+            throw new IllegalArgumentException("Parameter dataSource cannot be null");
+        }
+
         dataSource = ds;
     }
 
@@ -102,10 +91,6 @@ public class DbContextMetaData implements Closeable {
      */
     public String getSchema() {
         return schema;
-    }
-
-    protected void setSchema(String schema) {
-        this.schema = schema;
     }
 
     /**
@@ -285,6 +270,7 @@ public class DbContextMetaData implements Closeable {
                 dialect = new DbPrestoDialect();
             } else {
                 //做为默认
+                type = DbType.MySQL;
                 dialect = new DbMySQLDialect();
             }
         } else {
@@ -296,11 +282,7 @@ public class DbContextMetaData implements Closeable {
     }
 
     private void setSchema(Connection conn) throws SQLException {
-        try {
-            catalog = conn.getCatalog();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
+        RunUtils.runTry(() -> catalog = conn.getCatalog());
 
         if (schema != null) {
             return;
@@ -347,7 +329,7 @@ public class DbContextMetaData implements Closeable {
         }
     }
 
-    private void initTablesDo(){
+    private void initTablesDo() {
         tableAll = new HashMap<>();
 
         //这段不能去掉
