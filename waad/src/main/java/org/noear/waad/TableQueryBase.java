@@ -1023,21 +1023,21 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return (T) this;
     }
 
-    private boolean _usingExpression = WaadConfig.isUsingValueExpression;
+    private boolean _usingExpr = false;
 
     protected boolean usingExpr(){
-        return _usingExpression;
+        return _usingExpr;
     }
     /**
-     * 充许使用$表达式构建sql
+     * 充许使用${...}表达式构建sql
      */
     public T usingExpr(boolean isUsing) {
-        _usingExpression = isUsing;
+        _usingExpr = isUsing;
         return (T) this;
     }
 
     private boolean isSqlExpr(String txt) {
-        if (_usingExpression == false) {
+        if (_usingExpr == false) {
             return false;
         }
 
