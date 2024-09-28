@@ -12,12 +12,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 数据事务：支持事务模式和单链接模式（同时，可替代之前的DbTranQueue）
+ * 数据事务：支持事务模式和单链接模式
  *
  * @author noear
  * @since 14-9-16
  */
 public class DbTran {
+    private final static ThreadLocal<DbTran> _tl_tran = new ThreadLocal<>();
+
+    /**
+     * 设置线程的当前事务
+     */
+    protected static void current(DbTran tran) {
+        _tl_tran.set(tran);
+    }
+
+    /**
+     * 获取线程的当前事务
+     */
+    public static DbTran current() {
+        return _tl_tran.get();
+    }
+
+    /**
+     * 移除线程的当前事务
+     */
+    public static void currentRemove() {
+        _tl_tran.remove();
+    }
+
+    /////////////////////
+
     private final Map<DataSource, Connection> conMap = new HashMap<>();
 
     //是否自动提交
@@ -53,12 +78,12 @@ public class DbTran {
 
     /*执行事务过程 = action(...) + excute() */
     public DbTran execute(Act0Ex<Throwable> handler) throws SQLException {
-        //挂起之前的事务
-        DbTran tranTmp = DbTranUtil.current();
+        //挂起之前的事务(备份)
+        DbTran tranBak = DbTran.current();
 
         try {
             //开始事务
-            DbTranUtil.currentSet(this);
+            DbTran.current(this);
             handler.run();
 
             if (!_autoCommit) {
@@ -78,13 +103,13 @@ public class DbTran {
                 throw new RuntimeException(ex);
             }
         } finally {
-            DbTranUtil.currentRemove();
+            DbTran.currentRemove();
 
             close();
 
-            if (tranTmp != null) {
+            if (tranBak != null) {
                 //恢复之前的事务
-                DbTranUtil.currentSet(tranTmp);
+                DbTran.current(tranBak);
             }
         }
 

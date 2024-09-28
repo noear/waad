@@ -13,6 +13,9 @@ import java.sql.SQLException;
  * @since 4.0
  * */
 public class ConnectionStrategy {
+    /**
+     * 获取连接
+     */
     public Connection getConnection(DataSource ds) throws SQLException {
         return ds.getConnection();
     }

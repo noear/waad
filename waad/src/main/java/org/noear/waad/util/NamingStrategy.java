@@ -12,6 +12,11 @@ import java.lang.reflect.Field;
  * @since 3.2
  * */
 public class NamingStrategy {
+    /**
+     * 类转为表名
+     *
+     * @param clz 实体类
+     */
     public String classToTableName(Class<?> clz) {
         if (WaadConfig.isUsingUnderlineColumnName) {
             return NamingUtils.toUnderlineString(clz.getSimpleName());
@@ -20,6 +25,12 @@ public class NamingStrategy {
         }
     }
 
+    /**
+     * 字段转为列名
+     *
+     * @param clz 实体类
+     * @param f   字段
+     */
     public String fieldToColumnName(Class<?> clz, Field f) {
         if (WaadConfig.isUsingUnderlineColumnName) {
             return NamingUtils.toUnderlineString(f.getName());

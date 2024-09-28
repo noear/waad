@@ -2,7 +2,7 @@ package org.noear.waad.model;
 
 import org.noear.waad.util.function.GetHandler;
 import org.noear.waad.util.EntityUtils;
-import org.noear.waad.util.LinkedCaseInsensitiveMap;
+import org.noear.waad.util.IgnoreCaseMap;
 import org.noear.waad.wrap.ClassWrap;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import java.util.function.BiFunction;
  * 不能转为继承自Map
  * 否则，嵌入别的引擎时，会变转为不可知的MapAdapter
  */
-class DataRowImpl extends LinkedCaseInsensitiveMap<Object> implements DataRow {
+class DataRowImpl extends IgnoreCaseMap<Object> implements DataRow {
     @Override
     public DataRow set(String name, Object value) {
         put(name, value);

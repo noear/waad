@@ -6,15 +6,17 @@ import org.noear.waad.util.ThrowableUtils;
 import java.sql.SQLException;
 
 /**
- * @author noear 2020/12/27 created
+ * 事务控制器
+ *
+ * @author noear
+ * @since 2020/12/27
  */
-
 public class Trans {
     /**
      * 开始事务（如果当前有，则加入；否则新起事务）
      */
     public static DbTran tran(Act0Ex<Throwable> handler) throws SQLException {
-        DbTran tran = DbTranUtil.current();
+        DbTran tran = DbTran.current();
 
         if (tran == null) {
             return new DbTran().execute(handler);
@@ -47,8 +49,8 @@ public class Trans {
      * 以非事务方式运行（如果当有事务，则挂起）
      */
     public static void tranNot(Act0Ex<Throwable> handler) throws SQLException {
-        DbTran tran = DbTranUtil.current();
-        DbTranUtil.currentRemove();
+        DbTran tran = DbTran.current();
+        DbTran.currentRemove();
 
         try {
             handler.run();
@@ -63,7 +65,7 @@ public class Trans {
             }
         } finally {
             if (tran != null) {
-                DbTranUtil.currentSet(tran);
+                DbTran.current(tran);
             }
         }
     }

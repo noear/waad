@@ -6,7 +6,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * @author noear 2022/10/15 created
+ * 调用处理工具（主要是关于默认函数）
+ *
+ * @author noear
+ * @since 2022/10/15
  */
 public class InvocationHandlerUtils {
     /**

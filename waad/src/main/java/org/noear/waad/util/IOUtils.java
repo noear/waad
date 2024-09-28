@@ -4,17 +4,10 @@ import java.io.*;
 import java.net.URL;
 import java.util.Enumeration;
 
+/**
+ * IO工具
+ * */
 public class IOUtils {
-
-    public static void fileWrite(File file, String content) throws Exception{
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        try {
-            writer.write(content);
-        }finally {
-            writer.close();
-        }
-    }
-
     /** 根据字符串加载为一个类*/
     public static Class<?> loadClass(String className) {
         try {
@@ -22,16 +15,6 @@ public class IOUtils {
         }catch (Throwable ex) {
             return null;
         }
-    }
-
-    public static <T> T loadEntity(String className) {
-        try {
-            Class<?> clz = Class.forName(className);
-            if (clz != null) {
-                return (T) clz.getDeclaredConstructor().newInstance();
-            }
-        } catch (Throwable ex) {}
-        return null;
     }
 
     //res::获取资源的RUL

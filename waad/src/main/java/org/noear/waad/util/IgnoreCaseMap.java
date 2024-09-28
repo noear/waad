@@ -3,25 +3,28 @@ package org.noear.waad.util;
 import java.io.Serializable;
 import java.util.*;
 
-public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable, Cloneable {
+/**
+ * 忽略大小写的LinkedMap
+ * */
+public class IgnoreCaseMap<V> implements Map<String, V>, Serializable, Cloneable {
     private final transient LinkedHashMap<String, V> _m;
     private final transient HashMap<String, String> _k;
     private final transient Locale locale;
 
-    public LinkedCaseInsensitiveMap() {
+    public IgnoreCaseMap() {
         this(16, null);
     }
 
-    public LinkedCaseInsensitiveMap(int initialCapacity, Locale locale) {
+    public IgnoreCaseMap(int initialCapacity, Locale locale) {
         this._m = new LinkedHashMap<String, V>(initialCapacity) {
             @Override
             public boolean containsKey(Object key) {
-                return LinkedCaseInsensitiveMap.this.containsKey(key);
+                return IgnoreCaseMap.this.containsKey(key);
             }
 
             @Override
             protected boolean removeEldestEntry(Map.Entry<String, V> eldest) {
-                boolean doRemove = LinkedCaseInsensitiveMap.this.removeEldestEntry(eldest);
+                boolean doRemove = IgnoreCaseMap.this.removeEldestEntry(eldest);
                 if (doRemove) {
                     _k.remove(convertKey(eldest.getKey()));
                 }
@@ -35,7 +38,7 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
     /**
      * Copy constructor.
      */
-    private LinkedCaseInsensitiveMap(LinkedCaseInsensitiveMap<V> other) {
+    private IgnoreCaseMap(IgnoreCaseMap<V> other) {
         this._m = (LinkedHashMap<String, V>) other._m.clone();
         this._k = (HashMap<String, String>) other._k.clone();
         this.locale = other.locale;
@@ -136,8 +139,8 @@ public class LinkedCaseInsensitiveMap<V> implements Map<String, V>, Serializable
     }
 
     @Override
-    public LinkedCaseInsensitiveMap<V> clone() {
-        return new LinkedCaseInsensitiveMap<>(this);
+    public IgnoreCaseMap<V> clone() {
+        return new IgnoreCaseMap<>(this);
     }
 
     @Override

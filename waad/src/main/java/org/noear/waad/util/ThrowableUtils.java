@@ -1,27 +1,18 @@
 package org.noear.waad.util;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
 
 /**
- * @author noear 2021/6/1 created
+ * 异常处理工具
+ *
+ * @author noear
+ * @since 2021/6/1
  */
 public final class ThrowableUtils {
     /**
-     * 获取异常打印信息
-     * */
-    public static String throwableToString(Throwable ex){
-        StringWriter sw = new StringWriter();
-        ex.printStackTrace(new PrintWriter(sw));
-
-        return sw.toString();
-    }
-
-    /**
      * 解包异常
-     * */
+     */
     public static Throwable throwableUnwrap(Throwable ex) {
         Throwable th = ex;
 
@@ -42,27 +33,5 @@ public final class ThrowableUtils {
         }
 
         return th;
-    }
-
-    public static boolean throwableHas(Throwable ex, Class<? extends Throwable> clz) {
-        Throwable th = ex;
-
-        while (true) {
-            if (clz.isAssignableFrom(th.getClass())) {
-                return true;
-            }
-
-            if (th instanceof InvocationTargetException) {
-                th = ((InvocationTargetException) th).getTargetException();
-            } else if (th instanceof UndeclaredThrowableException) {
-                th = ((UndeclaredThrowableException) th).getUndeclaredThrowable();
-            } else if (th.getCause() != null) {
-                th = th.getCause();
-            } else {
-                break;
-            }
-        }
-
-        return false;
     }
 }

@@ -2,31 +2,39 @@ package org.noear.waad.util;
 
 import java.security.MessageDigest;
 
+/**
+ * 加密工具
+ *
+ * @author noear
+ * @since 3.0
+ * */
 public class EncryptUtils {
 
     private static final char[] _hexDigits = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public static String md5(String cleanData){
-        return md5(cleanData,"utf-8");
+    public static String md5(String cleanData) {
+        return md5(cleanData, "utf-8");
     }
 
-    public static String sha1(String cleanData){
-        return sha1(cleanData,"utf-8");
+    public static String sha1(String cleanData) {
+        return sha1(cleanData, "utf-8");
     }
 
-    /** 生成md5码 */
+    /**
+     * 生成md5码
+     */
     public static String sha1(String cleanData, String chaerset) {
-        return hashEncode("SHA-1", cleanData,chaerset);
+        return hashEncode("SHA-1", cleanData, chaerset);
     }
 
     public static String md5(String cleanData, String chaerset) {
-        return hashEncode("MD5", cleanData,chaerset);
+        return hashEncode("MD5", cleanData, chaerset);
     }
 
     public static String md5Bytes(byte[] bytes) {
         try {
             return hashEncode0("MD5", bytes);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
@@ -36,14 +44,14 @@ public class EncryptUtils {
 
         try {
             byte[] btInput = cleanData.getBytes(chaerset);
-            return hashEncode0(algorithm,btInput);
+            return hashEncode0(algorithm, btInput);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
     }
 
-    private static String hashEncode0(String algorithm, byte[] btInput) throws Exception{
+    private static String hashEncode0(String algorithm, byte[] btInput) throws Exception {
         MessageDigest mdInst = MessageDigest.getInstance(algorithm);
         mdInst.update(btInput);
         byte[] md = mdInst.digest();

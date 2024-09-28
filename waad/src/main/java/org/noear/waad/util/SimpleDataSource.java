@@ -10,7 +10,10 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
- * 数据据源
+ * 简单数据据源
+ *
+ * @author noear
+ * @since 3.0
  * */
 public class SimpleDataSource implements DataSource {
     protected PrintWriter logWriter;

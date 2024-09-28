@@ -2,7 +2,10 @@ package org.noear.waad.util;
 
 
 /**
- * @author noear 2022/10/15 created
+ * Java 工具（检测版本号）
+ *
+ * @author noear
+ * @since 2022/10/15
  */
 public class JavaUtils {
     public static final int JAVA_MAJOR_VERSION;
