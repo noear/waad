@@ -249,12 +249,12 @@ public class SQLBuilder {
 
                         DbQuery s1 = (DbQuery) p1;
 
-                        for (Object p2 : s1.paramS) {
+                        for (Object p2 : s1.args) {
                             paramS.add(p2);
                         }
 
                         int idx = builder.indexOf("?...");
-                        if (s1.paramS.size() > 0)
+                        if (s1.args.size() > 0)
                             builder.replace(idx, idx + 4, s1.commandText);
                         else
                             builder.replace(idx, idx + 4, s1.commandText);

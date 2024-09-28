@@ -102,11 +102,6 @@ public class CommandImpl implements Command{
     }
 
     @Override
-    public Map<String, Object> attachment() {
-        return attachment;
-    }
-
-    @Override
     public DbContext context() {
         return context;
     }

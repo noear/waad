@@ -27,7 +27,7 @@ public class DbXmlSqlProcedure extends DbProcedure {
         _sqlid = sqlid;
 
         this.commandText = sqlid;
-        this.paramS.clear();
+        this.args.clear();
         this._waadKey = null;
 
         return this;
@@ -110,7 +110,7 @@ public class DbXmlSqlProcedure extends DbProcedure {
         }
 
         cmd.text = sqlBuilder.toString();
-        cmd.args = this.paramS;
+        cmd.args = this.args;
         cmd.attachment = _map;
 
         tryCacheController(cmd, block);

@@ -17,7 +17,7 @@ public class DbStoredProcedure extends DbProcedure {
 
     protected DbStoredProcedure call(String storedProcedure) {
         this.commandText = storedProcedure;
-        this.paramS.clear();
+        this.args.clear();
         this._waadKey = null;
 
         return this;
@@ -53,16 +53,16 @@ public class DbStoredProcedure extends DbProcedure {
         CommandImpl cmd = new CommandImpl(this.context);
 
         cmd.key      = getCommandID();
-        cmd.args = this.paramS;
+        cmd.args = this.args;
 
         StringBuilder sb = new StringBuilder();
         sb.append("{call ");
 
         sb.append(commandText.trim());
 
-        if(paramS.size()>0) {
+        if(args.size()>0) {
             sb.append('(');
-            for (Object p : paramS) {
+            for (Object p : args) {
                 sb.append("?,");
             }
             sb.deleteCharAt(sb.length()-1);

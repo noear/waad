@@ -21,7 +21,7 @@ public class DbQuery extends DataAccess<DbQuery> {
 
     public DbQuery sql(SQLBuilder sqlBuilder) {
         this.commandText = sqlBuilder.toString();
-        this.paramS.clear();
+        this.args.clear();
         this._waadKey = null;
         for (Object p1 : sqlBuilder.paramS) {
             doSet("", p1);
@@ -41,7 +41,7 @@ public class DbQuery extends DataAccess<DbQuery> {
         CommandImpl cmd = new CommandImpl(this.context);
 
         cmd.key     = getCommandID();
-        cmd.args = this.paramS;
+        cmd.args = this.args;
 
         StringBuilder sb = new StringBuilder(commandText);
 

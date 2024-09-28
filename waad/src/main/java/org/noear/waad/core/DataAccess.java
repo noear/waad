@@ -29,8 +29,8 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
 
     /*数据库上下文*/
     public DbContext context;
-    /*访问参数*/
-    public List<Object> paramS = new ArrayList<>();
+    /*执行参数*/
+    public List<Object> args = new ArrayList<>();
 
     /*获取执行命令（由子类实现）*/
     protected abstract CommandImpl getCommand() throws SQLException;
@@ -67,7 +67,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
 
     @Override
     public String getWaadKey() {
-        return buildWaadKey(paramS);
+        return buildWaadKey(args);
     }
 
     protected String buildWaadKey(Collection<Object> args) {
@@ -88,7 +88,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
 
     /*设置参数值*/
     protected void doSet(String name, Object value) {
-        paramS.add(value);
+        args.add(value);
     }
 
 
