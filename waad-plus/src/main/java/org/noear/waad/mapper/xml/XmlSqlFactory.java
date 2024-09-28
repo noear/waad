@@ -1,4 +1,4 @@
-package org.noear.waad.xml;
+package org.noear.waad.mapper.xml;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

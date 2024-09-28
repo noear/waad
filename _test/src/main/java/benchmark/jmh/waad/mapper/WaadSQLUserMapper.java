@@ -4,7 +4,7 @@ package benchmark.jmh.waad.mapper;
 import benchmark.jmh.waad.model.WaadSQLSysUser;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.annotation.Sql;
-import org.noear.waad.xml.Namespace;
+import org.noear.waad.annotation.Namespace;
 
 import java.util.List;
 

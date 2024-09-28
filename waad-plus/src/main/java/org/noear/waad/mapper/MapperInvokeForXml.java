@@ -2,8 +2,8 @@ package org.noear.waad.mapper;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.wrap.MethodWrap;
-import org.noear.waad.xml.XmlSqlBlock;
-import org.noear.waad.xml.XmlSqlFactory;
+import org.noear.waad.mapper.xml.XmlSqlBlock;
+import org.noear.waad.mapper.xml.XmlSqlFactory;
 
 import java.lang.reflect.Parameter;
 import java.util.LinkedHashMap;

@@ -2,7 +2,7 @@ package waad_rdb.xml;
 
 import org.junit.jupiter.api.Test;
 import org.noear.solon.Utils;
-import org.noear.waad.xml.XmlSqlCompiler;
+import org.noear.waad.mapper.xml.XmlSqlCompiler;
 
 import java.net.URL;
 

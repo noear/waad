@@ -1,7 +1,7 @@
 package waad_demo.mapper;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.xml.XmlSqlLoader;
+import org.noear.waad.mapper.xml.XmlSqlLoader;
 
 
 import java.net.URL;

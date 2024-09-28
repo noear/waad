@@ -5,9 +5,9 @@ import org.noear.waad.DbProcedure;
 import org.noear.waad.WaadConfig;
 import org.noear.waad.model.Variate;
 import org.noear.waad.util.StrUtils;
-import org.noear.waad.xml.XmlSqlBlock;
-import org.noear.waad.xml.XmlSqlFactory;
-import org.noear.waad.xml.XmlSqlLoader;
+import org.noear.waad.mapper.xml.XmlSqlBlock;
+import org.noear.waad.mapper.xml.XmlSqlFactory;
+import org.noear.waad.mapper.xml.XmlSqlLoader;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;

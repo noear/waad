@@ -16,7 +16,7 @@ public class MapperAdaptorImpl implements MapperAdaptor {
 
     public MapperAdaptorImpl() {
         try {
-            Class<?> clz = MapperAdaptor.class.getClassLoader().loadClass("org.noear.waad.impl.MapperAdaptorPlusImpl");
+            Class<?> clz = MapperAdaptor.class.getClassLoader().loadClass("org.noear.waad.mapper.impl.MapperAdaptorPlusImpl");
             real = (MapperAdaptor) clz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
 

@@ -1,4 +1,4 @@
-package org.noear.waad.xml;
+package org.noear.waad.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

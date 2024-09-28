@@ -98,7 +98,7 @@ public class XmlSqlMapperGenerator {
         sb.append("import org.noear.waad.model.DataRow;\n");
         sb.append("import org.noear.waad.model.DataList;\n");
         sb.append("import org.noear.waad.annotation.Db;\n");
-        sb.append("import org.noear.waad.xml.Namespace;\n");
+        sb.append("import org.noear.waad.annotation.Namespace;\n");
         if(StringUtils.isEmpty(_import) == false) {
             String[] ss = _import.split(";");
             for (String s : ss) {

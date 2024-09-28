@@ -1,4 +1,4 @@
-package org.noear.waad.xml;
+package org.noear.waad.mapper.xml;
 
 import org.noear.waad.model.DataRow;
 import org.noear.waad.util.IOUtils;

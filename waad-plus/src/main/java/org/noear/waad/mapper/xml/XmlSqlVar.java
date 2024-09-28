@@ -1,4 +1,4 @@
-package org.noear.waad.xml;
+package org.noear.waad.mapper.xml;
 
 import java.util.regex.Pattern;
 

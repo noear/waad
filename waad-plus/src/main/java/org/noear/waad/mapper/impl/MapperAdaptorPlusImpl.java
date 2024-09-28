@@ -1,4 +1,4 @@
-package org.noear.waad.impl;
+package org.noear.waad.mapper.impl;
 
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
@@ -6,8 +6,8 @@ import org.noear.waad.DbProcedure;
 import org.noear.waad.mapper.BaseMapperWrap;
 import org.noear.waad.mapper.MapperAdaptor;
 import org.noear.waad.mapper.MapperUtil;
-import org.noear.waad.xml.DbXmlSqlProcedure;
-import org.noear.waad.xml.XmlSqlLoader;
+import org.noear.waad.mapper.xml.DbXmlSqlProcedure;
+import org.noear.waad.mapper.xml.XmlSqlLoader;
 
 import java.util.Map;
 

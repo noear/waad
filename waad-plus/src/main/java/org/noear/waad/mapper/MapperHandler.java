@@ -4,7 +4,7 @@ import org.noear.waad.DbContext;
 import org.noear.waad.util.InvocationHandlerUtils;
 import org.noear.waad.util.ThrowableUtils;
 import org.noear.waad.wrap.MethodWrap;
-import org.noear.waad.xml.Namespace;
+import org.noear.waad.annotation.Namespace;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

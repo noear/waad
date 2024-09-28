@@ -1,8 +1,7 @@
-package org.noear.waad.xml;
+package org.noear.waad.mapper.xml;
 
 import org.noear.liquor.DynamicCompiler;
 import org.noear.liquor.DynamicCompilerException;
-import org.noear.liquor.MemoryByteCode;
 
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;

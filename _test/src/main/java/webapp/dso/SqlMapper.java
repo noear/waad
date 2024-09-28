@@ -3,7 +3,7 @@ package webapp.dso;
 import java.sql.SQLException;
 import java.util.*;
 
-import org.noear.waad.xml.Namespace;
+import org.noear.waad.annotation.Namespace;
 
 import webapp.model.AppxModel;
 
