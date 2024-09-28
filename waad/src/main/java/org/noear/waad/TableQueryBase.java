@@ -30,11 +30,11 @@ import java.util.*;
  */
 public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> implements ICacheController<TableQueryBase> {
 
-    String _table_raw;
-    ITable _table; //表名
+    private String _table_raw;
+    private ITable _table; //表名
 
-    SQLBuilder _builder_bef;
-    int _isLog = 0;
+    private  SQLBuilder _builder_bef;
+    private  int _isLog = 0;
 
     public TableQueryBase(DbContext context) {
         super(context);
