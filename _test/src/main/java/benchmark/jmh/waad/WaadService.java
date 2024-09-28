@@ -54,7 +54,7 @@ public class WaadService implements BaseService {
 
     @Override
     public void lambdaQuery() {
-        List<WaadSQLSysUser> list = userMapper.selectList(wq -> wq.whereEq(WaadSQLSysUser::getId, 1));
+        List<WaadSQLSysUser> list = userMapper.selectList(wq -> wq.where("id=1"));
     }
 
     @Override
@@ -92,7 +92,7 @@ public class WaadService implements BaseService {
     @Override
     public void pageQuery() {
         List<WaadSQLSysUser> list = userMapper.queryPage("用户一", 1, 5);
-        long count = userMapper.selectCount(wq->wq.whereEq(WaadSQLSysUser::getCode,"用户一"));
+        long count = userMapper.selectCount(wq -> wq.where("code=?", "用户一"));
         //System.out.println(list);
     }
 

@@ -3,7 +3,6 @@ package org.noear.waad.link;
 import org.noear.waad.DbContext;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -23,16 +22,20 @@ public interface IColumn extends IExpr<IColumn> {
         return Arrays.stream(columns).map(c -> c.getCode(db)).collect(Collectors.joining(","));
     }
 
-    default ICondition eq(IColumn column) {
-        assert column != null;
-
-        return new IConditionLink(this, " = " + column.getCode(null));
+    static String getNemes(DbContext db, IColumn... columns) {
+        assert columns.length > 0;
+        return Arrays.stream(columns).map(c -> c.name()).collect(Collectors.joining(","));
     }
+
 
     /**
      * = 操作符
      */
     default ICondition eq(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " = ", (IColumn) val);
+        }
+
         if (val == null) {
             return new IConditionLink(this, " IS NULL ");
         } else {
@@ -44,6 +47,10 @@ public interface IColumn extends IExpr<IColumn> {
      * != 操作符
      */
     default ICondition neq(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " != ", (IColumn) val);
+        }
+
         if (val == null) {
             return new IConditionLink(this, " IS NOT NULL ");
         } else {
@@ -55,6 +62,10 @@ public interface IColumn extends IExpr<IColumn> {
      * < 操作符
      */
     default ICondition lt(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " < ", (IColumn) val);
+        }
+
         return new IConditionLink(this, " < ?", val);
     }
 
@@ -62,6 +73,10 @@ public interface IColumn extends IExpr<IColumn> {
      * <= 操作符
      */
     default ICondition lte(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " <= ", (IColumn) val);
+        }
+
         return new IConditionLink(this, " <= ?", val);
     }
 
@@ -69,6 +84,10 @@ public interface IColumn extends IExpr<IColumn> {
      * > 操作符
      */
     default ICondition gt(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " > ", (IColumn) val);
+        }
+
         return new IConditionLink(this, " > ?", val);
     }
 
@@ -76,6 +95,10 @@ public interface IColumn extends IExpr<IColumn> {
      * >= 操作符
      */
     default ICondition gte(Object val) {
+        if (val instanceof IColumn) {
+            return new IConditionLink(this, " >= ", (IColumn) val);
+        }
+
         return new IConditionLink(this, " >= ?", val);
     }
 

@@ -44,7 +44,7 @@ public class XmlSqlCompiler {
 
         sb.append("import java.math.*;\n");
         sb.append("import java.util.*;\n");
-        sb.append("import org.noear.waad.utils.*;\n");
+        sb.append("import org.noear.waad.util.*;\n");
         sb.append("import org.noear.waad.core.SQLBuilder;\n");
         sb.append("import org.noear.waad.xml.XmlSqlFactory;\n");
         if(StrUtils.isEmpty(_import) == false) {

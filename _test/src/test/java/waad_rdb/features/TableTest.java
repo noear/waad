@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
 import org.noear.waad.TableQuery;
 import org.noear.waad.WaadConfig;
+import org.noear.waad.model.DataList;
 import webapp.model.AppxD;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
+import static org.noear.waad.link.FunsLink.*;
 
 import java.util.Map;
 
 import static waad_rdb.features.link.APPX_LK.APPX;
+import static waad_rdb.features.link.TEST_LK.TEST;
 
 
 public class TableTest {
@@ -256,5 +259,27 @@ public class TableTest {
                 .orderBy("id ASC")
                 .selectCount();
         assert count1 > 0;
+    }
+
+    @Test
+    public void test6() throws Exception {
+
+        long count = db.table("test").selectCount();
+        if (count == 0) {
+            db.table("test").set("v1", 1).set("id", 1).insert();
+            db.table("test").set("v1", 1).set("id", 2).set("v2", "a").insert();
+            db.table("test").set("v1", 2).set("id", 3).insert();
+            db.table("test").set("v1", 3).set("id", 4).insert();
+        }
+
+        DataList list = db.table(TEST)
+                .where(TEST.ID.neq(100))
+                .groupBy(TEST.ID)
+                .limit(100)
+                .orderByAsc(TEST.ID)
+                .selectDataList(TEST.ID, sum(TEST.V1).as("s1"));
+
+        System.out.println(list);
+        assert list.size() ==3;
     }
 }

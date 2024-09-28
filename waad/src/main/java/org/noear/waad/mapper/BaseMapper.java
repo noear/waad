@@ -1,6 +1,7 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
+import org.noear.waad.link.IColumn;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReader;
 import org.noear.waad.model.Page;
@@ -14,7 +15,7 @@ import java.util.Map;
 /**
  * @author noear
  */
-public interface BaseMapper<T> extends Mapper{
+public interface BaseMapper<T> extends Mapper {
     /**
      * 当前数据源
      */
@@ -99,7 +100,9 @@ public interface BaseMapper<T> extends Mapper{
      */
     Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhereQ> condition);
 
-    int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, Property<T, ?>... conditionFields);
+    int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns);
+
+    int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, String conditionColumns);
 
     /**
      * 新增或修改数据 更新时根据主键更新
@@ -123,22 +126,26 @@ public interface BaseMapper<T> extends Mapper{
     /**
      * 新增或修改数据 更新时根据条件字段更新
      *
-     * @param entity          要处理的实体
-     * @param excludeNull     是否排除null值
-     * @param conditionFields 更新的条件
+     * @param entity           要处理的实体
+     * @param excludeNull      是否排除null值
+     * @param conditionColumns 更新的条件列
      * @return
      */
-    Long upsertBy(T entity, boolean excludeNull, String conditionFields);
+    Long upsertBy(T entity, boolean excludeNull, IColumn... conditionColumns);
+
+    Long upsertBy(T entity, boolean excludeNull, String conditionColumns);
 
     /**
      * 新增或修改数据 更新时根据条件字段更新
      *
-     * @param entity          要处理的实体
-     * @param dataBuilder     数据组装器
-     * @param conditionFields 更新的条件
+     * @param entity           要处理的实体
+     * @param dataBuilder      数据组装器
+     * @param conditionColumns 更新的条件列
      * @return
      */
-    Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionFields);
+    Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns);
+
+    Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionColumns);
 
 
     boolean existsById(Object id);

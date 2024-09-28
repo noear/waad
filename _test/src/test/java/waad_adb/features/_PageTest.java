@@ -9,6 +9,8 @@ import waad_adb.DbUtil;
 
 import java.util.List;
 
+import static waad_rdb.features.link.APPX_LK.APPX;
+
 public class _PageTest {
     DbContext db2 = DbUtil.db;
 
@@ -23,7 +25,7 @@ public class _PageTest {
     @Test
     public void test_list() throws Exception {
 
-        List<AppxModel> list = mapper.selectList(0, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        List<AppxModel> list = mapper.selectList(0, 10, q -> q.orderByAsc(APPX.APP_ID));
         assert list.size() == 10;
         assert list.get(0).app_id == 1;
 
@@ -32,7 +34,7 @@ public class _PageTest {
 
     @Test
     public void test_list2() throws Exception {
-        List<AppxModel> list = mapper.selectList(1, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        List<AppxModel> list = mapper.selectList(1, 10, q -> q.orderByAsc(APPX.APP_ID));
         assert list.size() == 10;
         assert list.get(0).app_id == 2;
 
@@ -42,7 +44,7 @@ public class _PageTest {
     @Test
     public void test_page() throws Exception {
 
-        Page<AppxModel> list = mapper.selectPage(0, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list = mapper.selectPage(0, 10, q -> q.orderByAsc(APPX.APP_ID));
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 1;
 
@@ -51,7 +53,7 @@ public class _PageTest {
 
     @Test
     public void test_page2() throws Exception {
-        Page<AppxModel> list = mapper.selectPage(1, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list = mapper.selectPage(1, 10, q -> q.orderByAsc(APPX.APP_ID));
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 2;
 

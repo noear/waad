@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static waad_rdb.features.link.APPX_LK.APPX;
+
 public class MapperTest2 {
     DbContext db2 = DbUtil.db;
     SqlMapper mapper = db2.mapper(SqlMapper.class);
@@ -172,7 +174,7 @@ public class MapperTest2 {
         assert m4.agroup_id == ent2.agroup_id;
 
         //selectOne
-        AppxModel m5 = mapper.selectItem(m -> m.whereEq(AppxModel::getApp_id, 21));
+        AppxModel m5 = mapper.selectItem(m -> m.where(APPX.APP_ID.eq(21)));
         System.out.println("m5: " + m5);
         assert m5.app_id == 21;
 
@@ -181,7 +183,7 @@ public class MapperTest2 {
     @Test
     public void test_select_m6(){
         //selectObj
-        Object m6 = mapper.selectValue("app_id", m -> m.whereEq(AppxModel::getApp_id, 21));
+        Object m6 = mapper.selectValue("app_id", m -> m.where(APPX.APP_ID.eq(21)));
         System.out.println("m6: " + m6);
         assert ((Number)m6).longValue() == (21);
     }

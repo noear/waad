@@ -92,7 +92,7 @@ public class TableUpdateListTest {
 
 
         //批量更新
-        db.mapperBase(TestModel.class).updateList(item2, (d, m) -> m.setEntity(d), TestModel::getId);
+        db.mapperBase(TestModel.class).updateList(item2, (d, m) -> m.setEntity(d), "id");
 
         //检测更新结果
         assert db.table("test").where("id=?", 1).selectValue("v1", 0) == 11;

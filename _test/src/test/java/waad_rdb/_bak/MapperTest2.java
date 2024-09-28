@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static waad_rdb.features.link.APPX_LK.APPX;
+
 public class MapperTest2 {
     DbContext db2 = DbUtil.db;
     BaseMapper<AppxModel> mapper = db2.mapperBase(AppxModel.class);
@@ -177,12 +179,12 @@ public class MapperTest2 {
         assert m4.agroup_id == ent2.agroup_id;
 
         //selectOne
-        AppxModel m5 = mapper.selectItem(m -> m.whereEq(AppxModel::getApp_id,21));
+        AppxModel m5 = mapper.selectItem(m -> m.where(APPX.APP_ID.eq(21)));
         System.out.println("m5: " + m5);
         assert m5.app_id == 21;
 
         //selectObj
-        Object m6 = mapper.selectValue("app_id", m-> m.whereEq(AppxModel::getApp_id,21));
+        Object m6 = mapper.selectValue("app_id", m-> m.where(APPX.APP_ID.eq(21)));
         System.out.println("m6: " + m6);
         assert m6.equals(21);
 
@@ -199,17 +201,17 @@ public class MapperTest2 {
 
     public void test_select_list(BaseMapper<AppxModel> mapper){
         //selectList
-        List<AppxModel> m9 = mapper.selectList(m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<AppxModel> m9 = mapper.selectList(m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m9: " + m9);
         assert m9.size() > 20;
 
         //selectMaps
-        List<Map<String, Object>> m10 = mapper.selectMapList(m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<Map<String, Object>> m10 = mapper.selectMapList(m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m10: " + m10);
         assert m9.size() > 20;
 
         //selectObjs
-        List<Object> m11 = mapper.selectArray("app_key", m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<Object> m11 = mapper.selectArray("app_key", m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m11: " + m11);
         assert m11.size() > 20;
     }
@@ -217,24 +219,24 @@ public class MapperTest2 {
 
     public void  test_select_page(BaseMapper<AppxModel> mapper){
         //selectPage
-        List<AppxModel> m12 = mapper.selectList(1, 10, m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<AppxModel> m12 = mapper.selectList(1, 10, m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m12: " + m12);
         assert m12.size() == 10;
 
         //selectMapsPage
-        List<Map<String, Object>> m13 = mapper.selectMapList(1, 10, m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<Map<String, Object>> m13 = mapper.selectMapList(1, 10, m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m13: " + m13);
         assert m13.size() == 10;
     }
 
     public void  test_select_top(BaseMapper<AppxModel> mapper){
         //selectPage
-        List<AppxModel> m12 = mapper.selectTop(5, m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<AppxModel> m12 = mapper.selectTop(5, m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m12: " + m12);
         assert m12.size() == 5;
 
         //selectMapsPage
-        List<Map<String, Object>> m13 = mapper.selectMapTop(5, m -> m.whereEq(AppxModel::getAgroup_id, 1).andLt(AppxModel::getApp_id, 40));
+        List<Map<String, Object>> m13 = mapper.selectMapTop(5, m -> m.where(APPX.AGROUP_ID.eq(1)).and(APPX.APP_ID.lt(40)));
         System.out.println("m13: " + m13);
         assert m13.size() == 5;
     }

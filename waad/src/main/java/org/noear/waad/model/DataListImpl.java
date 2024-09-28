@@ -151,4 +151,9 @@ class DataListImpl implements DataList {
         }
         return list;
     }
+
+    @Override
+    public String toString() {
+        return items.toString();
+    }
 }

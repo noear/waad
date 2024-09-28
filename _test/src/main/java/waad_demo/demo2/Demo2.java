@@ -14,7 +14,7 @@ public class Demo2 {
 
     public void test() {
         List<String> ids = new ArrayList<>();
-        db.mapperBase(UserModel.class).selectList(wq -> wq.andIn(UserModel::getId, ids));
+        db.mapperBase(UserModel.class).selectList(wq -> wq.and("id IN(?...)", ids));
 
 //        //没参数的
 //        db.call("@webapp.dso.SqlMapper.appx_get").getMap();

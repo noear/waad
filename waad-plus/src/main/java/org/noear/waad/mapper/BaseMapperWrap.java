@@ -1,21 +1,22 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
+import org.noear.waad.link.IColumn;
 import org.noear.waad.model.*;
 import org.noear.waad.util.function.Act1;
 import org.noear.waad.util.function.Act2;
 import org.noear.waad.link.IColumnLink;
 import org.noear.waad.util.RunUtils;
 import org.noear.waad.util.StrUtils;
-import org.noear.waad.wrap.Property;
-import org.noear.waad.wrap.PropertyWrap;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by noear on 19-12-11.
+ * @author noear
+ * @since 19-12-11.
+ * @since 4.0
  */
 public class BaseMapperWrap<T> implements BaseMapper<T> {
     private DbContext _db;
@@ -229,21 +230,22 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, Property<T, ?>... conditionFields) {
-        if (conditionFields.length == 0) {
+    public int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns) {
+        if (conditionColumns.length == 0) {
             throw new RuntimeException("Please enter constraints");
         }
 
-        StringBuilder buf = new StringBuilder();
+        return updateList(list, dataBuilder, IColumn.getNemes(_db, conditionColumns));
+    }
 
-        for (Property<T, ?> p : conditionFields) {
-            buf.append(PropertyWrap.get(p).name).append(",");
+    @Override
+    public int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, String conditionColumns) {
+        if (StrUtils.isEmpty(conditionColumns)) {
+            throw new RuntimeException("Please enter constraints");
         }
 
-        buf.setLength(buf.length() - 1);
-
         return RunUtils.call(()
-                -> getQr().updateList(list, dataBuilder, buf.toString()));
+                -> getQr().updateList(list, dataBuilder, conditionColumns));
     }
 
     @Override
@@ -288,7 +290,12 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public Long upsertBy(T entity, boolean excludeNull, String conditionFields) {
+    public Long upsertBy(T entity, boolean excludeNull, IColumn... conditionColumns) {
+        return upsertBy(entity, excludeNull, IColumn.getNemes(_db, conditionColumns));
+    }
+
+    @Override
+    public Long upsertBy(T entity, boolean excludeNull, String conditionColumns) {
         DataRow data = DataRow.create();
 
         if (excludeNull) {
@@ -297,24 +304,28 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
             data.setEntityIf(entity, (k, v) -> true);
         }
 
-        return RunUtils.call(() -> getQr().upsertBy(data, conditionFields));
+        return RunUtils.call(() -> getQr().upsertBy(data, conditionColumns));
+    }
+
+    public Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns) {
+        return upsertBy(entity, dataBuilder, IColumn.getNemes(_db, conditionColumns));
     }
 
     /**
      * 新增或修改数据 更新时根据条件字段更新
      *
-     * @param entity          要处理的实体
-     * @param dataBuilder     数据组装器
-     * @param conditionFields 更新的条件
+     * @param entity           要处理的实体
+     * @param dataBuilder      数据组装器
+     * @param conditionColumns 更新的条件
      * @return
      */
     @Override
-    public Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionFields) {
+    public Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionColumns) {
         DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
 
-        return RunUtils.call(() -> getQr().upsertBy(data, conditionFields));
+        return RunUtils.call(() -> getQr().upsertBy(data, conditionColumns));
     }
 
     @Override

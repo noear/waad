@@ -10,6 +10,8 @@ import waad_rdb.DbUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static waad_rdb.features.link.APPX_LK.APPX;
+
 public class _ReaderTest {
     DbContext db2 = DbUtil.db;
 
@@ -25,7 +27,7 @@ public class _ReaderTest {
     public void test_page() throws Exception {
         List<AppxModel> list = new ArrayList<>();
 
-        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(0,10))) {
+        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(APPX.APP_ID).limit(0,10))) {
             AppxModel m;
             do {
                 m = reader.next();
@@ -45,7 +47,7 @@ public class _ReaderTest {
     public void test_page2() throws Exception {
         List<AppxModel> list = new ArrayList<>();
 
-        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(1, 10))) {
+        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(APPX.APP_ID).limit(1, 10))) {
             AppxModel m;
             do {
                 m = reader.next();
