@@ -1,6 +1,5 @@
 package org.noear.waad.cache;
 
-import org.noear.waad.IWaadKey;
 import org.noear.waad.utils.fun.Act0;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.utils.fun.Fun0;
@@ -12,7 +11,7 @@ import org.noear.waad.utils.fun.Fun0Ex;
  * @author noear
  * @since 3.0
  */
-public class CacheUsing implements ICacheUsing<CacheUsing>, IWaadKey {
+public class CacheUsing implements ICacheUsing<CacheUsing>, WaadKey {
     //#region ICacheControllerState 成员
     public ICacheService outerCaching;
     public int cacheSeconds;

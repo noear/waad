@@ -1,6 +1,5 @@
 package waad_demo.demo.param;
 
-import org.noear.waad.IQuery;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 

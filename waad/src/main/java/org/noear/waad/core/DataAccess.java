@@ -3,6 +3,7 @@ package org.noear.waad.core;
 import org.noear.waad.*;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheService;
+import org.noear.waad.cache.WaadKey;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
@@ -22,7 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by noear on 14-9-5.
  * 数据库方问基类
  */
-public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQuery,Serializable {
+public abstract class DataAccess<T extends DataAccess> implements WaadKey, Resultable,Serializable {
     /*查询语句*/
     public String commandText = null;
 
@@ -341,28 +342,28 @@ public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQue
 
     /*引用一个缓存服务*/
     @Override
-    public IQuery caching(ICacheService service) {
+    public Resultable caching(ICacheService service) {
         _cache = new CacheUsing(service);
         return this;
     }
 
     /*是否使用缓存*/
     @Override
-    public IQuery usingCache(boolean isCache) {
+    public Resultable usingCache(boolean isCache) {
         _cache.usingCache(isCache);
         return this;
     }
 
     /*使用缓存时间（单位：秒）*/
     @Override
-    public IQuery usingCache(int seconds) {
+    public Resultable usingCache(int seconds) {
         _cache.usingCache(seconds);
         return this;
     }
 
     /*添加缓存标签*/
     @Override
-    public IQuery cacheTag(String tag) {
+    public Resultable cacheTag(String tag) {
         _cache.cacheTag(tag);
         return this;
     }

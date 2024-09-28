@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.core;
 
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by noear on 14/11/12.
  */
-public interface IQuery extends ICacheController<IQuery> {
+public interface Resultable extends ICacheController<Resultable> {
      long getCount() throws SQLException;
      Object getValue() throws SQLException;
      <T> T getValue(T def) throws SQLException;

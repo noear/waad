@@ -4,6 +4,7 @@ import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.Command;
+import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.*;
 import org.noear.waad.utils.fun.Act1;
@@ -724,12 +725,12 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
 
 
     @Deprecated
-    public IQuery select(String columns) {
+    public Resultable select(String columns) {
         return selectDo(columns);
     }
 
     @Deprecated
-    public IQuery select(IColumn... columns) {
+    public Resultable select(IColumn... columns) {
         return selectDo(IColumn.getCodes(columns));
     }
 
@@ -741,7 +742,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectCompile(IColumn.getCodes(columns)).getCommand();
     }
 
-    protected IQuery selectDo(String columns) {
+    protected Resultable selectDo(String columns) {
         DbQuery rst = selectCompile(columns);
 
         if (_cache != null) {

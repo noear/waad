@@ -1,6 +1,5 @@
 package org.noear.waad.cache;
 
-import org.noear.waad.IWaadKey;
 import org.noear.waad.utils.fun.Fun1;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class CacheTags {
     /// 为缓存添加一个标签（异步 Add{end}）
     /// </summary>
     /// <param name="target">目标</param>
-    public void endAdd(IWaadKey target)
+    public void endAdd(WaadKey target)
     {
         endAdd(target.getWaadKey());
     }
@@ -150,7 +149,7 @@ public class CacheTags {
     }
 
 
-    public void removeTag(String tag, String val, IWaadKey target)
+    public void removeTag(String tag, String val, WaadKey target)
     {
         removeTag(tag, val, (target.getWaadKey()));
     }

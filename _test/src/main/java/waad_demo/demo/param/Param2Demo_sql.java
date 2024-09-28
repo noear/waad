@@ -1,6 +1,6 @@
 package waad_demo.demo.param;
 
-import org.noear.waad.IQuery;
+import org.noear.waad.core.Resultable;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 
@@ -26,7 +26,7 @@ public class Param2Demo_sql {
 
     private static List<UserInfoModel> _demo_params(Object... mobiles)  throws SQLException{
 
-        IQuery sp = DbConfig.pc_user.sql("SELECT * FROM users WHERE mobile IN ( ?... )", mobiles);
+        Resultable sp = DbConfig.pc_user.sql("SELECT * FROM users WHERE mobile IN ( ?... )", mobiles);
 
         return sp.getList(UserInfoModel.class);
     }
@@ -37,7 +37,7 @@ public class Param2Demo_sql {
         mobiles.add("15968868040");
         mobiles.add("15968868041");
 
-        IQuery sp = DbConfig.pc_user.sql("SELECT * FROM users WHERE mobile IN (?...)", mobiles);
+        Resultable sp = DbConfig.pc_user.sql("SELECT * FROM users WHERE mobile IN (?...)", mobiles);
 
         return sp.getList(UserInfoModel.class);
     }
