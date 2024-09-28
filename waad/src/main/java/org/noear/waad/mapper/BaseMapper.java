@@ -35,7 +35,8 @@ public interface BaseMapper<T> {
 
     /**
      * 插入数据，根据excludeNull决定是否要拼接值为null的数据
-     * @param entity 写入的实体
+     *
+     * @param entity      写入的实体
      * @param excludeNull 是否排除null属性
      * @return
      */
@@ -43,14 +44,16 @@ public interface BaseMapper<T> {
 
     /**
      * 插入数据，由外部组装数据
-     * @param entity 写入的实体
+     *
+     * @param entity      写入的实体
      * @param dataBuilder 数据组装器
      * @return
      */
-    Long insert(T entity, Act2<T, DataItem> dataBuilder);
+    Long insert(T entity, Act2<T, IDataItem> dataBuilder);
 
     /**
      * 批量插入数据
+     *
      * @param list
      */
     void insertList(List<T> list);
@@ -58,10 +61,11 @@ public interface BaseMapper<T> {
 
     /**
      * 批量插入数据
-     * @param list 待插入的数据
+     *
+     * @param list        待插入的数据
      * @param dataBuilder 数据组装器
      */
-    void insertList(List<T> list, Act2<T,DataItem> dataBuilder);
+    void insertList(List<T> list, Act2<T, IDataItem> dataBuilder);
 
     Integer deleteById(Object id);
 
@@ -80,7 +84,7 @@ public interface BaseMapper<T> {
      * @param entity      待更新的实体
      * @param dataBuilder 组装data的方式，方便支持部分属性允许设置为null，部分不允许
      */
-    Integer updateById(T entity, Act2<T, DataItem> dataBuilder);
+    Integer updateById(T entity, Act2<T, IDataItem> dataBuilder);
 
     Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> condition);
 
@@ -90,13 +94,14 @@ public interface BaseMapper<T> {
      * @param condition   更新数据的条件
      * @return
      */
-    Integer update(T entity, Act2<T, DataItem> dataBuilder, Act1<MapperWhereQ> condition);
+    Integer update(T entity, Act2<T, IDataItem> dataBuilder, Act1<MapperWhereQ> condition);
 
-    int[] updateList(List<T> list, Act2<T, DataItem> dataBuilder, Property<T, ?>... conditionFields);
+    int[] updateList(List<T> list, Act2<T, IDataItem> dataBuilder, Property<T, ?>... conditionFields);
 
     /**
      * 新增或修改数据 更新时根据主键更新
-     * @param entity 要处理的实体
+     *
+     * @param entity      要处理的实体
      * @param excludeNull 是否排除null值
      * @return
      */
@@ -104,17 +109,19 @@ public interface BaseMapper<T> {
 
     /**
      * 新增或修改数据 更新时根据主键更新
-     * @param entity 要处理的实体
+     *
+     * @param entity      要处理的实体
      * @param dataBuilder 数据组装器
      * @return
      */
-    Long upsert(T entity, Act2<T,DataItem> dataBuilder);
+    Long upsert(T entity, Act2<T, IDataItem> dataBuilder);
 
 
     /**
      * 新增或修改数据 更新时根据条件字段更新
-     * @param entity 要处理的实体
-     * @param excludeNull 是否排除null值
+     *
+     * @param entity          要处理的实体
+     * @param excludeNull     是否排除null值
      * @param conditionFields 更新的条件
      * @return
      */
@@ -122,12 +129,13 @@ public interface BaseMapper<T> {
 
     /**
      * 新增或修改数据 更新时根据条件字段更新
-     * @param entity 要处理的实体
-     * @param dataBuilder 数据组装器
+     *
+     * @param entity          要处理的实体
+     * @param dataBuilder     数据组装器
      * @param conditionFields 更新的条件
      * @return
      */
-    Long upsertBy(T entity, Act2<T,DataItem> dataBuilder, String conditionFields);
+    Long upsertBy(T entity, Act2<T, IDataItem> dataBuilder, String conditionFields);
 
 
     boolean existsById(Object id);

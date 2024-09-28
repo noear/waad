@@ -101,7 +101,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long insert(T entity, Act2<T, DataItem> dataBuilder) {
+    public Long insert(T entity, Act2<T, IDataItem> dataBuilder) {
         DataItem data = new DataItem();
         dataBuilder.run(entity, data);
 
@@ -110,7 +110,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public void insertList(List<T> list) {
-        List<DataItem> list2 = new ArrayList<>();
+        List<IDataItem> list2 = new ArrayList<>();
         for (T d : list) {
             list2.add(new DataItem().setEntityIf(d, (k, v) -> true));
         }
@@ -126,8 +126,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @param dataBuilder 数据组装器
      */
     @Override
-    public void insertList(List<T> list, Act2<T, DataItem> dataBuilder) {
-        List<DataItem> list2 = new ArrayList<>();
+    public void insertList(List<T> list, Act2<T, IDataItem> dataBuilder) {
+        List<IDataItem> list2 = new ArrayList<>();
         for (T d : list) {
             DataItem data = new DataItem();
             dataBuilder.run(d, data);
@@ -185,7 +185,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @param dataBuilder 组装data的方式，方便支持部分属性允许设置为null，部分不允许
      */
     @Override
-    public Integer updateById(T entity, Act2<T, DataItem> dataBuilder) {
+    public Integer updateById(T entity, Act2<T, IDataItem> dataBuilder) {
         DataItem data = new DataItem();
 
         dataBuilder.run(entity, data);
@@ -218,7 +218,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Integer update(T entity, Act2<T, DataItem> dataBuilder, Act1<MapperWhereQ> c) {
+    public Integer update(T entity, Act2<T, IDataItem> dataBuilder, Act1<MapperWhereQ> c) {
         DataItem data = new DataItem();
 
         dataBuilder.run(entity, data);
@@ -229,7 +229,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public int[] updateList(List<T> list, Act2<T, DataItem> dataBuilder, Property<T, ?>... conditionFields) {
+    public int[] updateList(List<T> list, Act2<T, IDataItem> dataBuilder, Property<T, ?>... conditionFields) {
         if (conditionFields.length == 0) {
             throw new RuntimeException("Please enter constraints");
         }
@@ -273,7 +273,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long upsert(T entity, Act2<T, DataItem> dataBuilder) {
+    public Long upsert(T entity, Act2<T, IDataItem> dataBuilder) {
         DataItem data = new DataItem();
 
         dataBuilder.run(entity, data);
@@ -309,7 +309,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long upsertBy(T entity, Act2<T, DataItem> dataBuilder, String conditionFields) {
+    public Long upsertBy(T entity, Act2<T, IDataItem> dataBuilder, String conditionFields) {
         DataItem data = new DataItem();
 
         dataBuilder.run(entity, data);

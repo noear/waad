@@ -3,6 +3,8 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DataItem;
 import org.noear.waad.DbContext;
+import org.noear.waad.IDataItem;
+import org.noear.waad.IDataList;
 import waad_rdb.DbUtil;
 import webapp.model.TestModel;
 
@@ -46,7 +48,7 @@ public class TableInsertListTest {
         //删
         db.table("test").where("1=1").delete();
 
-        List<DataItem> items = new ArrayList<>();
+        List<IDataItem> items = new ArrayList<>();
         items.add(new DataItem().set("id",1).set("v1",1).set("v2", null));
         items.add(new DataItem().set("id",2).set("v1",2));
         items.add(new DataItem().set("id",3).set("v1",3));
@@ -62,7 +64,7 @@ public class TableInsertListTest {
         //删
         db.table(TEST).where("1=1").delete();
 
-        List<DataItem> items = new ArrayList<>();
+        List<IDataItem> items = new ArrayList<>();
         items.add(new DataItem().set(TEST.ID.name(),1).set(TEST.V1.name(),1).set("v2", null));
         items.add(new DataItem().set(TEST.ID.name(),2).set(TEST.V1.name(),2));
         items.add(new DataItem().set(TEST.ID.name(),3).set(TEST.V1.name(),3));

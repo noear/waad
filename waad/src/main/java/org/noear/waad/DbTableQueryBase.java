@@ -273,7 +273,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据
      */
-    public boolean insertList(List<DataItem> valuesList) throws SQLException {
+    public boolean insertList(List<IDataItem> valuesList) throws SQLException {
         if (valuesList == null) {
             return false;
         }
@@ -284,8 +284,8 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据（由dataBuilder构建数据）
      */
-    public <T> boolean insertList(Collection<T> valuesList, Act2<T, DataItem> dataBuilder) throws SQLException {
-        List<DataItem> list2 = new ArrayList<>();
+    public <T> boolean insertList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder) throws SQLException {
+        List<IDataItem> list2 = new ArrayList<>();
 
         for (T values : valuesList) {
             DataItem item = new DataItem();
@@ -511,7 +511,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据
      */
-    public int[] updateList(List<DataItem> valuesList, String conditionColumns) throws SQLException {
+    public int[] updateList(List<IDataItem> valuesList, String conditionColumns) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return null;
         }
@@ -519,14 +519,14 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return updateList(valuesList.get(0), valuesList, conditionColumns);
     }
 
-    public int[] updateList(List<DataItem> valuesList, IColumn... conditionColumns) throws SQLException {
+    public int[] updateList(List<IDataItem> valuesList, IColumn... conditionColumns) throws SQLException {
         return updateList(valuesList, IColumn.getCodes(conditionColumns));
     }
 
     /**
      * 执行批量合并插入，使用集合数据（由dataBuilder构建数据）
      */
-    public <T> int[] updateList(Collection<T> valuesList, Act2<T, DataItem> dataBuilder, String conditionColumns) throws SQLException {
+    public <T> int[] updateList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder, String conditionColumns) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return null;
         }
@@ -548,7 +548,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         }
     }
 
-    public <T> int[] updateList(Collection<T> valuesList, Act2<T, DataItem> dataBuilder, IColumn... conditionColumns) throws SQLException {
+    public <T> int[] updateList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder, IColumn... conditionColumns) throws SQLException {
         return updateList(valuesList, dataBuilder, IColumn.getCodes(conditionColumns));
     }
 
@@ -928,14 +928,14 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     }
 
 
-    public IPage<DataItem> selectDataPage(String columns) throws SQLException {
+    public IPage<IDataItem> selectDataPage(String columns) throws SQLException {
         long total = selectCount();
-        List<DataItem> list = selectDo(columns).getDataList();
+        List<IDataItem> list = selectDo(columns).getDataList().getItemList();
 
         return new IPageImpl<>(list, total, limit_size);
     }
 
-    public IPage<DataItem> selectDataPage(IColumn... columns) throws SQLException {
+    public IPage<IDataItem> selectDataPage(IColumn... columns) throws SQLException {
         return selectDataPage(IColumn.getCodes(columns));
     }
 

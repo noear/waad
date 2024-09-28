@@ -30,13 +30,13 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     }
 
     @Override
-    public DataItem set(String name, Object value) {
+    public IDataItem set(String name, Object value) {
         put(name, value);
         return this;
     }
 
     @Override
-    public DataItem setIf(boolean condition, String name, Object value) {
+    public IDataItem setIf(boolean condition, String name, Object value) {
         if (condition) {
             set(name, value);
         }
@@ -44,7 +44,7 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     }
 
     @Override
-    public DataItem setDf(String name, Object value, Object def) {
+    public IDataItem setDf(String name, Object value, Object def) {
         if (value == null) {
             set(name, def);
         } else {
@@ -186,14 +186,14 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     /**
      * 从map加载数据
      */
-    public DataItem setMap(Map<String, Object> data) {
+    public IDataItem setMap(Map<String, Object> data) {
         //
         //保持也where的相同逻辑
         //
         return setMapIf(data, (k, v) -> v != null);
     }
 
-    public DataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
+    public IDataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
         data.forEach((k, v) -> {
             if (condition.apply(k, v)) {
                 set(k, v);
@@ -206,14 +206,14 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     /**
      * 从Entity 加载数据
      */
-    public DataItem setEntity(Object obj) {
+    public IDataItem setEntity(Object obj) {
         //
         //保持与where的相同逻辑
         //
         return setEntityIf(obj, (k, v) -> v != null);
     }
 
-    public DataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
+    public IDataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
         EntityUtils.fromEntity(obj, (k, v) -> {
             if (condition.apply(k, v)) {
                 set(k, v);
@@ -231,25 +231,23 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
         return classWrap.toEntity(this);
     }
 
-
     //============================
-    public static DataItem create(IDataItem schema, GetHandler source) {
-        DataItem item = new DataItem();
-        for (String key : schema.keySet()) {
-            Object val = source.get(key);
-            if (val != null) {
-                item.set(key, val);
-            }
-        }
-        return item;
-    }
 
     @Override
     public Object get(String name) {
         return super.get(name);
     }
 
-    public Map<String, Object> getMap() {
-        return this;
+    //============================
+
+    public static IDataItem create(Collection<String> names, GetHandler source) {
+        DataItem item = new DataItem();
+        for (String key : names) {
+            Object val = source.get(key);
+            if (val != null) {
+                item.set(key, val);
+            }
+        }
+        return item;
     }
 }

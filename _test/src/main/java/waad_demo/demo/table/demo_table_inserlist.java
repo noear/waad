@@ -2,6 +2,7 @@ package waad_demo.demo.table;
 
 import org.noear.waad.DataList;
 import org.noear.waad.DbContext;
+import org.noear.waad.IDataItem;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 
@@ -32,8 +33,8 @@ public class demo_table_inserlist {
     }
 
     public void demo_insertlist2() throws SQLException {
-        DataList list = new DataList();
+        List<IDataItem> items = new ArrayList<>();
 
-        db.table("user").insertList(list);
+        db.table("user").insertList(items);
     }
 }

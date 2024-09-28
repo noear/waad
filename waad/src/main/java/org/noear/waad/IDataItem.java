@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 /**
  * Created by noear on 15/9/2.
@@ -18,21 +19,19 @@ public interface IDataItem extends Map<String,Object>, GetHandler, Serializable 
 
     IDataItem set(String name, Object value);
 
-    default IDataItem setIf(boolean condition, String name, Object value) {
-        if (condition) {
-            set(name, value);
-        }
-        return this;
-    }
+    IDataItem setIf(boolean condition, String name, Object value);
 
-    default IDataItem setDf(String name, Object value, Object def) {
-        if (value == null) {
-            set(name, def);
-        } else {
-            set(name, value);
-        }
-        return this;
-    }
+    IDataItem setDf(String name, Object value, Object def);
+
+    IDataItem setMap(Map<String, Object> data);
+
+    IDataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition);
+    IDataItem setEntity(Object obj);
+    IDataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition);
+
+    <T> T toEntity(Class<T> cls);
+
+    ////////////
 
     Object get(int index);
 
@@ -63,4 +62,9 @@ public interface IDataItem extends Map<String,Object>, GetHandler, Serializable 
     LocalDate getLocalDate(String name);
 
     LocalTime getLocalTime(String name);
+
+
+    default Map<String, Object> getMap() {
+        return this;
+    }
 }
