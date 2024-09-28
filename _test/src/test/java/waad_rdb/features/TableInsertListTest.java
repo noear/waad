@@ -3,7 +3,6 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.model.DataRow;
 import waad_rdb.DbUtil;
 import webapp.model.TestModel;
 
@@ -11,7 +10,7 @@ import webapp.model.TestModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static waad_rdb.features.link.TEST_LK.TEST;
+import static waad_rdb.features.linq.TEST_LQ.TEST;
 
 
 public class TableInsertListTest {

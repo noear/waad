@@ -1,4 +1,4 @@
-package waad_rdb.features.link;
+package waad_rdb.features.linq;
 
 import org.noear.waad.linq.IColumn;
 import org.noear.waad.linq.IColumnLinq;
@@ -7,16 +7,16 @@ import org.noear.waad.linq.ITableLinq;
 /**
  * @author noear 2024/9/27 created
  */
-public class APPX_LK extends ITableLinq<APPX_LK> {
-    public static final APPX_LK APPX = new APPX_LK(null);
+public class APPX_LQ extends ITableLinq<APPX_LQ> {
+    public static final APPX_LQ APPX = new APPX_LQ(null);
 
-    private APPX_LK(String asName) {
+    private APPX_LQ(String asName) {
         super("appx", asName);
     }
 
     @Override
-    public APPX_LK as(String asName) {
-        return new APPX_LK(asName);
+    public APPX_LQ as(String asName) {
+        return new APPX_LQ(asName);
     }
 
     public final IColumn APP_ID = new IColumnLinq(this, "app_id");

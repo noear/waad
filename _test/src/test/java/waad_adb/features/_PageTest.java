@@ -9,7 +9,7 @@ import waad_adb.DbUtil;
 
 import java.util.List;
 
-import static waad_rdb.features.link.APPX_LK.APPX;
+import static waad_rdb.features.linq.APPX_LQ.APPX;
 
 public class _PageTest {
     DbContext db2 = DbUtil.db;

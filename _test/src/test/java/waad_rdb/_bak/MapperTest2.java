@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static waad_rdb.features.link.APPX_LK.APPX;
+import static waad_rdb.features.linq.APPX_LQ.APPX;
 
 public class MapperTest2 {
     DbContext db2 = DbUtil.db;

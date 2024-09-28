@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
-import waad_rdb.features.link.APPX_LK;
-import waad_rdb.features.link.APPX_AGROUP_LK;
+import waad_rdb.features.linq.APPX_LQ;
+import waad_rdb.features.linq.APPX_AGROUP_LQ;
 
 import java.sql.SQLException;
 
-import static waad_rdb.features.link.APPX_AGROUP_LK.APPX_AGROUP;
-import static waad_rdb.features.link.APPX_LK.APPX;
+import static waad_rdb.features.linq.APPX_AGROUP_LQ.APPX_AGROUP;
+import static waad_rdb.features.linq.APPX_LQ.APPX;
 
 
 public class TableJoinTest {
@@ -42,8 +42,8 @@ public class TableJoinTest {
 
     @Test
     public void join_select_link_as() throws Exception {
-        APPX_LK a = APPX.as("a");
-        APPX_AGROUP_LK g = APPX_AGROUP.as("g");
+        APPX_LQ a = APPX.as("a");
+        APPX_AGROUP_LQ g = APPX_AGROUP.as("g");
 
         AppxModel m = db.table(a)
                 .innerJoin(g)
