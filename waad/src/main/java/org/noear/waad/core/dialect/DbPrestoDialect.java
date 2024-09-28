@@ -1,11 +1,15 @@
 package org.noear.waad.core.dialect;
 
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.DbType;
 
 /**
- * @author noear 2021/10/21 created
+ * Presto 数据库方言处理
+ *
+ * @author noear
+ * @since 2021/10/21
  */
-public class DbPrestoDialect extends DbDialectBase{
+public class DbPrestoDialect extends DbDialectBase {
     @Override
     public DbType dbType() {
         return DbType.Presto;

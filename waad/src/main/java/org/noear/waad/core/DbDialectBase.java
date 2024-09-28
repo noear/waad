@@ -1,9 +1,7 @@
-package org.noear.waad.core.dialect;
+package org.noear.waad.core;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.core.DbDialect;
 import org.noear.waad.model.DataRow;
-import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.util.StrUtils;
 import org.noear.waad.util.function.Fun1;
 
@@ -14,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author noear 2021/10/20 created
+ * 数据库方言基类
+ *
+ * @author noear
+ * @since 2021/10/20
  */
 public abstract class DbDialectBase implements DbDialect {
     @Override

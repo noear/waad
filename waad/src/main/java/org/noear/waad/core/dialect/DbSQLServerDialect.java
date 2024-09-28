@@ -1,16 +1,17 @@
 package org.noear.waad.core.dialect;
 
 import org.noear.waad.DbContext;
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.core.DbType;
 
 /**
- * SQLServer数据库方言处理（BETWEEN AND :: >= + <=）
+ * SQLServer 数据库方言处理
  *
  * @author noear
  * @since 3.2
  * */
-public class DbSQLServerDialect extends DbDialectBase{
+public class DbSQLServerDialect extends DbDialectBase {
     @Override
     public DbType dbType() {
         return DbType.SQLServer;

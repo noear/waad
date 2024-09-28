@@ -1,11 +1,15 @@
 package org.noear.waad.core.dialect;
 
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.DbType;
 
 /**
- * @author noear 2021/10/20 created
+ * ClickHouse 数据库方言处理
+ *
+ * @author noear
+ * @since 2021/10/20
  */
-public class DbClickHouseDialect extends DbDialectBase{
+public class DbClickHouseDialect extends DbDialectBase {
     @Override
     public DbType dbType() {
         return DbType.ClickHouse;

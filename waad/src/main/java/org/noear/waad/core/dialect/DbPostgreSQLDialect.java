@@ -1,16 +1,17 @@
 package org.noear.waad.core.dialect;
 
 import org.noear.waad.DbContext;
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.core.DbType;
 
 /**
- * PostgreSQL数据库方言处理（BETWEEN AND :: >= + <=）
+ * Postgre SQL 数据库方言处理
  *
  * @author noear
  * @since 3.2
  * */
-public class DbPostgreSQLDialect extends DbDialectBase{
+public class DbPostgreSQLDialect extends DbDialectBase {
     @Override
     public DbType dbType() {
         return DbType.PostgreSQL;

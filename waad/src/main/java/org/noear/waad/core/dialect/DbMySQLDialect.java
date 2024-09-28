@@ -1,14 +1,15 @@
 package org.noear.waad.core.dialect;
 
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.DbType;
 
 /**
- * MySQL数据库方言处理
+ * MySQL 数据库方言处理
  *
  * @author noear
  * @since 3.2
  * */
-public class DbMySQLDialect extends DbDialectBase{
+public class DbMySQLDialect extends DbDialectBase {
     @Override
     public DbType dbType() {
         return DbType.MySQL;

@@ -1,6 +1,7 @@
 package org.noear.waad.core.dialect;
 
 import org.noear.waad.DbContext;
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.core.DbType;
 
@@ -8,12 +9,12 @@ import java.sql.Clob;
 import java.sql.SQLException;
 
 /**
- * Oracle数据库方言处理（BETWEEN AND :: >= + <=）
+ * Oracle 数据库方言处理
  *
  * @author noear
  * @since 3.2
  * */
-public class DbOracleDialect extends DbDialectBase{
+public class DbOracleDialect extends DbDialectBase {
 
     @Override
     public DbType dbType() {

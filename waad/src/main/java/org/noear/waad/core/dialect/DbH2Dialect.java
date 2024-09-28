@@ -1,5 +1,6 @@
 package org.noear.waad.core.dialect;
 
+import org.noear.waad.core.DbDialectBase;
 import org.noear.waad.core.DbType;
 
 import java.sql.Clob;
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * H2数据库方言处理
+ * H2 数据库方言处理
  *
  * @author noear
  * @since 3.2
