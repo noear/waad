@@ -10,10 +10,9 @@ import java.util.Map;
 
 public class DbUtil {
 
-    private final static Map<String, String> dbMysqlCfg(){
+    private final static Map<String, String> dbMysqlCfg() {
         Map<String, String> map = new HashMap<>();
 
-        map.put("schema", "rock");
         map.put("url", "jdbc:mysql://localdb:3306/rock?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true");
         map.put("driverClassName", "com.mysql.cj.jdbc.Driver");
         map.put("username", "demo");
@@ -22,7 +21,7 @@ public class DbUtil {
         return map;
     }
 
-    private final static Map<String, String> dbDb2Cfg(){
+    private final static Map<String, String> dbDb2Cfg() {
         Map<String, String> map = new HashMap<>();
 
         map.put("schema", "rock");
@@ -34,7 +33,7 @@ public class DbUtil {
         return map;
     }
 
-    private final static Map<String, String> dbMssqlCfg(){
+    private final static Map<String, String> dbMssqlCfg() {
         Map<String, String> map = new HashMap<>();
 
         map.put("schema", "rock");
@@ -46,7 +45,7 @@ public class DbUtil {
         return map;
     }
 
-    private final static Map<String, String> dbOracleCfg(){
+    private final static Map<String, String> dbOracleCfg() {
         Map<String, String> map = new HashMap<>();
 
         map.put("schema", "demo");
@@ -58,7 +57,7 @@ public class DbUtil {
         return map;
     }
 
-    private final static Map<String, String> dbPgsqlCfg(){
+    private final static Map<String, String> dbPgsqlCfg() {
         Map<String, String> map = new HashMap<>();
 
         map.put("schema", "public");
@@ -70,7 +69,7 @@ public class DbUtil {
         return map;
     }
 
-    private final static HikariDataSource dataSource(Map<String, String> map){
+    private final static HikariDataSource dataSource(Map<String, String> map) {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(map.get("url"));
         dataSource.setUsername(map.get("username"));
@@ -81,15 +80,15 @@ public class DbUtil {
     }
 
     public static DbContext getDb() {
-        Map<String, String> map =  dbMysqlCfg(); // dbOracleCfg(); // dbPgsqlCfg(); //dbMssqlCfg();//
+        Map<String, String> map = dbMysqlCfg(); // dbOracleCfg(); // dbPgsqlCfg(); //dbMssqlCfg();//
 
         DbContext db = new DbContext(dataSource(map)).name("rock");
-        db.events().onException((cmd, ex)->{
-            System.out.println(cmd.text);
+        db.events().onException((cmd, ex) -> {
+            System.out.println(cmd.text());
         });
 
-        db.events().onExecuteAft((cmd)->{
-            System.out.println(":::"+cmd.text);
+        db.events().onExecuteAft((cmd) -> {
+            System.out.println(":::" + cmd.text());
         });
 
         return db;

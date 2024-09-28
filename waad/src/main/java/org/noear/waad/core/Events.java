@@ -16,17 +16,17 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Events {
     private Events parent;
 
-    private Set<Act2<CommandImpl, Throwable>> onException_listener = new LinkedHashSet<>();
-    private Set<Act1<CommandImpl>> onLog_listener = new LinkedHashSet<>();
+    private Set<Act2<Command, Throwable>> onException_listener = new LinkedHashSet<>();
+    private Set<Act1<Command>> onLog_listener = new LinkedHashSet<>();
 
-    private Set<Act1<CommandImpl>> onCommandBuilt_listener = new LinkedHashSet();
+    private Set<Act1<Command>> onCommandBuilt_listener = new LinkedHashSet();
 
     //执行之前
-    private Set<Fun1<Boolean, CommandImpl>> onExecuteBef_listener = new LinkedHashSet<>();
+    private Set<Fun1<Boolean, Command>> onExecuteBef_listener = new LinkedHashSet<>();
     //执行声明
-    private Set<Act2<CommandImpl, Statement>> onExecuteStm_listener = new LinkedHashSet<>();
+    private Set<Act2<Command, Statement>> onExecuteStm_listener = new LinkedHashSet<>();
     //执行之后
-    private Set<Act1<CommandImpl>> onExecuteAft_listener = new LinkedHashSet();
+    private Set<Act1<Command>> onExecuteAft_listener = new LinkedHashSet();
 
     public Events(@Nullable Events parent) {
         this.parent = parent;
@@ -48,7 +48,7 @@ public class Events {
         }
     }
 
-    public void runCommandBuiltEvent(CommandImpl cmd) {
+    protected void runCommandBuiltEvent(CommandImpl cmd) {
         if (parent != null) {
             parent.runCommandBuiltEvent(cmd);
         }
@@ -61,7 +61,7 @@ public class Events {
         }
     }
 
-    public boolean runExecuteBefEvent(CommandImpl cmd) {
+    protected boolean runExecuteBefEvent(CommandImpl cmd) {
         if (parent != null) {
             return parent.runExecuteBefEvent(cmd);
         }
@@ -80,7 +80,7 @@ public class Events {
         return rst.get();
     }
 
-    public void runExecuteStmEvent(CommandImpl cmd, Statement stm) {
+    protected void runExecuteStmEvent(CommandImpl cmd, Statement stm) {
         if (parent != null) {
             parent.runExecuteStmEvent(cmd, stm);
         }
@@ -93,7 +93,7 @@ public class Events {
         }
     }
 
-    public void runExecuteAftEvent(CommandImpl cmd) {
+    protected void runExecuteAftEvent(CommandImpl cmd) {
         if (parent != null) {
             parent.runExecuteAftEvent(cmd);
         }
@@ -130,42 +130,42 @@ public class Events {
     /**
      * 出现异常时
      */
-    public void onException(Act2<CommandImpl, Throwable> listener) {
+    public void onException(Act2<Command, Throwable> listener) {
         onException_listener.add(listener);
     }
 
     /**
      * 可以记日志时
      */
-    public void onLog(Act1<CommandImpl> listener) {
+    public void onLog(Act1<Command> listener) {
         onLog_listener.add(listener);
     }
 
     /**
      * 命令构建完成时
      */
-    public void onCommandBuilt(Act1<CommandImpl> listener) {
+    public void onCommandBuilt(Act1<Command> listener) {
         onCommandBuilt_listener.add(listener);
     }
 
     /**
      * 执行之前
      */
-    public void onExecuteBef(Fun1<Boolean, CommandImpl> listener) {
+    public void onExecuteBef(Fun1<Boolean, Command> listener) {
         onExecuteBef_listener.add(listener);
     }
 
     /**
      * 执行之中
      */
-    public void onExecuteStm(Act2<CommandImpl, Statement> listener) {
+    public void onExecuteStm(Act2<Command, Statement> listener) {
         onExecuteStm_listener.add(listener);
     }
 
     /**
      * 执行之后
      */
-    public void onExecuteAft(Act1<CommandImpl> listener) {
+    public void onExecuteAft(Act1<Command> listener) {
         onExecuteAft_listener.add(listener);
     }
 }

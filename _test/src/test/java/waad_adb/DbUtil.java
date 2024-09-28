@@ -37,14 +37,14 @@ public class DbUtil {
         //WaadConfig.isUsingSchemaPrefix =true;
         //WaadConfig.isUsingUnderlineColumnName=true;
         db.events().onException((cmd, ex) -> {
-            System.out.println(cmd.text);
+            System.out.println(cmd.text());
         });
 
         db.events().onExecuteAft((cmd) -> {
-            if (cmd.isBatch) {
-                System.out.println(":::" + cmd.text + " --:batch");
+            if (cmd.isBatch()) {
+                System.out.println(":::" + cmd.text() + " --:batch");
             } else {
-                System.out.println(":::" + cmd.text);
+                System.out.println(":::" + cmd.text());
             }
         });
 
