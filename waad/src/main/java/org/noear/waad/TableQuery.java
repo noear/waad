@@ -80,7 +80,7 @@ public class TableQuery extends TableQueryBase<TableQuery> {
     }
 
     public TableQuery setIf(boolean condition, IColumn column, Object value) {
-        return setIf(condition, column.getCode(), value);
+        return setIf(condition, column.getCode(_context), value);
     }
 
     public TableQuery setMap(Map<String,Object> data) {

@@ -1,10 +1,12 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
+
 /**
  * 表达式
  *
  * @author noear
- * @since 1.4
+ * @since 4.0
  */
 public interface IExpr<T> {
     /**
@@ -20,5 +22,5 @@ public interface IExpr<T> {
     /**
      * 代码
      */
-    String getCode();
+    String getCode(DbContext db);
 }

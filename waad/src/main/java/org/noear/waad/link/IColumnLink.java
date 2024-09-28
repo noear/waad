@@ -1,5 +1,6 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
 import org.noear.waad.annotation.Nullable;
 import org.noear.waad.utils.StrUtils;
 
@@ -7,7 +8,7 @@ import org.noear.waad.utils.StrUtils;
  * 连接字段
  *
  * @author noear
- * @since 1.4
+ * @since 4.0
  */
 public class IColumnLink implements IColumn {
     private final @Nullable ITable table;
@@ -50,7 +51,7 @@ public class IColumnLink implements IColumn {
     }
 
     @Override
-    public String getCode() {
+    public String getCode(DbContext db) {
         if (table == null || StrUtils.isEmpty(table.____getTableSpec().asName()) || name.contains(".")) {
             if (StrUtils.isEmpty(asName())) {
                 return name;
@@ -68,6 +69,6 @@ public class IColumnLink implements IColumn {
 
     @Override
     public String toString() {
-        return getCode();
+        return getCode(null);
     }
 }

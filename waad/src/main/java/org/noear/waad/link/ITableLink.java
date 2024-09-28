@@ -1,7 +1,8 @@
 package org.noear.waad.link;
 
 /**
- * @author noear 2024/9/27 created
+ * @author noear
+ * @since 4.0
  */
 public class ITableLink<T> implements ITable<T> {
     private final ITableSpecImpl ___ITableSpec;

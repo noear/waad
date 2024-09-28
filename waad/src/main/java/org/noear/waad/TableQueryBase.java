@@ -132,7 +132,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T from(ITable table) {
-        return table(table.____getTableSpec().getCode());
+        return table(table.____getTableSpec().getCode(_context));
     }
 
 
@@ -153,7 +153,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T innerJoin(ITable table) {
-        return innerJoin(table.____getTableSpec().getCode());
+        return innerJoin(table.____getTableSpec().getCode(_context));
     }
 
     /**
@@ -164,7 +164,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T leftJoin(ITableSpecImpl table) {
-        return leftJoin(table.getCode());
+        return leftJoin(table.getCode(_context));
     }
 
     /**
@@ -175,7 +175,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T rightJoin(ITable table) {
-        return rightJoin(table.____getTableSpec().getCode());
+        return rightJoin(table.____getTableSpec().getCode(_context));
     }
 
     /**
@@ -197,7 +197,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T onEq(IColumn column1, IColumn column2) {
-        return onEq(column1.getCode(), column2.getCode());
+        return onEq(column1.getCode(_context), column2.getCode(_context));
     }
 
 
@@ -808,7 +808,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public long selectCount(IColumn column) throws SQLException {
-        return selectCount(column.getCode());
+        return selectCount(column.getCode(_context));
     }
 
     public Variate selectVariate(String column) throws SQLException {
@@ -816,7 +816,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public Variate selectVariate(IColumn column) throws SQLException {
-        return selectVariate(column.getCode());
+        return selectVariate(column.getCode(_context));
     }
 
     public Object selectValue(String column) throws SQLException {
@@ -824,7 +824,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public Object selectValue(IColumn column) throws SQLException {
-        return selectValue(column.getCode());
+        return selectValue(column.getCode(_context));
     }
 
     public <T> T selectValue(String column, T def) throws SQLException {
@@ -832,7 +832,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public <T> T selectValue(IColumn column, T def) throws SQLException {
-        return selectValue(column.getCode(), def);
+        return selectValue(column.getCode(_context), def);
     }
 
     public <T> T selectItem(Class<T> clz, String columns) throws SQLException {
@@ -945,7 +945,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public <T> List<T> selectArray(IColumn column) throws SQLException {
-        return selectArray(column.getCode());
+        return selectArray(column.getCode(_context));
     }
 
 
@@ -966,9 +966,9 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         StringBuilder sb = new StringBuilder(_builder.builder.length() + 100);
         sb.append(" ");//不能去掉
         if (doFormat) {
-            sb.append(fmtMutColumns(columns)).append(" FROM ").append(_table.____getTableSpec().getCode());
+            sb.append(fmtMutColumns(columns)).append(" FROM ").append(_table.____getTableSpec().getCode(_context));
         } else {
-            sb.append(columns).append(" FROM ").append(_table.____getTableSpec().getCode());
+            sb.append(columns).append(" FROM ").append(_table.____getTableSpec().getCode(_context));
         }
         sb.append(_builder.builder);
 

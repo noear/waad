@@ -1,5 +1,7 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -7,7 +9,7 @@ import java.util.stream.Collectors;
  * 列
  *
  * @author noear
- * @since 1.4
+ * @since 4.0
  */
 public interface IColumn extends IExpr<IColumn> {
     /**
@@ -15,9 +17,9 @@ public interface IColumn extends IExpr<IColumn> {
      * */
     String name();
 
-    static String getCodes(IColumn... columns) {
+    static String getCodes(DbContext db, IColumn... columns) {
         assert columns.length > 0;
-        return Arrays.stream(columns).map(c -> c.getCode()).collect(Collectors.joining(","));
+        return Arrays.stream(columns).map(c -> c.getCode(db)).collect(Collectors.joining(","));
     }
 
 

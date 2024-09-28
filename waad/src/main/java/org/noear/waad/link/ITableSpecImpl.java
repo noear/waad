@@ -1,12 +1,13 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
 import org.noear.waad.utils.StrUtils;
 
 /**
  * 连接表
  *
  * @author noear
- * @since 1.4
+ * @since 4.0
  */
 public class ITableSpecImpl implements ITableSpec {
     private final String name;
@@ -49,7 +50,7 @@ public class ITableSpecImpl implements ITableSpec {
      * 获取代码
      */
     @Override
-    public String getCode() {
+    public String getCode(DbContext db) {
         if (StrUtils.isEmpty(asName)) {
             return name;
         } else {
