@@ -44,14 +44,14 @@
 <dependency>
     <groupId>org.noear</groupId>
     <artifactId>waad</artifactId>
-    <version>0.1.1</version>
+    <version>4.0.0-M1</version>
 </dependency>
 
 <!-- maven 插件，用于生成Xml sql mapper接口 -->
 <plugin>
     <groupId>org.noear</groupId>
     <artifactId>waad-maven-plugin</artifactId>
-    <version>0.1.1</version>
+    <version>4.0.0-M1</version>
 </plugin>
 ```
 
