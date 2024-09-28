@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author noear
  */
-public interface BaseMapper<T> {
+public interface BaseMapper<T> extends Mapper{
     /**
      * 当前数据源
      */

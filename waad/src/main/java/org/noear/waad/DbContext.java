@@ -243,15 +243,6 @@ public class DbContext implements Closeable {
     }
 
 
-    public <T> BaseMapper<T> baseMapper(Class<T> clz) {
-        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, null);
-    }
-
-    public <T> BaseMapper<T> baseMapper(Class<T> clz, String tableName) {
-        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
-    }
-
-
     /**
      * 获取一个表对象［用于操作插入也更新］
      */
