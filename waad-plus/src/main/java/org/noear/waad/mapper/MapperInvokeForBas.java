@@ -25,7 +25,7 @@ public class MapperInvokeForBas implements MapperInvoke {
 
                 if (tmp == null) {
                     BaseEntityWrap _table = BaseEntityWrap.get((BaseMapper) proxy);
-                    tmp = WaadConfig.mapperAdaptor.createMapperBase(db, _table.entityClz, _table.tableName);
+                    tmp = WaadConfig.mapperAdaptor().createMapperBase(db, _table.entityClz, _table.tableName);
                     _lib.put(proxy.getClass(), tmp);
                 }
             }finally {
