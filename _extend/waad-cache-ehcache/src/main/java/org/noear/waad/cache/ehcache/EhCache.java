@@ -1,7 +1,7 @@
 package org.noear.waad.cache.ehcache;
 
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.utils.EncryptUtils;
+import org.noear.waad.util.EncryptUtils;
 
 
 import org.ehcache.Cache;

@@ -1,4 +1,4 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
 import java.io.*;
 import java.net.URL;

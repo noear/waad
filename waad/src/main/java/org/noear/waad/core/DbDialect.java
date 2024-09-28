@@ -2,7 +2,7 @@ package org.noear.waad.core;
 
 import org.noear.waad.*;
 import org.noear.waad.model.DataRow;
-import org.noear.waad.utils.fun.Fun1;
+import org.noear.waad.util.function.Fun1;
 
 import java.sql.*;
 

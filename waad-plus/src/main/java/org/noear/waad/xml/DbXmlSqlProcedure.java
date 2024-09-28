@@ -3,9 +3,9 @@ package org.noear.waad.xml;
 import org.noear.waad.*;
 import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.utils.EntityUtils;
-import org.noear.waad.utils.StrUtils;
-import org.noear.waad.utils.ThrowableUtils;
+import org.noear.waad.util.EntityUtils;
+import org.noear.waad.util.StrUtils;
+import org.noear.waad.util.ThrowableUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;

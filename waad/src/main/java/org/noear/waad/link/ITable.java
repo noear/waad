@@ -1,6 +1,6 @@
 package org.noear.waad.link;
 
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.StrUtils;
 
 /**
  * 表

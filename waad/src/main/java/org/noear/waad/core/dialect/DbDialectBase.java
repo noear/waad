@@ -4,8 +4,8 @@ import org.noear.waad.DbContext;
 import org.noear.waad.core.DbDialect;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.utils.StrUtils;
-import org.noear.waad.utils.fun.Fun1;
+import org.noear.waad.util.StrUtils;
+import org.noear.waad.util.function.Fun1;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;

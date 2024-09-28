@@ -1,7 +1,7 @@
 package org.noear.waad.transaction;
 
-import org.noear.waad.utils.fun.Act0Ex;
-import org.noear.waad.utils.ThrowableUtils;
+import org.noear.waad.util.function.Act0Ex;
+import org.noear.waad.util.ThrowableUtils;
 
 import java.sql.SQLException;
 

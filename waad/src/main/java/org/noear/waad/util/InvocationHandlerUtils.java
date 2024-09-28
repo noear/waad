@@ -1,4 +1,4 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Constructor;

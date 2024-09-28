@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.StrUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

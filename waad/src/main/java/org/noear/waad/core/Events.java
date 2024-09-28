@@ -1,9 +1,9 @@
 package org.noear.waad.core;
 
 import org.noear.waad.annotation.Nullable;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.utils.fun.Fun1;
+import org.noear.waad.util.function.Act1;
+import org.noear.waad.util.function.Act2;
+import org.noear.waad.util.function.Fun1;
 
 import java.sql.Statement;
 import java.util.LinkedHashSet;

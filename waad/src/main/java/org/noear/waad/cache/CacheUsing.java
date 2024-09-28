@@ -1,9 +1,9 @@
 package org.noear.waad.cache;
 
-import org.noear.waad.utils.fun.Act0;
-import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.utils.fun.Fun0;
-import org.noear.waad.utils.fun.Fun0Ex;
+import org.noear.waad.util.function.Act0;
+import org.noear.waad.util.function.Act2;
+import org.noear.waad.util.function.Fun0;
+import org.noear.waad.util.function.Fun0Ex;
 
 /**
  * 缓存使用控制接口

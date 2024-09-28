@@ -1,7 +1,7 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
-import org.noear.waad.utils.fun.Act0Ex;
-import org.noear.waad.utils.fun.Fun0Ex;
+import org.noear.waad.util.function.Act0Ex;
+import org.noear.waad.util.function.Fun0Ex;
 
 public class RunUtils {
     public static <T> T call(Fun0Ex<T, Exception> fun) {

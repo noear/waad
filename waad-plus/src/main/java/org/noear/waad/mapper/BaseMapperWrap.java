@@ -2,11 +2,11 @@ package org.noear.waad.mapper;
 
 import org.noear.waad.*;
 import org.noear.waad.model.*;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.util.function.Act1;
+import org.noear.waad.util.function.Act2;
 import org.noear.waad.link.IColumnLink;
-import org.noear.waad.utils.RunUtils;
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.RunUtils;
+import org.noear.waad.util.StrUtils;
 import org.noear.waad.wrap.Property;
 import org.noear.waad.wrap.PropertyWrap;
 

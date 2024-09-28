@@ -1,15 +1,13 @@
 package org.noear.waad;
 
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.utils.fun.Fun2;
+import org.noear.waad.util.function.Fun2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ICondition;
-import org.noear.waad.utils.EntityUtils;
+import org.noear.waad.util.EntityUtils;
 import org.noear.waad.core.DbType;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 条件基类

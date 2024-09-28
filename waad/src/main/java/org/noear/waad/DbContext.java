@@ -3,12 +3,12 @@ package org.noear.waad;
 import org.noear.waad.core.DbCommand;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.utils.SimpleDataSource;
+import org.noear.waad.util.SimpleDataSource;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
-import org.noear.waad.utils.RunUtils;
-import org.noear.waad.utils.StrUtils;
-import org.noear.waad.utils.fun.Act1;
+import org.noear.waad.util.RunUtils;
+import org.noear.waad.util.StrUtils;
+import org.noear.waad.util.function.Act1;
 import org.noear.waad.wrap.DbFormater;
 
 import javax.sql.DataSource;

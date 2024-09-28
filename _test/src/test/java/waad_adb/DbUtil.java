@@ -2,7 +2,7 @@ package waad_adb;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.waad.DbContext;
-import org.noear.waad.utils.SimpleDataSource;
+import org.noear.waad.util.SimpleDataSource;
 
 import javax.sql.DataSource;
 

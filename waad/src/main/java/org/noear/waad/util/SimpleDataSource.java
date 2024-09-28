@@ -1,4 +1,4 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;

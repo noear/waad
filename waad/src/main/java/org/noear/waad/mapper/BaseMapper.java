@@ -4,8 +4,8 @@ import org.noear.waad.*;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReader;
 import org.noear.waad.model.Page;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.util.function.Act1;
+import org.noear.waad.util.function.Act2;
 import org.noear.waad.wrap.Property;
 
 import java.util.List;

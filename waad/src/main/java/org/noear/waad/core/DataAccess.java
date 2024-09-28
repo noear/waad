@@ -8,8 +8,8 @@ import org.noear.waad.model.DataList;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReaderForDataRow;
 import org.noear.waad.model.Variate;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.util.function.Act1;
+import org.noear.waad.util.function.Act2;
 
 import java.io.Serializable;
 import java.sql.SQLException;

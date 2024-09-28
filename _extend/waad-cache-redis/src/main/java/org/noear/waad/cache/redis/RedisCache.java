@@ -3,8 +3,8 @@ package org.noear.waad.cache.redis;
 import org.noear.redisx.RedisClient;
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.cache.ISerializer;
-import org.noear.waad.utils.EncryptUtils;
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.EncryptUtils;
+import org.noear.waad.util.StrUtils;
 
 import java.lang.reflect.Type;
 import java.util.Properties;

@@ -3,8 +3,8 @@ package org.noear.waad.wrap;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.WaadConfig;
 import org.noear.waad.annotation.Table;
-import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.utils.ThrowableUtils;
+import org.noear.waad.util.function.Act2;
+import org.noear.waad.util.ThrowableUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

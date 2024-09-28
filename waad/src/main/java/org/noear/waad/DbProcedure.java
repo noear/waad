@@ -1,9 +1,9 @@
 package org.noear.waad;
 
 import org.noear.waad.core.DataAccess;
-import org.noear.waad.utils.fun.Act0;
-import org.noear.waad.utils.fun.Fun2;
-import org.noear.waad.utils.EntityUtils;
+import org.noear.waad.util.function.Act0;
+import org.noear.waad.util.function.Fun2;
+import org.noear.waad.util.EntityUtils;
 
 import java.util.Map;
 

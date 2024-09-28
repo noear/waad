@@ -1,8 +1,8 @@
 package org.noear.waad.model;
 
-import org.noear.waad.utils.fun.GetHandler;
-import org.noear.waad.utils.EntityUtils;
-import org.noear.waad.utils.LinkedCaseInsensitiveMap;
+import org.noear.waad.util.function.GetHandler;
+import org.noear.waad.util.EntityUtils;
+import org.noear.waad.util.LinkedCaseInsensitiveMap;
 import org.noear.waad.wrap.ClassWrap;
 
 import java.math.BigDecimal;

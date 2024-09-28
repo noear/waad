@@ -1,7 +1,7 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
 import org.noear.waad.model.DataRow;
-import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.util.function.Act2;
 import org.noear.waad.wrap.ClassWrap;
 
 public class EntityUtils {

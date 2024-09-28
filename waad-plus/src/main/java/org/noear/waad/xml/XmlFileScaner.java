@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.utils.IOUtils;
+import org.noear.waad.util.IOUtils;
 
 import java.io.File;
 import java.io.IOException;

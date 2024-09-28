@@ -2,8 +2,8 @@ package org.noear.waad.transaction;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.WaadConfig;
-import org.noear.waad.utils.fun.Act0Ex;
-import org.noear.waad.utils.ThrowableUtils;
+import org.noear.waad.util.function.Act0Ex;
+import org.noear.waad.util.ThrowableUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

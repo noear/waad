@@ -1,6 +1,6 @@
 package org.noear.waad.model;
 
-import org.noear.waad.utils.fun.GetHandler;
+import org.noear.waad.util.function.GetHandler;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

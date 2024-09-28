@@ -1,7 +1,7 @@
 package org.noear.waad.xml;
 
 import org.noear.waad.model.DataRow;
-import org.noear.waad.utils.IOUtils;
+import org.noear.waad.util.IOUtils;
 import org.w3c.dom.Node;
 
 import java.util.*;

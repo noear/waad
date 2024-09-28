@@ -7,7 +7,7 @@ import org.noear.waad.core.DataAccess;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataList;
 import org.noear.waad.model.Variate;
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.StrUtils;
 import org.noear.waad.wrap.MethodWrap;
 
 import java.lang.reflect.Parameter;

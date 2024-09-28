@@ -1,4 +1,4 @@
-package org.noear.waad.utils.fun;
+package org.noear.waad.util.function;
 
 /**
  * Created by noear on 14-6-11.

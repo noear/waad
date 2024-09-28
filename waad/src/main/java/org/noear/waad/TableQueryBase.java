@@ -7,14 +7,14 @@ import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.*;
-import org.noear.waad.utils.StrUtils;
-import org.noear.waad.utils.fun.Act1;
-import org.noear.waad.utils.fun.Act2;
+import org.noear.waad.util.StrUtils;
+import org.noear.waad.util.function.Act1;
+import org.noear.waad.util.function.Act2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ITable;
 import org.noear.waad.link.ITableLink;
 import org.noear.waad.core.DbType;
-import org.noear.waad.utils.fun.GetHandler;
+import org.noear.waad.util.function.GetHandler;
 
 import java.sql.SQLException;
 import java.util.*;

@@ -1,8 +1,8 @@
 package org.noear.waad.xml;
 
 import org.noear.waad.WaadException;
-import org.noear.waad.utils.IOUtils;
-import org.noear.waad.utils.ThrowableUtils;
+import org.noear.waad.util.IOUtils;
+import org.noear.waad.util.ThrowableUtils;
 
 import java.net.URL;
 import java.util.ArrayList;

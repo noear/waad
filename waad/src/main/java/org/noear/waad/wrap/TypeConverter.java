@@ -1,6 +1,6 @@
 package org.noear.waad.wrap;
 
-import org.noear.waad.utils.IOUtils;
+import org.noear.waad.util.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

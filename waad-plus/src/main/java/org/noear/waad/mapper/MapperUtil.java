@@ -4,7 +4,7 @@ import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
 import org.noear.waad.WaadConfig;
 import org.noear.waad.model.Variate;
-import org.noear.waad.utils.StrUtils;
+import org.noear.waad.util.StrUtils;
 import org.noear.waad.xml.XmlSqlBlock;
 import org.noear.waad.xml.XmlSqlFactory;
 import org.noear.waad.xml.XmlSqlLoader;

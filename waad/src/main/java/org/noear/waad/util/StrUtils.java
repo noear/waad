@@ -1,4 +1,4 @@
-package org.noear.waad.utils;
+package org.noear.waad.util;
 
 public class StrUtils {
     public static boolean isEmpty(String str) {

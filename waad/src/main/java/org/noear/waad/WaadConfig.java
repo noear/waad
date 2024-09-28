@@ -2,11 +2,11 @@ package org.noear.waad;
 
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.Events;
-import org.noear.waad.utils.ConnectionStrategy;
+import org.noear.waad.util.ConnectionStrategy;
 import org.noear.waad.mapper.MapperAdaptorImpl;
 import org.noear.waad.mapper.MapperAdaptor;
-import org.noear.waad.utils.PrimaryKeyStrategy;
-import org.noear.waad.utils.NamingStrategy;
+import org.noear.waad.util.PrimaryKeyStrategy;
+import org.noear.waad.util.NamingStrategy;
 import org.noear.waad.wrap.TypeConverter;
 
 import java.util.Map;
