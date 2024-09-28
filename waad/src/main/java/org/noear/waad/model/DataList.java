@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author noear 2024/9/28 created
+ * Created by noear on 14-9-10.
  */
 public interface DataList extends Iterable<DataRow> {
     int size();
@@ -37,8 +37,9 @@ public interface DataList extends Iterable<DataRow> {
 
     <T> List<T> toArray(int columnIndex);
 
+    /////////////////////////////////
 
-    List<DataRow> getItemList();
+    List<DataRow> getRowList();
 
     default List<Map<String, Object>> getMapList() {
         List<Map<String, Object>> list = new ArrayList<>(this.size());

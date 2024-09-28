@@ -36,7 +36,7 @@ class DataListImpl implements DataList, Serializable {
     }
 
     @Override
-    public List<DataRow> getItemList() {
+    public List<DataRow> getRowList() {
         return items;
     }
 

@@ -931,7 +931,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
     public Page<DataRow> selectDataPage(String columns) throws SQLException {
         long total = selectCount();
-        List<DataRow> list = selectDo(columns).getDataList().getItemList();
+        List<DataRow> list = selectDo(columns).getDataList().getRowList();
 
         return new PageImpl<>(list, total, limit_size);
     }
