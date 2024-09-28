@@ -79,9 +79,16 @@ public abstract class WhereBase<T extends WhereBase> {
 
     //
     // whereIf //非常危险。。。已对delete(),update()添加限有制
-    public T whereIf(boolean condition, String code, Object... args) {
-        if (condition) {
+    public T whereIf(boolean when, String code, Object... args) {
+        if (when) {
             where(code, args);
+        }
+        return (T) this;
+    }
+
+    public T whereIf(boolean when, ICondition condition) {
+        if (when) {
+            where(condition);
         }
         return (T) this;
     }
@@ -148,10 +155,18 @@ public abstract class WhereBase<T extends WhereBase> {
         return (T) this;
     }
 
-    public T andIf(boolean condition, String code, Object... args) {
-        if (condition) {
+    public T andIf(boolean when, String code, Object... args) {
+        if (when) {
             and(code, args);
         }
+        return (T) this;
+    }
+
+    public T andIf(boolean when, ICondition condition) {
+        if (when) {
+            and(condition);
+        }
+
         return (T) this;
     }
 
@@ -179,9 +194,16 @@ public abstract class WhereBase<T extends WhereBase> {
         return (T) this;
     }
 
-    public T orIf(boolean condition, String code, Object... args) {
-        if (condition) {
+    public T orIf(boolean when, String code, Object... args) {
+        if (when) {
             or(code, args);
+        }
+        return (T) this;
+    }
+
+    public T orIf(boolean when, ICondition condition) {
+        if (when) {
+            or(condition);
         }
         return (T) this;
     }
