@@ -58,7 +58,7 @@ return="DataList" => DataList
 //一行
 return="waaddemo.mapper.UserModel" => UserModel
 return="Map" => Map<String,Object>
-return="DataItem" => DataItem
+return="DataRow" => DataRow
 
 //单值
 return="String" => String （任何单职类型）

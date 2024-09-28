@@ -42,11 +42,11 @@ public class HbaseTest {
 
         System.out.println(db.lastCommand.fullText());
 
-//        DataItem dl = db.sql("SELECT state as \"State\",count(city) as \"City Count\",sum(population) as \"Population Sum\" " +
+//        DataRow dl = db.sql("SELECT state as \"State\",count(city) as \"City Count\",sum(population) as \"Population Sum\" " +
 //                "FROM us_population WHERE State = ?" +
 //                "GROUP BY state " +
 //                "ORDER BY sum(population) DESC LIMIT 1","CN")
-//                .getDataItem();
+//                .getDataRow();
 
         System.out.println(ONode.stringify(dl));
     }

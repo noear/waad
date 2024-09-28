@@ -3,7 +3,7 @@ package org.noear.waad.mapper;
 import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;
 import org.noear.waad.cache.ICacheServiceEx;
-import org.noear.waad.core.DbAccess;
+import org.noear.waad.core.DataAccess;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataList;
 import org.noear.waad.utils.StrUtils;
@@ -63,7 +63,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         String sqlUp = "# " + _sql.toUpperCase();
 
         //4.生成访问对象
-        DbAccess sp = null;
+        DataAccess sp = null;
         if(sqlUp.indexOf("@") > 0) {
             sp = db.call(_sql).setMap(_map);
         }else if(sqlUp.indexOf("?") > 0){
@@ -109,7 +109,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         return null;
     }
 
-    private  Object forSelect(DbAccess sp, Map<String,Object> map, MethodWrap mWrap, Sql ann, ICacheServiceEx cache) throws Throwable {
+    private  Object forSelect(DataAccess sp, Map<String,Object> map, MethodWrap mWrap, Sql ann, ICacheServiceEx cache) throws Throwable {
         String _cacheTag = ann.cacheTag();
         int    _usingCache = ann.usingCache();
 
@@ -152,7 +152,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         String rst_type2_str = null;
 
         if (DataRow.class.isAssignableFrom(rst_type)) {
-            return sp.getDataItem();
+            return sp.getDataRow();
         }
 
         if (DataList.class.isAssignableFrom(rst_type)) {

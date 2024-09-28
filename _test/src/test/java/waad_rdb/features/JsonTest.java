@@ -31,7 +31,7 @@ public class JsonTest {
     public void test2() throws Exception {
         DataRow item = db.table("appx")
                 .where("app_id=?", 1)
-                .selectDataItem("*");
+                .selectDataRow("*");
 
         System.out.println(db.lastCommand.text);
 

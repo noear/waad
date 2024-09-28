@@ -1,7 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.core.Command;
-import org.noear.waad.core.DbAccess;
+import org.noear.waad.core.DataAccess;
 import org.noear.waad.core.SQLBuilder;
 
 /**
@@ -12,7 +12,7 @@ import org.noear.waad.core.SQLBuilder;
  * \$.tableName  --$ 代表当表db context schema
  * \@paramName   --@ 为参数名的开头
  */
-public class DbQuery extends DbAccess<DbQuery> {
+public class DbQuery extends DataAccess<DbQuery> {
 
     public DbQuery(DbContext context)
     {

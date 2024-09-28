@@ -900,12 +900,12 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return selectPage(IColumn.getCodes(columns), clz);
     }
 
-    public DataRow selectDataItem(String columns) throws SQLException {
-        return selectDo(columns).getDataItem();
+    public DataRow selectDataRow(String columns) throws SQLException {
+        return selectDo(columns).getDataRow();
     }
 
-    public DataRow selectDataItem(IColumn... columns) throws SQLException {
-        return selectDataItem(IColumn.getCodes(columns));
+    public DataRow selectDataRow(IColumn... columns) throws SQLException {
+        return selectDataRow(IColumn.getCodes(columns));
     }
 
     public DataList selectDataList(String columns) throws SQLException {

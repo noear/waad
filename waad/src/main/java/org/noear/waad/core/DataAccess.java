@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by noear on 14-9-5.
  * 数据库方问基类
  */
-public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,Serializable {
+public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQuery,Serializable {
     /*查询语句*/
     public String commandText = null;
 
@@ -55,7 +55,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
     }
 
 
-    public DbAccess(DbContext context) {
+    public DataAccess(DbContext context) {
         this.context = context;
     }
 
@@ -223,7 +223,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
 
     @Override
     public <T> T getItem(Class<T> cls) throws SQLException {
-        DataRow item = getDataItem();
+        DataRow item = getDataRow();
 
         // nullable 处理
         if (item.size() == 0) {
@@ -243,7 +243,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
 
         AtomicReference _tmp = new AtomicReference();
 
-        DataRow item = getDataItem((cu, di) -> {
+        DataRow item = getDataRow((cu, di) -> {
             _tmp.set(di.toEntity(cls));
             cacheCondition.run(cu, (T) _tmp.get());
         });
@@ -300,12 +300,12 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
     }
 
     @Override
-    public DataRow getDataItem() throws SQLException {
-        return getDataItem(null);
+    public DataRow getDataRow() throws SQLException {
+        return getDataRow(null);
     }
 
     @Override
-    public DataRow getDataItem(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException {
+    public DataRow getDataRow(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException {
         DataRow rst;
         Command cmd = getCommand();
 
@@ -325,7 +325,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
 
     @Override
     public Map<String, Object> getMap() throws SQLException {
-        return getDataItem().getMap();
+        return getDataRow().getMap();
     }
 
     //=======================

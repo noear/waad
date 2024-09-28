@@ -106,8 +106,8 @@ public class XmlSqlServiceGenerator {
 
         sb.append("import org.noear.solon.annotation.Inject;\n");
         sb.append("import org.noear.solon.annotation.ProxyComponent;\n");
-        sb.append("import org.noear.waad.DataItem;\n");
-        sb.append("import org.noear.waad.DataList;\n");
+        sb.append("import org.noear.waad.model.DataRow;\n");
+        sb.append("import org.noear.waad.model.DataList;\n");
         sb.append("import org.noear.waad.annotation.Db;\n");
         if(StringUtils.isEmpty(_import) == false) {
             String[] ss = _import.split(";");

@@ -131,21 +131,21 @@
 // 执行相关
 //
 -insert() -> long //执行插入并返回自增值，使用set接口的数据
--insert(data:IDataItem) -> long //执行插入并返回自增值，使用data数据
--insert(dataBuilder:(d:DataItem)->{}) -> long //执行插入并返回自增值，使用dataBuilder构建的数据
--insertList(valuesList:List<DataItem>) -> void //执行批量合并插入，使用集合数据
--insertList(valuesList:Collection<T>,dataBuilder:(t,d:DataItem)->{}) -> void //执行批量合并插入，使用集合数据（由dataBuilder构建数据）
+-insert(data:DataRow) -> long //执行插入并返回自增值，使用data数据
+-insert(dataBuilder:(d:DataRow)->{}) -> long //执行插入并返回自增值，使用dataBuilder构建的数据
+-insertList(valuesList:List<DataRow>) -> void //执行批量合并插入，使用集合数据
+-insertList(valuesList:Collection<T>,dataBuilder:(t,d:DataRow)->{}) -> void //执行批量合并插入，使用集合数据（由dataBuilder构建数据）
 
 -insertBy(constraints:String)//使用set接口的数据,根据约束字段自动插入 // exists + insert 的结合体
--insertBy(data:IDataItem,constraints:String)//使用data的数据,根据约束字段自动插入 // exists + insert 的结合体
+-insertBy(data:DataRow,constraints:String)//使用data的数据,根据约束字段自动插入 // exists + insert 的结合体
 
 
 -update() ->int //执行更新并返回影响行数，使用set接口的数据
--update(data:IDataItem) ->int //执行更新并返回影响行数，使用set接口的数据
--update(dataBuilder:(d:DataItem)->{}) ->int //执行更新并返回影响行数，使用dataBuilder构建的数据
+-update(data:DataRow) ->int //执行更新并返回影响行数，使用set接口的数据
+-update(dataBuilder:(d:DataRow)->{}) ->int //执行更新并返回影响行数，使用dataBuilder构建的数据
 
 -upsertBy(constraints:String)//使用set接口的数据,根据约束字段自动插入或更新 // exists + update + insert 的结合体
--upsertBy(data:IDataItem,constraints:String)//使用data的数据,根据约束字段自动插入或更新 // exists + update + insert 的结合体
+-upsertBy(data:DataRow,constraints:String)//使用data的数据,根据约束字段自动插入或更新 // exists + update + insert 的结合体
 
 -delete() -> int //执行删除，并返回影响行数
 
@@ -301,8 +301,8 @@ public interface IQuery extends ICacheController<IQuery> {
 
      DataList getDataList() throws SQLException;
      DataList getDataList(Act2<CacheUsing, DataList> cacheCondition) throws SQLException;
-     DataItem getDataItem() throws SQLException;
-     DataItem getDataItem(Act2<CacheUsing, DataItem> cacheCondition) throws SQLException;
+     DataRow getDataRow() throws SQLException;
+     DataRow getDataRow(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException;
 
      List<Map<String,Object>> getMapList() throws SQLException;
      Map<String,Object> getMap() throws SQLException;
@@ -331,7 +331,7 @@ public interface BaseMapper<T> {
     Integer updateById(T entity, boolean excludeNull);
     Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> condition);
 
-    int[] updateList(List<T> list, Act2<T,DataItem> dataBuilder, Property<T, ?>... conditionFields);
+    int[] updateList(List<T> list, Act2<T,DataRow> dataBuilder, Property<T, ?>... conditionFields);
 
     Long upsert(T entity, boolean excludeNull);
     Long upsertBy(T entity, boolean excludeNull, String conditionFields);

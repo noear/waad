@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.core.DbAccess;
+import org.noear.waad.core.DataAccess;
 import org.noear.waad.utils.fun.Act0;
 import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.utils.EntityUtils;
@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by noear on 2017/7/22.
  */
-public abstract class DbProcedure extends DbAccess<DbProcedure> {
+public abstract class DbProcedure extends DataAccess<DbProcedure> {
     public DbProcedure(DbContext context) {
         super(context);
     }

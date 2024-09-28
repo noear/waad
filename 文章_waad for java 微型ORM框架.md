@@ -441,7 +441,7 @@ return="DataList" => DataList
 //一行
 return="waaddemo.mapper.UserModel" => UserModel
 return="Map" => Map<String,Object>
-return="DataItem" => DataItem
+return="DataRow" => DataRow
 
 //单值
 return="String" => String （任何单职类型）
@@ -493,7 +493,7 @@ return="String" => String （任何单职类型）
 * `<T> T getItem(Class<T> cls) throws SQLException;`
 * `<T> List<T> getList(Class<T> cls) throws SQLException;`
 * `DataList getDataList() throws SQLException;`
-* `DataItem getDataItem() throws SQLException;`
+* `DataRow getDataRow() throws SQLException;`
 * `List<Map<String,Object>> getMapList() throws SQLException;`
 * `Map<String,Object> getMap() throws SQLException;`
 * `<T> List<T> getArray(String column) throws SQLException;`

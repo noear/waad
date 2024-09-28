@@ -18,7 +18,7 @@ import java.util.function.BiFunction;
  *
  * Created by noear on 15/9/2.
  *
- * IDataItem 是为跨平台设计的接口，不能去掉
+ * IDataRow 是为跨平台设计的接口，不能去掉
  */
 public interface DataRow extends Map<String,Object>, GetHandler, Serializable {
     int size();

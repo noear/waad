@@ -101,8 +101,8 @@ public  class MapperUtil {
                         return sp.getMap();
                     case "MapList":
                         return sp.getMapList();
-                    case "DataItem":
-                        return sp.getDataItem();
+                    case "DataRow":
+                        return sp.getDataRow();
                     case "DataList":
                         return sp.getDataList();
                     default: {
