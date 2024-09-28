@@ -25,7 +25,7 @@ public class WithTest {
                 .with("ax", db.table("appx").selectQ("*"))
                 .with("ag", db.table("appx_agroup").where("agroup_id<?",10).selectQ("*"))
                 .with("ah", "select * from appx_agroup where agroup_id<?", 10)
-                .selectList("ax.*", AppxModel.class);
+                .selectList(AppxModel.class, "ax.*");
 
         System.out.println(db.lastCommand.text);
     }

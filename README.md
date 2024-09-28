@@ -162,7 +162,7 @@ public class DemoApp {
 /** 1.3.多实例切换 */
 new DbContext(...).nameSet("a");
 new DbContext(...).nameSet("b");
-DbContext.use("a").table("user").limit(1).selectItem("*", User.class);
+DbContext.use("a").table("user").limit(1).selectItem(User.class, "*");
 
 
 /** 2.1.Mapper用法 */

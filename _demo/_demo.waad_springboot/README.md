@@ -45,7 +45,7 @@ public class JavaController {
                 .where("app_id>?", 48)
                 .orderBy("app_id ASC")
                 .limit(4)
-                .selectList("*", AppxModel.class);
+                .selectList(AppxModel.class, "*");
     }
 }
 ```

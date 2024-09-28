@@ -834,7 +834,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectValue(column.getCode(), def);
     }
 
-    public <T> T selectItem(String columns, Class<T> clz) throws SQLException {
+    public <T> T selectItem(Class<T> clz, String columns) throws SQLException {
         return selectDo(columns).getItem(clz);
     }
 
@@ -842,7 +842,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(IColumn.getCodes(columns)).getItem(clz);
     }
 
-    public <T> List<T> selectList(String columns, Class<T> clz) throws SQLException {
+    public <T> List<T> selectList(Class<T> clz, String columns) throws SQLException {
         return selectDo(columns).getList(clz);
     }
 

@@ -335,7 +335,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).limit(1).selectItem("*", clz));
+                -> getQr().where(new IColumnLink(tablePk()).eq(id)).limit(1).selectItem(clz, "*"));
     }
 
     @Override
@@ -343,7 +343,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).in(idList)).selectList("*", clz));
+                -> getQr().where(new IColumnLink(tablePk()).in(idList)).selectList(clz, "*"));
     }
 
     @Override
@@ -351,7 +351,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(()
-                -> getQr().whereMap(columnMap).selectList("*", clz));
+                -> getQr().whereMap(columnMap).selectList(clz, "*"));
     }
 
     @Override
@@ -359,14 +359,14 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(() ->
-                getQr().whereEntity(entity).limit(1).selectItem("*", clz));
+                getQr().whereEntity(entity).limit(1).selectItem(clz, "*"));
     }
 
     @Override
     public T selectItem(Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        return RunUtils.call(() -> getQr(c).selectItem("*", clz));
+        return RunUtils.call(() -> getQr(c).selectItem(clz, "*"));
     }
 
     @Override
@@ -388,7 +388,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     public List<T> selectList(Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        return RunUtils.call(() -> getQr(c).selectList("*", clz));
+        return RunUtils.call(() -> getQr(c).selectList(clz, "*"));
     }
 
     @Override
@@ -405,7 +405,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     public List<T> selectList(int start, int size, Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        return RunUtils.call(() -> getQr(c).limit(start, size).selectList("*", clz));
+        return RunUtils.call(() -> getQr(c).limit(start, size).selectList(clz, "*"));
     }
 
     @Override
@@ -436,7 +436,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     public Page<T> selectPage(int start, int size, Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        List<T> list = RunUtils.call(() -> getQr(c).limit(start, size).selectList("*", clz));
+        List<T> list = RunUtils.call(() -> getQr(c).limit(start, size).selectList(clz, "*"));
         long total = RunUtils.call(() -> getQr(c).selectCount());
 
         PageImpl<T> page = new PageImpl<>(list, total, size);
@@ -458,7 +458,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     public List<T> selectTop(int size, Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        return RunUtils.call(() -> getQr(c).top(size).selectList("*", clz));
+        return RunUtils.call(() -> getQr(c).top(size).selectList(clz, "*"));
     }
 
     @Override

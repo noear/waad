@@ -48,7 +48,7 @@ public class JavaController {
                 .limit(1)
                 .caching(Config.cache)
                 .cacheTag("app_" + app_id)
-                .selectItem("*", AppxModel.class);
+                .selectItem(AppxModel.class, "*");
     }
 
     @Mapping("demo3/json")
@@ -80,7 +80,7 @@ public class JavaController {
                 .where("app_id>?",48)
                 .orderBy("app_id ASC")
                 .limit(4)
-                .selectList("*", AppxModel.class);
+                .selectList(AppxModel.class, "*");
     }
 
     @Mapping("demo5/json")

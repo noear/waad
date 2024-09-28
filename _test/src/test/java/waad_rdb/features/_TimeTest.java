@@ -18,7 +18,7 @@ public class _TimeTest {
         if (_model == null) {
             _model = db.table("appx_copy")
                     .where("app_id=?", 22)
-                    .selectItem("*", AppxCopy2Model.class);
+                    .selectItem(AppxCopy2Model.class, "*");
 
             System.out.println(db.lastCommand.text);
         }
@@ -47,7 +47,7 @@ public class _TimeTest {
     public void test_insert2() throws Exception {
         AppxCopy2Model map = db.table("appx_copy")
                 .where("app_id=?", 22)
-                .selectItem("*", AppxCopy2Model.class);
+                .selectItem(AppxCopy2Model.class, "*");
 
         map.app_id = 1000;
 

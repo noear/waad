@@ -81,7 +81,7 @@ public class demo_table {
     public static List<UserInfoModel> demo_select2() throws SQLException{
         List<UserInfoModel> list = db.table("user_info")
                 .where("user_id<?", 10)
-                .selectList("user_id,name,sex" ,UserInfoModel.class);
+                .selectList(UserInfoModel.class, "user_id,name,sex");
 
         return list;
     }

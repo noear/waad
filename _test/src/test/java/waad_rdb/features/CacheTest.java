@@ -19,7 +19,7 @@ public class CacheTest {
                 .where("app_id=?", 23)
                 .caching(cache)
                 .cacheTag("app_23")
-                .selectItem("*", AppxModel.class);
+                .selectItem(AppxModel.class, "*");
 
         System.out.println("tmp.app_id = " + tmp.app_id);
         assert tmp.app_id == 23;

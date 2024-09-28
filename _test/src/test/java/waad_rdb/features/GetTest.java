@@ -12,7 +12,7 @@ public class GetTest {
     public void test1() throws Exception {
         assert db.table("appx")
                 .where("app_id=?", 22)
-                .selectItem("*", AppxModel.class).app_id == 22;
+                .selectItem(AppxModel.class, "*").app_id == 22;
 
     }
 
@@ -37,7 +37,7 @@ public class GetTest {
     public void test11() throws Exception {
         db.table("appx")
                 .where("app_id<?", 22)
-                .selectList("*", AppxModel.class)
+                .selectList(AppxModel.class, "*")
                 .forEach(m -> m.getApp_id());
 
     }

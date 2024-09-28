@@ -156,8 +156,8 @@
 -selectCount(code:String) -> long //执行查询，并返回COUNT(..) //count code 要自己手写
 -selectValue(column:String)-> Object
 -selectValue(column:String, def:T)-> T
--selectItem(columns:String,Class<T> clz)-> T
--selectList(columns:String,Class<T> clz)-> List<T>
+-selectItem(Class<T> clz, columns:String)-> T
+-selectList(Class<T> clz, columns:String)-> List<T>
 -selectMap(columns:String)-> Map<String,Object>
 -selectMapList(columns:String)-> List<Map<String,Object>>
 -selectArray(column:String)-> List<Object>

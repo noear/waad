@@ -105,7 +105,7 @@ public class TableTest {
     public void test1() throws Exception {
         assert db.table("appx")
                 .where("app_id=?", 22)
-                .selectItem("*", AppxModel.class).app_id == 22;
+                .selectItem(AppxModel.class, "*").app_id == 22;
 
         System.out.println(db.lastCommand.text);
     }
@@ -123,7 +123,7 @@ public class TableTest {
     public void test1_2() throws Exception {
         AppxD appxD = db.table("appx")
                 .where("app_id=?", 22)
-                .selectItem("*",AppxD.class);
+                .selectItem(AppxD.class, "*");
 
         assert appxD.app_id() == 22;
 
@@ -131,7 +131,7 @@ public class TableTest {
 
          appxD = DbContext.use("rock").table("appx")
                 .where("app_id=?", 22)
-                .selectItem("*",AppxD.class);
+                .selectItem(AppxD.class, "*");
 
         assert appxD.app_id() == 22;
     }
@@ -157,7 +157,7 @@ public class TableTest {
     public void test12() throws Exception {
         assert db.table("appx")
                 .where("app_id IS NULL")
-                .selectItem("*", AppxModel.class).app_id == null;
+                .selectItem(AppxModel.class, "*").app_id == null;
 
         System.out.println(db.lastCommand.text);
 
@@ -170,7 +170,7 @@ public class TableTest {
     public void test12_2() throws Exception {
         assert db.table("appx")
                 .where("app_id IS NULL")
-                .selectList("*", AppxModel.class).size() == 0;
+                .selectList(AppxModel.class, "*").size() == 0;
 
         System.out.println(db.lastCommand.text);
 

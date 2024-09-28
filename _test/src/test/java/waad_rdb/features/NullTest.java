@@ -20,7 +20,7 @@ public class NullTest {
     public void test() throws SQLException {
         AppxModel temp = db2.table("appx")
                 .where("app_id=?", Integer.MAX_VALUE)
-                .selectItem("*", AppxModel.class);
+                .selectItem(AppxModel.class, "*");
 
         assert temp != null;
 
@@ -28,7 +28,7 @@ public class NullTest {
 
         AppxModel temp2 = db2.table("appx")
                 .where("app_id=?", Integer.MAX_VALUE)
-                .selectItem("*", AppxModel.class);
+                .selectItem(AppxModel.class, "*");
 
         WaadConfig.isSelectNullAsDefault = true;
 

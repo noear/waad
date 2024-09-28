@@ -235,7 +235,7 @@ db.table("user u")
   .innerJoin("user_ex e").onEq("u.id","e.user_id")
   .whereEq("u.id", 10).andEq("e.sex",1)
   .limit(1)
-  .selectItem("u.*,e.sex user_sex", User.class);
+  .selectItem(User.class, "u.*,e.sex user_sex");
 
 
 //查询++（折开来拼接条件）::
@@ -248,7 +248,7 @@ if(test.b){
   tb.whereEq("u.id",1001);
 }
 
-tb.selectItem("u.*,e.sex,e.label", User.class);
+tb.selectItem(User.class, "u.*,e.sex,e.label");
 
 //查询++2（通过构建函数拼接条件）::
 db.table("user u")
@@ -260,7 +260,7 @@ db.table("user u")
     if(test.b){
       tb.whereEq("u.id",1001);
     }
-  }).selectItem("u.*,e.sex,e.label", User.class);
+  }).selectItem(User.class, "u.*,e.sex,e.label");
 ```
 
 * 具有过滤能力的接口：whereIf, andIf, orIf, setIf, setMapIf, setEntityIf
@@ -508,7 +508,7 @@ ICacheServiceEx cache = new LocalCache().nameSet("cache");
 User user = db.table("user")
               .where("id=?",12)
               .caching(cache)  //加缓存，时间为cache的默认时间
-              .selectItem("*", User.class);
+              .selectItem(User.class, "*");
 ```
 
 * 缓存控制（不需要的可以跳过）
@@ -520,7 +520,7 @@ User user = db.table("user")
               .caching(cache)
               .usingCache(60*5)     //缓存5分钟
               .cacheTag("user_all") //加缓存标签user_all
-              .selectList("*", User.class);
+              .selectList(User.class, "*");
 
 //更新时，清除缓存 //下次查询时，又可拿到最新数据
 db.table("user").set("sex",0).where("id=?",101).update();

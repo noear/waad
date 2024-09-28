@@ -28,7 +28,7 @@ public class WhereTest {
         }
 
         long count = qr.selectCount();
-        List<AppxModel> list = qr.selectList("*", AppxModel.class);
+        List<AppxModel> list = qr.selectList(AppxModel.class, "*");
     }
 
     @Test
