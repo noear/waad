@@ -39,7 +39,8 @@
 
 
 #### 特点和理念：
-* 跨平台：可以嵌入到JVM脚本引擎（js, groovy, lua, python, ruby）及GraalVM支持的部分语言。
+
+* 跨平台：可以嵌入到JVM脚本引擎（js, groovy, lua, python, ruby）及GraalVM支持的部分语言。//使用弱类型模式
 * 很小巧：0.2Mb（且是功能完整，方案丰富；可极大简化数据库开发）。
 * 有个性：不喜欢配置（除了连接，不需要其它配置）。
 * 其它的：支持缓存控制和跨数据库事务。
@@ -63,22 +64,22 @@ db.baseMapper(User.class).selectList(mq->mq
         .andEq(User::getLabel,"T"));
 
 
-//Table 接口
-db.table("user u")
-  .innerJoin("user_ext e").onEq("u.id","e.user_id")
-  .whereEq("u.type",11)
+//Table 接口（强类型模式）
+db.table(USER)
+  .innerJoin(USER_EXT).onEq(USER.ID,USER_EXT.USER_ID)
+  .whereEq(USER.TYPE,11)
   .limit(100,20)
-  .selectList("u.*,e.sex,e.label", User.class);
+  .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
-db.table("user u")
-  .innerJoin("user_ext e").onEq("u.id","e.user_id")
-  .whereEq("u.type",11)
+db.table(USER)
+  .innerJoin(USER_EXT).onEq(USER.ID,USER_EXT.USER_ID)
+  .whereEq(USER.TYPE,11)
   .limit(100,20)
-  .selectAsCmd("u.*,e.sex,e.label"); //构建查询命令（即查询语句）
+  .selectAsCmd(USER.all(),USER_EXT.SEX,USER_EXT.LABLE); //构建查询命令（即查询语句）
 
-//Table 接口，拼装条件查询（特别适合管理后台）
+//Table 接口（弱类型模式）。拼装条件查询（特别适合管理后台）
 db.table(logger)
-  .where("1 = 1")
+  .whereTrue()
   .andIf(TextUtils.isNotEmpty(trace_id), "trace_id = ?", trace_id)
   .andIf(TextUtils.isNotEmpty(tag), "tag = ?", tag)
   .andIf(TextUtils.isNotEmpty(tag1), "tag1 = ?", tag1)
@@ -89,7 +90,7 @@ db.table(logger)
   .andIf(level > 0, "level=?", level)
   .orderBy("log_fulltime desc")
   .limit(size)
-  .selectList("*", LogModel.class);
+  .selectList(LogModel.class, "*");
 ```
 
 
@@ -193,33 +194,33 @@ StatModel stat = userDao.userStat(20201010);
 
 /** 2.2.Table用法 */
 //增::
-db.table("user").setEntity(user).insert();
-db.table("user").setMap(map).insert();
-db.table("user").setMap(map).insertAsCmd(); //构建查询命令（即查询语句）
+db.table(USER).setEntity(user).insert();
+db.table(USER).setMap(map).insert();
+db.table(USER).setMap(map).insertAsCmd(); //构建查询命令（即查询语句）
 //删::
-db.table("user").where("id=?",2).delete();
+db.table(USER).where(USER.ID.eq(2)).delete();
 //改::
-db.table("user").set("sex",1).where("id=?",2).update();
-db.table("user").setInc("level",1).where("id=?",2).update(); //字段自+1
+db.table(USER).set(USER.SEX,1).where(USER.ID.eq(1)).update();
+db.table(USER).setInc(USER.LEVEL,1).where(USER.ID.eq(2)).update(); //字段自+1
 //查::
-db.table("user u")
-  .innerJoin("user_ext e").onEq("u.id","e.user_id")
-  .whereEq("u.id",1001)
-  .selectItem("u.*,e.sex,e.label", User.class);
+db.table(USER)
+  .innerJoin(USER_EXT).onEq(USER.ID, USER.USER_ID)
+  .whereEq(USER.ID, 1001)
+  .selectItem(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABEL);
 
-//查++（折开来拼接条件）::
+//查++（折开来拼接条件）:: //以弱类型演示
 var tb = db.table("user u");
 if(test.a){
   tb.innerJoin("user_ext e").onEq("u.id","e.user_id");
 }
 
 if(test.b){
-  tb.whereEq("u.id",1001);
+  tb.where("u.id=?",1001);
 }
 
-tb.selectItem("u.*,e.sex,e.label", User.class);
+tb.selectItem(User.class, "u.*,e.sex,e.label");
 
-//查++2（通过构建函数拼接条件）::
+//查++2（通过构建函数拼接条件）:: //以弱类型演示
 db.table("user u")
   .build(tb->{
     if(test.a){
@@ -229,7 +230,7 @@ db.table("user u")
     if(test.b){
       tb.whereEq("u.id",1001);
     }
-  }).selectItem("u.*,e.sex,e.label", User.class);
+  }).selectItem(User.class, "u.*,e.sex,e.label");
 
 /** 2.3.Call用法 */
 //调用存储过程
@@ -247,15 +248,15 @@ db.sql("select name from user id=?",12).getValue();
 
 /** 3.1.事件用法（全局配置事件可用 WaadConfig） */
 //出异常时
-db.onException((cmd,err)->{});
+db.events().onException((cmd,err)->{});
 //命令构建时
-db.onCommandBuilt((cmd)->{});
+db.events().onCommandBuilt((cmd)->{});
 //命令执行前
-db.onExecuteBef((cmd)->{});
+db.events().onExecuteBef((cmd)->{});
 //命令执行中
-db.onExecuteStm((cmd,stm)->{});
+db.events().onExecuteStm((cmd,stm)->{});
 //命令执行后
-db.onExecuteAft((cmd)->{});
+db.events().onExecuteAft((cmd)->{});
 ```
 
 
