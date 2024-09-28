@@ -3,7 +3,7 @@ package waad_rdb;
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.solon.Utils;
 import org.noear.waad.DbContext;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.cache.LocalCache;
 
 import java.io.InputStream;
@@ -146,7 +146,7 @@ public class DbUtil {
     }
 
     public static DbContext db = getDb();
-    public static ICacheServiceEx cache = new LocalCache().nameSet("test");
+    public static ICacheService cache = new LocalCache().nameSet("test");
 
 
 

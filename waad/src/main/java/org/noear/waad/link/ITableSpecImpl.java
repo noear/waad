@@ -21,21 +21,33 @@ public class ITableSpecImpl implements ITableSpec {
         this.asName = asName;
     }
 
+    /**
+     * 表名
+     */
     @Override
     public String name() {
         return this.name;
     }
 
+    /**
+     * 别名
+     */
     @Override
     public String asName() {
         return asName;
     }
 
+    /**
+     * 别名为
+     */
     @Override
     public ITableSpec as(String asName) {
         return new ITableSpecImpl(name, asName);
     }
 
+    /**
+     * 获取代码
+     */
     @Override
     public String getCode() {
         if (StrUtils.isEmpty(asName)) {

@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
  * @author noear
  * @since 3.0
  */
-public class EmptyCache implements ICacheServiceEx {
+public class EmptyCache implements ICacheService {
     /**
      * 存储
      */

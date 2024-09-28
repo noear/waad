@@ -20,13 +20,15 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Created by noear on 14-9-5.
- * 数据库方问基类
+ * 数据方问基类
+ *
+ * @author noear
+ * @since 14-9-5.
+ * @since 4.0
  */
 public abstract class DataAccess<T extends DataAccess> implements Cacheable, Resultable,Serializable {
     /*查询语句*/
     public String commandText = null;
-
     /*数据库上下文*/
     public DbContext context;
     /*执行参数*/

@@ -3,7 +3,7 @@ package org.noear.waad.core;
 import org.noear.waad.DbContext;
 import org.noear.waad.transaction.DbTran;
 import org.noear.waad.transaction.DbTranUtil;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.utils.fun.Act1;
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class DbCommandImpl implements DbCommand {
     public boolean isBatch = false;
     public int isLog; //def:0  no:-1 yes:1
 
-    public ICacheServiceEx cache;
+    public ICacheService cache;
 
     public Map<String,Object> attachment;
 

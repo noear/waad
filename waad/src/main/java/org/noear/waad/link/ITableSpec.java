@@ -1,11 +1,14 @@
 package org.noear.waad.link;
 
 /**
- * @author noear 2024/9/27 created
+ * 表申明
+ *
+ * @author noear
+ * @since 4.0
  */
 public interface ITableSpec extends IExpr<ITableSpec> {
     /**
-     * 名字
+     * 表名
      */
     String name();
 }

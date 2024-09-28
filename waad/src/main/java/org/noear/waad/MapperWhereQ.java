@@ -69,19 +69,19 @@ public class MapperWhereQ extends WhereBase<MapperWhereQ> {
     }
 
     public <C> MapperWhereQ whereLk(Property<C, ?> property, String val) {
-        return where(property.toColumn().lk(val));
+        return where(property.toColumn().like(val));
     }
 
     public <C> MapperWhereQ whereNlk(Property<C, ?> property, String val) {
-        return where(property.toColumn().nlk(val));
+        return where(property.toColumn().nlike(val));
     }
 
     public <C> MapperWhereQ whereBtw(Property<C, ?> property, Object start, Object end) {
-        return where(property.toColumn().btw(start, end));
+        return where(property.toColumn().between(start, end));
     }
 
     public <C> MapperWhereQ whereNbtw(Property<C, ?> property, Object start, Object end) {
-        return where(property.toColumn().nbtw(start, end));
+        return where(property.toColumn().nbetween(start, end));
     }
 
     public <C> MapperWhereQ whereIn(Property<C, ?> property, Iterable ary) {
@@ -117,18 +117,18 @@ public class MapperWhereQ extends WhereBase<MapperWhereQ> {
     }
 
     public <C> MapperWhereQ andLk(Property<C, ?> property, String val) {
-        return and(property.toColumn().lk(val));
+        return and(property.toColumn().like(val));
     }
 
     public <C> MapperWhereQ andNlk(Property<C, ?> property, String val) {
-        return and(property.toColumn().nlk(val));
+        return and(property.toColumn().nlike(val));
     }
 
     public <C> MapperWhereQ andBtw(Property<C, ?> property, Object start, Object end) {
-        return and(property.toColumn().btw(start, end));
+        return and(property.toColumn().between(start, end));
     }
     public <C> MapperWhereQ andNbtw(Property<C, ?> property, Object start, Object end) {
-        return and(property.toColumn().nbtw(start, end));
+        return and(property.toColumn().nbetween(start, end));
     }
     public <C> MapperWhereQ andIn(Property<C, ?> property, Iterable ary) {
         return and(property.toColumn().in(ary));
@@ -163,18 +163,18 @@ public class MapperWhereQ extends WhereBase<MapperWhereQ> {
     }
 
     public <C> MapperWhereQ orLk(Property<C, ?> property, String val) {
-        return or(property.toColumn().lk(val));
+        return or(property.toColumn().like(val));
     }
 
     public <C> MapperWhereQ orNlk(Property<C, ?> property, String val) {
-        return or(property.toColumn().nlk(val));
+        return or(property.toColumn().nlike(val));
     }
 
     public <C> MapperWhereQ orBtw(Property<C, ?> property, Object start, Object end) {
-        return or(property.toColumn().btw(start, end));
+        return or(property.toColumn().between(start, end));
     }
     public <C> MapperWhereQ orNbtw(Property<C, ?> property, Object start, Object end) {
-        return or(property.toColumn().nbtw(start, end));
+        return or(property.toColumn().nbetween(start, end));
     }
     public <C> MapperWhereQ orIn(Property<C, ?> property, Iterable ary) {
         return or(property.toColumn().in(ary));

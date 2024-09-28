@@ -5,14 +5,14 @@ import net.spy.memcached.ConnectionFactoryBuilder;
 import net.spy.memcached.MemcachedClient;
 import net.spy.memcached.auth.AuthDescriptor;
 import net.spy.memcached.auth.PlainCallbackHandler;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.utils.EncryptUtils;
 import org.noear.waad.utils.StrUtils;
 
 import java.lang.reflect.Type;
 import java.util.Properties;
 
-public class MemCache implements ICacheServiceEx {
+public class MemCache implements ICacheService {
     private String _cacheKeyHead;
     private int _defaultSeconds;
 

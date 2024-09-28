@@ -2,7 +2,7 @@ package waad_demo;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.waad.DbContext;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.cache.LocalCache;
 
 import java.util.HashMap;
@@ -95,5 +95,5 @@ public class DbUtil {
     }
 
     public static DbContext db = getDb();
-    public static ICacheServiceEx cache = new LocalCache().nameSet("test");
+    public static ICacheService cache = new LocalCache().nameSet("test");
 }

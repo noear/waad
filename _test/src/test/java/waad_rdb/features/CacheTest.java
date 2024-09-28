@@ -3,7 +3,7 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.cache.LocalCache;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
@@ -11,7 +11,7 @@ import webapp.model.AppxModel2;
 
 public class CacheTest {
     DbContext db2 = DbUtil.db;
-    ICacheServiceEx cache = new LocalCache();
+    ICacheService cache = new LocalCache();
 
     @Test
     public void test1() throws Exception {

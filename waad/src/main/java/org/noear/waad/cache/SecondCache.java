@@ -10,16 +10,16 @@ import java.lang.reflect.Type;
  * @author noear
  * @since 3.0
  * */
-public class SecondCache implements ICacheServiceEx {
-    private ICacheServiceEx cache1;
-    private ICacheServiceEx cache2;
+public class SecondCache implements ICacheService {
+    private ICacheService cache1;
+    private ICacheService cache2;
     private int bufferSeconds;
 
-    public SecondCache(ICacheServiceEx cache1, ICacheServiceEx cache2) {
+    public SecondCache(ICacheService cache1, ICacheService cache2) {
         this(cache1, cache2, 5);
     }
 
-    public SecondCache(ICacheServiceEx cache1, ICacheServiceEx cache2, int bufferSeconds) {
+    public SecondCache(ICacheService cache1, ICacheService cache2, int bufferSeconds) {
         this.cache1 = cache1;
         this.cache2 = cache2;
         this.bufferSeconds = bufferSeconds;

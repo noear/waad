@@ -1,6 +1,6 @@
 package org.noear.waad.cache.ehcache;
 
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.utils.EncryptUtils;
 
 
@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
 
-public class EhCache implements ICacheServiceEx {
+public class EhCache implements ICacheService {
     private String _cacheKeyHead;
     private int _defaultSeconds;
 

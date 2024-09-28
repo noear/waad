@@ -6,7 +6,7 @@ import org.noear.waad.utils.StrUtils;
  * 表
  *
  * @author noear
- * @since 1.4
+ * @since 4.0
  */
 public interface ITable<T> {
     /**
@@ -14,6 +14,9 @@ public interface ITable<T> {
      */
     ITableSpec ____getTableSpec();
 
+    /**
+     * 所有列
+     */
     default IColumn all() {
         if (StrUtils.isEmpty(____getTableSpec().asName())) {
             return new IColumnLink(this, ____getTableSpec().name() + ".*");

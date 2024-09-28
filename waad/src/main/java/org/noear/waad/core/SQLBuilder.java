@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by noear on 15/3/5.
+ * SQL 构建器
+ *
+ * @author noear
+ * @since 15/3/5.
+ * @since 4.0
  */
 public class SQLBuilder {
     //当前数据

@@ -2,7 +2,7 @@ package org.noear.waad.mapper;
 
 import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.DataAccess;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataList;
@@ -34,7 +34,7 @@ public class MapperInvokeForAnn implements MapperInvoke {
         String _cacheClear = ann.cacheClear();
 
         //1.获取缓存服务
-        ICacheServiceEx cache_tmp = null;
+        ICacheService cache_tmp = null;
         if (StrUtils.isEmpty(_caching) == false) {
             cache_tmp = WaadConfig.libOfCache.get(_caching);
 
@@ -75,7 +75,7 @@ public class MapperInvokeForAnn implements MapperInvoke {
 
 
         //5.执行
-        ICacheServiceEx cache = cache_tmp;
+        ICacheService cache = cache_tmp;
 
         if (sqlUp.indexOf(" DELETE ") > 0 || sqlUp.indexOf(" UPDATE ") > 0) {
             int rst = sp.execute();
@@ -110,7 +110,7 @@ public class MapperInvokeForAnn implements MapperInvoke {
         return null;
     }
 
-    private  Object forSelect(DataAccess sp, Map<String,Object> map, MethodWrap mWrap, Sql ann, ICacheServiceEx cache) throws Throwable {
+    private  Object forSelect(DataAccess sp, Map<String,Object> map, MethodWrap mWrap, Sql ann, ICacheService cache) throws Throwable {
         String _cacheTag = ann.cacheTag();
         int    _usingCache = ann.usingCache();
 

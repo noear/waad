@@ -28,11 +28,17 @@ public class IColumnLink implements IColumn {
         this.asName = asName;
     }
 
+    /**
+     * 列名
+     * */
     @Override
     public String name() {
         return name;
     }
 
+    /**
+     * 别名
+     * */
     @Override
     public String asName() {
         return asName;

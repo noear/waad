@@ -14,6 +14,9 @@ import java.sql.*;
  * @since 4.0
  * */
 public interface DbDialect {
+    /**
+     * 数据类型
+     */
     DbType dbType();
 
     /**

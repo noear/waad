@@ -3,7 +3,6 @@ package waad_demo.demo.cache;
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.cache.ICacheServiceEx;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 
@@ -16,7 +15,7 @@ public class Cache1Demo {
     //普通的缓存控制
     public static void demo_cache() throws SQLException{
         DbContext db = DbConfig.pc_bcf;
-        ICacheServiceEx cache = null;
+        ICacheService cache = null;
 
         db.call("user_get").set("xxx", 1)
                 .caching(cache)
@@ -27,7 +26,7 @@ public class Cache1Demo {
 
     public static void demo_cache3() throws SQLException{
         DbContext db = DbConfig.pc_bcf;
-        ICacheServiceEx cache = null;
+        ICacheService cache = null;
 
         //1.缓存并添加简易标签
         db.call("user_get").set("xxx", 1)

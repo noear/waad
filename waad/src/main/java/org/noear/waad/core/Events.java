@@ -11,7 +11,10 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * @author noear 2024/4/19 created
+ * 事件
+ *
+ * @author noear
+ * @since 4.0
  */
 public class Events {
     private Events parent;

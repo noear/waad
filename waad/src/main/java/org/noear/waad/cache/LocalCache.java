@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author noear
  * @since 3.0
  */
-public class LocalCache implements ICacheServiceEx {
+public class LocalCache implements ICacheService {
     private String _cacheKeyHead;
     private int _defaultSeconds;
 

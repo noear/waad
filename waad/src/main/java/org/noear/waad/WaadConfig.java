@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.Events;
 import org.noear.waad.utils.ConnectionStrategy;
 import org.noear.waad.mapper.MapperAdaptorImpl;
@@ -135,6 +135,6 @@ public final class WaadConfig {
     ///////////////// final
 
 
-    public static final Map<String, ICacheServiceEx> libOfCache = new ConcurrentHashMap<>();
+    public static final Map<String, ICacheService> libOfCache = new ConcurrentHashMap<>();
     public static final Map<String, DbContext> libOfDb = new ConcurrentHashMap<>();
 }

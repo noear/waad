@@ -10,8 +10,10 @@ import java.sql.*;
 
 
 /**
- * Created by noear on 14-6-12.
- * 数据库执行器
+ * SQL 执行器
+ *
+ * @since 14-6-12.
+ * @since 4.0
  */
 public class SQLer {
     private final DbCommandImpl cmd;

@@ -1,14 +1,14 @@
 package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.cache.ICacheService;
 import org.noear.waad.cache.LocalCache;
 
 /**
  * @author noear 2021/4/2 created
  */
 public class CacheTest2 {
-    ICacheServiceEx cache = new LocalCache();
+    ICacheService cache = new LocalCache();
 
     @Test
     public void test() throws Exception{
