@@ -244,14 +244,14 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T orderByAsc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = Arrays.stream(columns).map(c->c.getCode(_context)).collect(Collectors.joining(","));
+        String columnsStr = IColumn.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
     }
 
     public T orderByDesc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = Arrays.stream(columns).map(c->c.getCode(_context)).collect(Collectors.joining(","));
+        String columnsStr = IColumn.getCodes(_context, columns);
 
 
         return orderByDo(fmtMutColumns(columnsStr) + " DESC ");
@@ -263,14 +263,14 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T andByAsc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = Arrays.stream(columns).map(c->c.getCode(_context)).collect(Collectors.joining(","));
+        String columnsStr = IColumn.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
     }
 
     public T andByDesc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = Arrays.stream(columns).map(c->c.getCode(_context)).collect(Collectors.joining(","));
+        String columnsStr = IColumn.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " DESC ");
     }
@@ -283,7 +283,7 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T groupBy(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = Arrays.stream(columns).map(c->c.getCode(_context)).collect(Collectors.joining(","));
+        String columnsStr = IColumn.getCodes(_context, columns);
 
         return groupBy(columnsStr);
     }

@@ -52,7 +52,7 @@ public class IColumnLink implements IColumn {
 
     @Override
     public String getCode(DbContext db) {
-        if (table == null || StrUtils.isEmpty(table.____getTableSpec().asName()) || name.contains(".")) {
+        if (table == null || StrUtils.isEmpty(table.__getTableSpec().asName()) || name.contains(".")) {
             if (StrUtils.isEmpty(asName())) {
                 return name;
             } else {
@@ -60,9 +60,9 @@ public class IColumnLink implements IColumn {
             }
         } else {
             if (StrUtils.isEmpty(asName())) {
-                return table.____getTableSpec().asName() + "." + name;
+                return table.__getTableSpec().asName() + "." + name;
             } else {
-                return table.____getTableSpec().asName() + "." + name + " as " + asName;
+                return table.__getTableSpec().asName() + "." + name + " as " + asName;
             }
         }
     }

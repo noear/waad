@@ -132,7 +132,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T from(ITable table) {
-        return table(table.____getTableSpec().getCode(_context));
+        return table(table.__getTableSpec().getCode(_context));
     }
 
 
@@ -153,7 +153,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T innerJoin(ITable table) {
-        return innerJoin(table.____getTableSpec().getCode(_context));
+        return innerJoin(table.__getTableSpec().getCode(_context));
     }
 
     /**
@@ -164,7 +164,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T leftJoin(ITable table) {
-        return leftJoin(table.____getTableSpec().getCode(_context));
+        return leftJoin(table.__getTableSpec().getCode(_context));
     }
 
     /**
@@ -175,7 +175,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public T rightJoin(ITable table) {
-        return rightJoin(table.____getTableSpec().getCode(_context));
+        return rightJoin(table.__getTableSpec().getCode(_context));
     }
 
     /**
@@ -240,7 +240,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         _builder.clear();
 
         _context.metaData().getDialect()
-                .buildInsertOneCode(_context, _table.____getTableSpec().name(), _builder, this::isSqlExpr, _usingNull, data);
+                .buildInsertOneCode(_context, _table.__getTableSpec().name(), _builder, this::isSqlExpr, _usingNull, data);
 
         return compile();
     }
@@ -317,7 +317,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
 
         _builder.backup();
 
-        _context.metaData().getDialect().buildInsertOneCode(_context, _table.____getTableSpec().name(), _builder, this::isSqlExpr, true, cols);
+        _context.metaData().getDialect().buildInsertOneCode(_context, _table.__getTableSpec().name(), _builder, this::isSqlExpr, true, cols);
 
         List<Object[]> argList = new ArrayList<>();
         String tml = _builder.toString();
@@ -441,12 +441,12 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         }
 
         StringBuilder updateSb = new StringBuilder();
-        _context.metaData().getDialect().updateCmdBegin(updateSb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdBegin(updateSb, _table.__getTableSpec().name());
 
         List<Object> setArgs = new ArrayList<Object>();
         StringBuilder setSb = new StringBuilder();
 
-        _context.metaData().getDialect().updateCmdSet(setSb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdSet(setSb, _table.__getTableSpec().name());
         updateItemsBuild0(data, setSb, setArgs);
 
         _builder.backup();
@@ -572,8 +572,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         List<Object[]> argList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 
-        _context.metaData().getDialect().updateCmdBegin(sb, _table.____getTableSpec().name());
-        _context.metaData().getDialect().updateCmdSet(sb, _table.____getTableSpec().name());
+        _context.metaData().getDialect().updateCmdBegin(sb, _table.__getTableSpec().name());
+        _context.metaData().getDialect().updateCmdSet(sb, _table.__getTableSpec().name());
 
         updateItemsBuildByFields0(cols, sb);
 
@@ -620,7 +620,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     protected DbQuery deleteCompile()  {
         StringBuilder sb = new StringBuilder();
 
-        _context.metaData().getDialect().deleteCmd(sb, _table.____getTableSpec().name(), _builder.indexOf(" FROM ") < 0);
+        _context.metaData().getDialect().deleteCmd(sb, _table.__getTableSpec().name(), _builder.indexOf(" FROM ") < 0);
 
         _builder.insert(sb.toString());
 
@@ -966,9 +966,9 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         StringBuilder sb = new StringBuilder(_builder.builder.length() + 100);
         sb.append(" ");//不能去掉
         if (doFormat) {
-            sb.append(fmtMutColumns(columns)).append(" FROM ").append(_table.____getTableSpec().getCode(_context));
+            sb.append(fmtMutColumns(columns)).append(" FROM ").append(_table.__getTableSpec().getCode(_context));
         } else {
-            sb.append(columns).append(" FROM ").append(_table.____getTableSpec().getCode(_context));
+            sb.append(columns).append(" FROM ").append(_table.__getTableSpec().getCode(_context));
         }
         sb.append(_builder.builder);
 
@@ -1006,7 +1006,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
 
         return temp.onCommandBuilt((cmd) -> {
             cmd.isLog = _isLog;
-            cmd.tag = _table.____getTableSpec().name();
+            cmd.tag = _table.__getTableSpec().name();
         });
     }
 

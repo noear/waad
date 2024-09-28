@@ -12,16 +12,16 @@ public interface ITable<T> {
     /**
      * 避免命名冲突
      */
-    ITableSpec ____getTableSpec();
+    ITableSpec __getTableSpec();
 
     /**
      * 所有列
      */
     default IColumn all() {
-        if (StrUtils.isEmpty(____getTableSpec().asName())) {
-            return new IColumnLink(this, ____getTableSpec().name() + ".*");
+        if (StrUtils.isEmpty(__getTableSpec().asName())) {
+            return new IColumnLink(this, __getTableSpec().name() + ".*");
         } else {
-            return new IColumnLink(this, ____getTableSpec().asName() + ".*");
+            return new IColumnLink(this, __getTableSpec().asName() + ".*");
         }
     }
 

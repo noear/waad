@@ -16,7 +16,7 @@ public class ITableLink<T> implements ITable<T> {
     }
 
     @Override
-    public ITableSpec ____getTableSpec() {
+    public ITableSpec __getTableSpec() {
         return ___ITableSpec;
     }
 
