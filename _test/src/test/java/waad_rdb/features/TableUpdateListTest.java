@@ -1,9 +1,9 @@
 package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataItem;
+import org.noear.waad.model.DataRow;
 import webapp.model.TestModel;
 import waad_rdb.DbUtil;
 
@@ -21,19 +21,19 @@ public class TableUpdateListTest {
         //删
         db.table("test").where("1=1").delete();
 
-        List<IDataItem> items = new ArrayList<>();
-        items.add(new DataItem().set("id", 1).set("v1", 1));
-        items.add(new DataItem().set("id", 2).set("v1", 2));
-        items.add(new DataItem().set("id", 3).set("v1", 3));
+        List<DataRow> items = new ArrayList<>();
+        items.add(DataRow.create().set("id", 1).set("v1", 1));
+        items.add(DataRow.create().set("id", 2).set("v1", 2));
+        items.add(DataRow.create().set("id", 3).set("v1", 3));
 
         //增
         db.table("test").insertList(items);
 
 
         items.clear();
-        items.add(new DataItem().set("id", 1).set("v1", 11));
-        items.add(new DataItem().set("id", 2).set("v1", 12));
-        items.add(new DataItem().set("id", 3).set("v1", 13));
+        items.add(DataRow.create().set("id", 1).set("v1", 11));
+        items.add(DataRow.create().set("id", 2).set("v1", 12));
+        items.add(DataRow.create().set("id", 3).set("v1", 13));
 
         //批量更新
         db.table("test").updateList(items, "id");
@@ -57,10 +57,10 @@ public class TableUpdateListTest {
         db.exeBatch("INSERT INTO test(id,v1) VALUES(?,?)", items);
 
 
-        List<IDataItem> item2 = new ArrayList<>();
-        item2.add(new DataItem().set("id", 1).set("v1", 11));
-        item2.add(new DataItem().set("id", 2).set("v1", 12));
-        item2.add(new DataItem().set("id", 3).set("v1", 13));
+        List<DataRow> item2 = new ArrayList<>();
+        item2.add(DataRow.create().set("id", 1).set("v1", 11));
+        item2.add(DataRow.create().set("id", 2).set("v1", 12));
+        item2.add(DataRow.create().set("id", 3).set("v1", 13));
 
 
         //批量更新

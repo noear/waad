@@ -2,6 +2,9 @@ package org.noear.waad;
 
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
+import org.noear.waad.model.DataList;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataReaderForDataRow;
 import org.noear.waad.utils.fun.Act2;
 
 import java.sql.SQLException;
@@ -25,12 +28,12 @@ public interface IQuery extends ICacheController<IQuery> {
      <T> List<T> getList(Class<T> cls) throws SQLException;
      <T> List<T> getList(Class<T> cls,Act2<CacheUsing, List<T>> cacheCondition) throws SQLException;
 
-     DataReader getDataReader(int fetchSize) throws SQLException;
+     DataReaderForDataRow getDataReader(int fetchSize) throws SQLException;
 
      DataList getDataList() throws SQLException;
      DataList getDataList(Act2<CacheUsing, DataList> cacheCondition) throws SQLException;
-     DataItem getDataItem() throws SQLException;
-     DataItem getDataItem(Act2<CacheUsing, DataItem> cacheCondition) throws SQLException;
+     DataRow getDataItem() throws SQLException;
+     DataRow getDataItem(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException;
 
      List<Map<String,Object>> getMapList() throws SQLException;
      Map<String,Object> getMap() throws SQLException;

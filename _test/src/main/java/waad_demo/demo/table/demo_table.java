@@ -1,7 +1,7 @@
 package waad_demo.demo.table;
 
-import org.noear.waad.DataItem;
-import org.noear.waad.DataList;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataList;
 import org.noear.waad.DbContext;
 import org.noear.waad.DbTableQuery;
 import waad_demo.config.DbConfig;
@@ -19,7 +19,7 @@ public class demo_table {
 
     public static void demo_insert() throws SQLException{
         long row_id = db.table("test")
-                .insert(new DataItem().set("log_time", "$DATE(NOW())"));
+                .insert(DataRow.create().set("log_time", "$DATE(NOW())"));
 
 
         if (row_id == 0)
@@ -31,18 +31,18 @@ public class demo_table {
         //1
         db.table("test")
                 .where("id IN (?...)", new int[] { 15,14,16})
-                .update(new DataItem().set("txt", "NOW()xx").set("num", 44));
+                .update(DataRow.create().set("txt", "NOW()xx").set("num", 44));
 
         //2. 加别名
         db.table("test t")
                 .where("t.id=?", 17)
-                .update(new DataItem().set("t.txt", "fff").set("num", 111));
+                .update(DataRow.create().set("t.txt", "fff").set("num", 111));
 
 
         //1
         db.table("test")
                 .where("id IN (?...)", db.table("user_info").where("user_id<?", 16).selectQ("user_id"))
-                .update(new DataItem().set("txt", "NOW()xx").set("num", 44));
+                .update(DataRow.create().set("txt", "NOW()xx").set("num", 44));
     }
 
     public static void demo_delete() throws SQLException{

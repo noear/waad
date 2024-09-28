@@ -1,9 +1,9 @@
 package waad_rdb.speed;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.transaction.Trans;
 import waad_rdb.DbUtil;
 
@@ -20,9 +20,9 @@ public class BatchTest {
     public void test11() throws Exception {
         db.table("test").whereTrue().delete();
 
-        List<IDataItem> items = new ArrayList<>();
+        List<DataRow> items = new ArrayList<>();
         for (int i = 1; i <= 100000; i++) {
-            items.add(new DataItem().set("id", i).set("v1", i));
+            items.add(DataRow.create().set("id", i).set("v1", i));
         }
 
         //预热

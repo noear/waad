@@ -1,17 +1,16 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import java.util.List;
 
 /**
  * @author noear 2021/11/11 created
  */
-public class IPageImpl<T> implements IPage<T> {
-
+public class PageImpl<T> implements Page<T> {
     private List<T> list;
     private long total;
     private int size;
 
-    public IPageImpl(List<T> list, long total, int size) {
+    public PageImpl(List<T> list, long total, int size) {
         this.list = list;
         this.total = total;
         this.size = size;

@@ -2,6 +2,7 @@ package org.noear.waad;
 
 import org.noear.waad.core.Command;
 import org.noear.waad.link.IColumn;
+import org.noear.waad.model.DataRow;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.function.BiFunction;
  * ?...     //说明这里是一个数组或查询结果
  */
 public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
-    protected DataItem _item = null; //会排除null数据
+    protected DataRow _item = null; //会排除null数据
 
     public DbTableQuery(DbContext context) {
         super(context);
@@ -25,7 +26,7 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
 
     private void item_init(){
         if (_item == null) {
-            _item = new DataItem();
+            _item = DataRow.create();
         }
     }
 

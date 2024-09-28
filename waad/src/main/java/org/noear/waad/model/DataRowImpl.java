@@ -1,5 +1,7 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
+import org.noear.waad.GetHandler;
+import org.noear.waad.Variate;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.utils.LinkedCaseInsensitiveMap;
 import org.noear.waad.wrap.ClassWrap;
@@ -18,25 +20,15 @@ import java.util.function.BiFunction;
  * 不能转为继承自Map
  * 否则，嵌入别的引擎时，会变转为不可知的MapAdapter
  */
-public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataItem {
-    private boolean _isUsingDbNull = false;
-
-    public DataItem() {
-        this(false);
-    }
-
-    public DataItem(Boolean isUsingDbNull) {
-        _isUsingDbNull = isUsingDbNull;
-    }
-
+class DataRowImpl extends LinkedCaseInsensitiveMap<Object> implements DataRow {
     @Override
-    public IDataItem set(String name, Object value) {
+    public DataRow set(String name, Object value) {
         put(name, value);
         return this;
     }
 
     @Override
-    public IDataItem setIf(boolean condition, String name, Object value) {
+    public DataRow setIf(boolean condition, String name, Object value) {
         if (condition) {
             set(name, value);
         }
@@ -44,7 +36,7 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     }
 
     @Override
-    public IDataItem setDf(String name, Object value, Object def) {
+    public DataRow setDf(String name, Object value, Object def) {
         if (value == null) {
             set(name, def);
         } else {
@@ -186,14 +178,14 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     /**
      * 从map加载数据
      */
-    public IDataItem setMap(Map<String, Object> data) {
+    public DataRow setMap(Map<String, Object> data) {
         //
         //保持也where的相同逻辑
         //
         return setMapIf(data, (k, v) -> v != null);
     }
 
-    public IDataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
+    public DataRow setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition) {
         data.forEach((k, v) -> {
             if (condition.apply(k, v)) {
                 set(k, v);
@@ -206,14 +198,14 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
     /**
      * 从Entity 加载数据
      */
-    public IDataItem setEntity(Object obj) {
+    public DataRow setEntity(Object obj) {
         //
         //保持与where的相同逻辑
         //
         return setEntityIf(obj, (k, v) -> v != null);
     }
 
-    public IDataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
+    public DataRow setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition) {
         EntityUtils.fromEntity(obj, (k, v) -> {
             if (condition.apply(k, v)) {
                 set(k, v);
@@ -240,8 +232,8 @@ public class DataItem extends LinkedCaseInsensitiveMap<Object> implements IDataI
 
     //============================
 
-    public static IDataItem create(Collection<String> names, GetHandler source) {
-        DataItem item = new DataItem();
+    public static DataRow create(Collection<String> names, GetHandler source) {
+        DataRow item = DataRow.create();
         for (String key : names) {
             Object val = source.get(key);
             if (val != null) {

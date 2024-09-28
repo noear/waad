@@ -5,6 +5,7 @@ import org.noear.waad.cache.ICacheController;
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.Command;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.model.*;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.link.IColumn;
@@ -201,8 +202,8 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行插入并返回自增值，使用dataBuilder构建的数据
      */
-    public long insert(Act1<IDataItem> dataBuilder) throws SQLException {
-        DataItem item = new DataItem();
+    public long insert(Act1<DataRow> dataBuilder) throws SQLException {
+        DataRow item = DataRow.create();
         dataBuilder.run(item);
 
         return insert(item);
@@ -211,7 +212,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行插入并返回自增值，使用data数据
      */
-    public long insert(IDataItem data) throws SQLException {
+    public long insert(DataRow data) throws SQLException {
         if (data == null || data.size() == 0) {
             return 0;
         }
@@ -222,7 +223,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 插入编译并获取命令
      * */
-    public Command insertAsCmd(IDataItem data) {
+    public Command insertAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -233,7 +234,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 插入编译
      * */
-    protected DbQuery insertCompile(IDataItem data) {
+    protected DbQuery insertCompile(DataRow data) {
         _builder.clear();
 
         _context.getDialect()
@@ -246,7 +247,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 根据约束进行插入
      */
-    public long insertBy(IDataItem data, String conditionFields) throws SQLException {
+    public long insertBy(DataRow data, String conditionFields) throws SQLException {
         if (data == null || data.size() == 0) {
             return 0;
         }
@@ -273,7 +274,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据
      */
-    public boolean insertList(List<IDataItem> valuesList) throws SQLException {
+    public boolean insertList(List<DataRow> valuesList) throws SQLException {
         if (valuesList == null) {
             return false;
         }
@@ -284,11 +285,11 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据（由dataBuilder构建数据）
      */
-    public <T> boolean insertList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder) throws SQLException {
-        List<IDataItem> list2 = new ArrayList<>();
+    public <T> boolean insertList(Collection<T> valuesList, Act2<T, DataRow> dataBuilder) throws SQLException {
+        List<DataRow> list2 = new ArrayList<>();
 
         for (T values : valuesList) {
-            DataItem item = new DataItem();
+            DataRow item = DataRow.create();
             dataBuilder.run(values, item);
 
             list2.add(item);
@@ -303,7 +304,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     }
 
 
-    protected <T extends GetHandler> boolean insertList(IDataItem cols, Collection<T> valuesList) throws SQLException {
+    protected <T extends GetHandler> boolean insertList(DataRow cols, Collection<T> valuesList) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return false;
         }
@@ -346,7 +347,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * 请改用 upsertBy
      */
     @Deprecated
-    public long upsert(IDataItem data, String conditionColumns) throws SQLException {
+    public long upsert(DataRow data, String conditionColumns) throws SQLException {
         return upsertBy(data, conditionColumns);
     }
 
@@ -354,7 +355,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 使用data的数据,根据约束字段自动插入或更新
      */
-    public long upsertBy(IDataItem data, String conditionColumns) throws SQLException {
+    public long upsertBy(DataRow data, String conditionColumns) throws SQLException {
         if (data == null || data.size() == 0) {
             return 0;
         }
@@ -381,11 +382,11 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         }
     }
 
-    public long upsertBy(IDataItem data, IColumn... conditionColumns) throws SQLException {
+    public long upsertBy(DataRow data, IColumn... conditionColumns) throws SQLException {
         return upsertBy(data, IColumn.getCodes(conditionColumns));
     }
 
-    public int updateBy(IDataItem data, String conditionColumns) throws SQLException {
+    public int updateBy(DataRow data, String conditionColumns) throws SQLException {
         String[] ff = conditionColumns.split(",");
 
         if (ff.length == 0) {
@@ -401,15 +402,15 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return update(data);
     }
 
-    public int updateBy(IDataItem data, IColumn... conditionColumns) throws SQLException {
+    public int updateBy(DataRow data, IColumn... conditionColumns) throws SQLException {
         return updateBy(data, IColumn.getCodes(conditionColumns));
     }
 
     /**
      * 执行更新并返回影响行数，使用dataBuilder构建的数据
      */
-    public int update(Act1<IDataItem> dataBuilder) throws SQLException {
-        DataItem item = new DataItem();
+    public int update(Act1<DataRow> dataBuilder) throws SQLException {
+        DataRow item = DataRow.create();
         dataBuilder.run(item);
 
         return update(item);
@@ -418,7 +419,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行更新并返回影响行数，使用set接口的数据
      */
-    public int update(IDataItem data) throws SQLException {
+    public int update(DataRow data) throws SQLException {
         if (data == null || data.size() == 0) {
             return 0;
         }
@@ -430,7 +431,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 更新编译并返回命令
      * */
-    public Command updateAsCmd(IDataItem data) {
+    public Command updateAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -442,7 +443,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 更新编译
      * */
-    protected DbQuery updateCompile(IDataItem data)  {
+    protected DbQuery updateCompile(DataRow data)  {
         if (WaadConfig.isUpdateMustConditional && _builder.indexOf(" WHERE ") < 0) {
             throw new RuntimeException("Lack of update condition!!!");
         }
@@ -474,7 +475,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return query;
     }
 
-    private void updateItemsBuild0(IDataItem data, StringBuilder buf, List<Object> args) {
+    private void updateItemsBuild0(DataRow data, StringBuilder buf, List<Object> args) {
         data.forEach((key, value) -> {
             if (value == null) {
                 if (_usingNull) {
@@ -500,7 +501,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         buf.deleteCharAt(buf.length() - 1);
     }
 
-    private void updateItemsBuildByFields0(IDataItem data, StringBuilder buf) {
+    private void updateItemsBuildByFields0(DataRow data, StringBuilder buf) {
         data.forEach((key, value) -> {
             buf.append(fmtColumn(key)).append("=?,");
         });
@@ -511,7 +512,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * 执行批量合并插入，使用集合数据
      */
-    public int[] updateList(List<IDataItem> valuesList, String conditionColumns) throws SQLException {
+    public int[] updateList(List<DataRow> valuesList, String conditionColumns) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return null;
         }
@@ -519,22 +520,22 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return updateList(valuesList.get(0), valuesList, conditionColumns);
     }
 
-    public int[] updateList(List<IDataItem> valuesList, IColumn... conditionColumns) throws SQLException {
+    public int[] updateList(List<DataRow> valuesList, IColumn... conditionColumns) throws SQLException {
         return updateList(valuesList, IColumn.getCodes(conditionColumns));
     }
 
     /**
      * 执行批量合并插入，使用集合数据（由dataBuilder构建数据）
      */
-    public <T> int[] updateList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder, String conditionColumns) throws SQLException {
+    public <T> int[] updateList(Collection<T> valuesList, Act2<T, DataRow> dataBuilder, String conditionColumns) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return null;
         }
 
-        List<DataItem> list2 = new ArrayList<>();
+        List<DataRow> list2 = new ArrayList<>();
 
         for (T values : valuesList) {
-            DataItem item = new DataItem();
+            DataRow item = DataRow.create();
             dataBuilder.run(values, item);
 
             list2.add(item);
@@ -548,12 +549,12 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         }
     }
 
-    public <T> int[] updateList(Collection<T> valuesList, Act2<T, IDataItem> dataBuilder, IColumn... conditionColumns) throws SQLException {
+    public <T> int[] updateList(Collection<T> valuesList, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns) throws SQLException {
         return updateList(valuesList, dataBuilder, IColumn.getCodes(conditionColumns));
     }
 
 
-    protected <T extends GetHandler> int[] updateList(IDataItem cols, Collection<T> valuesList, String conditionColumns) throws SQLException {
+    protected <T extends GetHandler> int[] updateList(DataRow cols, Collection<T> valuesList, String conditionColumns) throws SQLException {
         if (valuesList == null || valuesList.size() == 0) {
             return null;
         }
@@ -880,30 +881,30 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     /**
      * @since 2024/06/12
      * */
-    public <T> IDataReader<T> selectReader(String columns, Class<T> clz) throws SQLException {
+    public <T> DataReader<T> selectReader(String columns, Class<T> clz) throws SQLException {
         return selectDo(columns).getDataReader(fetch_size).toEntityReader(clz);
     }
 
-    public <T> IDataReader<T> selectReader(Class<T> clz, IColumn... columns) throws SQLException {
+    public <T> DataReader<T> selectReader(Class<T> clz, IColumn... columns) throws SQLException {
         return selectReader(IColumn.getCodes(columns), clz);
     }
 
-    public <T> IPage<T> selectPage(String columns, Class<T> clz) throws SQLException {
+    public <T> Page<T> selectPage(String columns, Class<T> clz) throws SQLException {
         long total = selectCount();
         List<T> list = selectDo(columns).getList(clz);
 
-        return new IPageImpl<>(list, total, limit_size);
+        return new PageImpl<>(list, total, limit_size);
     }
 
-    public <T> IPage<T> selectPage( Class<T> clz, IColumn... columns) throws SQLException {
+    public <T> Page<T> selectPage(Class<T> clz, IColumn... columns) throws SQLException {
         return selectPage(IColumn.getCodes(columns), clz);
     }
 
-    public DataItem selectDataItem(String columns) throws SQLException {
+    public DataRow selectDataItem(String columns) throws SQLException {
         return selectDo(columns).getDataItem();
     }
 
-    public DataItem selectDataItem(IColumn... columns) throws SQLException {
+    public DataRow selectDataItem(IColumn... columns) throws SQLException {
         return selectDataItem(IColumn.getCodes(columns));
     }
 
@@ -919,23 +920,23 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
      * @since 2024/06/12
      * @since 1.4 (remove fetchSize)
      * */
-    public DataReader selectDataReader(String columns) throws SQLException {
+    public DataReaderForDataRow selectDataReader(String columns) throws SQLException {
         return selectDo(columns).getDataReader(fetch_size);
     }
 
-    public DataReader selectDataReader(IColumn... columns) throws SQLException {
+    public DataReaderForDataRow selectDataReader(IColumn... columns) throws SQLException {
         return selectDataReader(IColumn.getCodes(columns));
     }
 
 
-    public IPage<IDataItem> selectDataPage(String columns) throws SQLException {
+    public Page<DataRow> selectDataPage(String columns) throws SQLException {
         long total = selectCount();
-        List<IDataItem> list = selectDo(columns).getDataList().getItemList();
+        List<DataRow> list = selectDo(columns).getDataList().getItemList();
 
-        return new IPageImpl<>(list, total, limit_size);
+        return new PageImpl<>(list, total, limit_size);
     }
 
-    public IPage<IDataItem> selectDataPage(IColumn... columns) throws SQLException {
+    public Page<DataRow> selectDataPage(IColumn... columns) throws SQLException {
         return selectDataPage(IColumn.getCodes(columns));
     }
 
@@ -955,14 +956,14 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
         return selectMapList(IColumn.getCodes(columns));
     }
 
-    public IPage<Map<String, Object>> selectMapPage(String columns) throws SQLException {
+    public Page<Map<String, Object>> selectMapPage(String columns) throws SQLException {
         long total = selectCount();
         List<Map<String, Object>> list = selectDo(columns).getMapList();
 
-        return new IPageImpl<>(list, total, limit_size);
+        return new PageImpl<>(list, total, limit_size);
     }
 
-    public IPage<Map<String, Object>> selectMapPage(IColumn... columns) throws SQLException {
+    public Page<Map<String, Object>> selectMapPage(IColumn... columns) throws SQLException {
         return selectMapPage(IColumn.getCodes(columns));
     }
 

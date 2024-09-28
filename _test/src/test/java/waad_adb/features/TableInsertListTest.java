@@ -1,9 +1,9 @@
 package waad_adb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataItem;
+import org.noear.waad.model.DataRow;
 import webapp.model.TestModel;
 import waad_adb.DbUtil;
 
@@ -35,10 +35,10 @@ public class TableInsertListTest {
 
         long idBase = System.currentTimeMillis();
 
-        List<IDataItem> items = new ArrayList<>();
-        items.add(new DataItem().set("id",1 + idBase).set("v1",1));
-        items.add(new DataItem().set("id",2 + idBase).set("v1",2));
-        items.add(new DataItem().set("id",3 + idBase).set("v1",3));
+        List<DataRow> items = new ArrayList<>();
+        items.add(DataRow.create().set("id",1 + idBase).set("v1",1));
+        items.add(DataRow.create().set("id",2 + idBase).set("v1",2));
+        items.add(DataRow.create().set("id",3 + idBase).set("v1",3));
 
         //增
         db.table("test").insertList(items);

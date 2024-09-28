@@ -2,8 +2,8 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.snack.ONode;
-import org.noear.waad.DataItem;
-import org.noear.waad.DataList;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataList;
 import org.noear.waad.DbContext;
 import waad_rdb.DbUtil;
 
@@ -29,7 +29,7 @@ public class JsonTest {
 
     @Test
     public void test2() throws Exception {
-        DataItem item = db.table("appx")
+        DataRow item = db.table("appx")
                 .where("app_id=?", 1)
                 .selectDataItem("*");
 

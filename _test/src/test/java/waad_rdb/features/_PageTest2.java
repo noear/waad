@@ -3,7 +3,7 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
-import org.noear.waad.IPage;
+import org.noear.waad.model.Page;
 import webapp.model.AppxModel;
 import waad_rdb.DbUtil;
 
@@ -21,7 +21,7 @@ public class _PageTest2 {
     @Test
     public void test_page() throws Exception {
 
-        IPage<AppxModel> list = mapper.selectPage(0, 10, q->q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list = mapper.selectPage(0, 10, q->q.orderByAsc(AppxModel::getApp_id));
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 1;
         assert list.getTotal() > 10;
@@ -33,7 +33,7 @@ public class _PageTest2 {
 
     @Test
     public void test_page2() throws Exception{
-        IPage<AppxModel> list =  mapper.selectPage(1,10,q->q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list =  mapper.selectPage(1,10, q->q.orderByAsc(AppxModel::getApp_id));
         assert  list.getList().size() == 10;
         assert list.getList().get(0).app_id == 2;
         assert list.getTotal() > 10;
@@ -45,7 +45,7 @@ public class _PageTest2 {
 
     @Test
     public void test_page3() throws Exception {
-        IPage<AppxModel> list = db2.table("appx a")
+        Page<AppxModel> list = db2.table("appx a")
                 .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
                 .orderBy("a.app_id ASC")
                 .limit(1, 10)
@@ -62,7 +62,7 @@ public class _PageTest2 {
 
     @Test
     public void test_page4() throws Exception{
-        IPage<AppxModel> list = db2.table("appx")
+        Page<AppxModel> list = db2.table("appx")
                 .where("app_id=?",2)
                 .orderBy("app_id ASC")
                 .selectPage("*", AppxModel.class);

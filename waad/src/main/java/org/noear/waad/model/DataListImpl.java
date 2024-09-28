@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import org.noear.waad.wrap.ClassWrap;
 
@@ -12,9 +12,8 @@ import java.util.*;
  * 不能转为继承自List
  * 否则，嵌入别的引擎时，会变转为不可知的ListAdapter，让扩展的方法失效
  */
-public class DataList implements IDataList, Serializable {
-    private ArrayList<IDataItem> items = new ArrayList<>();
-
+class DataListImpl implements DataList, Serializable {
+    private ArrayList<DataRow> items = new ArrayList<>();
 
     @Override
     public int size() {
@@ -27,28 +26,28 @@ public class DataList implements IDataList, Serializable {
     }
 
     @Override
-    public IDataItem get(int index) {
+    public DataRow get(int index) {
         return items.get(index);
     }
 
     @Override
-    public void add(IDataItem item) {
+    public void add(DataRow item) {
         items.add(item);
     }
 
     @Override
-    public List<IDataItem> getItemList() {
+    public List<DataRow> getItemList() {
         return items;
     }
 
     @Override
-    public Iterator<IDataItem> iterator() {
+    public Iterator<DataRow> iterator() {
         return items.iterator();
     }
 
     ///////////////////////////////////
 
-    public IDataItem getFirst() {
+    public DataRow getFirst() {
         if (size() > 0) {
             return get(0);
         } else {
@@ -56,7 +55,7 @@ public class DataList implements IDataList, Serializable {
         }
     }
 
-    public IDataItem getLast() {
+    public DataRow getLast() {
         if (size() > 0) {
             return get(size() - 1);
         } else {
@@ -73,7 +72,7 @@ public class DataList implements IDataList, Serializable {
         ClassWrap classWrap = ClassWrap.get(clz);
         List<T> list = new ArrayList<T>(size());
 
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             T item = classWrap.toEntity(r);
             list.add((T) item);
         }
@@ -95,11 +94,11 @@ public class DataList implements IDataList, Serializable {
         Map<String, Object> map = new HashMap<>();
 
         if (valColumn == null || valColumn.length() == 0) {
-            for (IDataItem r : this) {
+            for (DataRow r : this) {
                 map.put(r.get(keyColumn).toString(), r);
             }
         } else {
-            for (IDataItem r : this) {
+            for (DataRow r : this) {
                 map.put(r.get(keyColumn).toString(), r.get(valColumn));
             }
         }
@@ -113,7 +112,7 @@ public class DataList implements IDataList, Serializable {
     public <T> Set<T> toSet(String column) {
         Set<T> set = new HashSet<>();
 
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             set.add((T) r.get(column));
         }
         return set;
@@ -122,7 +121,7 @@ public class DataList implements IDataList, Serializable {
     public <T> Set<T> toSet(int columnIndex) {
         Set<T> set = new HashSet<>();
 
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             set.add((T) r.get(columnIndex));
         }
         return set;
@@ -135,7 +134,7 @@ public class DataList implements IDataList, Serializable {
     public <T> List<T> toArray(String columnName) {
         List<T> list = new ArrayList<T>();
 
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             list.add((T) r.get(columnName));
         }
         return list;
@@ -147,7 +146,7 @@ public class DataList implements IDataList, Serializable {
     public <T> List<T> toArray(int columnIndex) {
         List<T> list = new ArrayList<T>();
 
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             list.add((T) r.get(columnIndex));
         }
         return list;

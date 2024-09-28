@@ -3,7 +3,7 @@ package waad_adb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
-import org.noear.waad.IPage;
+import org.noear.waad.model.Page;
 import webapp.model.AppxModel;
 import waad_adb.DbUtil;
 
@@ -42,7 +42,7 @@ public class _PageTest {
     @Test
     public void test_page() throws Exception {
 
-        IPage<AppxModel> list = mapper.selectPage(0, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list = mapper.selectPage(0, 10, q -> q.orderByAsc(AppxModel::getApp_id));
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 1;
 
@@ -51,7 +51,7 @@ public class _PageTest {
 
     @Test
     public void test_page2() throws Exception {
-        IPage<AppxModel> list = mapper.selectPage(1, 10, q -> q.orderByAsc(AppxModel::getApp_id));
+        Page<AppxModel> list = mapper.selectPage(1, 10, q -> q.orderByAsc(AppxModel::getApp_id));
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 2;
 

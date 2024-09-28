@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import java.sql.SQLException;
 
@@ -7,7 +7,7 @@ import java.sql.SQLException;
  *
  * @author noear 2024/7/12 created
  */
-public interface IDataReader<T> extends AutoCloseable {
+public interface DataReader<T> extends AutoCloseable {
     /**
      * 获取下一个（可能为 null）
      */

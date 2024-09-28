@@ -1,10 +1,9 @@
 package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataItem;
-import org.noear.waad.IDataList;
+import org.noear.waad.model.DataRow;
 import waad_rdb.DbUtil;
 import webapp.model.TestModel;
 
@@ -48,10 +47,10 @@ public class TableInsertListTest {
         //删
         db.table("test").where("1=1").delete();
 
-        List<IDataItem> items = new ArrayList<>();
-        items.add(new DataItem().set("id",1).set("v1",1).set("v2", null));
-        items.add(new DataItem().set("id",2).set("v1",2));
-        items.add(new DataItem().set("id",3).set("v1",3));
+        List<DataRow> items = new ArrayList<>();
+        items.add(DataRow.create().set("id",1).set("v1",1).set("v2", null));
+        items.add(DataRow.create().set("id",2).set("v1",2));
+        items.add(DataRow.create().set("id",3).set("v1",3));
 
         //增
         db.table("test").insertList(items);
@@ -64,10 +63,10 @@ public class TableInsertListTest {
         //删
         db.table(TEST).where("1=1").delete();
 
-        List<IDataItem> items = new ArrayList<>();
-        items.add(new DataItem().set(TEST.ID.name(),1).set(TEST.V1.name(),1).set("v2", null));
-        items.add(new DataItem().set(TEST.ID.name(),2).set(TEST.V1.name(),2));
-        items.add(new DataItem().set(TEST.ID.name(),3).set(TEST.V1.name(),3));
+        List<DataRow> items = new ArrayList<>();
+        items.add(DataRow.create().set(TEST.ID.name(),1).set(TEST.V1.name(),1).set("v2", null));
+        items.add(DataRow.create().set(TEST.ID.name(),2).set(TEST.V1.name(),2));
+        items.add(DataRow.create().set(TEST.ID.name(),3).set(TEST.V1.name(),3));
 
         //增
         db.table(TEST).insertList(items);

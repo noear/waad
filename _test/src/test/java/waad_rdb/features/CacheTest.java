@@ -1,7 +1,7 @@
 package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.DbContext;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.cache.LocalCache;
@@ -24,7 +24,7 @@ public class CacheTest {
         System.out.println("tmp.app_id = " + tmp.app_id);
         assert tmp.app_id == 23;
 
-        cache.tags().update("app_23", DataItem.class, (DataItem di) -> {
+        cache.tags().update("app_23", DataRow.class, (DataRow di) -> {
             AppxModel m = di.toEntity(AppxModel.class);
             assert m.app_id == 23;
             return di;
@@ -44,7 +44,7 @@ public class CacheTest {
         System.out.println("tmp.app_id = " + tmp.app_id);
         assert tmp.app_id == 23;
 
-        cache.tags().update("app_23",  DataItem.class, (DataItem di) -> {
+        cache.tags().update("app_23",  DataRow.class, (DataRow di) -> {
             AppxModel m = di.toEntity(AppxModel.class);
             System.out.println("tmp.app_id = " + tmp.app_id);
             assert m.app_id == 23;
@@ -78,7 +78,7 @@ public class CacheTest {
         assert tmp.app_id == 23;
 
 
-        cache.tags().update("app_23", DataItem.class,(DataItem di) -> {
+        cache.tags().update("app_23", DataRow.class,(DataRow di) -> {
             AppxModel2 m = di.toEntity(AppxModel2.class);
             System.out.println("tmp.app_id = " + m.app_id);
             assert m.app_id == 23;

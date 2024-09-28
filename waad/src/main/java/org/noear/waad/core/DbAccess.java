@@ -3,6 +3,9 @@ package org.noear.waad.core;
 import org.noear.waad.*;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheService;
+import org.noear.waad.model.DataList;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataReaderForDataRow;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 
@@ -220,7 +223,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
 
     @Override
     public <T> T getItem(Class<T> cls) throws SQLException {
-        DataItem item = getDataItem();
+        DataRow item = getDataItem();
 
         // nullable 处理
         if (item.size() == 0) {
@@ -240,7 +243,7 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
 
         AtomicReference _tmp = new AtomicReference();
 
-        DataItem item = getDataItem((cu, di) -> {
+        DataRow item = getDataItem((cu, di) -> {
             _tmp.set(di.toEntity(cls));
             cacheCondition.run(cu, (T) _tmp.get());
         });
@@ -279,14 +282,14 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
         }
 
         if (rst == null) {
-            return new DataList();
+            return DataList.create();
         } else {
             return rst;
         }
     }
 
     @Override
-    public DataReader getDataReader(int fetchSize) throws SQLException {
+    public DataReaderForDataRow getDataReader(int fetchSize) throws SQLException {
         Command cmd = getCommand();
         return new SQLer(cmd).getReader(fetchSize);
     }
@@ -297,24 +300,24 @@ public abstract class DbAccess<T extends DbAccess> implements IWaadKey, IQuery,S
     }
 
     @Override
-    public DataItem getDataItem() throws SQLException {
+    public DataRow getDataItem() throws SQLException {
         return getDataItem(null);
     }
 
     @Override
-    public DataItem getDataItem(Act2<CacheUsing, DataItem> cacheCondition) throws SQLException {
-        DataItem rst;
+    public DataRow getDataItem(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException {
+        DataRow rst;
         Command cmd = getCommand();
 
         if (_cache == null) {
             rst = new SQLer(cmd).getRow();
         } else {
             _cache.usingCache(cacheCondition);
-            rst = _cache.getEx(this.getWaadKey(), DataItem.class, () -> (new SQLer(cmd).getRow()));
+            rst = _cache.getEx(this.getWaadKey(), DataRow.class, () -> (new SQLer(cmd).getRow()));
         }
 
         if (rst == null) {
-            return new DataItem();
+            return DataRow.create();
         } else {
             return rst;
         }

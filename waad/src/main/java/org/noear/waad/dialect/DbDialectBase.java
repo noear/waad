@@ -1,7 +1,7 @@
 package org.noear.waad.dialect;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.fun.Fun1;
 
@@ -103,7 +103,7 @@ public abstract class DbDialectBase implements DbDialect {
 
 
     @Override
-    public void buildInsertOneCode(DbContext ctx, String table1, SQLBuilder sqlB, Fun1<Boolean, String> isSqlExpr, boolean _usingNull, IDataItem values) {
+    public void buildInsertOneCode(DbContext ctx, String table1, SQLBuilder sqlB, Fun1<Boolean, String> isSqlExpr, boolean _usingNull, DataRow values) {
         List<Object> args = new ArrayList<Object>();
         StringBuilder sb = new StringBuilder();
 

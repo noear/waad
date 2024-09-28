@@ -1,6 +1,9 @@
 package org.noear.waad.core;
 
 import org.noear.waad.*;
+import org.noear.waad.model.DataList;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataReaderForDataRow;
 
 import java.sql.*;
 
@@ -78,13 +81,13 @@ public class SQLer {
         }
     }
 
-    public DataItem getRow() throws SQLException {
+    public DataRow getRow() throws SQLException {
         if (cmd.context.isCompilationMode()) {
             return null;
         }
 
         try {
-            DataItem row = new DataItem();
+            DataRow row = DataRow.create();
 
             rset = query(false, 0);
             ResultSetMetaData meta = rset.getMetaData();
@@ -117,13 +120,13 @@ public class SQLer {
         }
 
         try {
-            DataList table = new DataList();
+            DataList table = DataList.create();
 
             rset = query(false, 0);
             ResultSetMetaData meta = rset.getMetaData();
 
             while (rset != null && rset.next()) {
-                DataItem row = new DataItem();
+                DataRow row = DataRow.create();
                 int len = meta.getColumnCount();
 
                 for (int i = 1; i <= len; i++) {
@@ -146,14 +149,14 @@ public class SQLer {
         }
     }
 
-    public DataReader getReader(int fetchSize) throws SQLException {
+    public DataReaderForDataRow getReader(int fetchSize) throws SQLException {
         if (cmd.context.isCompilationMode()) {
             return null;
         }
 
         try {
             rset = query(true, fetchSize);
-            return new DataReader(this, cmd, rset);
+            return new DataReaderForDataRow(this, cmd, rset);
         } catch (SQLException ex) {
             cmd.context.events().runExceptionEvent(cmd, ex);
             tryClose();

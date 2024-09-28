@@ -2,6 +2,7 @@ package org.noear.waad.dialect;
 
 import org.noear.waad.*;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.utils.fun.Fun1;
 
 import java.sql.*;
@@ -74,7 +75,7 @@ public interface DbDialect {
     /**
      * 单条插入代码构建
      */
-    void buildInsertOneCode(DbContext ctx, String table1, SQLBuilder sqlB, Fun1<Boolean, String> isSqlExpr, boolean _usingNull, IDataItem values);
+    void buildInsertOneCode(DbContext ctx, String table1, SQLBuilder sqlB, Fun1<Boolean, String> isSqlExpr, boolean _usingNull, DataRow values);
 
 
     /**

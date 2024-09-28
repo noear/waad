@@ -1,6 +1,6 @@
 package org.noear.waad.wrap;
 
-import org.noear.waad.IDataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.WaadConfig;
 import org.noear.waad.annotation.Table;
 import org.noear.waad.utils.fun.Act2;
@@ -137,7 +137,7 @@ public class ClassWrap {
     }
 
     //将 data 转为 entity
-    public <T> T toEntity(IDataItem data) {
+    public <T> T toEntity(DataRow data) {
         try {
             if (recordable()) {
                 Parameter[] argsP = recordParams();

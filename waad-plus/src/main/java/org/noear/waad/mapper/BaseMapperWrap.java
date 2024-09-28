@@ -1,9 +1,9 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
+import org.noear.waad.model.*;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
-import org.noear.waad.IPageImpl;
 import org.noear.waad.link.IColumnImpl;
 import org.noear.waad.utils.RunUtils;
 import org.noear.waad.utils.StrUtils;
@@ -81,7 +81,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public Long insert(T entity, boolean excludeNull) {
-        DataItem data = new DataItem();
+        DataRow data = DataRow.create();
 
         if (excludeNull) {
             data.setEntityIf(entity, (k, v) -> v != null);
@@ -101,8 +101,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long insert(T entity, Act2<T, IDataItem> dataBuilder) {
-        DataItem data = new DataItem();
+    public Long insert(T entity, Act2<T, DataRow> dataBuilder) {
+        DataRow data = DataRow.create();
         dataBuilder.run(entity, data);
 
         return RunUtils.call(() -> getQr().insert(data));
@@ -110,9 +110,9 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public void insertList(List<T> list) {
-        List<IDataItem> list2 = new ArrayList<>();
+        List<DataRow> list2 = new ArrayList<>();
         for (T d : list) {
-            list2.add(new DataItem().setEntityIf(d, (k, v) -> true));
+            list2.add(DataRow.create().setEntityIf(d, (k, v) -> true));
         }
 
         RunUtils.call(()
@@ -126,10 +126,10 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @param dataBuilder 数据组装器
      */
     @Override
-    public void insertList(List<T> list, Act2<T, IDataItem> dataBuilder) {
-        List<IDataItem> list2 = new ArrayList<>();
+    public void insertList(List<T> list, Act2<T, DataRow> dataBuilder) {
+        List<DataRow> list2 = new ArrayList<>();
         for (T d : list) {
-            DataItem data = new DataItem();
+            DataRow data = DataRow.create();
             dataBuilder.run(d, data);
             list2.add(data);
         }
@@ -166,7 +166,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public Integer updateById(T entity, boolean excludeNull) {
-        DataItem data = new DataItem();
+        DataRow data = DataRow.create();
 
         if (excludeNull) {
             data.setEntityIf(entity, (k, v) -> v != null);
@@ -185,8 +185,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @param dataBuilder 组装data的方式，方便支持部分属性允许设置为null，部分不允许
      */
     @Override
-    public Integer updateById(T entity, Act2<T, IDataItem> dataBuilder) {
-        DataItem data = new DataItem();
+    public Integer updateById(T entity, Act2<T, DataRow> dataBuilder) {
+        DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
 
@@ -198,7 +198,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> c) {
-        DataItem data = new DataItem();
+        DataRow data = DataRow.create();
 
         if (excludeNull) {
             data.setEntityIf(entity, (k, v) -> v != null);
@@ -218,8 +218,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Integer update(T entity, Act2<T, IDataItem> dataBuilder, Act1<MapperWhereQ> c) {
-        DataItem data = new DataItem();
+    public Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhereQ> c) {
+        DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
 
@@ -229,7 +229,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public int[] updateList(List<T> list, Act2<T, IDataItem> dataBuilder, Property<T, ?>... conditionFields) {
+    public int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, Property<T, ?>... conditionFields) {
         if (conditionFields.length == 0) {
             throw new RuntimeException("Please enter constraints");
         }
@@ -248,7 +248,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public Long upsert(T entity, boolean excludeNull) {
-        DataItem data = new DataItem();
+        DataRow data = DataRow.create();
 
         if (excludeNull) {
             data.setEntityIf(entity, (k, v) -> v != null);
@@ -273,8 +273,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long upsert(T entity, Act2<T, IDataItem> dataBuilder) {
-        DataItem data = new DataItem();
+    public Long upsert(T entity, Act2<T, DataRow> dataBuilder) {
+        DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
 
@@ -289,7 +289,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
     @Override
     public Long upsertBy(T entity, boolean excludeNull, String conditionFields) {
-        DataItem data = new DataItem();
+        DataRow data = DataRow.create();
 
         if (excludeNull) {
             data.setEntityIf(entity, (k, v) -> v != null);
@@ -309,8 +309,8 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Long upsertBy(T entity, Act2<T, IDataItem> dataBuilder, String conditionFields) {
-        DataItem data = new DataItem();
+    public Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionFields) {
+        DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
 
@@ -420,36 +420,36 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
 
 
     @Override
-    public IDataReader<T> selectReader(Act1<MapperWhereQ> c) {
+    public DataReader<T> selectReader(Act1<MapperWhereQ> c) {
         return selectReader(0, c);
     }
 
     @Override
-    public IDataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> c) {
+    public DataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
-        DataReader reader = RunUtils.call(() -> getQr(c).fetchSize(fetchSize).selectDataReader("*"));
+        DataReaderForDataRow reader = RunUtils.call(() -> getQr(c).fetchSize(fetchSize).selectDataReader("*"));
         return reader.toEntityReader(clz);
     }
 
     @Override
-    public IPage<T> selectPage(int start, int size, Act1<MapperWhereQ> c) {
+    public Page<T> selectPage(int start, int size, Act1<MapperWhereQ> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         List<T> list = RunUtils.call(() -> getQr(c).limit(start, size).selectList("*", clz));
         long total = RunUtils.call(() -> getQr(c).selectCount());
 
-        IPageImpl<T> page = new IPageImpl<>(list, total, size);
+        PageImpl<T> page = new PageImpl<>(list, total, size);
 
         return page;
     }
 
     @Override
-    public IPage<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> c) {
+    public Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> c) {
         List<Map<String, Object>> list = RunUtils.call(() -> getQr(c).limit(start, size).selectMapList("*"));
         long total = RunUtils.call(() -> getQr(c).selectCount());
 
-        IPageImpl<Map<String, Object>> page = new IPageImpl<>(list, total, size);
+        PageImpl<Map<String, Object>> page = new PageImpl<>(list, total, size);
 
         return page;
     }

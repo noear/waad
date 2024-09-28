@@ -1,4 +1,7 @@
-package org.noear.waad;
+package org.noear.waad.model;
+
+import org.noear.waad.GetHandler;
+import org.noear.waad.Variate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,23 +14,34 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 /**
+ * 数据行
+ *
  * Created by noear on 15/9/2.
  *
  * IDataItem 是为跨平台设计的接口，不能去掉
  */
-public interface IDataItem extends Map<String,Object>, GetHandler, Serializable {
+public interface DataRow extends Map<String,Object>, GetHandler, Serializable {
+    int size();
 
-    IDataItem set(String name, Object value);
+    boolean isEmpty();
 
-    IDataItem setIf(boolean condition, String name, Object value);
+    boolean containsKey(Object key);
 
-    IDataItem setDf(String name, Object value, Object def);
+    DataRow set(String name, Object value);
 
-    IDataItem setMap(Map<String, Object> data);
+    /////////////////////////////////
 
-    IDataItem setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition);
-    IDataItem setEntity(Object obj);
-    IDataItem setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition);
+    DataRow setIf(boolean condition, String name, Object value);
+
+    DataRow setDf(String name, Object value, Object def);
+
+    DataRow setMap(Map<String, Object> data);
+
+    DataRow setMapIf(Map<String, Object> data, BiFunction<String, Object, Boolean> condition);
+
+    DataRow setEntity(Object obj);
+
+    DataRow setEntityIf(Object obj, BiFunction<String, Object, Boolean> condition);
 
     <T> T toEntity(Class<T> cls);
 
@@ -66,5 +80,9 @@ public interface IDataItem extends Map<String,Object>, GetHandler, Serializable 
 
     default Map<String, Object> getMap() {
         return this;
+    }
+
+    static DataRow create() {
+        return new DataRowImpl();
     }
 }

@@ -1,6 +1,6 @@
 package org.noear.waad.utils;
 
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.wrap.ClassWrap;
 
@@ -9,7 +9,7 @@ public class EntityUtils {
         ClassWrap.get(obj.getClass()).fromEntity(obj, setter);
     }
 
-    public static <T> T toEntity(Class<T> clz, DataItem data) {
+    public static <T> T toEntity(Class<T> clz, DataRow data) {
         return ClassWrap.get(clz).toEntity(data);
     }
 }

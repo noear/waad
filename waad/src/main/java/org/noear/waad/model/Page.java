@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author noear 2021/11/11 created
  */
-public interface IPage<T> extends Serializable {
+public interface Page<T> extends Serializable {
     /**
      * 记录
      * */

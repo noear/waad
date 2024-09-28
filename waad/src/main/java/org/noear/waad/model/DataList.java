@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,20 +8,20 @@ import java.util.Set;
 /**
  * @author noear 2024/9/28 created
  */
-public interface IDataList extends Iterable<IDataItem> {
+public interface DataList extends Iterable<DataRow> {
     int size();
 
     boolean isEmpty();
 
-    IDataItem get(int index);
+    DataRow get(int index);
 
-    void add(IDataItem item);
+    void add(DataRow item);
 
     /////////////////////////////////
 
-    IDataItem getFirst();
+    DataRow getFirst();
 
-    IDataItem getLast();
+    DataRow getLast();
 
     <T> List<T> toEntityList(Class<T> clz);
 
@@ -38,13 +38,17 @@ public interface IDataList extends Iterable<IDataItem> {
     <T> List<T> toArray(int columnIndex);
 
 
-    List<IDataItem> getItemList();
+    List<DataRow> getItemList();
 
     default List<Map<String, Object>> getMapList() {
         List<Map<String, Object>> list = new ArrayList<>(this.size());
-        for (IDataItem r : this) {
+        for (DataRow r : this) {
             list.add(r);
         }
         return list;
+    }
+
+    static DataList create() {
+        return new DataListImpl();
     }
 }

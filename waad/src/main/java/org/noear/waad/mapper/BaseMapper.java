@@ -1,6 +1,9 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataReader;
+import org.noear.waad.model.Page;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.wrap.Property;
@@ -49,7 +52,7 @@ public interface BaseMapper<T> {
      * @param dataBuilder 数据组装器
      * @return
      */
-    Long insert(T entity, Act2<T, IDataItem> dataBuilder);
+    Long insert(T entity, Act2<T, DataRow> dataBuilder);
 
     /**
      * 批量插入数据
@@ -65,7 +68,7 @@ public interface BaseMapper<T> {
      * @param list        待插入的数据
      * @param dataBuilder 数据组装器
      */
-    void insertList(List<T> list, Act2<T, IDataItem> dataBuilder);
+    void insertList(List<T> list, Act2<T, DataRow> dataBuilder);
 
     Integer deleteById(Object id);
 
@@ -84,7 +87,7 @@ public interface BaseMapper<T> {
      * @param entity      待更新的实体
      * @param dataBuilder 组装data的方式，方便支持部分属性允许设置为null，部分不允许
      */
-    Integer updateById(T entity, Act2<T, IDataItem> dataBuilder);
+    Integer updateById(T entity, Act2<T, DataRow> dataBuilder);
 
     Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> condition);
 
@@ -94,9 +97,9 @@ public interface BaseMapper<T> {
      * @param condition   更新数据的条件
      * @return
      */
-    Integer update(T entity, Act2<T, IDataItem> dataBuilder, Act1<MapperWhereQ> condition);
+    Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhereQ> condition);
 
-    int[] updateList(List<T> list, Act2<T, IDataItem> dataBuilder, Property<T, ?>... conditionFields);
+    int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, Property<T, ?>... conditionFields);
 
     /**
      * 新增或修改数据 更新时根据主键更新
@@ -114,7 +117,7 @@ public interface BaseMapper<T> {
      * @param dataBuilder 数据组装器
      * @return
      */
-    Long upsert(T entity, Act2<T, IDataItem> dataBuilder);
+    Long upsert(T entity, Act2<T, DataRow> dataBuilder);
 
 
     /**
@@ -135,7 +138,7 @@ public interface BaseMapper<T> {
      * @param conditionFields 更新的条件
      * @return
      */
-    Long upsertBy(T entity, Act2<T, IDataItem> dataBuilder, String conditionFields);
+    Long upsertBy(T entity, Act2<T, DataRow> dataBuilder, String conditionFields);
 
 
     boolean existsById(Object id);
@@ -171,17 +174,17 @@ public interface BaseMapper<T> {
 
     List<Object> selectArray(String column, int start, int size, Act1<MapperWhereQ> condition);
 
-    IDataReader<T> selectReader(Act1<MapperWhereQ> condition);
+    DataReader<T> selectReader(Act1<MapperWhereQ> condition);
 
-    IDataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> condition);
+    DataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> condition);
 
 
     /**
      * @param start 从0开始
      */
-    IPage<T> selectPage(int start, int size, Act1<MapperWhereQ> condition);
+    Page<T> selectPage(int start, int size, Act1<MapperWhereQ> condition);
 
-    IPage<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> condition);
+    Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> condition);
 
     List<T> selectTop(int size, Act1<MapperWhereQ> condition);
 

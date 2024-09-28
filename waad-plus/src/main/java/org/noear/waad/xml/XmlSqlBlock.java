@@ -1,6 +1,6 @@
 package org.noear.waad.xml;
 
-import org.noear.waad.DataItem;
+import org.noear.waad.model.DataRow;
 import org.noear.waad.utils.IOUtils;
 import org.w3c.dom.Node;
 
@@ -113,8 +113,8 @@ public class XmlSqlBlock {
 
                 if(val == null && rst!=null){
                     //尝试去结果取值（sql xml 输出的，只会是）
-                    if(rst instanceof DataItem){
-                        val = ((DataItem)rst).get(dv.name);
+                    if(rst instanceof DataRow){
+                        val = ((DataRow)rst).get(dv.name);
                     }
                 }
 

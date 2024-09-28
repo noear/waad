@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
-import org.noear.waad.IPage;
+import org.noear.waad.model.Page;
 import webapp.model.AppxModel;
 import waad_rdb.DbUtil;
 
@@ -148,7 +148,7 @@ public class MapperTest {
     @Test
     public void test_select_page_m12() {
         //selectPage
-        IPage<AppxModel> m12 = mapper.selectPage(1, 10, m -> m.where("agroup_id=?", 1).and("app_id<?", 40));
+        Page<AppxModel> m12 = mapper.selectPage(1, 10, m -> m.where("agroup_id=?", 1).and("app_id<?", 40));
         System.out.println("m12: " + m12);
         assert m12.getList().size() == 10;
         assert m12.getTotal() > 10;
@@ -157,7 +157,7 @@ public class MapperTest {
     @Test
     public void test_select_page_m13() {
         //selectMapsPage
-        IPage<Map<String, Object>> m13 = mapper.selectMapPage(1, 10, m -> m.where("agroup_id=?", 1).and("app_id<?", 40));
+        Page<Map<String, Object>> m13 = mapper.selectMapPage(1, 10, m -> m.where("agroup_id=?", 1).and("app_id<?", 40));
         System.out.println("m13: " + m13);
         assert m13.getList().size() == 10;
         assert m13.getTotal() > 10;

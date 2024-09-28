@@ -4,6 +4,8 @@ import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.DbAccess;
+import org.noear.waad.model.DataRow;
+import org.noear.waad.model.DataList;
 import org.noear.waad.utils.StrUtils;
 import org.noear.waad.wrap.MethodWrap;
 
@@ -132,8 +134,8 @@ public class MapperInvokeForAnn implements IMapperInvoke {
                 }else{
                     String _cacheTag2 = _cacheTag;
                     sp.cacheUsing().usingCache((cu,rst)->{
-                        if(rst instanceof DataItem){
-                            Arrays.asList(formatTag(_cacheTag2, ((DataItem)rst).getMap()).split(",")).forEach((k)->{
+                        if(rst instanceof DataRow){
+                            Arrays.asList(formatTag(_cacheTag2, ((DataRow)rst).getMap()).split(",")).forEach((k)->{
                                 sp.cacheTag(k);
                             });
                         }
@@ -149,7 +151,7 @@ public class MapperInvokeForAnn implements IMapperInvoke {
         String rst_type_str = rst_type.getName();
         String rst_type2_str = null;
 
-        if (DataItem.class.isAssignableFrom(rst_type)) {
+        if (DataRow.class.isAssignableFrom(rst_type)) {
             return sp.getDataItem();
         }
 

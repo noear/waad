@@ -3,7 +3,7 @@ package waad_rdb.features;
 import org.junit.jupiter.api.Test;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
-import org.noear.waad.IDataReader;
+import org.noear.waad.model.DataReader;
 import webapp.model.AppxModel;
 import waad_rdb.DbUtil;
 
@@ -25,7 +25,7 @@ public class _ReaderTest {
     public void test_page() throws Exception {
         List<AppxModel> list = new ArrayList<>();
 
-        try (IDataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(0,10))) {
+        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(0,10))) {
             AppxModel m;
             do {
                 m = reader.next();
@@ -45,7 +45,7 @@ public class _ReaderTest {
     public void test_page2() throws Exception {
         List<AppxModel> list = new ArrayList<>();
 
-        try (IDataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(1, 10))) {
+        try (DataReader<AppxModel> reader = mapper.selectReader(q -> q.orderByAsc(AppxModel::getApp_id).limit(1, 10))) {
             AppxModel m;
             do {
                 m = reader.next();
@@ -65,7 +65,7 @@ public class _ReaderTest {
     public void test_page3() throws Exception {
         List<AppxModel> list = new ArrayList<>();
 
-        try (IDataReader<AppxModel> reader = db2.table("appx a")
+        try (DataReader<AppxModel> reader = db2.table("appx a")
                 .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
                 .orderBy("a.app_id ASC")
                 .limit(1, 10)

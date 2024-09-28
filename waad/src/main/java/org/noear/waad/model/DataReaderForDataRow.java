@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.model;
 
 import org.noear.waad.core.Command;
 import org.noear.waad.core.SQLer;
@@ -12,13 +12,13 @@ import java.sql.SQLException;
  *
  * @author noear 2024/7/12 created
  */
-public class DataReader implements IDataReader<DataItem> {
+public class DataReaderForDataRow implements DataReader<DataRow> {
     private final Command cmd;
     private final SQLer sqLer;
     private final ResultSet rset;
     private final ResultSetMetaData rsetMeta;
 
-    public DataReader(SQLer sqLer, Command cmd, ResultSet rset) throws SQLException {
+    public DataReaderForDataRow(SQLer sqLer, Command cmd, ResultSet rset) throws SQLException {
         this.cmd = cmd;
         this.sqLer = sqLer;
         this.rset = rset;
@@ -31,10 +31,10 @@ public class DataReader implements IDataReader<DataItem> {
     }
 
     @Override
-    public DataItem next() throws SQLException {
+    public DataRow next() throws SQLException {
         if (rset != null && rset.next()) {
             try {
-                DataItem row = new DataItem();
+                DataRow row = DataRow.create();
                 int len = rsetMeta.getColumnCount();
 
                 for (int i = 1; i <= len; i++) {
