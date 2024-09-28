@@ -26,7 +26,7 @@ public class DbCommandImpl implements DbCommand {
 
     public ICacheService cache;
 
-    public Map<String,Object> attachment;
+    public Map<String, Object> attachment;
 
     //计时变量
     public long timestart = 0;
@@ -46,28 +46,40 @@ public class DbCommandImpl implements DbCommand {
         this.tran = DbTran.current();
     }
 
+    /**
+     * 命令tag（用于寄存一些数据）
+     */
     @Override
     public String tag() {
         return tag;
     }
 
+    /**
+     * 命令id
+     */
     @Override
     public String key() {
         return key;
     }
 
+    /**
+     * 命令文本
+     */
     @Override
     public String text() {
         return text;
     }
 
+    /**
+     * 命令参数
+     */
     @Override
     public List<Object> args() {
         return args;
     }
 
     /**
-     * 参数字典
+     * 命令参数字典
      */
     public Map<String, Object> argsMap() {
         if (_argsMap == null) {
@@ -83,11 +95,17 @@ public class DbCommandImpl implements DbCommand {
         return _argsMap;
     }
 
+    /**
+     * 是否为批处理
+     */
     @Override
     public boolean isBatch() {
         return isBatch;
     }
 
+    /**
+     * 是否进行日志（def:0  no:-1 yes:1）
+     */
     @Override
     public int isLog() {
         return isLog;
@@ -101,13 +119,16 @@ public class DbCommandImpl implements DbCommand {
         return timestop - timestart;
     }
 
+    /**
+     * 数据库上下文
+     */
     @Override
     public DbContext context() {
         return context;
     }
 
     /**
-     * 转为SQL字符串
+     * 获取 Sql 字符串（完整拼装的）
      */
     public String getSqlString() {
         StringBuilder sb = new StringBuilder();
@@ -142,7 +163,7 @@ public class DbCommandImpl implements DbCommand {
     }
 
     /**
-     * 完整的命令文本
+     * 获取 Cmd 字符串（配参数配合，用于执行）
      */
     public String getCmdString() {
         if (context.codeHint() == null)

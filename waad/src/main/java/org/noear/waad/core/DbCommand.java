@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface DbCommand {
     /**
-     * 命令tag（用于寄存一些数据）
+     * 命令tag（用于寄存一些数据；比如表名）
      */
     String tag();
 
@@ -33,7 +33,7 @@ public interface DbCommand {
     List<Object> args();
 
     /**
-     * 命令参数-map 形式
+     * 命令参数字典
      */
     Map<String, Object> argsMap();
 
@@ -49,17 +49,17 @@ public interface DbCommand {
     int isLog();
 
     /**
-     * 执行时间简隔
+     * 执行时长
      */
     long timespan();
 
     /**
-     * 数据库上下文（肯定且必须有）
+     * 数据库上下文
      */
     DbContext context();
 
     /**
-     * 获取 Sql 字符串（完整的）
+     * 获取 Sql 字符串（完整拼装的）
      */
     String getSqlString();
 
