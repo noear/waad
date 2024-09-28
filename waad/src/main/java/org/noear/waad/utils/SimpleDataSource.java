@@ -1,8 +1,7 @@
-package org.noear.waad.datasource;
+package org.noear.waad.utils;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

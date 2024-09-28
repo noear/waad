@@ -1,13 +1,19 @@
-package org.noear.waad.datasource;
+package org.noear.waad.utils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class SimpleConnectionFactory implements ConnectionFactory{
+
+/**
+ * 连接策略
+ *
+ * @author noear
+ * @since 3.2
+ * @since 4.0
+ * */
+public class ConnectionStrategy {
     public Connection getConnection(DataSource ds) throws SQLException {
         return ds.getConnection();
     }
-
-
 }

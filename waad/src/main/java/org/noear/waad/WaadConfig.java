@@ -2,12 +2,11 @@ package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.Events;
-import org.noear.waad.datasource.ConnectionFactory;
-import org.noear.waad.datasource.SimpleConnectionFactory;
+import org.noear.waad.utils.ConnectionStrategy;
 import org.noear.waad.mapper.MapperAdaptorImpl;
 import org.noear.waad.mapper.MapperAdaptor;
-import org.noear.waad.wrap.PrimaryKeyStrategy;
-import org.noear.waad.wrap.NamingStrategy;
+import org.noear.waad.utils.PrimaryKeyStrategy;
+import org.noear.waad.utils.NamingStrategy;
 import org.noear.waad.wrap.TypeConverter;
 
 import java.util.Map;
@@ -18,34 +17,46 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author noear
  * @since 14/11/20.
+ * @since 4.0
  */
 public final class WaadConfig {
-    public static boolean isUsingValueExpression = false;
-    public static boolean isUsingValueNull = false;
-
     /**
-     * 是否使用当前上下文的 schema 替换表达式里的 $
+     * 充许使用null插入或更新
+     */
+    public static boolean isUsingValueNull = false;
+    /**
+     * 更新时必须要有条件
      */
     public static boolean isUpdateMustConditional = true;
+    /**
+     * 删除时必须要有条件
+     */
     public static boolean isDeleteMustConditional = true;
     public static boolean isUsingUnderlineColumnName = true;
+    /**
+     * 查找为 null 时，以默认值返回
+     */
     public static boolean isSelectNullAsDefault = false;
 
     /**
-     * 使用编译模式（用于产生代码）
+     * 使用编译模式（用于 aot 产生代码时）
      */
     public static boolean isUsingCompilationMode = false;
 
-    /**
-     * 非注解的命名策略
-     */
+
     private static NamingStrategy namingStrategy = new NamingStrategy();
 
+    /**
+     * 配置非注解的命名策略
+     */
     public static void namingStrategy(NamingStrategy namingStrategy) {
         assert namingStrategy != null;
         WaadConfig.namingStrategy = namingStrategy;
     }
 
+    /**
+     * 非注解的命名策略
+     */
     public static NamingStrategy namingStrategy() {
         return namingStrategy;
     }
@@ -53,7 +64,10 @@ public final class WaadConfig {
 
     private static PrimaryKeyStrategy primaryKeyStrategy = new PrimaryKeyStrategy();
 
-    public static void namingStrategy(PrimaryKeyStrategy primaryKeyStrategy) {
+    /**
+     * 配置非注解的字段主键策略
+     */
+    public static void primaryKeyStrategy(PrimaryKeyStrategy primaryKeyStrategy) {
         assert primaryKeyStrategy != null;
         WaadConfig.primaryKeyStrategy = primaryKeyStrategy;
     }
@@ -63,6 +77,24 @@ public final class WaadConfig {
      */
     public static PrimaryKeyStrategy primaryKeyStrategy() {
         return primaryKeyStrategy;
+    }
+
+
+    private static ConnectionStrategy connectionStrategy = new ConnectionStrategy();
+
+    /**
+     * 配置连接策略
+     */
+    public static void connectionStrategy(ConnectionStrategy connectionFactory) {
+        assert connectionFactory != null;
+        WaadConfig.connectionStrategy = connectionFactory;
+    }
+
+    /**
+     * 连接策略
+     */
+    public static ConnectionStrategy connectionStrategy() {
+        return connectionStrategy;
     }
 
 
@@ -81,25 +113,10 @@ public final class WaadConfig {
     }
 
 
-    private static ConnectionFactory connectionFactory = new SimpleConnectionFactory();
-
-    public static void connectionFactory(ConnectionFactory connectionFactory) {
-        assert connectionFactory != null;
-        WaadConfig.connectionFactory = connectionFactory;
-    }
-
-    /**
-     * 链接工厂
-     */
-    public static ConnectionFactory connectionFactory() {
-        return connectionFactory;
-    }
-
-
     private static MapperAdaptor mapperAdaptor = new MapperAdaptorImpl();
 
     /**
-     * 遇射适配器
+     * 映射适配器
      */
     public static MapperAdaptor mapperAdaptor() {
         return mapperAdaptor;

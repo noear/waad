@@ -1,11 +1,16 @@
-package org.noear.waad.wrap;
+package org.noear.waad.utils;
 
 
 import org.noear.waad.WaadConfig;
-import org.noear.waad.utils.NamingUtils;
 
 import java.lang.reflect.Field;
 
+/**
+ * 命名策略
+ *
+ * @author noear
+ * @since 3.2
+ * */
 public class NamingStrategy {
     public String classToTableName(Class<?> clz) {
         if (WaadConfig.isUsingUnderlineColumnName) {

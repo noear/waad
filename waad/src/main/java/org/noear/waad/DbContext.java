@@ -3,7 +3,7 @@ package org.noear.waad;
 import org.noear.waad.core.Command;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.datasource.SimpleDataSource;
+import org.noear.waad.utils.SimpleDataSource;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.utils.RunUtils;

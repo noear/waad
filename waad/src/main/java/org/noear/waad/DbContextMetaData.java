@@ -76,7 +76,7 @@ public class DbContextMetaData implements Closeable {
      * 获取连接
      */
     public Connection getConnection() throws SQLException {
-        return WaadConfig.connectionFactory().getConnection(getDataSource());
+        return WaadConfig.connectionStrategy().getConnection(getDataSource());
     }
 
     /**
