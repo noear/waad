@@ -2,7 +2,6 @@ package org.noear.waad.core;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.transaction.DbTran;
-import org.noear.waad.transaction.DbTranUtil;
 import org.noear.waad.cache.ICacheService;
 import org.noear.waad.util.function.Act1;
 
@@ -44,7 +43,7 @@ public class DbCommandImpl implements DbCommand {
     public DbCommandImpl(DbContext context) {
         this.context = context;
         this.context.lastCommand = this;
-        this.tran = DbTranUtil.current();
+        this.tran = DbTran.current();
     }
 
     @Override
