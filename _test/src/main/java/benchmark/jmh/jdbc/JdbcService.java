@@ -31,7 +31,7 @@ public class JdbcService implements BaseService {
             conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement("insert into sys_user  (id,code) values (?,?)");
             ps.setInt(1,beetlSQLSysUser.getId());
-            ps.setString(2,beetlSQLSysUser.getCode(_context));
+            ps.setString(2,beetlSQLSysUser.getCode());
             ps.executeUpdate();
             ps.close();
             conn.commit();
