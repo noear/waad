@@ -25,8 +25,11 @@ public final class Names {
     public static final String sym_entityName="${entityName}";
     public static final String sym_domainName="${domainName}";
     public static final String sym_tableName="${tableName}";
+    public static final String sym_tableName_upper="${tableName_upper}";
+    public static final String sym_tableName_lower="${tableName_lower}";
     public static final String sym_fields="${fields}";
     public static final String sym_fields_public="${fields_public}";
     public static final String sym_fields_getter="${fields_getter}";
     public static final String sym_fields_setter="${fields_setter}";
+    public static final String sym_fields_lk="${fields_lk}";
 }

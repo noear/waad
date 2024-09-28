@@ -9,20 +9,20 @@ import org.noear.waad.utils.StrUtils;
  * @author noear
  * @since 1.4
  */
-public class IColumnImpl implements IColumn {
+public class IColumnLink implements IColumn {
     private final @Nullable ITable table;
     private final String name;
     private final String asName;
 
-    public IColumnImpl(String name) {
+    public IColumnLink(String name) {
         this(null, name);
     }
 
-    public IColumnImpl(ITable table, String name) {
+    public IColumnLink(ITable table, String name) {
         this(table, name, null);
     }
 
-    public IColumnImpl(ITable table, String name, String asName) {
+    public IColumnLink(ITable table, String name, String asName) {
         this.table = table;
         this.name = name;
         this.asName = asName;
@@ -40,7 +40,7 @@ public class IColumnImpl implements IColumn {
 
     @Override
     public IColumn as(String asName) {
-        return new IColumnImpl(table, name, asName);
+        return new IColumnLink(table, name, asName);
     }
 
     @Override

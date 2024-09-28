@@ -16,9 +16,9 @@ public interface ITable<T> {
 
     default IColumn all() {
         if (StrUtils.isEmpty(____getTableSpec().asName())) {
-            return new IColumnImpl(this, ____getTableSpec().name() + ".*");
+            return new IColumnLink(this, ____getTableSpec().name() + ".*");
         } else {
-            return new IColumnImpl(this, ____getTableSpec().asName() + ".*");
+            return new IColumnLink(this, ____getTableSpec().asName() + ".*");
         }
     }
 

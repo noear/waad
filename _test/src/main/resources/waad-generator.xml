@@ -20,9 +20,32 @@
             <![CDATA[
 import lombok.Data;
 
+@Data
 @Table("${tableName}")
 public class ${entityName}{
-  ${fields_public}
+  ${fields}
+}
+]]>
+        </entityGenerator>
+        <entityGenerator targetPackage="demo.model.lk" entityName="${tableName_upper}_LK">
+            <![CDATA[
+import org.noear.waad.link.IColumn;
+import org.noear.waad.link.IColumnLink;
+import org.noear.waad.link.ITableLink;
+
+public class ${entityName} extends ITableLink<${entityName}>{
+  public static final ${entityName} ${tableName_upper} = new ${entityName}(null);
+
+  private ${entityName}(String asName) {
+    super("${tableName}", asName);
+  }
+
+  @Override
+  public ${entityName} as(String asName) {
+    return new ${entityName}(asName);
+  }
+
+  ${fields_lk}
 }
 ]]>
         </entityGenerator>

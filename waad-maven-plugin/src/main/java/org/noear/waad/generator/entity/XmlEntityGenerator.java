@@ -82,8 +82,15 @@ public class XmlEntityGenerator {
         //
 
         String tableName = tableItem.tableName;
+        String tableNameUpper = tableItem.tableName.toUpperCase();
+        String tableNameLower = tableItem.tableName.toLowerCase();
+
         String domainName = tableItem.domainName;
-        String entityName = entityBlock.entityName.replace(Names.sym_domainName, domainName);
+        String entityName = entityBlock.entityName;
+        entityName = entityName.replace(Names.sym_domainName, domainName);
+        entityName = entityName.replace(Names.sym_tableName, tableName);
+        entityName = entityName.replace(Names.sym_tableName_upper, tableNameUpper);
+        entityName = entityName.replace(Names.sym_tableName_lower, tableNameLower);
 
         StringBuilder sb = new StringBuilder();
         sb.append("package ").append(entityBlock.targetPackage).append(";").append("\n\n");
@@ -92,10 +99,17 @@ public class XmlEntityGenerator {
         code = code.replace(Names.sym_entityName, entityName);
         code = code.replace(Names.sym_domainName, domainName);
         code = code.replace(Names.sym_tableName, tableName);
+        code = code.replace(Names.sym_tableName_upper, tableNameUpper);
+        code = code.replace(Names.sym_tableName_lower, tableNameLower);
 
         if (code.contains(Names.sym_fields)) {
             String tmp = buildFields(source, tableItem, false);
             code = code.replace(Names.sym_fields, tmp);
+        }
+
+        if (code.contains(Names.sym_fields_lk)) {
+            String tmp = buildFieldsLk(source, tableItem, true);
+            code = code.replace(Names.sym_fields_lk, tmp);
         }
 
         if (code.contains(Names.sym_fields_public)) {
@@ -168,9 +182,9 @@ public class XmlEntityGenerator {
                 sb.append("@PrimaryKey").append("\n");
             }
 
-            if(usePublic){
+            if (usePublic) {
                 sb.append("  public ");
-            }else{
+            } else {
                 sb.append("  private ");
             }
 
@@ -182,6 +196,28 @@ public class XmlEntityGenerator {
             }
 
             sb.append(";").append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    private static String buildFieldsLk(XmlSourceBlock source, TableItem table, boolean usePublic) {
+        StringBuilder sb = new StringBuilder();
+
+        for (ColumnWrap cw : table.tableWrap.getColumns()) {
+            buildColumnRemarks(cw, sb);
+
+            sb.append("\n");
+
+            if (usePublic) {
+                sb.append("  public ");
+            } else {
+                sb.append("  private ");
+            }
+
+            //public final IColumn AGROUP_ID = new IColumnLink(this, "agroup_id");
+            sb.append(" final IColumn ").append(cw.getName().toUpperCase()).append(" = ");
+            sb.append("new IColumnLink(this,\"").append(cw.getName()).append("\");");
         }
 
         return sb.toString();
@@ -247,7 +283,7 @@ public class XmlEntityGenerator {
 
     private static void buildColumnRemarks(ColumnWrap cw, StringBuilder sb) {
         if (StringUtils.isEmpty(cw.getRemarks()) == false) {
-            String remarks = cw.getRemarks().replace("\r\n"," ").replace("\n", " ");
+            String remarks = cw.getRemarks().replace("\r\n", " ").replace("\n", " ");
             sb.append("  /** ").append(remarks).append(" */\n");
         }
     }

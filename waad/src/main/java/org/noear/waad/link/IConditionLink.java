@@ -4,12 +4,12 @@ package org.noear.waad.link;
  * @author noear
  * @since 3.0
  */
-public class IConditionImpl implements ICondition {
+public class IConditionLink implements ICondition {
     private final IColumn column;
     private final String code;
     private final Object[] args;
 
-    public IConditionImpl(IColumn column, String code, Object... args) {
+    public IConditionLink(IColumn column, String code, Object... args) {
         this.column = column;
         this.code = code;
         this.args = args;

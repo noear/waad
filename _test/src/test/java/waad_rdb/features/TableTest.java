@@ -9,7 +9,8 @@ import webapp.model.AppxModel;
 
 import java.util.Map;
 
-import static waad_rdb.features.link._TABLES.APPX;
+import static waad_rdb.features.link.APPX_LK.APPX;
+
 
 public class TableTest {
     DbContext db = DbUtil.db;

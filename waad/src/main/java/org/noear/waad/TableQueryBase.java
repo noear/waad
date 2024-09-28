@@ -11,7 +11,7 @@ import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ITable;
-import org.noear.waad.link.ITableImpl;
+import org.noear.waad.link.ITableLink;
 import org.noear.waad.link.ITableSpecImpl;
 import org.noear.waad.wrap.DbType;
 
@@ -69,14 +69,14 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
             String _tableName = table.substring(1);
 
             _table_raw = _tableName;
-            _table = new ITableImpl(_tableName, null);
+            _table = new ITableLink(_tableName, null);
         } else {
             _table_raw = table;
 
             if (table.indexOf('.') > 0) {
-                _table = new ITableImpl(table, null);
+                _table = new ITableLink(table, null);
             } else {
-                _table = new ITableImpl(fmtObject(table), null); //"$." + table;
+                _table = new ITableLink(fmtObject(table), null); //"$." + table;
             }
         }
 

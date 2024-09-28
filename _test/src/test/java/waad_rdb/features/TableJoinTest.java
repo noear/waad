@@ -9,7 +9,8 @@ import waad_rdb.features.link.APPX_AGROUP_LK;
 
 import java.sql.SQLException;
 
-import static waad_rdb.features.link._TABLES.*;
+import static waad_rdb.features.link.APPX_AGROUP_LK.APPX_AGROUP;
+import static waad_rdb.features.link.APPX_LK.APPX;
 
 
 public class TableJoinTest {

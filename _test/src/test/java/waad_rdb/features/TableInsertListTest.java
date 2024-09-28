@@ -11,7 +11,8 @@ import webapp.model.TestModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static waad_rdb.features.link._TABLES.*;
+import static waad_rdb.features.link.TEST_LK.TEST;
+
 
 public class TableInsertListTest {
     DbContext db = DbUtil.db;
