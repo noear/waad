@@ -10,22 +10,22 @@ import org.noear.waad.WhereBase;
  * @since 19-12-11.
  * @since 4.0
  */
-public class MapperWhereQ extends WhereBase<MapperWhereQ> {
-    public MapperWhereQ(TableQuery query) {
+public class MapperWhere extends WhereBase<MapperWhere> {
+    public MapperWhere(TableQuery query) {
         super(query);
     }
 
-    public MapperWhereQ limit(int size) {
+    public MapperWhere limit(int size) {
         _query.limit(size);
         return this;
     }
 
-    public MapperWhereQ limit(int start, int size) {
+    public MapperWhere limit(int start, int size) {
         _query.limit(start, size);
         return this;
     }
 
-    public MapperWhereQ fetchSize(int size) {
+    public MapperWhere fetchSize(int size) {
         _query.fetchSize(size);
         return this;
     }

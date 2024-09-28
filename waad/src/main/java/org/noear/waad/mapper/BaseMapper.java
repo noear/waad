@@ -76,7 +76,7 @@ public interface BaseMapper<T> {
 
     Integer deleteByMap(Map<String, Object> columnMap);
 
-    Integer delete(Act1<MapperWhereQ> condition);
+    Integer delete(Act1<MapperWhere> condition);
 
     /**
      * @param excludeNull 排除null
@@ -89,7 +89,7 @@ public interface BaseMapper<T> {
      */
     Integer updateById(T entity, Act2<T, DataRow> dataBuilder);
 
-    Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> condition);
+    Integer update(T entity, boolean excludeNull, Act1<MapperWhere> condition);
 
     /**
      * @param entity      待更新的实体
@@ -97,7 +97,7 @@ public interface BaseMapper<T> {
      * @param condition   更新数据的条件
      * @return
      */
-    Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhereQ> condition);
+    Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhere> condition);
 
     int[] updateList(List<T> list, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns);
 
@@ -149,7 +149,7 @@ public interface BaseMapper<T> {
 
     boolean existsById(Object id);
 
-    boolean exists(Act1<MapperWhereQ> condition);
+    boolean exists(Act1<MapperWhere> condition);
 
     T selectById(Object id);
 
@@ -159,40 +159,40 @@ public interface BaseMapper<T> {
 
     T selectItem(T entity);
 
-    T selectItem(Act1<MapperWhereQ> condition);
+    T selectItem(Act1<MapperWhere> condition);
 
-    Map<String, Object> selectMap(Act1<MapperWhereQ> condition);
+    Map<String, Object> selectMap(Act1<MapperWhere> condition);
 
-    Object selectValue(String column, Act1<MapperWhereQ> condition);
+    Object selectValue(String column, Act1<MapperWhere> condition);
 
-    Long selectCount(Act1<MapperWhereQ> condition);
+    Long selectCount(Act1<MapperWhere> condition);
 
-    List<T> selectList(Act1<MapperWhereQ> condition);
+    List<T> selectList(Act1<MapperWhere> condition);
 
-    List<Map<String, Object>> selectMapList(Act1<MapperWhereQ> condition);
+    List<Map<String, Object>> selectMapList(Act1<MapperWhere> condition);
 
-    List<Object> selectArray(String column, Act1<MapperWhereQ> condition);
+    List<Object> selectArray(String column, Act1<MapperWhere> condition);
 
 
-    List<T> selectList(int start, int size, Act1<MapperWhereQ> condition);
+    List<T> selectList(int start, int size, Act1<MapperWhere> condition);
 
-    List<Map<String, Object>> selectMapList(int start, int size, Act1<MapperWhereQ> condition);
+    List<Map<String, Object>> selectMapList(int start, int size, Act1<MapperWhere> condition);
 
-    List<Object> selectArray(String column, int start, int size, Act1<MapperWhereQ> condition);
+    List<Object> selectArray(String column, int start, int size, Act1<MapperWhere> condition);
 
-    DataReader<T> selectReader(Act1<MapperWhereQ> condition);
+    DataReader<T> selectReader(Act1<MapperWhere> condition);
 
-    DataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> condition);
+    DataReader<T> selectReader(int fetchSize, Act1<MapperWhere> condition);
 
 
     /**
      * @param start 从0开始
      */
-    Page<T> selectPage(int start, int size, Act1<MapperWhereQ> condition);
+    Page<T> selectPage(int start, int size, Act1<MapperWhere> condition);
 
-    Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> condition);
+    Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhere> condition);
 
-    List<T> selectTop(int size, Act1<MapperWhereQ> condition);
+    List<T> selectTop(int size, Act1<MapperWhere> condition);
 
-    List<Map<String, Object>> selectMapTop(int size, Act1<MapperWhereQ> condition);
+    List<Map<String, Object>> selectMapTop(int size, Act1<MapperWhere> condition);
 }

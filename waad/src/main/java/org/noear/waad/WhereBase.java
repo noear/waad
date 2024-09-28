@@ -2,7 +2,7 @@ package org.noear.waad;
 
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.linq.IExpr;
-import org.noear.waad.mapper.MapperWhereQ;
+import org.noear.waad.mapper.MapperWhere;
 import org.noear.waad.util.function.Fun2;
 import org.noear.waad.linq.IColumn;
 import org.noear.waad.linq.ICondition;
@@ -109,7 +109,7 @@ public abstract class WhereBase<T extends WhereBase> {
         return (T) this;
     }
 
-    public T where(MapperWhereQ whereQ) {
+    public T where(MapperWhere whereQ) {
         _builder.append(whereQ._builder);
         return (T) this;
     }

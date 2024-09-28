@@ -159,7 +159,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public Integer delete(Act1<MapperWhereQ> c) {
+    public Integer delete(Act1<MapperWhere> c) {
         return RunUtils.call(() -> {
             return getQr(c).delete();
         });
@@ -198,7 +198,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public Integer update(T entity, boolean excludeNull, Act1<MapperWhereQ> c) {
+    public Integer update(T entity, boolean excludeNull, Act1<MapperWhere> c) {
         DataRow data = DataRow.create();
 
         if (excludeNull) {
@@ -219,7 +219,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
      * @return
      */
     @Override
-    public Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhereQ> c) {
+    public Integer update(T entity, Act2<T, DataRow> dataBuilder, Act1<MapperWhere> c) {
         DataRow data = DataRow.create();
 
         dataBuilder.run(entity, data);
@@ -335,7 +335,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public boolean exists(Act1<MapperWhereQ> c) {
+    public boolean exists(Act1<MapperWhere> c) {
         return RunUtils.call(() -> {
             return getQr(c).selectExists();
         });
@@ -374,69 +374,69 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public T selectItem(Act1<MapperWhereQ> c) {
+    public T selectItem(Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(() -> getQr(c).selectItem(clz, "*"));
     }
 
     @Override
-    public Object selectValue(String column, Act1<MapperWhereQ> c) {
+    public Object selectValue(String column, Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).selectValue(column));
     }
 
     @Override
-    public Map<String, Object> selectMap(Act1<MapperWhereQ> c) {
+    public Map<String, Object> selectMap(Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).selectMap("*"));
     }
 
     @Override
-    public Long selectCount(Act1<MapperWhereQ> c) {
+    public Long selectCount(Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).selectCount());
     }
 
     @Override
-    public List<T> selectList(Act1<MapperWhereQ> c) {
+    public List<T> selectList(Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(() -> getQr(c).selectList(clz, "*"));
     }
 
     @Override
-    public List<Map<String, Object>> selectMapList(Act1<MapperWhereQ> c) {
+    public List<Map<String, Object>> selectMapList(Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).selectMapList("*"));
     }
 
     @Override
-    public List<Object> selectArray(String column, Act1<MapperWhereQ> c) {
+    public List<Object> selectArray(String column, Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).selectArray(column));
     }
 
     @Override
-    public List<T> selectList(int start, int size, Act1<MapperWhereQ> c) {
+    public List<T> selectList(int start, int size, Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(() -> getQr(c).limit(start, size).selectList(clz, "*"));
     }
 
     @Override
-    public List<Map<String, Object>> selectMapList(int start, int size, Act1<MapperWhereQ> c) {
+    public List<Map<String, Object>> selectMapList(int start, int size, Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).limit(start, size).selectMapList("*"));
     }
 
     @Override
-    public List<Object> selectArray(String column, int start, int size, Act1<MapperWhereQ> c) {
+    public List<Object> selectArray(String column, int start, int size, Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).limit(start, size).selectArray(column));
     }
 
 
     @Override
-    public DataReader<T> selectReader(Act1<MapperWhereQ> c) {
+    public DataReader<T> selectReader(Act1<MapperWhere> c) {
         return selectReader(0, c);
     }
 
     @Override
-    public DataReader<T> selectReader(int fetchSize, Act1<MapperWhereQ> c) {
+    public DataReader<T> selectReader(int fetchSize, Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         DataReaderForDataRow reader = RunUtils.call(() -> getQr(c).fetchSize(fetchSize).selectDataReader("*"));
@@ -444,7 +444,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public Page<T> selectPage(int start, int size, Act1<MapperWhereQ> c) {
+    public Page<T> selectPage(int start, int size, Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         List<T> list = RunUtils.call(() -> getQr(c).limit(start, size).selectList(clz, "*"));
@@ -456,7 +456,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhereQ> c) {
+    public Page<Map<String, Object>> selectMapPage(int start, int size, Act1<MapperWhere> c) {
         List<Map<String, Object>> list = RunUtils.call(() -> getQr(c).limit(start, size).selectMapList("*"));
         long total = RunUtils.call(() -> getQr(c).selectCount());
 
@@ -466,14 +466,14 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     }
 
     @Override
-    public List<T> selectTop(int size, Act1<MapperWhereQ> c) {
+    public List<T> selectTop(int size, Act1<MapperWhere> c) {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(() -> getQr(c).top(size).selectList(clz, "*"));
     }
 
     @Override
-    public List<Map<String, Object>> selectMapTop(int size, Act1<MapperWhereQ> c) {
+    public List<Map<String, Object>> selectMapTop(int size, Act1<MapperWhere> c) {
         return RunUtils.call(() -> getQr(c).top(size).selectMapList("*"));
     }
 
@@ -487,11 +487,11 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     /**
      * 获取带条件的查询器
      */
-    protected TableQuery getQr(Act1<MapperWhereQ> c) {
+    protected TableQuery getQr(Act1<MapperWhere> c) {
         TableQuery qr = db().table(tableName());
 
         if (c != null) {
-            c.run(new MapperWhereQ(qr));
+            c.run(new MapperWhere(qr));
         }
 
         return qr;
