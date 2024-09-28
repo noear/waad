@@ -129,7 +129,7 @@ public class XmlSqlBlock {
         return txt2;
     }
 
-    public IXmlSqlBuilder builder;
+    public XmlSqlBuilder builder;
 
     static final String java_types = ",char,boolean,short,int,long,float,double,Character,Boolean,Short,Integer,Long,Float,Double,Date,LocalDateTime,LocalTime,LocalDate,Object,";
     static final String waad_types = ",Map,MapList,DateItem,DateList,";

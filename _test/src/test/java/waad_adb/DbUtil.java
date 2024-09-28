@@ -2,14 +2,14 @@ package waad_adb;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.noear.waad.DbContext;
-import org.noear.waad.DbDataSource;
+import org.noear.waad.datasource.SimpleDataSource;
 
 import javax.sql.DataSource;
 
 public class DbUtil {
 
     private final static DataSource dbClickHouseCfg() {
-        DbDataSource ds = new DbDataSource("jdbc:clickhouse://localhost:8123/rock");
+        SimpleDataSource ds = new SimpleDataSource("jdbc:clickhouse://localhost:8123/rock");
 
         ds.setDriverClassName("ru.yandex.clickhouse.ClickHouseDriver");
 

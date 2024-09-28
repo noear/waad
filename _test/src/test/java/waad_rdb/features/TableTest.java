@@ -2,7 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
-import org.noear.waad.DbTableQuery;
+import org.noear.waad.TableQuery;
 import webapp.model.AppxD;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
@@ -19,7 +19,7 @@ public class TableTest {
 
         map.remove("app_id");
 
-        DbTableQuery tq = db.table("appx_copy")
+        TableQuery tq = db.table("appx_copy")
                 .setMap(map);
 
         if (tq.where("app_id=?", 11).selectExists()) {

@@ -9,9 +9,9 @@ import org.noear.waad.wrap.Property;
  */
 public class MapperWhereQ extends WhereBase<MapperWhereQ> {
 
-    private DbTableQuery _query;
+    private TableQuery _query;
 
-    public MapperWhereQ(DbTableQuery query) {
+    public MapperWhereQ(TableQuery query) {
         super();
 
         _query = query;

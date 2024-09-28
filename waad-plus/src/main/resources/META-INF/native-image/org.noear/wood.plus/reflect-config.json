@@ -1,6 +1,6 @@
 [
   {
-    "name": "org.noear.waad.impl.IMapperAdaptorPlusImpl",
+    "name": "org.noear.waad.impl.MapperAdaptorPlusImpl",
     "methods": [
       {
         "name": "<init>",

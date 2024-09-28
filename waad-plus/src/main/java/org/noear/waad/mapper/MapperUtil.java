@@ -2,6 +2,7 @@ package org.noear.waad.mapper;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
+import org.noear.waad.WaadConfig;
 import org.noear.waad.model.Variate;
 import org.noear.waad.utils.StrUtils;
 import org.noear.waad.xml.XmlSqlBlock;
@@ -110,36 +111,36 @@ public  class MapperUtil {
 
                         if (valV.getValue() == null) {
                             if (Integer.TYPE == rType) {
-                                return 0;
+                                return WaadConfig.isSelectNullAsDefault ? 0 : null;
                             }
 
                             if (Long.TYPE == rType) {
-                                return 0L;
+                                return WaadConfig.isSelectNullAsDefault ? 0L : null;
                             }
 
                             if (Float.TYPE == rType) {
-                                return 0F;
+                                return WaadConfig.isSelectNullAsDefault ? 0F : null;
                             }
 
                             if (Double.TYPE == rType) {
-                                return 0D;
+                                return WaadConfig.isSelectNullAsDefault ? 0D : null;
                             }
                         } else {
                             //解决 BigDecimal BigInteger 问题
                             if (block._return.toLowerCase().startsWith("int")) {
-                                return valV.intValue(0);
+                                return valV.intValue(WaadConfig.isSelectNullAsDefault ? 0 : null);
                             }
 
                             if (block._return.toLowerCase().startsWith("long")) {
-                                return valV.longValue(0L);
+                                return valV.longValue(WaadConfig.isSelectNullAsDefault ? 0L : null);
                             }
 
                             if (block._return.toLowerCase().startsWith("float")) {
-                                return valV.floatValue(0F);
+                                return valV.floatValue(WaadConfig.isSelectNullAsDefault ? 0F : null);
                             }
 
                             if (block._return.toLowerCase().startsWith("double")) {
-                                return valV.doubleValue(0D);
+                                return valV.doubleValue(WaadConfig.isSelectNullAsDefault ? 0D : null);
                             }
 
                             if (block._return.toLowerCase().startsWith("str")) {

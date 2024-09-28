@@ -11,8 +11,8 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 
 public class MapperHandler implements InvocationHandler {
-    private static IMapperInvoke annInvoke = new MapperInvokeForAnn();
-    private static IMapperInvoke xmlInvoke = new MapperInvokeForXml();
+    private static MapperInvoke annInvoke = new MapperInvokeForAnn();
+    private static MapperInvoke xmlInvoke = new MapperInvokeForXml();
     private static MapperInvokeForBas basInvoke = new MapperInvokeForBas();
 
 

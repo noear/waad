@@ -4,9 +4,9 @@ import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.DbContext;
 import org.noear.waad.DbProcedure;
 import org.noear.waad.mapper.BaseMapperWrap;
-import org.noear.waad.mapper.IMapperAdaptor;
+import org.noear.waad.mapper.MapperAdaptor;
 import org.noear.waad.mapper.MapperUtil;
-import org.noear.waad.xml.DbXmlsqlProcedure;
+import org.noear.waad.xml.DbXmlSqlProcedure;
 import org.noear.waad.xml.XmlSqlLoader;
 
 import java.util.Map;
@@ -15,11 +15,11 @@ import java.util.Map;
  * @author noear
  * @since 1.1
  */
-public class IMapperAdaptorPlusImpl implements IMapperAdaptor {
+public class MapperAdaptorPlusImpl implements MapperAdaptor {
     @Override
     public DbProcedure createXmlProcedure(DbContext db, String process, Map<String, Object> args) {
         XmlSqlLoader.tryLoad();
-        return new DbXmlsqlProcedure(db).sql(process.substring(1)).setMap(args);
+        return new DbXmlSqlProcedure(db).sql(process.substring(1)).setMap(args);
     }
 
     @Override

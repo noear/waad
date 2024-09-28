@@ -9,15 +9,15 @@ import java.util.Map;
  * @author noear
  * @since 1.1
  */
-public class IMapperAdaptorImpl implements IMapperAdaptor {
+public class MapperAdaptorImpl implements MapperAdaptor {
     static final String hint = "To use the mapper feature, use the 'waad-plus' dependency package";
 
-    private IMapperAdaptor real;
+    private MapperAdaptor real;
 
-    public IMapperAdaptorImpl() {
+    public MapperAdaptorImpl() {
         try {
-            Class<?> clz = IMapperAdaptor.class.getClassLoader().loadClass("org.noear.waad.impl.IMapperAdaptorPlusImpl");
-            real = (IMapperAdaptor) clz.getDeclaredConstructor().newInstance();
+            Class<?> clz = MapperAdaptor.class.getClassLoader().loadClass("org.noear.waad.impl.MapperAdaptorPlusImpl");
+            real = (MapperAdaptor) clz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
 
         }

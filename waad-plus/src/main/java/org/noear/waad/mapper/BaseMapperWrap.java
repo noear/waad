@@ -469,15 +469,15 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     /**
      * 获取查询器
      */
-    protected DbTableQuery getQr() {
+    protected TableQuery getQr() {
         return db().table(tableName());
     }
 
     /**
      * 获取带条件的查询器
      */
-    protected DbTableQuery getQr(Act1<MapperWhereQ> c) {
-        DbTableQuery qr = db().table(tableName());
+    protected TableQuery getQr(Act1<MapperWhereQ> c) {
+        TableQuery qr = db().table(tableName());
 
         if (c != null) {
             c.run(new MapperWhereQ(qr));

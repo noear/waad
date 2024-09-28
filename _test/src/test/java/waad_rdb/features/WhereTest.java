@@ -15,7 +15,7 @@ public class WhereTest {
     DbContext db2 = DbUtil.db;
 
     public void demo1(int type) throws SQLException {
-        DbTableQuery qr = db2.table("appx");
+        TableQuery qr = db2.table("appx");
 
         qr.whereTrue();
 

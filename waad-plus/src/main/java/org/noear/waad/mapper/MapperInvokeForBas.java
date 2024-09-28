@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MapperInvokeForBas implements IMapperInvoke {
+public class MapperInvokeForBas implements MapperInvoke {
     private static final ReentrantLock SYNC_LOCK = new ReentrantLock();
 
     static Map<Object, BaseMapper> _lib = new HashMap<>();

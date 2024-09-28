@@ -3,6 +3,7 @@ package org.noear.waad;
 import org.noear.waad.core.Command;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.datasource.SimpleDataSource;
 import org.noear.waad.dialect.DbDialect;
 import org.noear.waad.link.ITable;
 import org.noear.waad.mapper.BaseMapper;
@@ -275,9 +276,9 @@ public class DbContext implements Closeable {
         }
 
         if (StrUtils.isEmpty(username)) {
-            getMetaData().setDataSource(new DbDataSource(url));
+            getMetaData().setDataSource(new SimpleDataSource(url));
         } else {
-            getMetaData().setDataSource(new DbDataSource(url, username, password));
+            getMetaData().setDataSource(new SimpleDataSource(url, username, password));
         }
     }
 
@@ -285,13 +286,13 @@ public class DbContext implements Closeable {
     //基于线程池配置（如："proxool."）
     public DbContext(String schema, String url) {
         schemaSet(schema);
-        getMetaData().setDataSource(new DbDataSource(url));
+        getMetaData().setDataSource(new SimpleDataSource(url));
     }
 
     //基于手动配置（无线程池）
     public DbContext(String schema, String url, String username, String password) {
         schemaSet(schema);
-        getMetaData().setDataSource(new DbDataSource(url, username, password));
+        getMetaData().setDataSource(new SimpleDataSource(url, username, password));
     }
 
     public DbContext(String schema, DataSource dataSource) {
@@ -356,12 +357,12 @@ public class DbContext implements Closeable {
     /**
      * 获取一个表对象［用于操作插入也更新］
      */
-    public DbTableQuery table(String table) {
-        return new DbTableQuery(this).table(table);
+    public TableQuery table(String table) {
+        return new TableQuery(this).table(table);
     }
 
-    public DbTableQuery table(ITable table) {
-        return new DbTableQuery(this).table(table);
+    public TableQuery table(ITable table) {
+        return new TableQuery(this).table(table);
     }
 
     /**

@@ -17,10 +17,10 @@ import java.util.function.BiFunction;
  * ?
  * ?...     //说明这里是一个数组或查询结果
  */
-public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
+public class TableQuery extends TableQueryBase<TableQuery> {
     protected DataRow _item = null; //会排除null数据
 
-    public DbTableQuery(DbContext context) {
+    public TableQuery(DbContext context) {
         super(context);
     }
 
@@ -30,18 +30,18 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         }
     }
 
-    public DbTableQuery set(String column, Object value) {
+    public TableQuery set(String column, Object value) {
         item_init();
         _item.set(column, value);
 
         return this;
     }
 
-    public DbTableQuery set(IColumn column, Object value) {
+    public TableQuery set(IColumn column, Object value) {
         return set(column.name(), value);
     }
 
-    public DbTableQuery setInc(String column, long value) {
+    public TableQuery setInc(String column, long value) {
         usingExpr(true);
         if (value < 0) {
             set(column, "$" + column + value);
@@ -52,12 +52,12 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setInc(IColumn column, long value) {
+    public TableQuery setInc(IColumn column, long value) {
         return setInc(column.name(), value);
     }
 
 
-    public DbTableQuery setDf(String column, Object value, Object def) {
+    public TableQuery setDf(String column, Object value, Object def) {
         if (value == null) {
             set(column, def);
         } else {
@@ -67,11 +67,11 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setDf(IColumn column, Object value, Object def) {
+    public TableQuery setDf(IColumn column, Object value, Object def) {
         return setDf(column.name(), value, def);
     }
 
-    public DbTableQuery setIf(boolean condition, String column, Object value){
+    public TableQuery setIf(boolean condition, String column, Object value){
         if(condition){
             set(column,value);
         }
@@ -79,11 +79,11 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setIf(boolean condition, IColumn column, Object value) {
+    public TableQuery setIf(boolean condition, IColumn column, Object value) {
         return setIf(condition, column.getCode(), value);
     }
 
-    public DbTableQuery setMap(Map<String,Object> data) {
+    public TableQuery setMap(Map<String,Object> data) {
         if (usingNull()) {
             setMapIf(data, (k, v) -> true);
         } else {
@@ -93,14 +93,14 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setMapIf(Map<String,Object> data, BiFunction<String,Object,Boolean> condition) {
+    public TableQuery setMapIf(Map<String,Object> data, BiFunction<String,Object,Boolean> condition) {
         item_init();
         _item.setMapIf(data, condition);
 
         return this;
     }
 
-    public DbTableQuery setEntity(Object data) {
+    public TableQuery setEntity(Object data) {
         if (usingNull()) {
             setEntityIf(data, (k, v) -> true);
         } else {
@@ -110,7 +110,7 @@ public class DbTableQuery extends DbTableQueryBase<DbTableQuery> {
         return this;
     }
 
-    public DbTableQuery setEntityIf(Object data, BiFunction<String,Object,Boolean> condition) {
+    public TableQuery setEntityIf(Object data, BiFunction<String,Object,Boolean> condition) {
         item_init();
         _item.setEntityIf(data, condition);
 

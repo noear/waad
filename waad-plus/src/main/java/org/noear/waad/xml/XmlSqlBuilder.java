@@ -4,6 +4,6 @@ import org.noear.waad.core.SQLBuilder;
 
 import java.util.Map;
 
-public interface IXmlSqlBuilder {
+public interface XmlSqlBuilder {
     SQLBuilder build(Map map) throws Exception;
 }

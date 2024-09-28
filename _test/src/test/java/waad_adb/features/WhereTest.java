@@ -2,7 +2,7 @@ package waad_adb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
-import org.noear.waad.DbTableQuery;
+import org.noear.waad.TableQuery;
 import org.noear.waad.WhereBase;
 import waad_demo.render.AppxModel;
 import waad_adb.DbUtil;
@@ -17,7 +17,7 @@ public class WhereTest {
     DbContext db2 = DbUtil.db;
 
     public void demo1(int type) throws SQLException {
-        DbTableQuery qr = db2.table("appx");
+        TableQuery qr = db2.table("appx");
 
         qr.whereTrue();
 

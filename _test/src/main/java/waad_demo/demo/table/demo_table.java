@@ -3,7 +3,7 @@ package waad_demo.demo.table;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataList;
 import org.noear.waad.DbContext;
-import org.noear.waad.DbTableQuery;
+import org.noear.waad.TableQuery;
 import waad_demo.config.DbConfig;
 import waad_demo.demo.model.UserInfoModel;
 
@@ -125,7 +125,7 @@ public class demo_table {
         int start = pageSize * (pageIndex - 1);
 
         //代码拼装
-        DbTableQuery qr = db.table("$.invites").where("1=1");
+        TableQuery qr = db.table("$.invites").where("1=1");
         if (whereVal > 0) {
             if (where == "u")
                 qr.and("(master_id=? OR user_id=?)", whereVal, whereVal);

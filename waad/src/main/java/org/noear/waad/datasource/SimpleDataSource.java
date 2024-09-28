@@ -1,4 +1,4 @@
-package org.noear.waad;
+package org.noear.waad.datasource;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -12,18 +12,18 @@ import java.util.logging.Logger;
 /**
  * 数据据源
  * */
-public class DbDataSource implements DataSource {
+public class SimpleDataSource implements DataSource {
     protected PrintWriter logWriter;
     protected String url;
     protected String username;
     protected String password;
 
-    public DbDataSource(String url) {
+    public SimpleDataSource(String url) {
         this.logWriter = new PrintWriter(System.out);
         this.url = url;
     }
 
-    public DbDataSource(String url, String username,String password) {
+    public SimpleDataSource(String url, String username, String password) {
         this.logWriter = new PrintWriter(System.out);
         this.url = url;
         this.username = username;
@@ -105,7 +105,7 @@ public class DbDataSource implements DataSource {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DbDataSource that = (DbDataSource) o;
+        SimpleDataSource that = (SimpleDataSource) o;
         return Objects.equals(url, that.url) &&
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password);

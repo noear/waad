@@ -26,7 +26,7 @@ import java.util.*;
  * ?
  * ?...     //说明这里是一个数组或查询结果
  */
-public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> implements ICacheController<DbTableQueryBase> {
+public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> implements ICacheController<TableQueryBase> {
 
     String _table_raw;
     ITable _table; //表名
@@ -34,7 +34,7 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
     SQLBuilder _builder_bef;
     int _isLog = 0;
 
-    public DbTableQueryBase(DbContext context) {
+    public TableQueryBase(DbContext context) {
         super(context);
         _builder_bef = new SQLBuilder();
     }
@@ -815,8 +815,8 @@ public class DbTableQueryBase<T extends DbTableQueryBase> extends WhereBase<T> i
 
                 _builder.backup();
 
-                DbTableQuery countQuery = new DbTableQuery(_context);
-                DbTableQuery table = countQuery.table(" (" + groupQuery.commandText + ") a");
+                TableQuery countQuery = new TableQuery(_context);
+                TableQuery table = countQuery.table(" (" + groupQuery.commandText + ") a");
                 table._builder.paramS = _builder.paramS;
                 return table.selectCount("1");
             }

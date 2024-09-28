@@ -9,7 +9,7 @@ import java.lang.reflect.Parameter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MapperInvokeForXml implements IMapperInvoke {
+public class MapperInvokeForXml implements MapperInvoke {
     public Object call(Object proxy, DbContext db, String sqlid, Class<?> caller, MethodWrap mWrap, Object[] vals) throws Throwable {
         //1.获取代码块，并检测有效性
         XmlSqlBlock block = XmlSqlFactory.get(sqlid);

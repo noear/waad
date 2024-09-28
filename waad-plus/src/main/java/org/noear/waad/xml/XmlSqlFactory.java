@@ -10,7 +10,7 @@ public class XmlSqlFactory {
         _sqlMap.put(sqlid, sqlBlock);
     }
 
-    public static void register(String sqlid, IXmlSqlBuilder xmlSqlBuilder) {
+    public static void register(String sqlid, XmlSqlBuilder xmlSqlBuilder) {
         XmlSqlBlock tmp = _sqlMap.get(sqlid);
 
         //这个注册，相当于绑定

@@ -11,7 +11,7 @@ import java.util.Map;
  * @author noear
  * @since 1.1
  */
-public interface IMapperAdaptor {
+public interface MapperAdaptor {
     /**
      * 生成 xml 处理器
      */

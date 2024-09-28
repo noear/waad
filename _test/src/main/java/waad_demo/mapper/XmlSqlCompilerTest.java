@@ -50,7 +50,7 @@ public class XmlSqlCompilerTest {
         if(tmp == null){
             return;
         }else{
-            System.out.println("已找到 IXmlSqlBuilder: org.xxx.xxx.user_add");
+            System.out.println("已找到 XmlSqlBuilder: org.xxx.xxx.user_add");
         }
     }
 

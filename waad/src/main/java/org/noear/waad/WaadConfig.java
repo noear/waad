@@ -2,8 +2,10 @@ package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.core.Events;
-import org.noear.waad.mapper.IMapperAdaptorImpl;
-import org.noear.waad.mapper.IMapperAdaptor;
+import org.noear.waad.datasource.ConnectionFactory;
+import org.noear.waad.datasource.SimpleConnectionFactory;
+import org.noear.waad.mapper.MapperAdaptorImpl;
+import org.noear.waad.mapper.MapperAdaptor;
 import org.noear.waad.wrap.PrimaryKeyStrategy;
 import org.noear.waad.wrap.NamingStrategy;
 import org.noear.waad.wrap.TypeConverter;
@@ -44,12 +46,12 @@ public final class WaadConfig {
     /**
      * Mapper 适配器
      */
-    public static IMapperAdaptor mapperAdaptor = new IMapperAdaptorImpl();
+    public static MapperAdaptor mapperAdaptor = new MapperAdaptorImpl();
 
     /**
      * 链接工厂
      */
-    public static DbConnectionFactory connectionFactory = new DbConnectionFactory();
+    public static ConnectionFactory connectionFactory = new SimpleConnectionFactory();
 
     public static Map<String, ICacheServiceEx> libOfCache = new ConcurrentHashMap<>();
     public static Map<String, DbContext> libOfDb = new ConcurrentHashMap<>();

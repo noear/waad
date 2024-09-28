@@ -1,7 +1,7 @@
 package waad_demo.demo2;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.DbTableQuery;
+import org.noear.waad.TableQuery;
 import waad_demo.config.DbConfig;
 import waad_demo.mapper.UserModel;
 
@@ -26,7 +26,7 @@ public class Demo2 {
     }
 
     public Object searchBy(Integer id, String name, Integer type) throws Exception {
-        DbTableQuery qr = db.table("user").where("1=1");
+        TableQuery qr = db.table("user").where("1=1");
         if (id != null) {
             qr.and("id=?", id);
         }
@@ -53,7 +53,7 @@ public class Demo2 {
     }
 
     public Object demo1(String name, String akey) throws Exception {
-        DbTableQuery qr = db.table("appx").where("1=1");
+        TableQuery qr = db.table("appx").where("1=1");
 
         if (name != null) {
             qr.and("name=?", name);
@@ -88,7 +88,7 @@ public class Demo2 {
 
 
     public void demo2(String name, String note, String akey) throws Exception {
-        DbTableQuery qr = db.table("appx").set("log_fulltime", "$NOW()");
+        TableQuery qr = db.table("appx").set("log_fulltime", "$NOW()");
 
         if (name != null) {
             qr.set("name", name);
@@ -131,7 +131,7 @@ public class Demo2 {
     }
 
     public void insert(Map<String, Object> map) throws Exception {
-        DbTableQuery qr = db.table("user");
+        TableQuery qr = db.table("user");
         map.forEach((k, v) -> {
             if (v != null) {
                 qr.set(k, v);

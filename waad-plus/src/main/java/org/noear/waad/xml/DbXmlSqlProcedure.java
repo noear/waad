@@ -15,15 +15,15 @@ import java.util.Map;
  * Created by noear on 19-10-14.
  * Xmlsql过程访问类
  */
-public class DbXmlsqlProcedure extends DbProcedure {
+public class DbXmlSqlProcedure extends DbProcedure {
     private String _sqlid;
-    private Map<String,Object> _map = new HashMap<>(); //不能用:Variate, IXmlSqlBuilder 不支持
+    private Map<String,Object> _map = new HashMap<>(); //不能用:Variate, XmlSqlBuilder 不支持
 
-    public DbXmlsqlProcedure(DbContext context){
+    public DbXmlSqlProcedure(DbContext context){
         super(context);
     }
 
-    public DbXmlsqlProcedure sql(String sqlid) {
+    public DbXmlSqlProcedure sql(String sqlid) {
         _sqlid = sqlid;
 
         this.commandText = sqlid;
