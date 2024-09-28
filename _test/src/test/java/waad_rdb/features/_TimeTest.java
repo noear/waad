@@ -20,7 +20,7 @@ public class _TimeTest {
                     .where("app_id=?", 22)
                     .selectItem(AppxCopy2Model.class, "*");
 
-            System.out.println(db.lastCommand.text);
+            System.out.println(db.lastCommand.text());
         }
 
         return _model;
@@ -40,7 +40,7 @@ public class _TimeTest {
         map.put("app_id", 1001);
 
         db.table("appx_copy").setMap(map).upsertBy("app_id");
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class _TimeTest {
         db.table("appx_copy").usingNull(true)
                 .setEntityIf(map, (k, v) -> v != null)
                 .upsertBy("app_id");
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test

@@ -134,8 +134,8 @@ public class MapperTest {
     public void test_select_list_order() {
         //selectList
         List<AppxModel> m15 = mapper.selectList(mq -> mq.orderBy("app_id ASC").andBy("agroup_id ASC"));
-        System.out.println("list_order: " + m15.size() +" :" + db2.lastCommand.fullText());
-        assert db2.lastCommand.fullText().contains("ORDER BY");
+        System.out.println("list_order: " + m15.size() +" :" + db2.lastCommand.getCmdString());
+        assert db2.lastCommand.getCmdString().contains("ORDER BY");
         assert m15.size() > 5;
     }
 

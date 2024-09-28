@@ -1,155 +1,70 @@
 package org.noear.waad.core;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.transaction.DbTran;
-import org.noear.waad.transaction.DbTranUtil;
-import org.noear.waad.cache.ICacheServiceEx;
-import org.noear.waad.utils.fun.Act1;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by noear on 14-9-5.
  * 命令
+ *
+ * @author noear
+ * @since 4.0
  */
-public class Command {
+public interface Command {
     /**
      * 命令tag（用于寄存一些数据）
      */
-    public String tag;
-    /**
-     * 是否进行日志
-     */
-    public int isLog; //def:0  no:-1 yes:1
-
+    String tag();
 
     /**
      * 命令id
      */
-    public String key;
+    String key();
+
     /**
      * 命令文本
      */
-    public String text;
+    String text();
+
     /**
      * 命令参数
      */
-    public List<Object> paramS;
+    List<Object> args();
 
     /**
-     * 数据库上下文（肯定且必须有）
+     * 命令参数-map 形式
      */
-    public DbContext context;
-    /**
-     * 缓存服务对象（可能有，可能没有）
-     */
-    public ICacheServiceEx cache;
+    Map<String, Object> argsMap();
 
-    /**
-     * 附件（可能为null；目前在 mapper 处理时会产生）
-     * */
-    public Map<String,Object> attachment;
-
-    /**
-     * 数据处理事务
-     */
-    public DbTran tran;
 
     /**
      * 是否为批处理
      */
-    public boolean isBatch = false;
-
-    //计时变量
-    public long timestart = 0;
-    public long timestop = 0;
+    boolean isBatch();
 
     /**
-     * 受影响的行数，一次可能执行多条 SQL，所以是一个数组
+     * 是否进行日志（def:0  no:-1 yes:1）
      */
-    public long[] affectRow;
-
-    public Command(DbContext context) {
-        this.context = context;
-        this.context.lastCommand = this;
-        this.tran = DbTranUtil.current();
-    }
-
-    private Map<String, Object> _paramMap;
+    int isLog();
 
     /**
-     * 参数字典
+     * 执行时间简隔
      */
-    public Map<String, Object> paramMap() {
-        if (_paramMap == null) {
-            _paramMap = new LinkedHashMap<>();
-
-            int idx = 0;
-            for (Object v : paramS) {
-                _paramMap.put("v" + idx, v);
-                idx++;
-            }
-        }
-
-        return _paramMap;
-    }
-
+    long timespan();
 
     /**
-     * 转为SQL字符串
+     * 数据库上下文（肯定且必须有）
      */
-    public String toSqlString() {
-        StringBuilder sb = new StringBuilder();
-
-        if (isBatch) {
-            sb.append(text);
-            sb.append(" --:batch");
-        } else {
-            String[] ss = text.split("\\?");
-            for (int i = 0, len = ss.length, len2 = paramS.size(); i < len; i++) {
-                sb.append(ss[i]);
-
-                if (i < len2) {
-                    Object val = paramS.get(i);
-
-                    if (val == null) {
-                        sb.append("NULL");
-                    } else if (val instanceof String) {
-                        sb.append("'").append(val).append("'");
-                    } else if (val instanceof Boolean) {
-                        sb.append(val);
-                    } else if (val instanceof Date) {
-                        sb.append("'").append(val).append("'");
-                    } else {
-                        sb.append(val);
-                    }
-                }
-            }
-        }
-
-        return sb.toString();
-    }
+    DbContext context();
 
     /**
-     * 执行时长
+     * 获取 Sql 字符串（完整的）
      */
-    public long timespan() {
-        return timestop - timestart;
-    }
+    String getSqlString();
 
     /**
-     * 完整的命令文本
+     * 获取 Cmd 字符串（配参数配合，用于执行）
      */
-    public String fullText() {
-        if (context.codeHint() == null)
-            return context.metaData().getDialect().preReview(text);
-        else
-            return context.codeHint() + context.metaData().getDialect().preReview(text);
-    }
-
-    public Act1<Command> onExecuteAft = null;
-
+    String getCmdString();
 }

@@ -3,7 +3,7 @@ package org.noear.waad;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.core.Command;
+import org.noear.waad.core.CommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.*;
@@ -224,7 +224,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 插入编译并获取命令
      * */
-    public Command insertAsCmd(DataRow data) {
+    public CommandImpl insertAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -422,7 +422,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 更新编译并返回命令
      * */
-    public Command updateAsCmd(DataRow data) {
+    public CommandImpl updateAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -609,7 +609,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 删除编译并返回命令
      * */
-    public Command deleteAsCmd(){
+    public CommandImpl deleteAsCmd(){
         return deleteCompile().getCommand();
     }
 
@@ -705,11 +705,11 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(IColumn.getCodes(columns));
     }
 
-    public Command selectAsCmd(String columns){
+    public CommandImpl selectAsCmd(String columns){
        return selectCompile(columns).getCommand();
     }
 
-    public Command selectAsCmd(IColumn... columns) {
+    public CommandImpl selectAsCmd(IColumn... columns) {
         return selectCompile(IColumn.getCodes(columns)).getCommand();
     }
 

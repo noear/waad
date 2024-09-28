@@ -15,7 +15,7 @@ public class TableTest {
                 .where("app_id=?", 22)
                 .selectItem(AppxModel.class, "*").app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -24,6 +24,6 @@ public class TableTest {
                 .where("app_id=?", null)
                 .selectItem(AppxModel.class, "*").app_id == null;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 }

@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
  * 可以为 Null（只是标识一下）
  *
  * @author noear
- * @since 1.10
+ * @since 4.0
  */
 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
 @Documented

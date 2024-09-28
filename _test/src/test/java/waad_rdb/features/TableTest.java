@@ -56,7 +56,7 @@ public class TableTest {
                 .where("app_id=?", 11)
                 .update() > 0;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class TableTest {
                 .where("app_id=?", 11)
                 .update() > 0;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class TableTest {
                 .setMap(map)
                 .updateBy("app_id") > 0;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TableTest {
                 .where("app_id=?", 11).or("agroup_id IS NULL")
                 .update() > 0;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class TableTest {
                 .where("app_id=?", 22)
                 .selectItem(AppxModel.class, "*").app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class TableTest {
                 .where(APPX.APP_ID.eq(22))
                 .selectItem(AppxModel.class, APPX.all()).app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -127,7 +127,7 @@ public class TableTest {
 
         assert appxD.app_id() == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
          appxD = DbContext.use("rock").table("appx")
                 .where("app_id=?", 22)
@@ -144,7 +144,7 @@ public class TableTest {
 
         assert appxD.app_id() == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
         appxD = DbContext.use("rock").table(APPX)
                 .where(APPX.APP_ID.eq(22))
@@ -159,7 +159,7 @@ public class TableTest {
                 .where("app_id IS NULL")
                 .selectItem(AppxModel.class, "*").app_id == null;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
         assert db.table("appx")
                 .where("app_id IS NULL")
@@ -172,7 +172,7 @@ public class TableTest {
                 .where("app_id IS NULL")
                 .selectList(AppxModel.class, "*").size() == 0;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
         assert db.table("appx")
                 .where("app_id IS NULL")

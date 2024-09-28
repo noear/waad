@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * SQL注解
+ * SQL 注解
  *
  * @author noear
  * @since 3.2
@@ -14,9 +14,28 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Sql {
-    String value() default "";      //代码
-    String caching() default "";    //缓存服务
-    String cacheClear() default ""; //清除缓存
-    String cacheTag() default "";   //缓存标签
-    int usingCache() default 0;     //缓存时间
+    /**
+     * 代码
+     */
+    String value() default "";
+
+    /**
+     * 缓存服务
+     */
+    String caching() default "";
+
+    /**
+     * 清除缓存
+     */
+    String cacheClear() default "";
+
+    /**
+     * 缓存标签
+     */
+    String cacheTag() default "";
+
+    /**
+     * 缓存时间
+     */
+    int usingCache() default 0;
 }

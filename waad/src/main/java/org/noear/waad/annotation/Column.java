@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 为字段定义列名（或别名），一般用不到
+ * 列（不加时，字段名即为列名）
  *
  * @author noear
  * @since 3.2
@@ -14,5 +14,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Column {
+    /**
+     * 列名
+     */
     String value(); //别名
 }

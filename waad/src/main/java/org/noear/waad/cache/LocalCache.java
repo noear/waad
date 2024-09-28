@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 本地缓存
+ * 本地缓存服务
  *
  * @author noear
  * @since 3.0

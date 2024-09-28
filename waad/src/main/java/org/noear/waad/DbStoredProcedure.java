@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.core.Command;
+import org.noear.waad.core.CommandImpl;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -47,13 +47,13 @@ public class DbStoredProcedure extends DbProcedure {
     }
 
     @Override
-    protected Command getCommand(){
+    protected CommandImpl getCommand(){
         tryLazyload();
 
-        Command cmd = new Command(this.context);
+        CommandImpl cmd = new CommandImpl(this.context);
 
         cmd.key      = getCommandID();
-        cmd.paramS   = this.paramS;
+        cmd.args = this.paramS;
 
         StringBuilder sb = new StringBuilder();
         sb.append("{call ");

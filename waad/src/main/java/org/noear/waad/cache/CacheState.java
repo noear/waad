@@ -7,20 +7,20 @@ package org.noear.waad.cache;
  * @since 3.0
  */
 public enum  CacheState {
-    /// <summary>
-    /// 不使用
-    /// </summary>
+    /**
+     * 不使用
+     */
     NonUsing,
-    /// <summary>
-    /// 使用
-    /// </summary>
+    /**
+     * 使用
+     */
     Using,
-    /// <summary>
-    /// 刷新
-    /// </summary>
+    /**
+     * 刷新
+     */
     Refurbish,
-    /// <summary>
-    /// 移除
-    /// </summary>
+    /**
+     * 移除
+     */
     Remove,
 }

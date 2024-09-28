@@ -14,7 +14,7 @@ import java.sql.*;
  * 数据库执行器
  */
 public class SQLer {
-    private final Command cmd;
+    private final CommandImpl cmd;
     private ResultSet rset;
     private PreparedStatement stmt;
     private Connection conn;
@@ -50,7 +50,7 @@ public class SQLer {
         }
     }
 
-    public SQLer(Command cmd) {
+    public SQLer(CommandImpl cmd) {
         this.cmd = cmd;
     }
 
@@ -204,7 +204,7 @@ public class SQLer {
                 return null;
             }
 
-            for (Object data : cmd.paramS) {
+            for (Object data : cmd.args) {
                 int idx = 1;
                 Object[] ary = (Object[]) data;
                 //2.设置参数值
@@ -299,7 +299,7 @@ public class SQLer {
 
         int idx = 1;
         //2.设置参数值
-        for (Object v : cmd.paramS) {
+        for (Object v : cmd.args) {
             WaadConfig.typeConverter.filling(stmt, idx, v);
             idx++;
         }
@@ -322,10 +322,10 @@ public class SQLer {
         }
 
         if (cmd.text.indexOf("{call") >= 0)
-            stmt = c.prepareCall(cmd.fullText());
+            stmt = c.prepareCall(cmd.getCmdString());
         else {
             if (isStream) {
-                stmt = c.prepareStatement(cmd.fullText(), ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+                stmt = c.prepareStatement(cmd.getCmdString(), ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
                 if (fetchSize > 0) {
                     stmt.setFetchSize(fetchSize);
@@ -334,9 +334,9 @@ public class SQLer {
                 }
             } else {
                 if (isInsert && cmd.context.metaData().getDialect().supportsInsertGeneratedKey())
-                    stmt = c.prepareStatement(cmd.fullText(), Statement.RETURN_GENERATED_KEYS);
+                    stmt = c.prepareStatement(cmd.getCmdString(), Statement.RETURN_GENERATED_KEYS);
                 else
-                    stmt = c.prepareStatement(cmd.fullText());
+                    stmt = c.prepareStatement(cmd.getCmdString());
             }
         }
 

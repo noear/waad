@@ -27,7 +27,7 @@ public class WithTest {
                 .with("ah", "select * from appx_agroup where agroup_id<?", 10)
                 .selectList(AppxModel.class, "ax.*");
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class WithTest {
                 .with("ax", db.table("appx").selectQ("*"))
                 .selectMapList("ax.*");
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
 }

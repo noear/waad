@@ -25,7 +25,7 @@ public class TableJoinTest {
 
         assert m.app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TableJoinTest {
                 .selectItem(AppxModel.class, APPX.all(), APPX_AGROUP.NAME.as("agroup_name"));
 
         assert m.app_id == 22;
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class TableJoinTest {
 
         assert m.app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class TableJoinTest {
 
         assert m.app_id == 22;
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class TableJoinTest {
                 .where("a.agroup_id = g.agroup_id").and("a.app_id=?", 1)
                 .update();
 
-        System.out.print(db.lastCommand.text);
+        System.out.print(db.lastCommand.text());
     }
 
     @Test
@@ -91,6 +91,6 @@ public class TableJoinTest {
                 .where("a.app_id=?", 1)
                 .update();
 
-        System.out.print(db.lastCommand.text);
+        System.out.print(db.lastCommand.text());
     }
 }

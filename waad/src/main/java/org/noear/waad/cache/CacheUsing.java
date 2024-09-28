@@ -9,24 +9,30 @@ import org.noear.waad.utils.fun.Fun0Ex;
  * 缓存使用控制接口
  *
  * @author noear
- * @since 3.0
  */
 public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
     //#region ICacheControllerState 成员
-    public ICacheService outerCaching;
-    public int cacheSeconds;
-    public CacheState cacheController;
+    protected ICacheService outerCaching;
+    protected int cacheSeconds;
+    protected CacheState cacheController;
+
     private Object cacheCondition; //Fun1<Boolean,T>
 
     //#endregion
 
     //#region ICacheUsing<Q> 成员
 
+    /**
+     * 使用缓存
+     */
     public CacheUsing usingCache(boolean isCache) {
         this.cacheController = (isCache ? CacheState.Using : CacheState.NonUsing);
         return this;
     }
 
+    /**
+     * 使用缓存
+     */
     public CacheUsing usingCache(int seconds) {
         if (this.cacheController != CacheState.Refurbish)
             this.cacheController = CacheState.Using;
@@ -35,6 +41,9 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
         return this;
     }
 
+    /**
+     * 使用缓存
+     */
     public <T> CacheUsing usingCache(Act2<CacheUsing, T> condition) {
         if (condition != null) {
 
@@ -47,11 +56,18 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
         return this;
     }
 
+    /**
+     * 刷新缓存
+     */
     public CacheUsing refurbishCache() {
         this.cacheController = CacheState.Refurbish;
         return this;
     }
 
+
+    /**
+     * 刷新缓存
+     */
     public CacheUsing refurbishCache(boolean isRefubish) {
         this.cacheController = (isRefubish ? CacheState.Refurbish : CacheState.Using);
         return this;
@@ -62,8 +78,6 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
         return this;
     }
 
-    //#endregion
-    //===================================
     //===================================
     public String _waadKey = null;
 
@@ -77,18 +91,26 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
     }
 
     //===========
-    /// <summary>
-    /// 获取一个执行结果
-    /// </summary>
-    /// <typeparam name="T">实体类型</typeparam>
-    /// <param name="exec">执行方法</param>
-    /// <param name="waadKey">缓存关健字</param>
-    /// <returns></returns>
 
+    /**
+     * 获取一个执行结果
+     *
+     * @param waadKey 缓存关健字
+     * @param exec    执行方法
+     * @return 实体
+     */
     public <T> T get(String waadKey, Fun0<T> exec) {
         return get(waadKey, Object.class, exec);
     }
 
+    /**
+     * 获取一个执行结果
+     *
+     * @param waadKey 缓存关健字
+     * @param clz     实体类型
+     * @param exec    执行方
+     * @return 实体
+     */
     public <T> T get(String waadKey, Class<?> clz, Fun0<T> exec) {
         if (this.cacheController == CacheState.NonUsing)
             return exec.run();
@@ -153,17 +175,33 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
         return cacheT;
     }
 
+
+    /**
+     * 只获取
+     *
+     * @param waadKey 缓存键
+     */
+
     public <T> T getOnly(String waadKey) {
         return getOnly(waadKey, Object.class);
     }
 
 
+    /**
+     * 只获取（特定类型）
+     *
+     * @param waadKey 缓存键
+     * @param clz     特定类型
+     */
     public <T> T getOnly(String waadKey, Class<?> clz) {
         _waadKey = waadKey;
 
         return (T) outerCaching.get(_waadKey, clz);
     }
 
+    /**
+     * 只存储
+     */
     public void storeOnly(String waadKey, Object data) {
         _waadKey = waadKey;
 
@@ -173,14 +211,14 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
     }
 
     //============
-    CacheTags cacheTags = null;
-    Act0 onExecH = null;
+    private CacheTags cacheTags = null;
+    private Act0 onExecH = null;
 
-    /// <summary>
-    /// 添加缓存标签 (统一缓存维护,以便统一删除和直接获取)
-    /// </summary>
-    /// <param name="tag">标签名</param>
-    /// <param name="val">标签值</param>
+    /**
+     * 添加缓存标签 (统一缓存维护,以便统一删除和直接获取)
+     *
+     * @param tag 标签名
+     */
     public CacheUsing cacheTag(String tag) {
         if (cacheTags == null) {
             cacheTags = new CacheTags(this.outerCaching);
@@ -194,12 +232,11 @@ public class CacheUsing implements ICacheUsing<CacheUsing>, Cacheable {
         return this;
     }
 
-
-    /// <summary>
-    /// 根据缓存标签清除缓存
-    /// </summary>
-    /// <param name="tag">标签名</param>
-    /// <param name="val">标签值</param>
+    /**
+     * 根据缓存标签清除缓存
+     *
+     * @param tag 标签名
+     */
     public void clearCache(String tag) {
         if (cacheTags != null)
             cacheTags.clear(tag);

@@ -19,7 +19,7 @@ public class JsonTest {
                 .where("app_id=?", 1)
                 .selectDataList("*");
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
         String json = ONode.stringify(list);
         System.out.println(json);
@@ -33,7 +33,7 @@ public class JsonTest {
                 .where("app_id=?", 1)
                 .selectDataRow("*");
 
-        System.out.println(db.lastCommand.text);
+        System.out.println(db.lastCommand.text());
 
         String json = ONode.stringify(item);
         System.out.println(json);

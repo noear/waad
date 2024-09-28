@@ -35,12 +35,12 @@ public class HbaseTest {
         try {
             db.table("us_population").set("state", "CN").set("city", "Nan jin").set("population", 2).insert();
         }finally {
-            System.out.println(db.lastCommand.fullText());
+            System.out.println(db.lastCommand.getCmdString());
         }
 
         List<Map<String,Object>> dl = db.table("us_population").limit(2).selectMapList("*");
 
-        System.out.println(db.lastCommand.fullText());
+        System.out.println(db.lastCommand.getCmdString());
 
 //        DataRow dl = db.sql("SELECT state as \"State\",count(city) as \"City Count\",sum(population) as \"Population Sum\" " +
 //                "FROM us_population WHERE State = ?" +

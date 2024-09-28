@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 排除（不属于表字段，或者不使用）
+ * 列排除（不属于表字段，或者不使用）
  *
  * @author noear
  * @since 3.2

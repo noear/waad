@@ -34,12 +34,14 @@ public class SecondCache implements ICacheServiceEx {
     @Override
     public <T> T get(String key, Type type) {
         T temp = cache1.get(key, type);
+
         if (temp == null) {
             temp = cache2.get(key, type);
             if (bufferSeconds > 0 && temp != null) {
                 cache1.store(key, temp, bufferSeconds);
             }
         }
+
         return temp;
     }
 

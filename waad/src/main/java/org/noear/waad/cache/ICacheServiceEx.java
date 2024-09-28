@@ -28,7 +28,7 @@ public interface ICacheServiceEx extends ICacheService {
     /**
      * 更新缓存
      */
-    default <T> void update(String tag,  Fun1<T, T> setter) {
+    default <T> void update(String tag, Fun1<T, T> setter) {
         tags().update(tag, Object.class, setter);
     }
 
@@ -42,8 +42,8 @@ public interface ICacheServiceEx extends ICacheService {
     /**
      * 获取
      */
-    default <T, E extends Throwable> T getBy(String key,  Fun1Ex<T, CacheUsing, E> builder) throws E {
-        return getBy(getDefalutSeconds(), key,  builder);
+    default <T, E extends Throwable> T getBy(String key, Fun1Ex<T, CacheUsing, E> builder) throws E {
+        return getBy(getDefalutSeconds(), key, builder);
     }
 
     /**
@@ -56,7 +56,7 @@ public interface ICacheServiceEx extends ICacheService {
     /**
      * 获取
      */
-    default <T, E extends Throwable> T getBy(int seconds, String key,  Fun1Ex<T, CacheUsing, E> builder) throws E {
+    default <T, E extends Throwable> T getBy(int seconds, String key, Fun1Ex<T, CacheUsing, E> builder) throws E {
         CacheUsing cu = new CacheUsing(this);
         return cu.usingCache(seconds).getEx(key, Object.class, () -> builder.run(cu));
     }

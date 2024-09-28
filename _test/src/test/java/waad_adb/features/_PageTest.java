@@ -17,7 +17,7 @@ public class _PageTest {
     @Test
     public void test_top() {
         assert mapper.selectById(22).app_id == 22;
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class _PageTest {
         assert list.size() == 10;
         assert list.get(0).app_id == 1;
 
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class _PageTest {
         assert list.size() == 10;
         assert list.get(0).app_id == 2;
 
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class _PageTest {
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 1;
 
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class _PageTest {
         assert list.getList().size() == 10;
         assert list.getList().get(0).app_id == 2;
 
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 
     @Test
@@ -69,6 +69,6 @@ public class _PageTest {
         assert list.size() == 10;
         assert list.get(0).app_id == 2;
 
-        System.out.println(db2.lastCommand.text);
+        System.out.println(db2.lastCommand.text());
     }
 }

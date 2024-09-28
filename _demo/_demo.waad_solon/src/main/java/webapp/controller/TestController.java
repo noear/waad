@@ -30,7 +30,7 @@ public class TestController {
         if (sql == null) {
             return tmp;
         } else {
-            return db2.lastCommand.text;
+            return db2.lastCommand.text();
         }
     }
 
@@ -48,7 +48,7 @@ public class TestController {
         if (sql == null) {
             return tmp;
         } else {
-            return db2.lastCommand.text;
+            return db2.lastCommand.text();
         }
     }
 
@@ -64,7 +64,7 @@ public class TestController {
         if (sql == null) {
             return tmp;
         } else {
-            return db2.lastCommand.text;
+            return db2.lastCommand.text();
         }
     }
 
@@ -81,7 +81,7 @@ public class TestController {
         if (sql == null) {
             return tmp;
         } else {
-            return db2.lastCommand.text;
+            return db2.lastCommand.text();
         }
     }
 }

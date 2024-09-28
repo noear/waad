@@ -22,7 +22,7 @@ public class SqlTest {
                     .getItem(AppxModel.class)
                     .app_id == 32;
         }finally {
-            System.out.println(db.lastCommand.text);
+            System.out.println(db.lastCommand.text());
         }
         
     }
@@ -30,12 +30,12 @@ public class SqlTest {
     @Test
     public void test2() throws Exception {
          db.table("appx").where("app_id>?",1).limit(1).selectMap("*");
-         System.out.println(db.lastCommand.toSqlString());
+         System.out.println(db.lastCommand.getSqlString());
     }
 
     @Test
     public void test3() throws Exception {
         db.table("appx").where("app_id>?",1).selectMap("*");
-        System.out.println(db.lastCommand.toSqlString());
+        System.out.println(db.lastCommand.getSqlString());
     }
 }

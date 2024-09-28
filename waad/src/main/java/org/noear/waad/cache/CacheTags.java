@@ -14,46 +14,45 @@ import java.util.List;
 public class CacheTags {
     private ICacheService _Cache;
 
-    public CacheTags(ICacheService caching)
-    {
+    public CacheTags(ICacheService caching) {
         _Cache = caching;
     }
 
     //#region 异步 Add
+
     private List<String> asynTags = null;
-    /// <summary>
-    /// 为缓存添加一个标签（异步 Add{begin}）
-    /// </summary>
-    /// <param name="tag">标签</param>
-    /// <param name="val">标签值</param>
-    public void beginAdd(String tag)
-    {
+
+    /**
+     * 为缓存添加一个标签（异步 Add{begin}）
+     *
+     * @param tag 标签
+     */
+    public void beginAdd(String tag) {
         if (asynTags == null)
             asynTags = new ArrayList<String>();
 
         asynTags.add(tag);
     }
 
-    /// <summary>
-    /// 为缓存添加一个标签（异步 Add{end}）
-    /// </summary>
-    /// <param name="target">目标</param>
-    public void endAdd(Cacheable target)
-    {
+    /**
+     * 为缓存添加一个标签（异步 Add{end}）
+     *
+     * @param target 目标
+     */
+    public void endAdd(Cacheable target) {
         endAdd(target.getWaadKey());
     }
 
-    /// <summary>
-    /// 为缓存添加一个标签（异步 Add{end}）
-    /// </summary>
-    /// <param name="targetCacheKey">目标缓存键</param>
-    public void endAdd(String targetCacheKey)
-    {
+    /**
+     * 为缓存添加一个标签（异步 Add{end}）
+     *
+     * @param targetCacheKey 目标缓存键
+     */
+    public void endAdd(String targetCacheKey) {
         if (asynTags == null)
             return;
 
-        if (targetCacheKey!=null && targetCacheKey.length()>0)
-        {
+        if (targetCacheKey != null && targetCacheKey.length() > 0) {
             for (String tag : asynTags)
                 add(tag, targetCacheKey);
         }
@@ -62,15 +61,13 @@ public class CacheTags {
     //#endregion
     //#region 同步 Add
 
-
-    /// <summary>
-    /// 为缓存添加一个标签（同步 Add）
-    /// </summary>
-    /// <param name="tag">标签</param>
-    /// <param name="val">标签值</param>
-    /// <param name="targetCacheKey">目标缓存键</param>
-    public void add(String tag,  String targetCacheKey)
-    {
+    /**
+     * 为缓存添加一个标签（同步 Add）
+     *
+     * @param tag            标签
+     * @param targetCacheKey 目标缓存键
+     */
+    public void add(String tag, String targetCacheKey) {
         List<String> temp = $(KEY(tag));
         if (temp.contains(targetCacheKey))
             return;
@@ -83,12 +80,17 @@ public class CacheTags {
     //#endregion
 
 
+    /**
+     * 获取标签里的缓存 key 数量
+     */
+    public int count(String tag) {
+        return $(KEY(tag)).size();
+    }
 
-    /// <summary>
-    /// 清空[@tag=val]相关的所有缓存
-    /// </summary>
-    public CacheTags clear(String tag)
-    {
+    /**
+     * 清空 tag 相关的所有缓存
+     */
+    public CacheTags clear(String tag) {
         List<String> keys = $(KEY(tag));
 
         for (String cacheKey : keys)
@@ -99,7 +101,14 @@ public class CacheTags {
         return this;
     }
 
-    public <T extends Object> void update(String tag, Class<?> clz,  Fun1<T,T> setter) {
+    /**
+     * 更新缓存
+     *
+     * @param tag     标签
+     * @param clz     类型
+     * @param handler 处理器
+     */
+    public <T extends Object> void update(String tag, Class<?> clz, Fun1<T, T> handler) {
         List<String> keys = getCacheKeys(tag);
 
         for (String key : keys) {
@@ -111,23 +120,22 @@ public class CacheTags {
             try {
                 T obj = (T) temp;
                 if (obj != null) {
-                    obj = setter.run(obj);
+                    obj = handler.run(obj);
                     _Cache.store(key, obj, _Cache.getDefalutSeconds());
                 }
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    public int count(String tag)
-    {
-        return $(KEY(tag)).size();
-    }
-
-
-    public String getCacheKey(String tag,  int index)
-    {
+    /**
+     * 获取标签里的缓存 key
+     *
+     * @param tag   标签
+     * @param index 序位
+     */
+    public String getCacheKey(String tag, int index) {
         List<String> temp = $(KEY(tag));
 
         if (temp.size() > index)
@@ -136,26 +144,32 @@ public class CacheTags {
             return null;
     }
 
-
-    /// <summary>
-    /// 获取一个标签里的内容
-    /// </summary>
-    /// <param name="tag"></param>
-    /// <param name="val"></param>
-    /// <returns></returns>
-    public List<String> getCacheKeys(String tag)
-    {
+    /**
+     * 获取一个标签里的内容
+     *
+     * @param tag 标签
+     */
+    public List<String> getCacheKeys(String tag) {
         return $(KEY(tag));
     }
 
-
-    public void removeTag(String tag, String val, Cacheable target)
-    {
-        removeTag(tag, val, (target.getWaadKey()));
+    /**
+     * 移除标签里的缓存 key
+     *
+     * @param tag    标签
+     * @param target 目标
+     */
+    public void removeCacheKey(String tag, Cacheable target) {
+        removeCacheKey(tag, (target.getWaadKey()));
     }
 
-    public void removeTag(String tag, String val, String targetCacheKey)
-    {
+    /**
+     * 移除标签里的缓存 key
+     *
+     * @param tag            标签
+     * @param targetCacheKey 目标缓存键
+     */
+    public void removeCacheKey(String tag, String targetCacheKey) {
         List<String> temp = $(KEY(tag));
         temp.remove(targetCacheKey);
         $(KEY(tag), temp);
@@ -172,13 +186,11 @@ public class CacheTags {
             return (List<String>) temp;
     }
 
-    private void $(String key, List<String> value)
-    {
+    private void $(String key, List<String> value) {
         _Cache.store(key, value, _Cache.getDefalutSeconds());
     }
 
-    private String KEY(String tag)
-    {
+    private String KEY(String tag) {
         return ("@" + tag).toUpperCase();
     }
 }
