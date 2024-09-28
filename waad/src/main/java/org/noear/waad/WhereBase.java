@@ -23,7 +23,7 @@ public abstract class WhereBase<T extends WhereBase> {
     protected SQLBuilder _builder;
     protected StringBuilder _orderBy;
 
-    //for MapperWhereQ
+    //for MapperWhere
     protected TableQuery _query;
 
     protected boolean _hasGroup = false;
@@ -259,7 +259,7 @@ public abstract class WhereBase<T extends WhereBase> {
 
     protected T orderByDo(String code) {
         if (_query != null) {
-            //for MapperWhereQ
+            //for MapperWhere
             _query._orderBy = _orderBy;
         }
 
