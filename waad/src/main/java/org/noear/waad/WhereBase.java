@@ -30,6 +30,8 @@ public abstract class WhereBase<T extends WhereBase> {
 
 
     protected WhereBase(TableQuery query){
+        _query = query;
+
         _context = query._context;
         _builder = query._builder;
         _hasGroup = query._hasGroup;
