@@ -12,7 +12,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Created by noear on 19-12-11.
+ * 条件基类
+ *
+ * @author noear
+ * @since 19-12-11.
+ * @since 4.0
  */
 public abstract class WhereBase<T extends WhereBase> {
     protected DbContext  _context;
@@ -34,9 +38,6 @@ public abstract class WhereBase<T extends WhereBase> {
         return _context.metaData().getType();
     }
 
-    protected String fmtSchema(String name){
-        return _context.formater().formatSchema(name);
-    }
     protected String fmtObject(String name) {
         return _context.formater().formatTable(name);
     }
