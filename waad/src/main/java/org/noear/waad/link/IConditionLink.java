@@ -1,5 +1,8 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
+import org.noear.waad.core.SQLBuilder;
+
 /**
  * @author noear
  * @since 4.0
@@ -7,7 +10,9 @@ package org.noear.waad.link;
 public class IConditionLink implements ICondition {
     private final IColumn column;
     private final String code;
-    private final Object[] args;
+
+    private Object[] args;
+    private IColumn column2;
 
     public IConditionLink(IColumn column, String code, Object... args) {
         this.column = column;
@@ -15,16 +20,19 @@ public class IConditionLink implements ICondition {
         this.args = args;
     }
 
-    public IColumn getColumn() {
-        return column;
+    public IConditionLink(IColumn column, String code, IColumn column2) {
+        this.column = column;
+        this.code = code;
+        this.column2 = column2;
     }
+
 
     @Override
-    public String getDescription() {
-        return code;
-    }
-
-    public Object[] getArgs() {
-        return args;
+    public void write(DbContext db, SQLBuilder buf) {
+        if (column2 == null) {
+            buf.append(db.formater().formatColumn(column.getCode(db))).append(code, args);
+        } else {
+            buf.append(db.formater().formatColumn(column.getCode(db))).append(code).append(db.formater().formatColumn(column2.getCode(db)));
+        }
     }
 }

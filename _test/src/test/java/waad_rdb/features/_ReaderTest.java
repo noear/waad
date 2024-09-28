@@ -66,7 +66,7 @@ public class _ReaderTest {
         List<AppxModel> list = new ArrayList<>();
 
         try (DataReader<AppxModel> reader = db2.table("appx a")
-                .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
+                .leftJoin("appx_agroup b").on("a.agroup_id = b.agroup_id")
                 .orderBy("a.app_id ASC")
                 .limit(1, 10)
                 .selectReader("a.*,b.name agroup_name", AppxModel.class)) {

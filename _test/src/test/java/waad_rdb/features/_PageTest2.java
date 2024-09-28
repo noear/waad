@@ -46,7 +46,7 @@ public class _PageTest2 {
     @Test
     public void test_page3() throws Exception {
         Page<AppxModel> list = db2.table("appx a")
-                .leftJoin("appx_agroup b").onEq("a.agroup_id", "b.agroup_id")
+                .leftJoin("appx_agroup b").on("a.agroup_id = b.agroup_id")
                 .orderBy("a.app_id ASC")
                 .limit(1, 10)
                 .selectPage("a.*,b.name agroup_name", AppxModel.class);

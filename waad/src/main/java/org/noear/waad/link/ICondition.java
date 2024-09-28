@@ -1,5 +1,8 @@
 package org.noear.waad.link;
 
+import org.noear.waad.DbContext;
+import org.noear.waad.core.SQLBuilder;
+
 /**
  * 条件
  *
@@ -7,18 +10,9 @@ package org.noear.waad.link;
  * @since 4.0
  */
 public interface ICondition {
-    /**
-     * 获取列
-     */
-    IColumn getColumn();
 
     /**
-     * 获取描述
+     * 获取代码
      */
-    String getDescription();
-
-    /**
-     * 获取参数
-     */
-    Object[] getArgs();
+    void write(DbContext db, SQLBuilder buf);
 }

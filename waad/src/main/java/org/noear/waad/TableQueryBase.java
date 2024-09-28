@@ -6,6 +6,7 @@ import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.link.ICondition;
 import org.noear.waad.model.*;
 import org.noear.waad.util.StrUtils;
 import org.noear.waad.util.function.Act1;
@@ -191,14 +192,12 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return (T) this;
     }
 
-    public T onEq(String column1, String column2) {
-        _builder.append(" ON ").append(fmtColumn(column1)).append("=").append(fmtColumn(column2));
+    public T on(ICondition condition) {
+        _builder.append(" ON ");
+        condition.write(_context, _builder);
         return (T) this;
     }
 
-    public T onEq(IColumn column1, IColumn column2) {
-        return onEq(column1.getCode(_context), column2.getCode(_context));
-    }
 
 
     /**

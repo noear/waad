@@ -71,7 +71,8 @@ public abstract class WhereBase<T extends WhereBase> {
     }
 
     public T where(ICondition condition) {
-        _builder.append(" WHERE ").append(fmtColumn(condition.getColumn().getCode(_context))).append(condition.getDescription(), condition.getArgs());
+        _builder.append(" WHERE ");
+        condition.write(_context, _builder);
         return (T) this;
     }
 
@@ -149,7 +150,8 @@ public abstract class WhereBase<T extends WhereBase> {
     }
 
     public T and(ICondition condition) {
-        _builder.append(" AND ").append(fmtColumn(condition.getColumn().getCode(_context))).append(condition.getDescription(), condition.getArgs());
+        _builder.append(" AND ");
+        condition.write(_context, _builder);
         return (T) this;
     }
 
@@ -188,7 +190,8 @@ public abstract class WhereBase<T extends WhereBase> {
     }
 
     public T or(ICondition condition) {
-        _builder.append(" OR ").append(fmtColumn(condition.getColumn().getCode(_context))).append(condition.getDescription(), condition.getArgs());
+        _builder.append(" OR ");
+        condition.write(_context, _builder);
         return (T) this;
     }
 
@@ -233,7 +236,8 @@ public abstract class WhereBase<T extends WhereBase> {
     }
 
     public T begin(ICondition condition) {
-        _builder.append(" ( ").append(fmtColumn(condition.getColumn().getCode(_context))).append(condition.getDescription(), condition.getArgs());
+        _builder.append(" ( ");
+        condition.write(_context, _builder);
         return (T) this;
     }
 

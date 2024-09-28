@@ -3,6 +3,7 @@ package org.noear.waad.link;
 import org.noear.waad.DbContext;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +23,11 @@ public interface IColumn extends IExpr<IColumn> {
         return Arrays.stream(columns).map(c -> c.getCode(db)).collect(Collectors.joining(","));
     }
 
+    default ICondition eq(IColumn column) {
+        assert column != null;
+
+        return new IConditionLink(this, " = " + column.getCode(null));
+    }
 
     /**
      * = 操作符

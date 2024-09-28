@@ -20,7 +20,7 @@ public class WithTest {
         //
         // mysql 8.0 才支持
         //
-        List<AppxModel> list  = db.table("#ag").innerJoin("#ax").onEq("ag.agroup_id","ax.agroup_id")
+        List<AppxModel> list  = db.table("#ag").innerJoin("#ax").on("ag.agroup_id = ax.agroup_id")
                 .limit(10)
                 .with("ax", db.table("appx").selectQ("*"))
                 .with("ag", db.table("appx_agroup").where("agroup_id<?",10).selectQ("*"))
