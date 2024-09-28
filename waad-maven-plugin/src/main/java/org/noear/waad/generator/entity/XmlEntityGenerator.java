@@ -215,9 +215,9 @@ public class XmlEntityGenerator {
                 sb.append("  private ");
             }
 
-            //public final IColumn AGROUP_ID = new IColumnLink(this, "agroup_id");
+            //public final IColumn AGROUP_ID = new IColumnLinq(this, "agroup_id");
             sb.append(" final IColumn ").append(cw.getName().toUpperCase()).append(" = ");
-            sb.append("new IColumnLink(this,\"").append(cw.getName()).append("\");");
+            sb.append("new IColumnLinq(this,\"").append(cw.getName()).append("\");");
         }
 
         return sb.toString();

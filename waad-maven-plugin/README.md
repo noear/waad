@@ -42,10 +42,10 @@ public class ${entityName}{
 <entityGenerator targetPackage="demo.model.db" entityName="${tableName_upper}_LK">
     <![CDATA[
 import org.noear.waad.linq.IColumn;
-import org.noear.waad.linq.IColumnLink;
-import org.noear.waad.linq.ITableLink;
+import org.noear.waad.linq.IColumnLinq;
+import org.noear.waad.linq.ITableLinq;
 
-public class ${entityName} extends ITableLink<${entityName}>{
+public class ${entityName} extends ITableLinq<${entityName}>{
   public static final ${entityName} ${tableName_upper} = new ${entityName}(null);
 
   private ${entityName}(String asName) {
