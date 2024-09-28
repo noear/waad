@@ -7,6 +7,7 @@ import org.noear.waad.core.CommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.*;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.link.IColumn;
@@ -478,7 +479,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
             if (value instanceof String) {
                 String val2 = (String) value;
                 if (isSqlExpr(val2)) {
-                    buf.append(fmtColumn(key)).append("=").append(val2.substring(1)).append(",");
+                    buf.append(fmtColumn(key)).append("=").append(StrUtils.decodeSqlExpr(val2)).append(",");
                 } else {
                     buf.append(fmtColumn(key)).append("=?,");
                     args.add(value);
@@ -1040,13 +1041,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
             return false;
         }
 
-        if (txt.startsWith("$")
-                && txt.indexOf(" ") < 0
-                && txt.length() < 100) { //不能出现空隔，且100字符以内。否则视为普通字符串值
-            return true;
-        } else {
-            return false;
-        }
+        return StrUtils.isSqlExpr(txt);
     }
 
     //=======================

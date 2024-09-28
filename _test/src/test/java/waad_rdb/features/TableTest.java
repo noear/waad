@@ -32,10 +32,11 @@ public class TableTest {
         }
     }
 
+    @Test
     public void demo2() throws Exception {
-        db.table("appx_copy")
-                .setInc("a", 1)
-                .where("app_id=?", 11)
+        db.table("test")
+                .setInc("v1", 1)
+                .where("id=?", 11)
                 .update();
     }
 

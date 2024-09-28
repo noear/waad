@@ -44,9 +44,9 @@ public class TableQuery extends TableQueryBase<TableQuery> {
     public TableQuery setInc(String column, long value) {
         usingExpr(true);
         if (value < 0) {
-            set(column, "$" + column + value);
+            set(column, "${" + column + value + "}");
         } else {
-            set(column, "$" + column + "+" + value);
+            set(column, "${" + column + "+" + value + "}");
         }
 
         return this;

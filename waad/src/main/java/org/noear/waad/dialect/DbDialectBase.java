@@ -3,6 +3,7 @@ package org.noear.waad.dialect;
 import org.noear.waad.DbContext;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.utils.StrUtils;
 import org.noear.waad.utils.fun.Fun1;
 
 import java.sql.DatabaseMetaData;
@@ -136,7 +137,7 @@ public abstract class DbDialectBase implements DbDialect {
                 if (value instanceof String) {
                     String val2 = (String) value;
                     if (isSqlExpr.run(val2)) { //说明是SQL函数
-                        sb.append(val2.substring(1)).append(",");
+                        sb.append(StrUtils.decodeSqlExpr(val2)).append(",");
                     } else {
                         sb.append("?,");
                         args.add(value);
