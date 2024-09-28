@@ -7,6 +7,7 @@ import net.spy.memcached.auth.AuthDescriptor;
 import net.spy.memcached.auth.PlainCallbackHandler;
 import org.noear.waad.cache.ICacheServiceEx;
 import org.noear.waad.utils.EncryptUtils;
+import org.noear.waad.utils.StrUtils;
 
 import java.lang.reflect.Type;
 import java.util.Properties;
@@ -58,8 +59,7 @@ public class MemCache implements ICacheServiceEx {
         }
 
         try {
-            if (TextUtils.isEmpty(user) || TextUtils.isEmpty(password)) {
-
+            if (StrUtils.isEmpty(user) || StrUtils.isEmpty(password)) {
                 _cache = new MemcachedClient(new ConnectionFactoryBuilder()
                         .setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).build(),
                         AddrUtil.getAddresses(server));

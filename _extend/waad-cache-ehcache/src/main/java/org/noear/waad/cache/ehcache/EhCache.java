@@ -29,6 +29,10 @@ public class EhCache implements ICacheServiceEx {
         _cacheKeyHead = keyHeader;
         _defaultSeconds = defSeconds;
 
+        if (_defaultSeconds < 1) {
+            _defaultSeconds = 30;
+        }
+
         // 配置默认缓存属性
         CacheConfiguration<String, Object> cacheConfiguration = CacheConfigurationBuilder.newCacheConfigurationBuilder(
                 // 缓存数据K和V的数值类型
@@ -44,7 +48,7 @@ public class EhCache implements ICacheServiceEx {
                         .disk(500L, MemoryUnit.MB, false)
         ).withExpiry(Expirations.timeToLiveExpiration(
                 //设置缓存过期时间
-                Duration.of(defSeconds, TimeUnit.SECONDS))
+                Duration.of(_defaultSeconds, TimeUnit.SECONDS))
         ).withExpiry(Expirations.timeToIdleExpiration(
                 //设置被访问后过期时间(同时设置和TTL和TTI之后会被覆盖,这里TTI生效,之前版本xml配置后是两个配置了都会生效)
                 Duration.of(60L, TimeUnit.SECONDS))
@@ -58,10 +62,6 @@ public class EhCache implements ICacheServiceEx {
                 .build(true);
 
         _cache = manager.getCache("defaultCache", String.class, Object.class);//获得缓存
-
-        if (_defaultSeconds < 1) {
-            _defaultSeconds = 30;
-        }
     }
 
     @Override

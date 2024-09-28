@@ -7,7 +7,8 @@ import java.lang.reflect.Type;
 import java.util.Base64;
 
 /**
- * @author noear 2021/6/15 created
+ * @author noear
+ * @since 2021/6/15
  */
 public class JavabinSerializer implements ISerializer<String> {
     public static final JavabinSerializer instance = new JavabinSerializer();

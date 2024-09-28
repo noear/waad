@@ -253,9 +253,6 @@
         <module>../waad-plus</module>
         <module>../waad-maven-plugin</module>
 
-<!--        <module>../_extend/waad-solon-plugin</module>-->
-<!--        <module>../_extend/waad-springboot-starter</module>-->
-
         <module>../_extend/waad-cache-memcached</module>
         <module>../_extend/waad-cache-redis</module>
         <module>../_extend/waad-cache-ehcache</module>
