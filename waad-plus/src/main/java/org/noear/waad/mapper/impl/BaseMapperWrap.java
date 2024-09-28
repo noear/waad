@@ -1,7 +1,9 @@
-package org.noear.waad.mapper;
+package org.noear.waad.mapper.impl;
 
 import org.noear.waad.*;
 import org.noear.waad.linq.IColumn;
+import org.noear.waad.mapper.BaseMapper;
+import org.noear.waad.mapper.MapperWhere;
 import org.noear.waad.model.*;
 import org.noear.waad.util.function.Act1;
 import org.noear.waad.util.function.Act2;

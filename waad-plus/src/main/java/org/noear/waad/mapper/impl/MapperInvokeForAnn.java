@@ -1,4 +1,4 @@
-package org.noear.waad.mapper;
+package org.noear.waad.mapper.impl;
 
 import org.noear.waad.*;
 import org.noear.waad.annotation.Sql;

@@ -1,5 +1,6 @@
-package org.noear.waad.mapper;
+package org.noear.waad.mapper.impl;
 
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.wrap.ClassWrap;
 import org.noear.waad.wrap.FieldWrap;
 

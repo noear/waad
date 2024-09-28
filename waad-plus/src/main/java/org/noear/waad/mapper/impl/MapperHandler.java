@@ -1,6 +1,7 @@
-package org.noear.waad.mapper;
+package org.noear.waad.mapper.impl;
 
 import org.noear.waad.DbContext;
+import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.util.InvocationHandlerUtils;
 import org.noear.waad.util.ThrowableUtils;
 import org.noear.waad.wrap.MethodWrap;
