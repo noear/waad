@@ -1,7 +1,5 @@
 package org.noear.waad.model;
 
-import org.noear.waad.wrap.DbVarType;
-
 import java.io.Serializable;
 import java.util.Date;
 

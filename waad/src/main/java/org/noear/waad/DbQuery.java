@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.core.CommandImpl;
+import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.DataAccess;
 import org.noear.waad.core.SQLBuilder;
 
@@ -36,9 +36,9 @@ public class DbQuery extends DataAccess<DbQuery> {
     }
 
     @Override
-    protected CommandImpl getCommand() {
+    protected DbCommandImpl getCommand() {
 
-        CommandImpl cmd = new CommandImpl(this.context);
+        DbCommandImpl cmd = new DbCommandImpl(this.context);
 
         cmd.key     = getCommandID();
         cmd.args = this.args;

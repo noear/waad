@@ -1,6 +1,6 @@
 package org.noear.waad.model;
 
-import org.noear.waad.core.CommandImpl;
+import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.SQLer;
 
 import java.sql.ResultSet;
@@ -13,12 +13,12 @@ import java.sql.SQLException;
  * @author noear 2024/7/12 created
  */
 public class DataReaderForDataRow implements DataReader<DataRow> {
-    private final CommandImpl cmd;
+    private final DbCommandImpl cmd;
     private final SQLer sqLer;
     private final ResultSet rset;
     private final ResultSetMetaData rsetMeta;
 
-    public DataReaderForDataRow(SQLer sqLer, CommandImpl cmd, ResultSet rset) throws SQLException {
+    public DataReaderForDataRow(SQLer sqLer, DbCommandImpl cmd, ResultSet rset) throws SQLException {
         this.cmd = cmd;
         this.sqLer = sqLer;
         this.rset = rset;

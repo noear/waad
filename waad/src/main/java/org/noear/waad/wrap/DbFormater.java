@@ -1,7 +1,7 @@
 package org.noear.waad.wrap;
 
 import org.noear.waad.DbContext;
-import org.noear.waad.dialect.DbDialect;
+import org.noear.waad.core.DbDialect;
 
 /**
  * 提供格式处理

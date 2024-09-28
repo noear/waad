@@ -5,7 +5,7 @@ import org.noear.waad.utils.fun.Fun2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ICondition;
 import org.noear.waad.utils.EntityUtils;
-import org.noear.waad.wrap.DbType;
+import org.noear.waad.core.DbType;
 
 import java.util.Arrays;
 import java.util.Map;

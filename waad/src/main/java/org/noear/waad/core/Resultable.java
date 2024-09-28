@@ -13,7 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by noear on 14/11/12.
+ * 可结果的
+ *
+ * @author noear
+ * @since 14/11/12.
+ * @since 4.0
  */
 public interface Resultable extends ICacheController<Resultable> {
      long getCount() throws SQLException;

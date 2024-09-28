@@ -14,7 +14,7 @@ import java.sql.*;
  * 数据库执行器
  */
 public class SQLer {
-    private final CommandImpl cmd;
+    private final DbCommandImpl cmd;
     private ResultSet rset;
     private PreparedStatement stmt;
     private Connection conn;
@@ -50,7 +50,7 @@ public class SQLer {
         }
     }
 
-    public SQLer(CommandImpl cmd) {
+    public SQLer(DbCommandImpl cmd) {
         this.cmd = cmd;
     }
 

@@ -1,5 +1,11 @@
-package org.noear.waad.wrap;
+package org.noear.waad.core;
 
+/**
+ * 数据库类型
+ *
+ * @author noear
+ * @since 3.2
+ * */
 public enum DbType {
     //
     // 摘要:

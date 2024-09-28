@@ -1,6 +1,6 @@
-package org.noear.waad.dialect;
+package org.noear.waad.core.dialect;
 
-import org.noear.waad.wrap.DbType;
+import org.noear.waad.core.DbType;
 
 import java.sql.Clob;
 import java.sql.DatabaseMetaData;

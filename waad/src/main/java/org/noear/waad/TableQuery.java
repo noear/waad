@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.core.CommandImpl;
+import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.model.DataRow;
 
@@ -130,7 +130,7 @@ public class TableQuery extends TableQueryBase<TableQuery> {
         }
     }
 
-    public CommandImpl insertAsCmd() {
+    public DbCommandImpl insertAsCmd() {
         if (_item == null) {
             return null;
         } else {
@@ -162,7 +162,7 @@ public class TableQuery extends TableQueryBase<TableQuery> {
         }
     }
 
-    public CommandImpl updateAsCmd() throws SQLException {
+    public DbCommandImpl updateAsCmd() throws SQLException {
         if (_item == null) {
             return null;
         } else {

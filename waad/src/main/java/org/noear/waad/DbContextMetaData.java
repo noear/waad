@@ -1,6 +1,8 @@
 package org.noear.waad;
 
-import org.noear.waad.dialect.*;
+import org.noear.waad.core.DbDialect;
+import org.noear.waad.core.DbType;
+import org.noear.waad.core.dialect.*;
 import org.noear.waad.utils.RunUtils;
 import org.noear.waad.utils.fun.Act1Ex;
 import org.noear.waad.wrap.*;

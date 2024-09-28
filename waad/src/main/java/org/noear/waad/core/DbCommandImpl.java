@@ -9,12 +9,13 @@ import org.noear.waad.utils.fun.Act1;
 import java.util.*;
 
 /**
- * 命令实现
+ * 数据库执行命令实现
  *
  * @author noear
  * @since 14-9-5.
+ * @since 4.0
  */
-public class CommandImpl implements Command{
+public class DbCommandImpl implements DbCommand {
     public String tag;
     public String key;
     public String text;
@@ -40,7 +41,7 @@ public class CommandImpl implements Command{
     public final DbContext context;
     public final DbTran tran;
 
-    public CommandImpl(DbContext context) {
+    public DbCommandImpl(DbContext context) {
         this.context = context;
         this.context.lastCommand = this;
         this.tran = DbTranUtil.current();
@@ -151,6 +152,6 @@ public class CommandImpl implements Command{
             return context.codeHint() + context.metaData().getDialect().preReview(text);
     }
 
-    public Act1<CommandImpl> onExecuteAft = null;
+    public Act1<DbCommandImpl> onExecuteAft = null;
 
 }

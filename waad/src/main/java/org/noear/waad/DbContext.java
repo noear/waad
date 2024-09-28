@@ -1,6 +1,6 @@
 package org.noear.waad;
 
-import org.noear.waad.core.Command;
+import org.noear.waad.core.DbCommand;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.SimpleDataSource;
@@ -31,7 +31,7 @@ public class DbContext implements Closeable {
      * 最后次执行命令 (线程不安全，仅供调试用)
      */
     @Deprecated
-    public Command lastCommand;
+    public DbCommand lastCommand;
     /**
      * 充许多片段执行
      */

@@ -1,7 +1,7 @@
 package org.noear.waad.xml;
 
 import org.noear.waad.*;
-import org.noear.waad.core.CommandImpl;
+import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.EntityUtils;
 import org.noear.waad.utils.StrUtils;
@@ -80,8 +80,8 @@ public class DbXmlSqlProcedure extends DbProcedure {
     }
 
     @Override
-    protected CommandImpl getCommand(){
-        CommandImpl cmd = new CommandImpl(this.context);
+    protected DbCommandImpl getCommand(){
+        DbCommandImpl cmd = new DbCommandImpl(this.context);
 
         cmd.key      = getCommandID();
 
@@ -121,7 +121,7 @@ public class DbXmlSqlProcedure extends DbProcedure {
     }
 
     /** 尝试缓存控制 */
-    private void tryCacheController(CommandImpl cmd, XmlSqlBlock block) {
+    private void tryCacheController(DbCommandImpl cmd, XmlSqlBlock block) {
         //配置化缓存处理（有配置，并且未手动配置过缓存）...
         if (StrUtils.isEmpty(block._caching) == false && this._cache == null) {
             //寄存缓存对象

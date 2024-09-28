@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 命令
+ * 数据库执行命令
  *
  * @author noear
  * @since 4.0
  */
-public interface Command {
+public interface DbCommand {
     /**
      * 命令tag（用于寄存一些数据）
      */

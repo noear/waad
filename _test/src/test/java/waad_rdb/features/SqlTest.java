@@ -2,7 +2,7 @@ package waad_rdb.features;
 
 import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
-import org.noear.waad.wrap.DbType;
+import org.noear.waad.core.DbType;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
 

@@ -3,7 +3,7 @@ package org.noear.waad;
 import org.noear.waad.cache.CacheUsing;
 import org.noear.waad.cache.ICacheController;
 import org.noear.waad.cache.ICacheService;
-import org.noear.waad.core.CommandImpl;
+import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.*;
@@ -14,7 +14,7 @@ import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ITable;
 import org.noear.waad.link.ITableLink;
 import org.noear.waad.link.ITableSpecImpl;
-import org.noear.waad.wrap.DbType;
+import org.noear.waad.core.DbType;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -225,7 +225,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 插入编译并获取命令
      * */
-    public CommandImpl insertAsCmd(DataRow data) {
+    public DbCommandImpl insertAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -423,7 +423,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 更新编译并返回命令
      * */
-    public CommandImpl updateAsCmd(DataRow data) {
+    public DbCommandImpl updateAsCmd(DataRow data) {
         if (data == null || data.size() == 0) {
             return null;
         }
@@ -610,7 +610,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     /**
      * 删除编译并返回命令
      * */
-    public CommandImpl deleteAsCmd(){
+    public DbCommandImpl deleteAsCmd(){
         return deleteCompile().getCommand();
     }
 
@@ -706,11 +706,11 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(IColumn.getCodes(columns));
     }
 
-    public CommandImpl selectAsCmd(String columns){
+    public DbCommandImpl selectAsCmd(String columns){
        return selectCompile(columns).getCommand();
     }
 
-    public CommandImpl selectAsCmd(IColumn... columns) {
+    public DbCommandImpl selectAsCmd(IColumn... columns) {
         return selectCompile(IColumn.getCodes(columns)).getCommand();
     }
 

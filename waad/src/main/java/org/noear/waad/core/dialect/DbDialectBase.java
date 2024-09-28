@@ -1,6 +1,7 @@
-package org.noear.waad.dialect;
+package org.noear.waad.core.dialect;
 
 import org.noear.waad.DbContext;
+import org.noear.waad.core.DbDialect;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.utils.StrUtils;

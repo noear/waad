@@ -1,18 +1,17 @@
-package org.noear.waad.dialect;
+package org.noear.waad.core;
 
 import org.noear.waad.*;
-import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.utils.fun.Fun1;
-import org.noear.waad.wrap.DbType;
 
 import java.sql.*;
 
 /**
- * 数据库方言处理
+ * 数据库方言定义
  *
  * @author noear
  * @since 3.2
+ * @since 4.0
  * */
 public interface DbDialect {
     DbType dbType();

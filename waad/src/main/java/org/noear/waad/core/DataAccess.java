@@ -33,19 +33,19 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
     public List<Object> args = new ArrayList<>();
 
     /*获取执行命令（由子类实现）*/
-    protected abstract CommandImpl getCommand() throws SQLException;
+    protected abstract DbCommandImpl getCommand() throws SQLException;
 
     /*获取访问标识（由子类实现）*/
     protected abstract String getCommandID();
 
-    private Act1<CommandImpl> onCommandExpr = null;
+    private Act1<DbCommandImpl> onCommandExpr = null;
 
-    public T onCommandBuilt(Act1<CommandImpl> expr) {
+    public T onCommandBuilt(Act1<DbCommandImpl> expr) {
         this.onCommandExpr = expr;
         return (T) this;
     }
 
-    protected void runCommandBuiltEvent(CommandImpl cmd) {
+    protected void runCommandBuiltEvent(DbCommandImpl cmd) {
         cmd.isLog = _isLog;
 
         if (onCommandExpr != null) {
@@ -107,7 +107,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
      * 执行插入（返回自增ID）
      */
     public long insert() throws SQLException {
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
         return new SQLer(cmd).insert();
     }
 
@@ -129,7 +129,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
      * 执行命令（返回受影响数）
      */
     public int execute() throws SQLException {
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
         return new SQLer(cmd).execute();
     }
 
@@ -137,7 +137,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
      * 批量执行命令（返回受影响数）
      * */
     public int[] executeBatch() throws SQLException {
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
         cmd.isBatch = true;
         return new SQLer(cmd).executeBatch();
     }
@@ -168,7 +168,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
     @Override
     public Variate getVariate(Act2<CacheUsing, Variate> cacheCondition) throws SQLException {
         Variate rst;
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
 
         if (_cache == null) {
             rst = new SQLer(cmd).getVariate();
@@ -274,7 +274,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
     @Override
     public DataList getDataList(Act2<CacheUsing, DataList> cacheCondition) throws SQLException {
         DataList rst;
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
 
         if (_cache == null) {
             rst = new SQLer(cmd).getTable();
@@ -292,7 +292,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
 
     @Override
     public DataReaderForDataRow getDataReader(int fetchSize) throws SQLException {
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
         return new SQLer(cmd).getReader(fetchSize);
     }
 
@@ -309,7 +309,7 @@ public abstract class DataAccess<T extends DataAccess> implements Cacheable, Res
     @Override
     public DataRow getDataRow(Act2<CacheUsing, DataRow> cacheCondition) throws SQLException {
         DataRow rst;
-        CommandImpl cmd = getCommand();
+        DbCommandImpl cmd = getCommand();
 
         if (_cache == null) {
             rst = new SQLer(cmd).getRow();
