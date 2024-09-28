@@ -3,9 +3,8 @@ package org.noear.waad;
 import org.noear.waad.wrap.Property;
 
 /**
- * Created by noear on 19-12-11.
- *
- * 仅用于BaseMapper，即用于单表操作
+ * 条件器。仅用于 BaseMapper，即用于单表操作
+ * @author noear 19-12-11.
  */
 public class MapperWhereQ extends WhereBase<MapperWhereQ> {
 

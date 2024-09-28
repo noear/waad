@@ -10,7 +10,7 @@ import org.noear.waad.core.DbType;
 import java.util.Map;
 
 /**
- * 条件基类
+ * 条件器基类
  *
  * @author noear
  * @since 19-12-11.
