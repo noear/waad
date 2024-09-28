@@ -7,7 +7,7 @@ import org.noear.waad.mapper.MapperAdaptorImpl;
 import org.noear.waad.mapper.MapperAdaptor;
 import org.noear.waad.util.PrimaryKeyStrategy;
 import org.noear.waad.util.NamingStrategy;
-import org.noear.waad.wrap.TypeConverter;
+import org.noear.waad.util.ConvertStrategy;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -98,18 +98,18 @@ public final class WaadConfig {
     }
 
 
-    private static TypeConverter typeConverter = new TypeConverter();
+    private static ConvertStrategy convertStrategy = new ConvertStrategy();
 
-    public static void typeConverter(TypeConverter typeConverter) {
-        assert typeConverter != null;
-        WaadConfig.typeConverter = typeConverter;
+    public static void convertStrategy(ConvertStrategy convertStrategy) {
+        assert convertStrategy != null;
+        WaadConfig.convertStrategy = convertStrategy;
     }
 
     /**
-     * 字段类型转换器
+     * 类型转换策略
      */
-    public static TypeConverter typeConverter() {
-        return typeConverter;
+    public static ConvertStrategy convertStrategy() {
+        return convertStrategy;
     }
 
 

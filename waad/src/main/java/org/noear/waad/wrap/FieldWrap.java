@@ -59,7 +59,7 @@ public class FieldWrap {
                 return;
             }
 
-            val = WaadConfig.typeConverter().convert(val, field.getType());
+            val = WaadConfig.convertStrategy().convert(val, field.getType());
 
             if (_setter == null) {
                 field.set(tObj, val);

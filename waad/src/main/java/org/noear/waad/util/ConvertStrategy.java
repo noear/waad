@@ -1,13 +1,18 @@
-package org.noear.waad.wrap;
-
-import org.noear.waad.util.IOUtils;
+package org.noear.waad.util;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.*;
 
-public class TypeConverter {
+/**
+ * 类型转换策略
+ *
+ * @author noear
+ * @since 3.2
+ * @since 4.0
+ * */
+public class ConvertStrategy {
     /**
      * 转换数据
      */

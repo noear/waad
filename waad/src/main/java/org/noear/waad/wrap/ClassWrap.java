@@ -153,7 +153,7 @@ public class ClassWrap {
 
                         if (val != null) {
                             //尝试类型转换
-                            val = WaadConfig.typeConverter().convert(val, p.getType());
+                            val = WaadConfig.convertStrategy().convert(val, p.getType());
                         }
 
                         argsV[i] = val;
