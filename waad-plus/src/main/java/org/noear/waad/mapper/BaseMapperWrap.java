@@ -1,11 +1,11 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
-import org.noear.waad.link.IColumn;
+import org.noear.waad.linq.IColumn;
 import org.noear.waad.model.*;
 import org.noear.waad.util.function.Act1;
 import org.noear.waad.util.function.Act2;
-import org.noear.waad.link.IColumnLink;
+import org.noear.waad.linq.IColumnLinq;
 import org.noear.waad.util.RunUtils;
 import org.noear.waad.util.StrUtils;
 
@@ -143,13 +143,13 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     @Override
     public Integer deleteById(Object id) {
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).delete());
+                -> getQr().where(new IColumnLinq(tablePk()).eq(id)).delete());
     }
 
     @Override
     public Integer deleteByIds(Iterable idList) {
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).in(idList)).delete());
+                -> getQr().where(new IColumnLinq(tablePk()).in(idList)).delete());
     }
 
     @Override
@@ -178,7 +178,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Object id = data.get(tablePk());
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).update(data));
+                -> getQr().where(new IColumnLinq(tablePk()).eq(id)).update(data));
     }
 
     /**
@@ -194,7 +194,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Object id = data.get(tablePk());
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).update(data));
+                -> getQr().where(new IColumnLinq(tablePk()).eq(id)).update(data));
     }
 
     @Override
@@ -331,7 +331,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
     @Override
     public boolean existsById(Object id) {
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).selectExists());
+                -> getQr().where(new IColumnLinq(tablePk()).eq(id)).selectExists());
     }
 
     @Override
@@ -346,7 +346,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).eq(id)).limit(1).selectItem(clz, "*"));
+                -> getQr().where(new IColumnLinq(tablePk()).eq(id)).limit(1).selectItem(clz, "*"));
     }
 
     @Override
@@ -354,7 +354,7 @@ public class BaseMapperWrap<T> implements BaseMapper<T> {
         Class<T> clz = (Class<T>) entityClz();
 
         return RunUtils.call(()
-                -> getQr().where(new IColumnLink(tablePk()).in(idList)).selectList(clz, "*"));
+                -> getQr().where(new IColumnLinq(tablePk()).in(idList)).selectList(clz, "*"));
     }
 
     @Override

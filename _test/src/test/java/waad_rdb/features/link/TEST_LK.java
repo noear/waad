@@ -1,13 +1,13 @@
 package waad_rdb.features.link;
 
-import org.noear.waad.link.IColumn;
-import org.noear.waad.link.IColumnLink;
-import org.noear.waad.link.ITableLink;
+import org.noear.waad.linq.IColumn;
+import org.noear.waad.linq.IColumnLinq;
+import org.noear.waad.linq.ITableLinq;
 
 /**
  * @author noear 2024/9/27 created
  */
-public class TEST_LK extends ITableLink<TEST_LK> {
+public class TEST_LK extends ITableLinq<TEST_LK> {
     public static final TEST_LK TEST = new TEST_LK(null);
 
     private TEST_LK(String asName) {
@@ -19,6 +19,6 @@ public class TEST_LK extends ITableLink<TEST_LK> {
         return new TEST_LK(asName);
     }
 
-    public final IColumn V1 = new IColumnLink(this, "v1");
-    public final IColumn ID = new IColumnLink(this, "id");
+    public final IColumn V1 = new IColumnLinq(this, "v1");
+    public final IColumn ID = new IColumnLinq(this, "id");
 }

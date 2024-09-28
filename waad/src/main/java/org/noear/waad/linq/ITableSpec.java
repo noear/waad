@@ -1,23 +1,23 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.DbContext;
 
 /**
- * 表达式
+ * 表申明
  *
  * @author noear
  * @since 4.0
  */
-public interface IExpr<T> {
+public interface ITableSpec {
+    /**
+     * 表名
+     */
+    String name();
+
     /**
      * 别名
      */
     String asName();
-
-    /**
-     * 附加别名
-     */
-    T as(String asName);
 
     /**
      * 代码

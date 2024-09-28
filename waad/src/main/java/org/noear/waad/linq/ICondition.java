@@ -1,4 +1,4 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.core.SQLBuilder;

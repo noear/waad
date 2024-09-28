@@ -6,14 +6,15 @@ import org.noear.waad.cache.ICacheService;
 import org.noear.waad.core.DbCommandImpl;
 import org.noear.waad.core.Resultable;
 import org.noear.waad.core.SQLBuilder;
-import org.noear.waad.link.ICondition;
+import org.noear.waad.linq.ICondition;
 import org.noear.waad.model.*;
 import org.noear.waad.util.StrUtils;
 import org.noear.waad.util.function.Act1;
 import org.noear.waad.util.function.Act2;
-import org.noear.waad.link.IColumn;
-import org.noear.waad.link.ITable;
-import org.noear.waad.link.ITableLink;
+import org.noear.waad.linq.IColumn;
+import org.noear.waad.linq.IExpr;
+import org.noear.waad.linq.ITable;
+import org.noear.waad.linq.ITableLinq;
 import org.noear.waad.core.DbType;
 import org.noear.waad.util.function.GetHandler;
 
@@ -71,14 +72,14 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
             String _tableName = table.substring(1);
 
             _table_raw = _tableName;
-            _table = new ITableLink(_tableName, null);
+            _table = new ITableLinq(_tableName, null);
         } else {
             _table_raw = table;
 
             if (table.indexOf('.') > 0) {
-                _table = new ITableLink(table, null);
+                _table = new ITableLinq(table, null);
             } else {
-                _table = new ITableLink(fmtObject(table), null); //"$." + table;
+                _table = new ITableLinq(fmtObject(table), null); //"$." + table;
             }
         }
 
@@ -374,7 +375,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public long upsertBy(DataRow data, IColumn... conditionColumns) throws SQLException {
-        return upsertBy(data, IColumn.getCodes(_context, conditionColumns));
+        return upsertBy(data, IExpr.getCodes(_context, conditionColumns));
     }
 
     public int updateBy(DataRow data, String conditionColumns) throws SQLException {
@@ -394,7 +395,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public int updateBy(DataRow data, IColumn... conditionColumns) throws SQLException {
-        return updateBy(data, IColumn.getCodes(_context, conditionColumns));
+        return updateBy(data, IExpr.getCodes(_context, conditionColumns));
     }
 
     /**
@@ -512,7 +513,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public int[] updateList(List<DataRow> valuesList, IColumn... conditionColumns) throws SQLException {
-        return updateList(valuesList, IColumn.getCodes(_context, conditionColumns));
+        return updateList(valuesList, IExpr.getCodes(_context, conditionColumns));
     }
 
     /**
@@ -541,7 +542,7 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
     }
 
     public <T> int[] updateList(Collection<T> valuesList, Act2<T, DataRow> dataBuilder, IColumn... conditionColumns) throws SQLException {
-        return updateList(valuesList, dataBuilder, IColumn.getCodes(_context, conditionColumns));
+        return updateList(valuesList, dataBuilder, IExpr.getCodes(_context, conditionColumns));
     }
 
 
@@ -701,16 +702,16 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(columns);
     }
 
-    public Resultable select(IColumn... columns) {
-        return selectDo(IColumn.getCodes(_context, columns));
+    public Resultable select(IExpr... columns) {
+        return selectDo(IExpr.getCodes(_context, columns));
     }
 
     public DbCommandImpl selectAsCmd(String columns){
        return selectCompile(columns).getCommand();
     }
 
-    public DbCommandImpl selectAsCmd(IColumn... columns) {
-        return selectCompile(IColumn.getCodes(_context, columns)).getCommand();
+    public DbCommandImpl selectAsCmd(IExpr... columns) {
+        return selectCompile(IExpr.getCodes(_context, columns)).getCommand();
     }
 
     protected Resultable selectDo(String columns) {
@@ -838,16 +839,16 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(columns).getItem(clz);
     }
 
-    public <T> T selectItem(Class<T> clz, IColumn... columns) throws SQLException {
-        return selectDo(IColumn.getCodes(_context, columns)).getItem(clz);
+    public <T> T selectItem(Class<T> clz, IExpr... columns) throws SQLException {
+        return selectDo(IExpr.getCodes(_context, columns)).getItem(clz);
     }
 
     public <T> List<T> selectList(Class<T> clz, String columns) throws SQLException {
         return selectDo(columns).getList(clz);
     }
 
-    public <T> List<T> selectList(Class<T> clz, IColumn... columns) throws SQLException {
-        return selectDo(IColumn.getCodes(_context, columns)).getList(clz);
+    public <T> List<T> selectList(Class<T> clz, IExpr... columns) throws SQLException {
+        return selectDo(IExpr.getCodes(_context, columns)).getList(clz);
     }
 
     /**
@@ -857,8 +858,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(columns).getDataReader(fetch_size).toEntityReader(clz);
     }
 
-    public <T> DataReader<T> selectReader(Class<T> clz, IColumn... columns) throws SQLException {
-        return selectReader(IColumn.getCodes(_context, columns), clz);
+    public <T> DataReader<T> selectReader(Class<T> clz, IExpr... columns) throws SQLException {
+        return selectReader(IExpr.getCodes(_context, columns), clz);
     }
 
     public <T> Page<T> selectPage(String columns, Class<T> clz) throws SQLException {
@@ -868,24 +869,24 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return new PageImpl<>(list, total, limit_size);
     }
 
-    public <T> Page<T> selectPage(Class<T> clz, IColumn... columns) throws SQLException {
-        return selectPage(IColumn.getCodes(_context, columns), clz);
+    public <T> Page<T> selectPage(Class<T> clz, IExpr... columns) throws SQLException {
+        return selectPage(IExpr.getCodes(_context, columns), clz);
     }
 
     public DataRow selectDataRow(String columns) throws SQLException {
         return selectDo(columns).getDataRow();
     }
 
-    public DataRow selectDataRow(IColumn... columns) throws SQLException {
-        return selectDataRow(IColumn.getCodes(_context, columns));
+    public DataRow selectDataRow(IExpr... columns) throws SQLException {
+        return selectDataRow(IExpr.getCodes(_context, columns));
     }
 
     public DataList selectDataList(String columns) throws SQLException {
         return selectDo(columns).getDataList();
     }
 
-    public DataList selectDataList(IColumn... columns) throws SQLException {
-        return selectDataList(IColumn.getCodes(_context, columns));
+    public DataList selectDataList(IExpr... columns) throws SQLException {
+        return selectDataList(IExpr.getCodes(_context, columns));
     }
 
     /**
@@ -896,8 +897,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return selectDo(columns).getDataReader(fetch_size);
     }
 
-    public DataReaderForDataRow selectDataReader(IColumn... columns) throws SQLException {
-        return selectDataReader(IColumn.getCodes(_context, columns));
+    public DataReaderForDataRow selectDataReader(IExpr... columns) throws SQLException {
+        return selectDataReader(IExpr.getCodes(_context, columns));
     }
 
 
@@ -908,24 +909,24 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return new PageImpl<>(list, total, limit_size);
     }
 
-    public Page<DataRow> selectDataPage(IColumn... columns) throws SQLException {
-        return selectDataPage(IColumn.getCodes(_context, columns));
+    public Page<DataRow> selectDataPage(IExpr... columns) throws SQLException {
+        return selectDataPage(IExpr.getCodes(_context, columns));
     }
 
     public Map<String, Object> selectMap(String columns) throws SQLException {
         return selectDo(columns).getMap();
     }
 
-    public Map<String, Object> selectMap(IColumn... columns) throws SQLException {
-        return selectMap(IColumn.getCodes(_context, columns));
+    public Map<String, Object> selectMap(IExpr... columns) throws SQLException {
+        return selectMap(IExpr.getCodes(_context, columns));
     }
 
     public List<Map<String, Object>> selectMapList(String columns) throws SQLException {
         return selectDo(columns).getMapList();
     }
 
-    public List<Map<String, Object>> selectMapList(IColumn... columns) throws SQLException {
-        return selectMapList(IColumn.getCodes(_context, columns));
+    public List<Map<String, Object>> selectMapList(IExpr... columns) throws SQLException {
+        return selectMapList(IExpr.getCodes(_context, columns));
     }
 
     public Page<Map<String, Object>> selectMapPage(String columns) throws SQLException {
@@ -935,8 +936,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return new PageImpl<>(list, total, limit_size);
     }
 
-    public Page<Map<String, Object>> selectMapPage(IColumn... columns) throws SQLException {
-        return selectMapPage(IColumn.getCodes(_context, columns));
+    public Page<Map<String, Object>> selectMapPage(IExpr... columns) throws SQLException {
+        return selectMapPage(IExpr.getCodes(_context, columns));
     }
 
     public <T> List<T> selectArray(String column) throws SQLException {
@@ -954,8 +955,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return new SelectQ(_builder);
     }
 
-    public SelectQ selectQ(IColumn... columns) {
-        return selectQ(IColumn.getCodes(_context, columns));
+    public SelectQ selectQ(IExpr... columns) {
+        return selectQ(IExpr.getCodes(_context, columns));
     }
 
     private void select_do(String columns, boolean doFormat) {

@@ -38,11 +38,12 @@ public class ${entityName}{
 * 查询连接类
 
 ```xml
+
 <entityGenerator targetPackage="demo.model.db" entityName="${tableName_upper}_LK">
-            <![CDATA[
-import org.noear.waad.link.IColumn;
-import org.noear.waad.link.IColumnLink;
-import org.noear.waad.link.ITableLink;
+    <![CDATA[
+import org.noear.waad.linq.IColumn;
+import org.noear.waad.linq.IColumnLink;
+import org.noear.waad.linq.ITableLink;
 
 public class ${entityName} extends ITableLink<${entityName}>{
   public static final ${entityName} ${tableName_upper} = new ${entityName}(null);

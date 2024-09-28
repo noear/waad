@@ -8,7 +8,7 @@ import org.noear.waad.model.DataList;
 import webapp.model.AppxD;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
-import static org.noear.waad.link.FunsLink.*;
+import static org.noear.waad.linq.IFuncs.*;
 
 import java.util.Map;
 

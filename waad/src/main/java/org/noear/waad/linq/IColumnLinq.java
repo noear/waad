@@ -1,4 +1,4 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.annotation.Nullable;
@@ -10,20 +10,20 @@ import org.noear.waad.util.StrUtils;
  * @author noear
  * @since 4.0
  */
-public class IColumnLink implements IColumn {
+public class IColumnLinq implements IColumn {
     private final @Nullable ITable table;
     private final String name;
     private final String asName;
 
-    public IColumnLink(String name) {
+    public IColumnLinq(String name) {
         this(null, name);
     }
 
-    public IColumnLink(ITable table, String name) {
+    public IColumnLinq(ITable table, String name) {
         this(table, name, null);
     }
 
-    public IColumnLink(ITable table, String name, String asName) {
+    public IColumnLinq(ITable table, String name, String asName) {
         this.table = table;
         this.name = name;
         this.asName = asName;
@@ -47,7 +47,7 @@ public class IColumnLink implements IColumn {
 
     @Override
     public IColumn as(String asName) {
-        return new IColumnLink(table, name, asName);
+        return new IColumnLinq(table, name, asName);
     }
 
     @Override

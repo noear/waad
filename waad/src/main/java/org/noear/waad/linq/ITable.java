@@ -1,4 +1,4 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.util.StrUtils;
 
@@ -19,9 +19,9 @@ public interface ITable<T> {
      */
     default IColumn all() {
         if (StrUtils.isEmpty(__getTableSpec().asName())) {
-            return new IColumnLink(this, __getTableSpec().name() + ".*");
+            return new IColumnLinq(this, __getTableSpec().name() + ".*");
         } else {
-            return new IColumnLink(this, __getTableSpec().asName() + ".*");
+            return new IColumnLinq(this, __getTableSpec().asName() + ".*");
         }
     }
 

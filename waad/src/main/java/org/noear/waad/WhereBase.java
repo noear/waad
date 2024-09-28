@@ -1,9 +1,10 @@
 package org.noear.waad;
 
 import org.noear.waad.core.SQLBuilder;
+import org.noear.waad.linq.IExpr;
 import org.noear.waad.util.function.Fun2;
-import org.noear.waad.link.IColumn;
-import org.noear.waad.link.ICondition;
+import org.noear.waad.linq.IColumn;
+import org.noear.waad.linq.ICondition;
 import org.noear.waad.util.EntityUtils;
 import org.noear.waad.core.DbType;
 
@@ -268,14 +269,14 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T orderByAsc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = IColumn.getCodes(_context, columns);
+        String columnsStr = IExpr.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
     }
 
     public T orderByDesc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = IColumn.getCodes(_context, columns);
+        String columnsStr = IExpr.getCodes(_context, columns);
 
 
         return orderByDo(fmtMutColumns(columnsStr) + " DESC ");
@@ -287,14 +288,14 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T andByAsc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = IColumn.getCodes(_context, columns);
+        String columnsStr = IExpr.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " ASC ");
     }
 
     public T andByDesc(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = IColumn.getCodes(_context, columns);
+        String columnsStr = IExpr.getCodes(_context, columns);
 
         return orderByDo(fmtMutColumns(columnsStr) + " DESC ");
     }
@@ -307,7 +308,7 @@ public abstract class WhereBase<T extends WhereBase> {
 
     public T groupBy(IColumn... columns) {
         assert columns.length > 0;
-        String columnsStr = IColumn.getCodes(_context, columns);
+        String columnsStr = IExpr.getCodes(_context, columns);
 
         return groupBy(columnsStr);
     }

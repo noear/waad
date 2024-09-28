@@ -1,7 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.core.DbCommandImpl;
-import org.noear.waad.link.IColumn;
+import org.noear.waad.linq.IColumn;
 import org.noear.waad.model.DataRow;
 
 import java.sql.SQLException;

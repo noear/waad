@@ -1,4 +1,4 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.util.StrUtils;
@@ -9,15 +9,15 @@ import org.noear.waad.util.StrUtils;
  * @author noear
  * @since 4.0
  */
-class ITableSpecLink implements ITableSpec {
+class ITableSpecLinq implements ITableSpec {
     private final String name;
     private final String asName;
 
-    protected ITableSpecLink(String name) {
+    protected ITableSpecLinq(String name) {
         this(name, null);
     }
 
-    protected ITableSpecLink(String name, String asName) {
+    protected ITableSpecLinq(String name, String asName) {
         this.name = name;
         this.asName = asName;
     }

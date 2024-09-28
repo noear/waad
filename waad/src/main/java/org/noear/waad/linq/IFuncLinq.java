@@ -1,4 +1,4 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.util.StrUtils;
@@ -7,33 +7,20 @@ import org.noear.waad.util.StrUtils;
  * @author noear
  * @since 4.0
  */
-public class IColumnFunc implements IColumn {
+public class IFuncLinq implements IFunc {
     private String code;
     private String asName;
-    private IColumn[] columns;
+    private IExpr[] columns;
 
-    public IColumnFunc(String code, IColumn... columns) {
+    public IFuncLinq(String code, IExpr... columns) {
         this.code = code;
         this.columns = columns;
     }
 
-    private IColumnFunc(String code, String asName, IColumn... columns) {
+    private IFuncLinq(String code, String asName, IExpr... columns) {
         this.code = code;
         this.asName = asName;
         this.columns = columns;
-    }
-
-    @Override
-    public String name() {
-        StringBuilder buf = new StringBuilder(code);
-        for (IColumn column : columns) {
-            int idx = buf.indexOf("?");
-            if (idx > -1) {
-                buf.replace(idx, idx + 1, column.getCode(null));
-            }
-        }
-
-        return buf.toString();
     }
 
     @Override
@@ -42,14 +29,14 @@ public class IColumnFunc implements IColumn {
     }
 
     @Override
-    public IColumn as(String asName) {
-        return new IColumnFunc(code, asName, columns);
+    public IFunc as(String asName) {
+        return new IFuncLinq(code, asName, columns);
     }
 
     @Override
     public String getCode(DbContext db) {
         StringBuilder buf = new StringBuilder(code);
-        for (IColumn column : columns) {
+        for (IExpr column : columns) {
             int idx = buf.indexOf("?");
             if (idx > -1) {
                 buf.replace(idx, idx + 1, column.getCode(db));

@@ -1,18 +1,18 @@
-package org.noear.waad.link;
+package org.noear.waad.linq;
 
 /**
  * @author noear
  * @since 4.0
  */
-public class ITableLink<T> implements ITable<T> {
-    private final ITableSpecLink ___ITableSpec;
+public class ITableLinq<T> implements ITable<T> {
+    private final ITableSpecLinq ___ITableSpec;
 
-    public ITableLink(String name, String asName) {
+    public ITableLinq(String name, String asName) {
         if(asName == null && name.indexOf(' ') <0) {
             asName = name;
         }
 
-        ___ITableSpec = new ITableSpecLink(name, asName);
+        ___ITableSpec = new ITableSpecLinq(name, asName);
     }
 
     @Override

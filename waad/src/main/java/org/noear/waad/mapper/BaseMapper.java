@@ -1,13 +1,12 @@
 package org.noear.waad.mapper;
 
 import org.noear.waad.*;
-import org.noear.waad.link.IColumn;
+import org.noear.waad.linq.IColumn;
 import org.noear.waad.model.DataRow;
 import org.noear.waad.model.DataReader;
 import org.noear.waad.model.Page;
 import org.noear.waad.util.function.Act1;
 import org.noear.waad.util.function.Act2;
-import org.noear.waad.wrap.Property;
 
 import java.util.List;
 import java.util.Map;

@@ -4,7 +4,7 @@ import org.noear.waad.core.DbCommand;
 import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.util.SimpleDataSource;
-import org.noear.waad.link.ITable;
+import org.noear.waad.linq.ITable;
 import org.noear.waad.mapper.BaseMapper;
 import org.noear.waad.util.RunUtils;
 import org.noear.waad.util.StrUtils;
