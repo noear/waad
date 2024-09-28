@@ -1,7 +1,6 @@
-package org.noear.waad;
+package org.noear.waad.core;
 
 import org.noear.waad.annotation.Nullable;
-import org.noear.waad.core.Command;
 import org.noear.waad.utils.fun.Act1;
 import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.utils.fun.Fun1;
@@ -9,14 +8,14 @@ import org.noear.waad.utils.fun.Fun1;
 import java.sql.Statement;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author noear 2024/4/19 created
  */
-public class DbEvents {
-    private DbEvents parent;
+public class Events {
+    private Events parent;
+
     private Set<Act2<Command, Throwable>> onException_listener = new LinkedHashSet<>();
     private Set<Act1<Command>> onLog_listener = new LinkedHashSet<>();
 
@@ -29,10 +28,9 @@ public class DbEvents {
     //执行之后
     private Set<Act1<Command>> onExecuteAft_listener = new LinkedHashSet();
 
-    public DbEvents(@Nullable DbEvents parent) {
+    public Events(@Nullable Events parent) {
         this.parent = parent;
     }
-
 
     public void runExceptionEvent(Command cmd, Throwable ex) {
         if (parent != null) {

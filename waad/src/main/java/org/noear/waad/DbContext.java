@@ -1,6 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.core.Command;
+import org.noear.waad.core.Events;
 import org.noear.waad.core.SQLBuilder;
 import org.noear.waad.dialect.DbDialect;
 import org.noear.waad.link.ITable;
@@ -63,9 +64,9 @@ public class DbContext implements Closeable {
     }
 
 
-    private final DbEvents events = new DbEvents(WaadConfig.events());
+    private final Events events = new Events(WaadConfig.events());
 
-    public DbEvents events() {
+    public Events events() {
         return events;
     }
 

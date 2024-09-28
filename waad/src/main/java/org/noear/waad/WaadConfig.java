@@ -1,6 +1,7 @@
 package org.noear.waad;
 
 import org.noear.waad.cache.ICacheServiceEx;
+import org.noear.waad.core.Events;
 import org.noear.waad.mapper.IMapperAdaptorImpl;
 import org.noear.waad.mapper.IMapperAdaptor;
 import org.noear.waad.wrap.PrimaryKeyStrategy;
@@ -14,7 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by noear on 14/11/20.
  */
 public final class WaadConfig {
-    public static boolean isDebug = false;
     public static boolean isUsingValueExpression = true;
     public static boolean isUsingValueNull = false;
 
@@ -57,9 +57,9 @@ public final class WaadConfig {
     /**
      * 事件
      */
-    private static final DbEvents events = new DbEvents(null);
+    private static final Events events = new Events(null);
 
-    public static DbEvents events() {
+    public static Events events() {
         return events;
     }
 }
