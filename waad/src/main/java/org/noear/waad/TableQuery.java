@@ -181,15 +181,7 @@ public class TableQuery extends TableQueryBase<TableQuery> {
     /**
      * 使用set接口的数据,根据约束字段自动插入或更新
      * （默认，只会更新不是null的数据）
-     *
-     * 请改用 upsertBy
      * */
-    @Deprecated
-    public long upsert(String conditionFields)throws SQLException {
-        return upsertBy(conditionFields);
-    }
-
-
     public long upsertBy(String conditionFields)throws SQLException {
         if (_item != null) {
             return upsertBy(_item, conditionFields);

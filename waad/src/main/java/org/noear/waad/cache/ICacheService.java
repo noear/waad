@@ -27,16 +27,6 @@ public interface ICacheService {
     }
 
     /**
-     * 获取
-     *
-     * @deprecated 2.5
-     */
-    @Deprecated
-    default Object get(String key) {
-        return get(key, Object.class);
-    }
-
-    /**
      * 移除
      */
     void remove(String key);
