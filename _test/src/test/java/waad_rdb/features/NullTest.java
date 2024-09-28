@@ -24,13 +24,13 @@ public class NullTest {
 
         assert temp != null;
 
-        WaadConfig.isSelectItemEmptyAsNull = true;
+        WaadConfig.isSelectNullAsDefault = false;
 
         AppxModel temp2 = db2.table("appx")
                 .where("app_id=?", Integer.MAX_VALUE)
                 .selectItem("*", AppxModel.class);
 
-        WaadConfig.isSelectItemEmptyAsNull = false;
+        WaadConfig.isSelectNullAsDefault = true;
 
         assert temp2 == null;
     }
@@ -42,11 +42,11 @@ public class NullTest {
 
         assert temp != null;
 
-        WaadConfig.isSelectItemEmptyAsNull = true;
+        WaadConfig.isSelectNullAsDefault = false;
 
         AppxModel temp2 = mapper.selectById(Integer.MAX_VALUE);
 
-        WaadConfig.isSelectItemEmptyAsNull = false;
+        WaadConfig.isSelectNullAsDefault = true;
 
         assert temp2 == null;
     }

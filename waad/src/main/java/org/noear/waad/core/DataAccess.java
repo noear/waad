@@ -228,7 +228,7 @@ public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQue
 
         // nullable 处理
         if (item.size() == 0) {
-            if (WaadConfig.isSelectItemEmptyAsNull) {
+            if (WaadConfig.isSelectNullAsDefault == false) {
                 return null;
             }
         }
@@ -251,7 +251,7 @@ public abstract class DataAccess<T extends DataAccess> implements IWaadKey, IQue
 
         // nullable 处理
         if (item.size() == 0) {
-            if (WaadConfig.isSelectItemEmptyAsNull) {
+            if (WaadConfig.isSelectNullAsDefault == false) {
                 return null;
             }
         }
