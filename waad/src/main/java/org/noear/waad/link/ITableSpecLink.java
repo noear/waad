@@ -9,15 +9,15 @@ import org.noear.waad.utils.StrUtils;
  * @author noear
  * @since 4.0
  */
-public class ITableSpecImpl implements ITableSpec {
+class ITableSpecLink implements ITableSpec {
     private final String name;
     private final String asName;
 
-    public ITableSpecImpl(String name) {
+    protected ITableSpecLink(String name) {
         this(name, null);
     }
 
-    public ITableSpecImpl(String name, String asName) {
+    protected ITableSpecLink(String name, String asName) {
         this.name = name;
         this.asName = asName;
     }
@@ -36,14 +36,6 @@ public class ITableSpecImpl implements ITableSpec {
     @Override
     public String asName() {
         return asName;
-    }
-
-    /**
-     * 别名为
-     */
-    @Override
-    public ITableSpec as(String asName) {
-        return new ITableSpecImpl(name, asName);
     }
 
     /**

@@ -5,14 +5,14 @@ package org.noear.waad.link;
  * @since 4.0
  */
 public class ITableLink<T> implements ITable<T> {
-    private final ITableSpecImpl ___ITableSpec;
+    private final ITableSpecLink ___ITableSpec;
 
     public ITableLink(String name, String asName) {
         if(asName == null && name.indexOf(' ') <0) {
             asName = name;
         }
 
-        ___ITableSpec = new ITableSpecImpl(name, asName);
+        ___ITableSpec = new ITableSpecLink(name, asName);
     }
 
     @Override

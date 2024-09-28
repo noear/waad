@@ -13,7 +13,6 @@ import org.noear.waad.utils.fun.Act2;
 import org.noear.waad.link.IColumn;
 import org.noear.waad.link.ITable;
 import org.noear.waad.link.ITableLink;
-import org.noear.waad.link.ITableSpecImpl;
 import org.noear.waad.core.DbType;
 import org.noear.waad.utils.fun.GetHandler;
 
@@ -164,8 +163,8 @@ public class TableQueryBase<T extends TableQueryBase> extends WhereBase<T> imple
         return join(" LEFT JOIN ", table);
     }
 
-    public T leftJoin(ITableSpecImpl table) {
-        return leftJoin(table.getCode(_context));
+    public T leftJoin(ITable table) {
+        return leftJoin(table.____getTableSpec().getCode(_context));
     }
 
     /**
