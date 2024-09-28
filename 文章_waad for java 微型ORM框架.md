@@ -22,7 +22,7 @@
 | 组件                  | 说明                          |
 |---------------------|-----------------------------|
 | org.noear:waad      | 主框架（没有任何依赖）                 |
-| org.noear:waad-plus | 增强框架（支持 Mapper 和 XmlMapper） |
+| org.noear:waad-mapper | 增强框架（支持 Mapper 和 XmlMapper） |
 
 
 | 可选组件 | 说明                     |
@@ -123,7 +123,7 @@ DbContext db = WaterClient.Config.get("demo.db").getDb();
 
 ##### （一）db.mapper()，提供mapper操作支持
 
- > mapper风格（需要引入增强包：waad-plus），是现在极为流行的一种。此接口提供了BaseMapper模式，@Sql注入模式，Xml sql配置模式。其中，Xml sql 的内部处理会在启动时预编译为Java class；性能应该是靠谱的（好像有点儿jsp的预编译味道）。
+ > mapper风格（需要引入增强包：waad-mapper），是现在极为流行的一种。此接口提供了BaseMapper模式，@Sql注入模式，Xml sql配置模式。其中，Xml sql 的内部处理会在启动时预编译为Java class；性能应该是靠谱的（好像有点儿jsp的预编译味道）。
 
 * 1.db.mapperBase(clz) 获取BaseMapper实例 
 

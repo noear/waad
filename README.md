@@ -100,7 +100,7 @@ db.table(logger)
 | 组件                  | 说明                          |
 |---------------------|-----------------------------|
 | org.noear:waad      | 主框架（没有任何依赖）                 |
-| org.noear:waad-plus | 增强框架（支持 Mapper 和 XmlMapper） |
+| org.noear:waad-mapper | 增强框架（支持 Mapper 和 XmlMapper） |
 
 
 | 可选组件 | 说明                     |

@@ -61,7 +61,7 @@
 
             <dependency>
                 <groupId>org.noear</groupId>
-                <artifactId>waad-plus</artifactId>
+                <artifactId>waad-mapper</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -250,7 +250,7 @@
 
     <modules>
         <module>../waad</module>
-        <module>../waad-plus</module>
+        <module>../waad-mapper</module>
         <module>../waad-maven-plugin</module>
 
         <module>../_extend/waad-cache-memcached</module>

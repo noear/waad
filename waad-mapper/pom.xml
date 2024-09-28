@@ -12,7 +12,7 @@
     </parent>
 
 
-    <artifactId>waad-plus</artifactId>
+    <artifactId>waad-mapper</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

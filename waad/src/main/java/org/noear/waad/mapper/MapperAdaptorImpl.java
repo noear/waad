@@ -10,7 +10,7 @@ import java.util.Map;
  * @since 1.1
  */
 public class MapperAdaptorImpl implements MapperAdaptor {
-    static final String hint = "To use the mapper feature, use the 'waad-plus' dependency package";
+    static final String hint = "To use the mapper feature, use the 'waad-mapper' dependency package";
 
     private MapperAdaptor real;
 
