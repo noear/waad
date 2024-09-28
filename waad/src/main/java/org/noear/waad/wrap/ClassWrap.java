@@ -56,7 +56,7 @@ public class ClassWrap {
         if (ann != null) {
             tableName = ann.value();
         } else {
-            tableName = WaadConfig.namingStrategy.classToTableName(clz);
+            tableName = WaadConfig.namingStrategy().classToTableName(clz);
         }
 
         if (fieldWraps.size() == 0) {
@@ -153,7 +153,7 @@ public class ClassWrap {
 
                         if (val != null) {
                             //尝试类型转换
-                            val = WaadConfig.typeConverter.convert(val, p.getType());
+                            val = WaadConfig.typeConverter().convert(val, p.getType());
                         }
 
                         argsV[i] = val;

@@ -30,10 +30,10 @@ public class FieldWrap {
         if (fn != null) {
             name = fn.value();
         } else {
-            name = WaadConfig.namingStrategy.fieldToColumnName(clz, f1);
+            name = WaadConfig.namingStrategy().fieldToColumnName(clz, f1);
         }
 
-        pk = WaadConfig.primaryKeyStrategy.fieldIsPrimaryKey(clz, f1);
+        pk = WaadConfig.primaryKeyStrategy().fieldIsPrimaryKey(clz, f1);
 
         field.setAccessible(true);
 
@@ -59,7 +59,7 @@ public class FieldWrap {
                 return;
             }
 
-            val = WaadConfig.typeConverter.convert(val, field.getType());
+            val = WaadConfig.typeConverter().convert(val, field.getType());
 
             if (_setter == null) {
                 field.set(tObj, val);

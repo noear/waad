@@ -8,7 +8,7 @@ import org.noear.waad.DbContextMetaData;
 public class DbContextMetaDataTest {
     public static void main(String[] args) {
         try {
-            new DbContextMetaData(null);
+            new DbContextMetaData();
         }catch (Exception ex){
             ex.printStackTrace();
         }

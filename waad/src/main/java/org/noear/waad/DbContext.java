@@ -14,7 +14,6 @@ import org.noear.waad.wrap.DbFormater;
 import javax.sql.DataSource;
 import java.io.Closeable;
 import java.io.IOException;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -47,7 +46,7 @@ public class DbContext implements Closeable {
     }
 
 
-    private final Events events = new Events(WaadConfig.events());
+    private final Events events = new Events(WaadConfig.globalEvents());
 
     public Events events() {
         return events;
@@ -190,11 +189,11 @@ public class DbContext implements Closeable {
     //
 
     public <T> BaseMapper<T> mapperBase(Class<T> clz) {
-        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, null);
+        return WaadConfig.mapperAdaptor().createMapperBase(this, clz, null);
     }
 
     public <T> BaseMapper<T> mapperBase(Class<T> clz, String tableName) {
-        return WaadConfig.mapperAdaptor.createMapperBase(this, clz, tableName);
+        return WaadConfig.mapperAdaptor().createMapperBase(this, clz, tableName);
     }
 
     private Map<Class<?>, Object> _mapperMap = new HashMap<>();
@@ -209,7 +208,7 @@ public class DbContext implements Closeable {
             try {
                 tmp = _mapperMap.get(clz);
                 if (tmp == null) {
-                    tmp = WaadConfig.mapperAdaptor.createMapper(this, clz);
+                    tmp = WaadConfig.mapperAdaptor().createMapper(this, clz);
                     _mapperMap.put(clz, tmp);
                 }
             } finally {
@@ -226,7 +225,7 @@ public class DbContext implements Closeable {
      * @param xsqlid @{namespace}.{id}
      */
     public <T> T mapper(String xsqlid, Map<String, Object> args) throws Exception {
-        return (T) WaadConfig.mapperAdaptor.createMapper(this, xsqlid, args);
+        return (T) WaadConfig.mapperAdaptor().createMapper(this, xsqlid, args);
     }
 
 
@@ -248,7 +247,7 @@ public class DbContext implements Closeable {
      */
     public DbProcedure call(String process) {
         if (process.startsWith("@")) {
-            return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, null);
+            return WaadConfig.mapperAdaptor().createXmlProcedure(this, process, null);
         }
 
         return new DbStoredProcedure(this).call(process);
@@ -261,7 +260,7 @@ public class DbContext implements Closeable {
      */
     public DbProcedure call(String process, Map<String, Object> args) {
         if (process.startsWith("@")) {
-            return WaadConfig.mapperAdaptor.createXmlProcedure(this, process, args);
+            return WaadConfig.mapperAdaptor().createXmlProcedure(this, process, args);
         }
 
         return new DbStoredProcedure(this).call(process).setMap(args);

@@ -209,7 +209,7 @@ public class SQLer {
                 Object[] ary = (Object[]) data;
                 //2.设置参数值
                 for (Object v : ary) {
-                    WaadConfig.typeConverter.filling(stmt, idx, v);
+                    WaadConfig.typeConverter().filling(stmt, idx, v);
                     idx++;
                 }
                 stmt.addBatch();
@@ -300,7 +300,7 @@ public class SQLer {
         int idx = 1;
         //2.设置参数值
         for (Object v : cmd.args) {
-            WaadConfig.typeConverter.filling(stmt, idx, v);
+            WaadConfig.typeConverter().filling(stmt, idx, v);
             idx++;
         }
 

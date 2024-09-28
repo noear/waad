@@ -14,7 +14,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by noear on 14/11/20.
+ * 全局配置
+ *
+ * @author noear
+ * @since 14/11/20.
  */
 public final class WaadConfig {
     public static boolean isUsingValueExpression = true;
@@ -33,41 +36,88 @@ public final class WaadConfig {
      */
     public static boolean isUsingCompilationMode = false;
 
-
     /**
      * 非注解的命名策略
      */
-    public static NamingStrategy namingStrategy = new NamingStrategy();
+    private static NamingStrategy namingStrategy = new NamingStrategy();
+
+    public static void namingStrategy(NamingStrategy namingStrategy) {
+        assert namingStrategy != null;
+        WaadConfig.namingStrategy = namingStrategy;
+    }
+
+    public static NamingStrategy namingStrategy() {
+        return namingStrategy;
+    }
+
+
+    private static PrimaryKeyStrategy primaryKeyStrategy = new PrimaryKeyStrategy();
+
+    public static void namingStrategy(PrimaryKeyStrategy primaryKeyStrategy) {
+        assert primaryKeyStrategy != null;
+        WaadConfig.primaryKeyStrategy = primaryKeyStrategy;
+    }
 
     /**
      * 非注解的字段主键策略
      */
-    public static PrimaryKeyStrategy primaryKeyStrategy = new PrimaryKeyStrategy();
+    public static PrimaryKeyStrategy primaryKeyStrategy() {
+        return primaryKeyStrategy;
+    }
+
+
+    private static TypeConverter typeConverter = new TypeConverter();
+
+    public static void typeConverter(TypeConverter typeConverter) {
+        assert typeConverter != null;
+        WaadConfig.typeConverter = typeConverter;
+    }
 
     /**
      * 字段类型转换器
      */
-    public static TypeConverter typeConverter = new TypeConverter();
+    public static TypeConverter typeConverter() {
+        return typeConverter;
+    }
 
-    /**
-     * Mapper 适配器
-     */
-    public static MapperAdaptor mapperAdaptor = new MapperAdaptorImpl();
+
+    private static ConnectionFactory connectionFactory = new SimpleConnectionFactory();
+
+    public static void connectionFactory(ConnectionFactory connectionFactory) {
+        assert connectionFactory != null;
+        WaadConfig.connectionFactory = connectionFactory;
+    }
 
     /**
      * 链接工厂
      */
-    public static ConnectionFactory connectionFactory = new SimpleConnectionFactory();
+    public static ConnectionFactory connectionFactory() {
+        return connectionFactory;
+    }
 
-    public static Map<String, ICacheServiceEx> libOfCache = new ConcurrentHashMap<>();
-    public static Map<String, DbContext> libOfDb = new ConcurrentHashMap<>();
+
+    private static MapperAdaptor mapperAdaptor = new MapperAdaptorImpl();
 
     /**
-     * 事件
+     * 遇射适配器
      */
-    private static final Events events = new Events(null);
-
-    public static Events events() {
-        return events;
+    public static MapperAdaptor mapperAdaptor() {
+        return mapperAdaptor;
     }
+
+
+    private static Events globalEvents = new Events(null);
+
+    /**
+     * 全局事件
+     */
+    public static Events globalEvents() {
+        return globalEvents;
+    }
+
+    ///////////////// final
+
+
+    public static final Map<String, ICacheServiceEx> libOfCache = new ConcurrentHashMap<>();
+    public static final Map<String, DbContext> libOfDb = new ConcurrentHashMap<>();
 }

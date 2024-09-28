@@ -6,13 +6,13 @@ public class ConfigDemo {
 
     public void test1() {
         //监听异常
-        WaadConfig.events().onException((cmd, ex) -> {
+        WaadConfig.globalEvents().onException((cmd, ex) -> {
             ex.printStackTrace();
         });
 
 
         //记录行为
-        WaadConfig.events().onLog((cmd) -> {
+        WaadConfig.globalEvents().onLog((cmd) -> {
             if (cmd.isLog() >= 0) { //isLog: -1,不需要记录；0,默认；1,需要记录
                 //cmd.text();         //执行代码
                 //cmd.args();   	//执行参数
@@ -21,11 +21,11 @@ public class ConfigDemo {
         });
 
         //监听性能
-        WaadConfig.events().onExecuteAft((cmd) -> {
+        WaadConfig.globalEvents().onExecuteAft((cmd) -> {
             //cmd.timespan()
         });
 
-        WaadConfig.events().onExecuteBef((cmd) -> {
+        WaadConfig.globalEvents().onExecuteBef((cmd) -> {
             if (cmd.text().indexOf("DELETE ") >= 0) {
                 return false;
             }

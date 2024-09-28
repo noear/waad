@@ -7,7 +7,7 @@ import org.noear.waad.WaadConfig;
  */
 public class EventTest {
     public void demo(){
-        WaadConfig.events().onExecuteAft((cmd)->{
+        WaadConfig.globalEvents().onExecuteAft((cmd)->{
             System.out.println("[Waad] " + cmd.getSqlString());
         });
     }
