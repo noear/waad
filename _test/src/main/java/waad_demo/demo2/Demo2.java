@@ -15,7 +15,7 @@ public class Demo2 {
 
     public void test() {
         List<String> ids = new ArrayList<>();
-        BaseMapper<UserModel>  tmp = db.mapper(BaseMapper.class, UserModel.class);
+        BaseMapper<UserModel>  tmp = db.mapperBase(UserModel.class);
         tmp.selectList(wq -> wq.and("id IN(?...)", ids));
 
 //        //没参数的
