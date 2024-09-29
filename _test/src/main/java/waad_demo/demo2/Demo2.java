@@ -2,6 +2,7 @@ package waad_demo.demo2;
 
 import org.noear.waad.DbContext;
 import org.noear.waad.TableQuery;
+import org.noear.waad.mapper.BaseMapper;
 import waad_demo.config.DbConfig;
 import waad_demo.mapper.UserModel;
 
@@ -14,7 +15,8 @@ public class Demo2 {
 
     public void test() {
         List<String> ids = new ArrayList<>();
-        db.mapperBase(UserModel.class).selectList(wq -> wq.and("id IN(?...)", ids));
+        BaseMapper<UserModel>  tmp = db.mapper(BaseMapper.class, UserModel.class);
+        tmp.selectList(wq -> wq.and("id IN(?...)", ids));
 
 //        //没参数的
 //        db.call("@webapp.dso.SqlMapper.appx_get").getMap();

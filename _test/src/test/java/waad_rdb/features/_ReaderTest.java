@@ -10,7 +10,7 @@ import waad_rdb.DbUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static waad_rdb.features.linq.APPX_LQ.APPX;
+import static linq.APPX_LQ.APPX;
 
 public class _ReaderTest {
     DbContext db2 = DbUtil.db;

@@ -7,7 +7,7 @@ import org.noear.waad.model.Page;
 import webapp.model.AppxModel;
 import waad_rdb.DbUtil;
 
-import static waad_rdb.features.linq.APPX_LQ.APPX;
+import static linq.APPX_LQ.APPX;
 
 public class _PageTest2 {
     DbContext db2 = DbUtil.db;

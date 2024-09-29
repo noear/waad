@@ -1,4 +1,4 @@
-package waad_rdb.features.linq;
+package linq;
 
 import org.noear.waad.linq.IColumn;
 import org.noear.waad.linq.IColumnLinq;

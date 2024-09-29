@@ -12,8 +12,8 @@ import static org.noear.waad.linq.IExprs.*;
 
 import java.util.Map;
 
-import static waad_rdb.features.linq.APPX_LQ.APPX;
-import static waad_rdb.features.linq.TEST_LQ.TEST;
+import static linq.APPX_LQ.APPX;
+import static linq.TEST_LQ.TEST;
 
 
 public class TableTest {

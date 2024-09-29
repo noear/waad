@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.noear.waad.DbContext;
 import waad_rdb.DbUtil;
 import webapp.model.AppxModel;
-import waad_rdb.features.linq.APPX_LQ;
-import waad_rdb.features.linq.APPX_AGROUP_LQ;
+import linq.APPX_LQ;
+import linq.APPX_AGROUP_LQ;
 
 import java.sql.SQLException;
 
-import static waad_rdb.features.linq.APPX_AGROUP_LQ.APPX_AGROUP;
-import static waad_rdb.features.linq.APPX_LQ.APPX;
+import static linq.APPX_AGROUP_LQ.APPX_AGROUP;
+import static linq.APPX_LQ.APPX;
 
 
 public class TableJoinTest {

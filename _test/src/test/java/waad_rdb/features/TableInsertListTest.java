@@ -10,7 +10,7 @@ import webapp.model.TestModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static waad_rdb.features.linq.TEST_LQ.TEST;
+import static linq.TEST_LQ.TEST;
 
 
 public class TableInsertListTest {
