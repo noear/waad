@@ -64,20 +64,20 @@ db.baseMapper(User.class).selectList(mq->mq
         .andEq(User::getLabel,"T"));
 
 
-//Table 接口（强类型模式）
+//Table 接口（强类型模式, LinQ 风格）
 db.table(USER)
-  .innerJoin(USER_EXT).onEq(USER.ID,USER_EXT.USER_ID)
+  .innerJoin(USER_EXT).on(USER.ID.eq(USER_EXT.USER_ID))
   .whereEq(USER.TYPE,11)
   .limit(100,20)
   .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
-db.table(USER)
-  .innerJoin(USER_EXT).onEq(USER.ID,USER_EXT.USER_ID)
-  .whereEq(USER.TYPE,11)
-  .limit(100,20)
-  .selectAsCmd(USER.all(),USER_EXT.SEX,USER_EXT.LABLE); //构建查询命令（即查询语句）
+db.table(ORDER)
+  .innerJoin(USER).on(ORDER.USER_ID.eq(USER.ID))
+  .whereEq(ORDER.TYPE,11)
+  .group(ORDER.APP_ID, USER.REGION)
+  .selectList(OrderStat.class, ORDER.APP_ID, USER.REGION, sum(ORDER.AMOUNT)); //构建查询命令（即查询语句）
 
-//Table 接口（弱类型模式）。拼装条件查询（特别适合管理后台）
+//Table 接口（弱类型模式）。拼装条件查询（适合管理后台）
 db.table(logger)
   .whereTrue()
   .andIf(TextUtils.isNotEmpty(trace_id), "trace_id = ?", trace_id)
@@ -123,14 +123,14 @@ db.table(logger)
 <dependency>
     <groupId>org.noear</groupId>
     <artifactId>waad</artifactId>
-    <version>4.0.0-M1</version>
+    <version>4.0.0-M2</version>
 </dependency>
 
 <!-- 可选：maven 插件，用于生成Xml sql mapper接口 -->
 <plugin>
     <groupId>org.noear</groupId>
     <artifactId>waad-maven-plugin</artifactId>
-    <version>4.0.0-M1</version>
+    <version>4.0.0-M2</version>
 </plugin>
 ```
 

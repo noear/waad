@@ -20,7 +20,7 @@
     <properties>
         <jmh.version>1.25</jmh.version>
         <solon.version>2.9.3</solon.version>
-        <waad.version>4.0.0-M1</waad.version>
+        <waad.version>4.0.0-M2</waad.version>
     </properties>
 
     <dependencies>

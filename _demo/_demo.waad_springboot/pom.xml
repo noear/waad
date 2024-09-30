@@ -22,7 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <waad.version>4.0.0-M1</waad.version>
+        <waad.version>4.0.0-M2</waad.version>
     </properties>
 
     <dependencies>
