@@ -56,12 +56,12 @@ H2, Db2, MySql, Oracle, PostrgeSQL, SqlLite, SqlServer, Phoenix, Presto
 
 ```java
 //BaseMapper 接口
-db.baseMapper(User.class).selectById(1);
+db.mapper(UserMapper.class).selectById(1);
 
 //BaseMapper 接口，lambda 条件查询
-db.baseMapper(User.class).selectList(mq->mq
-        .whereLt(User::getGroup,1)
-        .andEq(User::getLabel,"T"));
+db.mapper(UserMapper.class).selectList(mq->mq
+        .where(USER.GROUP.eq(1))
+        .and(USER.LABEL.eq("T")));
 
 
 //Table 接口（强类型模式, LinQ 风格）
