@@ -1,5 +1,5 @@
 <h1 align="center" style="text-align:center;">
-  Waad (实验中...)
+  Waad (Wood 4.0 实验临时代号...)
 </h1>
 <p align="center">
 微型ORM框架（支持：java sql，xml sql，annotation sql；事务；缓存；监控；等...），无依赖！
