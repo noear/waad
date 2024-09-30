@@ -54,6 +54,8 @@ H2, Db2, MySql, Oracle, PostrgeSQL, SqlLite, SqlServer, Phoenix, Presto
 * 上下文：DbContext db
 * 四个接口：db.mapper(), db.table(), db.call(), db.sql()
 
+强类型接口（代号，LinQ）
+
 ```java
 //BaseMapper 接口
 db.mapper(UserMapper.class).selectById(1);
@@ -67,25 +69,40 @@ db.mapper(UserMapper.class).selectList(mq->mq
 //Table 接口（强类型模式, LinQ 风格）
 db.table(USER)
   .innerJoin(USER_EXT).on(USER.ID.eq(USER_EXT.USER_ID))
-  .whereEq(USER.TYPE,11)
+  .where(USER.TYPE.eq(11))
   .limit(100,20)
   .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
 db.table(ORDER)
   .innerJoin(USER).on(ORDER.USER_ID.eq(USER.ID))
-  .whereEq(ORDER.TYPE,11)
+  .where(ORDER.TYPE.eq(11))
   .group(ORDER.APP_ID, USER.REGION)
   .selectList(OrderStat.class, ORDER.APP_ID, USER.REGION, sum(ORDER.AMOUNT)); //构建查询命令（即查询语句）
+```
+
+弱类型风格
+
+
+```java
+db.mapper(UserMapper.class).selectList(mq->mq
+        .where("group = ?", 1)
+        .and("label = ?", "T"));
+
+db.table("user t1")
+  .innerJoin("user_ext t2").on("t1.id = t2.user_id")
+  .where("t1.type = 11")
+  .limit(100,20)
+  .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
 //Table 接口（弱类型模式）。拼装条件查询（适合管理后台）
 db.table(logger)
   .whereTrue()
   .andIf(TextUtils.isNotEmpty(trace_id), "trace_id = ?", trace_id)
-  .andIf(TextUtils.isNotEmpty(tag), "tag = ?", tag)
-  .andIf(TextUtils.isNotEmpty(tag1), "tag1 = ?", tag1)
-  .andIf(TextUtils.isNotEmpty(tag2), "tag2 = ?", tag2)
-  .andIf(TextUtils.isNotEmpty(tag3), "tag3 = ?", tag3)
-  .andIf(log_date > 0, "log_date = ?", log_date)
+        .andIf(TextUtils.isNotEmpty(tag), "tag = ?", tag)
+        .andIf(TextUtils.isNotEmpty(tag1), "tag1 = ?", tag1)
+        .andIf(TextUtils.isNotEmpty(tag2), "tag2 = ?", tag2)
+        .andIf(TextUtils.isNotEmpty(tag3), "tag3 = ?", tag3)
+        .andIf(log_date > 0, "log_date = ?", log_date)
   .andIf(log_id > 0, "log_id <= ?", log_id)
   .andIf(level > 0, "level=?", level)
   .orderBy("log_fulltime desc")
