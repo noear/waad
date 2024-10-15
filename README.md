@@ -74,8 +74,8 @@ db.table(USER)
   .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
 
-ORDER_REF a1 = ORDER.as("a1");
-USER_REF a2 = USER.as("a2");
+ORDER_LQ a1 = ORDER.as("a1");
+USER_LQ a2 = USER.as("a2");
 db.table(a1)
   .innerJoin(a2).on(a1.USER_ID.eq(a2.ID))
   .where(a1.TYPE.eq(11))
