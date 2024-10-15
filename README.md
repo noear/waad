@@ -73,11 +73,14 @@ db.table(USER)
   .limit(100,20)
   .selectList(User.class, USER.all(),USER_EXT.SEX,USER_EXT.LABLE);
 
-db.table(ORDER)
-  .innerJoin(USER).on(ORDER.USER_ID.eq(USER.ID))
-  .where(ORDER.TYPE.eq(11))
-  .group(ORDER.APP_ID, USER.REGION)
-  .selectList(OrderStat.class, ORDER.APP_ID, USER.REGION, sum(ORDER.AMOUNT)); //构建查询命令（即查询语句）
+
+ORDER_REF a1 = ORDER.as("a1");
+USER_REF a2 = USER.as("a2");
+db.table(a1)
+  .innerJoin(a2).on(a1.USER_ID.eq(a2.ID))
+  .where(a1.TYPE.eq(11))
+  .group(a1.APP_ID, a2.REGION)
+  .selectList(OrderStat.class, a1.APP_ID, a2.REGION, sum(a1.AMOUNT)); //构建查询命令（即查询语句）
 ```
 
 弱类型风格
